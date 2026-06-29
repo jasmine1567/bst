@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>部分一致検索プラグイン（kintone）｜「あるはずのデータ」を一発で — bst</title>
+<meta name="description" content="kintone標準検索では出てこない英数字・型番・管理番号を、一覧画面で『含む』だけで検索。複数フィールド横断・AND/OR・大文字小文字無視に対応。¥49,800買い切り・完全ローカル動作。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#252525; --ink2:#3a3a37; --paper:#FBFBF8; --paper2:#F3F2EC;
+    --line:#E4E3DB; --amber:#FFB800; --amber-deep:#B57E00; --mut:#6E6E68;
+    --hit:#18794E; --hit-bg:#E8F5EE; --hit-line:#a7d8bd;
+    --miss:#C0392B; --miss-bg:#FBEAE7; --miss-line:#e7b4ab;
+    --blue:#2563eb; --kgray:#f3f4f6;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    line-height:1.78;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .narrow{max-width:860px;}
+  .mono{font-family:"JetBrains Mono",monospace;}
+
+  /* header */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(251,251,248,.84);
+    backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--line);}
+  .nav-in{display:flex;align-items:center;gap:24px;height:64px;}
+  .brand{font-family:"Archivo";font-weight:900;font-size:26px;letter-spacing:-.02em;}
+  .brand span{color:var(--amber-deep);}
+  .nav-mid{margin-left:6px;font-size:13px;color:var(--mut);font-weight:500;border-left:1px solid var(--line);padding-left:18px;}
+  @media(max-width:680px){.nav-mid{display:none;}}
+  .nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center;}
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;font-weight:700;font-size:14px;
+    padding:11px 20px;border:1.5px solid var(--ink);transition:transform .12s, background .15s, color .15s;cursor:pointer;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn--amber{background:var(--amber);border-color:var(--amber);color:var(--ink);}
+  .btn--amber:hover{background:#ffc733;}
+  .btn--ink{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .btn--ghost{background:transparent;}
+  .btn--lg{padding:15px 30px;font-size:16px;}
+  .nav-cta .btn{padding:8px 16px;font-size:13px;}
+  @media(max-width:520px){.nav-cta .btn--back{display:none;}}
+
+  /* hero */
+  .hero{background:var(--ink);color:#fff;position:relative;overflow:hidden;}
+  .hero::after{content:"";position:absolute;left:50%;top:-220px;width:680px;height:680px;transform:translateX(-50%);
+    background:radial-gradient(circle,rgba(255,184,0,.14),transparent 60%);pointer-events:none;}
+  .hero-in{padding:clamp(56px,8vw,90px) 0 clamp(56px,8vw,92px);position:relative;z-index:1;}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:.1em;
+    color:var(--amber);text-transform:uppercase;margin-bottom:20px;}
+  .eyebrow::before{content:"";width:24px;height:2px;background:var(--amber);}
+  .hero h1{font-weight:900;font-size:clamp(32px,5.4vw,58px);line-height:1.14;letter-spacing:-.02em;margin:0 0 20px;max-width:780px;}
+  .hero h1 .hl{color:var(--amber);}
+  .hero .lead{font-size:clamp(15px,1.8vw,18px);color:#d7d6cf;max-width:600px;margin:0 0 30px;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
+  .pricepill{display:inline-flex;align-items:baseline;gap:7px;background:#2f2f2c;border:1px solid #46453f;
+    border-radius:999px;padding:8px 16px;font-size:13px;color:#d7d6cf;}
+  .pricepill b{font-family:"Archivo";font-size:18px;color:#fff;}
+  .hero-note{font-size:12.5px;color:#9a998f;margin-top:8px;}
+
+  /* ===== signature demo ===== */
+  .demo{margin-top:clamp(40px,6vw,64px);background:#fff;border-radius:20px;padding:clamp(18px,3vw,28px);
+    box-shadow:0 30px 70px rgba(0,0,0,.35);}
+  .demo-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px;color:var(--ink);}
+  .demo-head .q{font-size:13px;color:var(--mut);}
+  .demo-typed{font-family:"JetBrains Mono";font-weight:700;background:var(--paper2);border:1px solid var(--line);
+    border-radius:8px;padding:5px 12px;font-size:15px;min-width:120px;}
+  .demo-typed .cur{display:inline-block;width:2px;height:1.05em;background:var(--ink);vertical-align:-2px;margin-left:1px;animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  .demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:680px){.demo-grid{grid-template-columns:1fr;}}
+  .panel{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;}
+  .panel-top{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;font-size:12.5px;font-weight:700;border-bottom:1px solid var(--line);}
+  .panel.std .panel-top{background:#fafafa;color:var(--ink);}
+  .panel.bst .panel-top{background:var(--ink);color:#fff;}
+  .panel.bst .panel-top .badge-bst{color:var(--amber);}
+  .panel-body{padding:14px;min-height:188px;position:relative;}
+  .result-count{font-family:"Archivo";font-weight:900;font-size:30px;line-height:1;display:flex;align-items:baseline;gap:8px;margin-bottom:12px;}
+  .result-count small{font-family:"Noto Sans JP";font-size:13px;font-weight:700;}
+  .rc-miss{color:var(--miss);}
+  .rc-hit{color:var(--hit);}
+  .miss-note{background:var(--miss-bg);border:1px solid var(--miss-line);color:#7e241a;border-radius:9px;
+    padding:9px 12px;font-size:12.5px;}
+  .row{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);
+    border-radius:9px;margin-bottom:8px;font-size:12.5px;background:#fff;opacity:0;transform:translateY(6px);}
+  .row.show{opacity:1;transform:none;transition:opacity .35s ease, transform .35s ease;}
+  .row .tick{width:18px;height:18px;border-radius:50%;background:var(--hit);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;}
+  .mk{background:#fff3cd;border-radius:3px;padding:0 3px;font-weight:700;}
+  .scanning{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:9px;color:var(--mut);font-size:13px;background:rgba(255,255,255,.6);}
+  .spin{width:15px;height:15px;border:2px solid #d8d7cf;border-top-color:var(--ink);border-radius:50%;animation:sp .7s linear infinite;}
+  @keyframes sp{to{transform:rotate(360deg);}}
+  .hidden{display:none !important;}
+
+  /* sections */
+  .sec{padding:clamp(60px,8.5vw,108px) 0;}
+  .sec.alt{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .sec.dark{background:var(--ink);color:#fff;}
+  .sec-head{max-width:680px;margin-bottom:46px;}
+  .sec-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--amber-deep);text-transform:uppercase;
+    margin-bottom:14px;display:inline-flex;align-items:center;gap:9px;}
+  .kicker::before{content:"";width:24px;height:2px;background:var(--amber-deep);}
+  .sec.dark .kicker{color:var(--amber);} .sec.dark .kicker::before{background:var(--amber);}
+  .center .kicker{justify-content:center;}
+  h2.t{font-weight:900;font-size:clamp(25px,3.5vw,40px);line-height:1.24;letter-spacing:-.01em;margin:0 0 14px;}
+  .sub{color:var(--mut);font-size:15.5px;}
+  .sec.dark .sub{color:#bdbcb2;}
+
+  /* problem walls */
+  .walls{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media(max-width:860px){.walls{grid-template-columns:1fr;}}
+  .wall{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;position:relative;}
+  .wall .num{font-family:"Archivo";font-weight:900;font-size:13px;color:var(--miss);letter-spacing:.08em;margin-bottom:12px;}
+  .wall h3{font-size:18px;font-weight:900;margin:0 0 10px;letter-spacing:-.01em;}
+  .wall p{font-size:13.5px;color:var(--mut);margin:0 0 14px;}
+  .ex{background:var(--miss-bg);border:1px solid var(--miss-line);border-radius:10px;padding:11px 13px;font-size:12.5px;}
+  .ex .q{font-family:"JetBrains Mono";font-weight:700;}
+  .ex .x{color:var(--miss);font-weight:700;}
+  .ex-row{display:flex;align-items:center;gap:8px;}
+
+  /* kintone-faithful mock */
+  .screen{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(37,37,37,.10);}
+  .k-toolbar{background:var(--kgray);border-bottom:1px solid #e5e7eb;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .k-view{display:flex;align-items:center;gap:8px;font-size:13px;color:#374151;font-weight:700;}
+  .k-view .chip{background:#fff;border:1px solid #d7dbe0;border-radius:7px;padding:5px 10px;}
+  .k-plus{width:30px;height:30px;border-radius:8px;border:1px solid #d7dbe0;background:#fff;color:#2563eb;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;}
+  .k-search{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;}
+  .xs-hit{font-size:12px;font-weight:700;color:var(--hit);background:var(--hit-bg);border:1px solid var(--hit-line);border-radius:14px;padding:4px 11px;}
+  .xs-seg{display:inline-flex;border:1px solid #cdd2d8;border-radius:18px;overflow:hidden;font-size:12px;}
+  .xs-seg b{background:var(--ink);color:#fff;padding:7px 12px;font-weight:700;}
+  .xs-seg span{padding:7px 12px;color:#6b7280;background:#fff;}
+  .xs-inp{display:inline-flex;align-items:center;gap:6px;border:1px solid #cdd2d8;border-radius:18px;background:#fff;padding:7px 14px;font-size:13px;color:var(--ink);min-width:210px;}
+  .xs-inp .ico{color:#9aa1a9;}
+  .xs-btn{background:var(--blue);color:#fff;border-radius:18px;padding:8px 16px;font-size:13px;font-weight:700;}
+  .xs-tgt{font-size:12px;color:#6b7280;}
+  /* table */
+  table.k{width:100%;border-collapse:collapse;font-size:13px;}
+  table.k th,table.k td{padding:11px 14px;border-bottom:1px solid #eef0f2;text-align:left;}
+  table.k th{background:#fafafa;color:#6b7280;font-weight:700;font-size:12px;position:sticky;top:0;}
+  table.k td .mk{background:#fff3cd;}
+  .k-foot{padding:10px 16px;font-size:12px;color:#6b7280;background:#fafafa;border-top:1px solid #eef0f2;}
+
+  .callouts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px;}
+  @media(max-width:860px){.callouts{grid-template-columns:1fr 1fr;}}
+  .callout{background:#fff;border:1px solid var(--line);border-radius:13px;padding:16px;}
+  .callout .ci{font-size:20px;}
+  .callout h4{font-size:14px;font-weight:900;margin:8px 0 4px;}
+  .callout p{font-size:12.5px;color:var(--mut);margin:0;line-height:1.6;}
+
+  /* config mock */
+  .cfg{background:#f7f8fa;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 18px 50px rgba(37,37,37,.08);}
+  .cfg-step{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:18px;margin-bottom:14px;}
+  .cfg-step:last-child{margin-bottom:0;}
+  .cfg-head{display:flex;align-items:center;gap:11px;margin-bottom:14px;}
+  .cfg-num{width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;}
+  .cfg-title{font-size:15px;font-weight:900;}
+  .cfg-row{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;margin-bottom:10px;font-size:13px;}
+  .cfg-row label{font-weight:700;}
+  .cfg-ctrl{border:1px solid #d1d5db;border-radius:8px;padding:7px 10px;background:#fff;font-size:12.5px;color:#374151;display:inline-flex;align-items:center;gap:8px;}
+  .cfg-table{border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;font-size:12.5px;}
+  .cfg-table .h,.cfg-table .r{display:grid;grid-template-columns:54px 1fr 130px 110px;gap:8px;padding:9px 12px;align-items:center;}
+  .cfg-table .h{background:#f3f4f6;color:#6b7280;font-weight:700;font-size:11.5px;}
+  .cfg-table .r{border-top:1px solid #f0f1f3;}
+  .cfg-cb{width:16px;height:16px;border:1.5px solid var(--blue);border-radius:4px;background:var(--blue);position:relative;}
+  .cfg-cb::after{content:"✓";color:#fff;font-size:11px;position:absolute;left:2px;top:-3px;font-weight:700;}
+  .cfg-cb.off{background:#fff;border-color:#cbd5e1;}.cfg-cb.off::after{content:"";}
+  .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11px;background:#eef2ff;color:#3730a3;font-weight:700;}
+  .pill.sub{background:#ecfeff;color:#155e75;}
+  .codeu{font-family:"JetBrains Mono";color:#6b7280;font-size:11.5px;}
+
+  /* two-col can/cannot */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  @media(max-width:820px){.twocol{grid-template-columns:1fr;}}
+  .listbox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;}
+  .listbox.can{border-top:4px solid var(--hit);}
+  .listbox.cannot{border-top:4px solid #cbb89a;background:#fcfbf7;}
+  .listbox h3{font-size:17px;font-weight:900;margin:0 0 4px;}
+  .listbox .lh{font-size:12.5px;color:var(--mut);margin:0 0 16px;}
+  .litem{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-top:1px solid #f0efe9;font-size:14px;}
+  .litem:first-of-type{border-top:none;}
+  .litem .mkr{flex:0 0 auto;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:2px;}
+  .can .mkr{background:var(--hit-bg);color:var(--hit);}
+  .cannot .mkr{background:#f0e9da;color:#8a6d3b;}
+  .litem b{font-weight:700;} .litem small{display:block;color:var(--mut);font-size:12px;font-weight:400;}
+
+  /* audience */
+  .aud{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  @media(max-width:760px){.aud{grid-template-columns:1fr;}}
+  .aud .a{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px;}
+  .aud .a .n{font-family:"Archivo";font-weight:900;color:var(--amber-deep);font-size:14px;flex:0 0 auto;}
+  .aud .a p{margin:0;font-size:14.5px;}
+
+  /* security band (dark) */
+  .secu{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:10px;}
+  @media(max-width:760px){.secu{grid-template-columns:1fr;}}
+  .secu .s{border:1px solid #3a3a37;border-radius:14px;padding:22px;}
+  .secu .s .si{font-size:22px;}
+  .secu .s h4{margin:10px 0 6px;font-size:16px;font-weight:900;}
+  .secu .s p{margin:0;font-size:13px;color:#bdbcb2;}
+  .env{margin-top:30px;border-top:1px solid #3a3a37;padding-top:22px;display:flex;gap:30px;flex-wrap:wrap;font-size:13px;color:#bdbcb2;}
+  .env b{color:#fff;}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media(max-width:760px){.steps{grid-template-columns:1fr;}}
+  .stp{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;position:relative;}
+  .stp .sn{font-family:"Archivo";font-weight:900;font-size:34px;color:var(--amber);line-height:1;margin-bottom:12px;}
+  .stp h4{font-size:16px;font-weight:900;margin:0 0 8px;}
+  .stp p{font-size:13.5px;color:var(--mut);margin:0;}
+
+  /* price card */
+  .pcard{background:var(--ink);color:#fff;border-radius:22px;padding:clamp(30px,5vw,52px);position:relative;overflow:hidden;}
+  .pcard::after{content:"";position:absolute;right:-120px;bottom:-120px;width:420px;height:420px;background:radial-gradient(circle,rgba(255,184,0,.16),transparent 62%);}
+  .pcard-in{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;}
+  @media(max-width:820px){.pcard-in{grid-template-columns:1fr;gap:28px;}}
+  .pcard .ptag{display:inline-block;background:var(--amber);color:var(--ink);font-weight:700;font-size:12px;padding:5px 12px;border-radius:999px;margin-bottom:18px;}
+  .pcard h2{font-size:clamp(24px,3.4vw,36px);font-weight:900;margin:0 0 12px;letter-spacing:-.01em;}
+  .pcard .pp{display:flex;align-items:baseline;gap:10px;margin:18px 0 6px;}
+  .pcard .pp .yen{font-family:"Archivo";font-weight:900;font-size:clamp(40px,6vw,64px);line-height:1;}
+  .pcard .pp .tax{font-size:14px;color:#bdbcb2;}
+  .pcard .pm{font-size:13px;color:#bdbcb2;margin:0 0 22px;}
+  .pcard ul{list-style:none;padding:0;margin:0 0 26px;}
+  .pcard li{display:flex;gap:10px;align-items:flex-start;font-size:14px;padding:6px 0;color:#e7e6df;}
+  .pcard li .c{color:var(--amber);font-weight:900;}
+  .pcard .pcta{display:flex;flex-direction:column;gap:12px;}
+  .pcard .fineprint{font-size:11.5px;color:#8a8980;margin-top:14px;line-height:1.6;}
+
+  /* faq */
+  .faq{max-width:820px;margin:0 auto;}
+  .qa{border-bottom:1px solid var(--line);}
+  .qa summary{cursor:pointer;list-style:none;padding:20px 40px 20px 0;font-weight:700;font-size:16px;position:relative;}
+  .qa summary::-webkit-details-marker{display:none;}
+  .qa summary::after{content:"+";position:absolute;right:6px;top:18px;font-size:22px;color:var(--amber-deep);transition:transform .2s;}
+  .qa[open] summary::after{transform:rotate(45deg);}
+  .qa p{margin:0 0 22px;color:var(--mut);font-size:14.5px;}
+
+  /* final cta */
+  .final{background:var(--paper2);border-top:1px solid var(--line);text-align:center;}
+  .final h2{font-size:clamp(26px,4vw,44px);font-weight:900;letter-spacing:-.01em;margin:0 0 14px;}
+  .final p{color:var(--mut);font-size:16px;margin:0 0 30px;}
+
+  /* footer */
+  footer{background:var(--ink);color:#cfcec6;padding:54px 0 30px;font-size:13px;}
+  .foot-top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start;border-bottom:1px solid #3a3a37;padding-bottom:26px;margin-bottom:20px;}
+  .foot-brand{font-family:"Archivo";font-weight:900;font-size:24px;color:#fff;}
+  .foot-brand span{color:var(--amber);}
+  .foot-links{display:flex;gap:24px;flex-wrap:wrap;}
+  .foot-links a:hover{color:var(--amber);}
+  .foot-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#8a8980;font-size:12px;}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html">b<span>s</span>t</a>
+    <span class="nav-mid">部分一致検索プラグイン</span>
+    <div class="nav-cta">
+      <a class="btn btn--ghost btn--back" href="index.html">← ストアトップ</a>
+      <a class="btn btn--amber" href="https://bst.base.ec/items/133379006" target="_blank" rel="noopener">BASEで購入 ↗</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <span class="eyebrow">kintone · 一覧画面専用プラグイン · <span id="eyebrow-ver">Ver.2</span></span>
+    <h1>「ないはずがない」を、<br><span class="hl">もう探さない。</span></h1>
+    <p class="lead">型番、管理番号、英数字の一部。kintoneの標準検索では“あるのに出てこない”データを、一覧画面の検索バー1つで「含む」だけで引き当てます。</p>
+    <div class="hero-cta">
+      <a class="btn btn--amber btn--lg" href="https://bst.base.ec/items/133379006" target="_blank" rel="noopener">BASEで購入する ↗</a>
+      <a class="btn btn--ghost btn--lg" style="border-color:#54534e;color:#fff;" href="https://youtu.be/8DJ7G7xgVoc" target="_blank" rel="noopener">▶ 操作デモを見る</a>
+    </div>
+    <div class="hero-cta" style="margin-top:6px;">
+      <span class="pricepill"><b id="hero-price">¥49,800</b> 税込・買い切り</span>
+      <span class="pricepill">外部通信なし／完全ローカル</span>
+      <span class="pricepill" style="border-color:#7a6320;background:#3a3320;color:var(--amber);">⬆ アップデート版（対応範囲拡大）</span>
+    </div>
+
+    <!-- signature demo -->
+    <div class="demo" id="demo">
+      <div class="demo-head">
+        <span class="q">同じキーワードで検索したとき：</span>
+        <span class="demo-typed"><span id="typed"></span><span class="cur"></span></span>
+      </div>
+      <div class="demo-grid">
+        <div class="panel std">
+          <div class="panel-top"><span>kintone 標準検索</span><span style="color:var(--mut);font-weight:500;">そのまま</span></div>
+          <div class="panel-body">
+            <div class="scanning" id="std-scan"><span class="spin"></span>検索中…</div>
+            <div id="std-result" class="hidden">
+              <div class="result-count rc-miss"><span id="std-count">0</span><small>件</small></div>
+              <div class="miss-note">該当なし。英数字の一部・型番では、データがあってもヒットしません。</div>
+            </div>
+          </div>
+        </div>
+        <div class="panel bst">
+          <div class="panel-top"><span class="badge-bst">bst 部分一致検索</span><span style="color:#9a998f;font-weight:500;">プラグイン</span></div>
+          <div class="panel-body">
+            <div class="scanning" id="bst-scan"><span class="spin"></span>含むデータを確認中…</div>
+            <div id="bst-result" class="hidden">
+              <div class="result-count rc-hit"><span id="bst-count">3</span><small>件ヒット</small></div>
+              <div id="bst-rows"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="hero-note">※ デモは挙動のイメージです。標準検索の制約はkintoneの公式仕様（英数字の部分一致不可・2文字以上の日本語の1文字検索不可）に基づきます。</p>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">なぜ見つからないのか</div>
+      <h2>悪いのはあなたの入力ではなく、<br>kintone検索の「3つの壁」です。</h2>
+      <p class="sub">標準の検索・絞り込みは2文字以上の単語をインデックス化する方式。便利な反面、現場でいちばん探したい“一部分”に弱いという仕様上のクセがあります。</p>
+    </div>
+    <div class="walls">
+      <div class="wall">
+        <div class="num">WALL 01</div>
+        <h3>英数字は「部分」で引けない</h3>
+        <p>英数字は区切り単位でしか索引されません。途中の文字列ではヒットしません。</p>
+        <div class="ex">
+          <div class="ex-row"><span class="q">"Mobile"</span><span>→</span><span class="x">✗ MobileNote が出ない</span></div>
+          <div class="ex-row" style="margin-top:6px;"><span class="q">"2525"</span><span>→</span><span class="x">✗ smile2525 が出ない</span></div>
+        </div>
+      </div>
+      <div class="wall">
+        <div class="num">WALL 02</div>
+        <h3>日本語の「1文字」で引けない</h3>
+        <p>2文字以上の単語は、2文字以上のキーワードでしか検索できません。</p>
+        <div class="ex">
+          <div class="ex-row"><span class="q">"山"</span><span>→</span><span class="x">✗ 山田株式会社 が出ない</span></div>
+          <div class="ex-row" style="margin-top:6px;"><span class="q">"株"</span><span>→</span><span class="x">✗ 株式会社◯◯ が出ない</span></div>
+        </div>
+      </div>
+      <div class="wall">
+        <div class="num">WALL 03</div>
+        <h3>「単語のかたまり」でしか引けない</h3>
+        <p>記号でつながった文字列は1単語扱い。途中の語では検索できません。</p>
+        <div class="ex">
+          <div class="ex-row"><span class="q">"kintone"</span><span>→</span><span class="x">✗ cybozu_kintone が出ない</span></div>
+          <div class="ex-row" style="margin-top:6px;"><span class="q">"0142"</span><span>→</span><span class="x">✗ EST-2026-0142 が出ない</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="sub" style="margin-top:26px;">この“あるはずなのに出ない”が積み重なると、「データが見つからない」という問い合わせや、目視での探し直しに時間が溶けていきます。</p>
+  </div>
+</section>
+
+<!-- SOLUTION + SEARCH SCREEN -->
+<section class="sec alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">解決 — 実際の検索画面</div>
+      <h2>一覧画面に検索バーを1つ。<br>あとは「含む言葉」を入れるだけ。</h2>
+      <p class="sub">下は実際の操作イメージ。「2026 九州メンテ」と入れると、<b>見積番号に 2026 を含み</b>、かつ<b>宛名に 九州メンテ を含む</b>レコードだけを横断して抽出します。複数フィールドをまたいだAND検索が、1行の入力で完了します。対象は文字列だけでなく、<b>数値・日付・選択肢・ユーザー・添付ファイル名・サブテーブル内の項目</b>まで広がりました。</p>
+    </div>
+
+    <div class="screen">
+      <div class="k-toolbar">
+        <div class="k-view"><span class="chip">すべての見積 ▾</span></div>
+        <div class="k-plus">＋</div>
+        <div class="k-search">
+          <span class="xs-hit">3件</span>
+          <span class="xs-seg"><b>AND</b><span>OR</span></span>
+          <span class="xs-inp"><span class="ico">🔍</span>2026 九州メンテ</span>
+          <span class="xs-btn">検索</span>
+          <span class="xs-tgt">対象8項目</span>
+        </div>
+      </div>
+      <table class="k">
+        <thead><tr><th style="width:150px;">見積番号</th><th>宛名</th><th style="width:120px;">担当</th><th style="width:130px;">金額</th></tr></thead>
+        <tbody>
+          <tr><td><span class="mk">2026</span>-0142</td><td><span class="mk">九州メンテ</span>ナンス株式会社</td><td>田中</td><td>¥1,280,000</td></tr>
+          <tr><td><span class="mk">2026</span>-0188</td><td><span class="mk">九州メンテ</span>サービス</td><td>佐藤</td><td>¥640,000</td></tr>
+          <tr><td><span class="mk">2026</span>-0201</td><td>南<span class="mk">九州メンテ</span>工業</td><td>鈴木</td><td>¥2,150,000</td></tr>
+        </tbody>
+      </table>
+      <div class="k-foot">3件を表示　/　キーワード：2026 九州メンテ（AND）</div>
+    </div>
+
+    <div class="callouts">
+      <div class="callout"><div class="ci">🧭</div><h4>複数フィールド横断</h4><p>文字列・数値・日付・選択肢・ユーザー・添付ファイル名まで対象に。</p></div>
+      <div class="callout"><div class="ci">🔁</div><h4>AND / OR 切替</h4><p>検索バー上で「両方含む／どれか含む」をワンタッチ。</p></div>
+      <div class="callout"><div class="ci">␣</div><h4>スペースで複数語</h4><p>区切って入れるだけで複数キーワード検索。</p></div>
+      <div class="callout"><div class="ci">Aa</div><h4>表記ゆれに強い</h4><p>大文字小文字・全角半角を無視。かな区別なしも任意設定。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIG SCREEN -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">かんたん設定 — 実際の設定画面</div>
+      <h2>検索の動き方を選び、<br>対象フィールドにチェックを入れるだけ。</h2>
+      <p class="sub">むずかしい設定はありません。AND/ORと単語数を決め、検索したい項目をチェックして保存。サブテーブル内の項目も選べます。</p>
+    </div>
+
+    <div class="cfg">
+      <div class="cfg-step">
+        <div class="cfg-head"><div class="cfg-num">1</div><div class="cfg-title">検索の動き方を決める</div></div>
+        <div class="cfg-row"><label>スペース区切りの動作</label><span class="cfg-ctrl">すべて含む（AND）　▾</span></div>
+        <div class="cfg-row"><label>一度に使える単語数</label><span class="cfg-ctrl">3</span></div>
+      </div>
+      <div class="cfg-step">
+        <div class="cfg-head"><div class="cfg-num">2</div><div class="cfg-title">検索対象フィールドを選ぶ</div></div>
+        <div class="cfg-table">
+          <div class="h"><span>対象</span><span>フィールド名</span><span>タイプ</span><span>コード</span></div>
+          <div class="r"><span class="cfg-cb"></span><span>見積番号</span><span><span class="pill">文字列(1行)</span></span><span class="codeu">est_no</span></div>
+          <div class="r"><span class="cfg-cb"></span><span>宛名</span><span><span class="pill">文字列(1行)</span></span><span class="codeu">customer</span></div>
+          <div class="r"><span class="cfg-cb"></span><span>ステータス</span><span><span class="pill">ドロップダウン</span></span><span class="codeu">status</span></div>
+          <div class="r"><span class="cfg-cb"></span><span>金額</span><span><span class="pill">数値</span></span><span class="codeu">amount</span></div>
+          <div class="r"><span class="cfg-cb off"></span><span>備考</span><span><span class="pill">文字列(複数行)</span></span><span class="codeu">note</span></div>
+          <div class="r"><span class="cfg-cb"></span><span>明細 / 品名 <span class="pill sub">テーブル</span></span><span><span class="pill">文字列(1行)</span></span><span class="codeu">item_name</span></div>
+        </div>
+        <p class="sub" style="font-size:12.5px;margin:12px 0 0;">チェックした項目が検索対象に。タイプに応じて最適な方法で自動検索します。</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:30px;">
+      <a class="btn btn--ink btn--lg" href="https://bst.base.ec/items/133379006" target="_blank" rel="noopener">この使い心地をBASEで手に入れる ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FULL SCAN / FULL DISPLAY (v2.2) -->
+<section class="sec alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Ver.2.2 — 取りこぼさない</div>
+      <h2>初期設定のまま、<br>全件を検索して、全件を表示。</h2>
+      <p class="sub">「上限の手前にあったデータが出てこない」を起こさないため、既定で全件を確認し、ヒットした分を上限なく一覧に出します。速度を優先したいときだけ、上限を設定してください。</p>
+    </div>
+    <div class="twocol">
+      <div class="listbox can">
+        <h3>🔎 既定：全件検索</h3>
+        <p class="lh">件数に関わらず、最後まで確認します。</p>
+        <div class="litem"><span class="mkr">✓</span><span><b>取りこぼしゼロ</b><small>レコードが何件あっても、すべて部分一致で確認します。</small></span></div>
+        <div class="litem"><span class="mkr">✓</span><span><b>速度優先も選べる</b><small>設定で走査の上限件数を有効化すると高速化。そのときは検索バーで「上限／全件」をワンタッチ切替できます。</small></span></div>
+      </div>
+      <div class="listbox can">
+        <h3>📋 既定：全件表示</h3>
+        <p class="lh">ヒットしたレコードを、上限なく一覧へ。</p>
+        <div class="litem"><span class="mkr">✓</span><span><b>結果をまるごと一覧表示</b><small>固定の表示上限はありません。総ヒット件数も常に表示します。</small></span></div>
+        <div class="litem"><span class="mkr">✓</span><span><b>表示の上限も任意で設定可</b><small>件数が非常に多い場合は、kintoneのURL長の都合で「上位◯件を表示」と総数つきでご案内します。</small></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAN / CANNOT -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="kicker">正直にお伝えします</div>
+      <h2>できること と、できないこと。</h2>
+      <p class="sub">導入後のギャップをなくすため、できる／できないをはっきり書いておきます。</p>
+    </div>
+    <div class="twocol">
+      <div class="listbox can">
+        <h3>✓ できること</h3>
+        <p class="lh">日々の「探す」を、これだけ軽くします。</p>
+        <div id="can-list"></div>
+      </div>
+      <div class="listbox cannot">
+        <h3>― できないこと（重要）</h3>
+        <p class="lh">以下は対象外です。購入前にご確認ください。</p>
+        <div id="cannot-list"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="sec alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">こんな方へ</div>
+      <h2>ひとつでも当てはまれば、<br>効果を実感できます。</h2>
+    </div>
+    <div class="aud">
+      <div class="a"><span class="n">01</span><p>製品番号・管理番号・<b>型番検索</b>に困っている</p></div>
+      <div class="a"><span class="n">02</span><p><b>英数字が混在</b>するデータを日常的に扱っている</p></div>
+      <div class="a"><span class="n">03</span><p>「<b>あるはずのデータが見つからない</b>」問い合わせが多い</p></div>
+      <div class="a"><span class="n">04</span><p>kintoneを<b>社内システムとして本格運用</b>している</p></div>
+      <div class="a"><span class="n">05</span><p>情シスとして<b>検索ストレスを減らしたい</b></p></div>
+      <div class="a"><span class="n">06</span><p>毎回の絞り込み設定をやめ、<b>ワンアクション</b>で探したい</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY (dark) -->
+<section class="sec dark">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">安心して導入できる理由</div>
+      <h2>データは、外に出ません。</h2>
+      <p class="sub">外部サーバーへの通信もライセンス認証もなし。あなたのkintone環境の中だけで完結する、ローカル動作のプラグインです。</p>
+    </div>
+    <div class="secu">
+      <div class="s"><div class="si">🔒</div><h4>外部通信なし</h4><p>検索処理はすべてブラウザ内で完結。データを外部へ送信しません。</p></div>
+      <div class="s"><div class="si">🗝️</div><h4>ライセンス認証なし</h4><p>起動のたびに外部へ問い合わせる仕組みがないため、止まりません。</p></div>
+      <div class="s"><div class="si">⚙️</div><h4>標準機能の上で動く</h4><p>kintoneの一覧画面に自然に統合。特別なサーバーは不要です。</p></div>
+    </div>
+    <div class="env">
+      <span><b>対応：</b>kintone PCブラウザ版（一覧画面）</span>
+      <span><b>ブラウザ：</b>Google Chrome / Microsoft Edge（最新安定版）</span>
+      <span><b>モバイル：</b>非対応</span>
+      <span><b>外部通信：</b>なし</span>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="kicker">導入はかんたん</div>
+      <h2>3ステップで、その日から使える。</h2>
+    </div>
+    <div class="steps">
+      <div class="stp"><div class="sn">1</div><h4>プラグインZIPを読み込み</h4><p>購入後に届くZIPを、kintoneの管理画面から読み込みます。</p></div>
+      <div class="stp"><div class="sn">2</div><h4>アプリに追加</h4><p>使いたいアプリのプラグイン設定で追加します。</p></div>
+      <div class="stp"><div class="sn">3</div><h4>対象を選んで更新</h4><p>検索したいフィールドにチェックして保存・更新。完了です。</p></div>
+    </div>
+    <div style="text-align:center;margin-top:30px;">
+      <a class="btn btn--ghost btn--lg" href="https://youtu.be/8DJ7G7xgVoc" target="_blank" rel="noopener">▶ 設定〜検索の流れを動画で見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section class="sec alt">
+  <div class="wrap">
+    <div class="pcard">
+      <div class="pcard-in">
+        <div>
+          <span class="ptag">買い切り・追加課金なし</span>
+          <h2>一度の購入で、検索ストレスを手放す。</h2>
+          <div class="pp"><span class="yen" id="price-amount">¥49,800</span><span class="tax">税込</span></div>
+          <p class="pm">月額なし。導入したアプリでずっと使えます。</p>
+          <ul>
+            <li><span class="c">✓</span><span>プラグイン本体（ZIP）＋ README・LICENSE・サポートポリシー・CHANGELOG</span></li>
+            <li><span class="c">✓</span><span>1ドメイン（1 kintone環境）につき1ライセンス</span></li>
+            <li><span class="c">✓</span><span>購入日から30日間の無償メールサポート</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="pcta">
+            <a class="btn btn--amber btn--lg" href="https://bst.base.ec/items/133379006" target="_blank" rel="noopener">BASEで購入する ↗</a>
+            <a class="btn btn--ghost btn--lg" style="border-color:#54534e;color:#fff;" href="https://bst.base.ec/items/all" target="_blank" rel="noopener">他のツールも見る ↗</a>
+          </div>
+          <p class="fineprint">決済・領収はBASEのストアで行われます。デジタルコンテンツのため、購入後のキャンセル・返金はできません。同一法人でも複数ドメインでのご利用は追加購入が必要です。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="kicker">よくある質問</div>
+      <h2>購入前の疑問に、先にお答えします。</h2>
+    </div>
+    <div class="faq" id="faq-list"></div>
+    <div style="text-align:center;margin-top:34px;">
+      <a class="btn btn--ghost" href="https://thebase.com/inquiry/bst-base-ec" target="_blank" rel="noopener">購入前に質問する（お問い合わせ）↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="sec final">
+  <div class="wrap narrow">
+    <h2>「あるはずなのに、出てこない」を<br>今日で終わりにする。</h2>
+    <p>型番も、管理番号も、英数字の一部も。一覧画面で“含む”だけ。</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a class="btn btn--amber btn--lg" href="https://bst.base.ec/items/133379006" target="_blank" rel="noopener">BASEで購入する ↗</a>
+      <a class="btn btn--ghost btn--lg" href="index.html">ストアトップに戻る</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">b<span>s</span>t</div>
+        <div style="margin-top:8px;max-width:340px;color:#9a998f;">kintoneの便利なプラグインを買い切りで販売。すべてローカル動作で、すぐにお試しいただけます。</div>
+      </div>
+      <div class="foot-links">
+        <a href="https://bst.base.ec" target="_blank" rel="noopener">HOME</a>
+        <a href="https://bst.base.ec/about" target="_blank" rel="noopener">ABOUT</a>
+        <a href="https://bst.base.ec/items/all" target="_blank" rel="noopener">ALL ITEM</a>
+        <a href="https://thebase.com/inquiry/bst-base-ec" target="_blank" rel="noopener">CONTACT</a>
+        <a href="https://bst.base.ec/privacy" target="_blank" rel="noopener">プライバシーポリシー</a>
+        <a href="https://bst.base.ec/law" target="_blank" rel="noopener">特定商取引法に基づく表記</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© bst</span>
+      <span>Powered by BASE　/　決済・配送はBASEのストアにて行われます。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rows = [
+    {a:'EST-<span class="mk">2026</span>-0142', b:'<span class="mk">九州メンテ</span>ナンス株式会社'},
+    {a:'EST-<span class="mk">2026</span>-0188', b:'<span class="mk">九州メンテ</span>サービス'},
+    {a:'EST-<span class="mk">2026</span>-0201', b:'南<span class="mk">九州メンテ</span>工業'}
+  ];
+  var keyword = '2026 九州メンテ';
+  var typed = document.getElementById('typed');
+  var stdScan = document.getElementById('std-scan'), stdRes = document.getElementById('std-result');
+  var bstScan = document.getElementById('bst-scan'), bstRes = document.getElementById('bst-result');
+  var bstRows = document.getElementById('bst-rows');
+
+  function buildRows(){
+    bstRows.innerHTML = rows.map(function(r){
+      return '<div class="row"><span class="tick">✓</span><span><span class="mono" style="font-size:11.5px;color:#6b7280;">'+r.a+'</span><br>'+r.b+'</span></div>';
+    }).join('');
+  }
+  function showRows(){
+    var els = bstRows.querySelectorAll('.row');
+    els.forEach(function(el,i){ setTimeout(function(){ el.classList.add('show'); }, 140*i); });
+  }
+  function reset(){
+    typed.textContent='';
+    stdScan.classList.remove('hidden'); stdRes.classList.add('hidden');
+    bstScan.classList.remove('hidden'); bstRes.classList.add('hidden');
+    buildRows();
+  }
+  function finalState(){
+    typed.textContent = keyword;
+    stdScan.classList.add('hidden'); stdRes.classList.remove('hidden');
+    bstScan.classList.add('hidden'); bstRes.classList.remove('hidden');
+    bstRows.querySelectorAll('.row').forEach(function(el){ el.classList.add('show'); });
+  }
+
+  if(reduce){ buildRows(); finalState(); return; }
+
+  function typeIn(cb){
+    var i=0;
+    (function step(){
+      typed.textContent = keyword.slice(0,i);
+      i++;
+      if(i<=keyword.length){ setTimeout(step, 75); } else { setTimeout(cb, 450); }
+    })();
+  }
+  function runOnce(){
+    reset();
+    typeIn(function(){
+      setTimeout(function(){
+        stdScan.classList.add('hidden'); stdRes.classList.remove('hidden');
+      }, 700);
+      setTimeout(function(){
+        bstScan.classList.add('hidden'); bstRes.classList.remove('hidden'); showRows();
+      }, 1250);
+      setTimeout(runOnce, 5200);
+    });
+  }
+  // start when hero in view
+  var started=false;
+  function maybeStart(){
+    if(started) return; started=true; runOnce();
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) maybeStart(); }); },{threshold:.25});
+    io.observe(document.getElementById('demo'));
+  } else { maybeStart(); }
+})();
+</script>
+
+<!-- ============================================================
+     製品スペック：ここだけ書き換えれば、LPの該当箇所が更新されます。
+     ツールを改良したら version / price / can / cannot / faq を編集。
+     （ヒーローの実演デモ・検索画面・設定画面の図は別途デザイン側で調整）
+     ============================================================ -->
+<script>
+(function () {
+  var SPEC = {
+    version: "Ver.2.2",
+    price: "¥49,800",          // 表示用（税込）。価格を変えるときはここ。
+    can: [
+      { t: "一覧画面での横断検索", d: "文字列・数値・日付・選択肢・ユーザー・添付ファイル名・サブテーブル内まで、まとめて対象にできます。" },
+      { t: "真の部分一致検索", d: "標準では出てこない英数字の一部・型番・日本語1文字でも「含む」で一致します。" },
+      { t: "既定は全件検索で取りこぼさない", d: "件数に関わらず最後まで確認。必要なら走査件数の上限を設定して高速化もできます。" },
+      { t: "検索結果も既定は全件表示", d: "ヒットしたレコードを上限なく一覧表示（kintoneのURL長の範囲内）。表示件数の上限も任意で設定できます。" },
+      { t: "大文字小文字・全角半角を区別しない", d: "「ABC」「ＡＢＣ」「abc」を同じものとして検索します。" },
+      { t: "ひらがな／カタカナの区別なし（任意）", d: "設定をオンにすると「たなか」で「タナカ」もヒットします。" },
+      { t: "スペース区切りで複数キーワード", d: "条件を重ねた絞り込みが1行で完了します。" },
+      { t: "AND / OR を検索バーで切り替え", d: "「両方含む」「どれか含む」をワンタッチで切り替えられます。" },
+      { t: "ヒット件数の表示・標準UIに自然統合", d: "一覧画面になじむ検索バーを追加。何件見つかったかも表示します。" }
+    ],
+    cannot: [
+      { t: "ハイフン有無の吸収検索", d: "「03-1234」と「031234」は別物として扱います。" },
+      { t: "記号除去による正規化検索", d: "記号を無視した一致は行いません。" },
+      { t: "詳細／編集画面での検索", d: "本プラグインは一覧画面専用です。" }
+    ],
+    faq: [
+      { q: "既存データの作り直しや、検索用フィールドの追加は必要ですか？", a: "不要です。検索対象のフィールドにチェックを入れて保存するだけで動作します。データ側の準備や再登録はいりません。", open: true },
+      { q: "検索は全件が対象ですか？件数の上限はありますか？", a: "<b>既定は全件検索</b>で、レコード数に関わらず最後まで確認するため取りこぼしません。動作を軽くしたい場合は、設定で走査件数の上限を有効化でき、その際は検索バーで「上限／全件」をその場で切り替えられます。" },
+      { q: "検索結果は全部表示されますか？", a: "<b>既定は全件表示</b>です。ヒットしたレコードを上限なく一覧に表示します。ただしkintoneのURL長の仕様上、一度に表示できる件数には実用上の上限があり、超える場合は「上位◯件を表示」と総数つきでご案内します。表示件数の上限を任意で設定することもできます。" },
+      { q: "どんな種類のフィールドを検索できますか？", a: "文字列（1行・複数行）・リッチエディター・数値・計算・日付・選択肢（ドロップダウン／ラジオ／チェックボックス／複数選択）・ユーザー／組織／グループ選択・添付ファイル名、そしてサブテーブル内の項目まで対象にできます。" },
+      { q: "全角・半角の違いや、ハイフンの有無は吸収してくれますか？", a: "大文字／小文字と<b>全角／半角の違いは無視</b>します（任意でひらがな／カタカナの区別なしも設定可）。ただし、ハイフン有無の吸収や記号除去による正規化検索には対応していません。" },
+      { q: "詳細画面や編集画面でも検索できますか？", a: "本プラグインは<b>一覧画面専用</b>です。詳細・編集画面での検索には対応していません。" },
+      { q: "スマートフォン（モバイル版kintone）で使えますか？", a: "モバイル版には非対応です。PCブラウザ版（Chrome／Edge の最新安定版）の一覧画面でご利用ください。" },
+      { q: "外部サーバーにデータが送られませんか？セキュリティが心配です。", a: "外部通信・ライセンス認証は一切行いません。完全ローカル動作のため、データが外部に出ることはありません。" },
+      { q: "ライセンスの範囲を教えてください。", a: "1ドメイン（1 kintone環境）につき1ライセンスです。同一法人であっても、複数ドメインでご利用の場合は追加購入が必要です。再配布・第三者提供は禁止しています。" },
+      { q: "購入後の返金はできますか？", a: "デジタルコンテンツのため、購入後のキャンセル・返金はできません。対応範囲を本ページでご確認のうえご検討ください。ご不明点はご購入前にお問い合わせいただけます。" }
+    ]
+  };
+
+  function litem(mark, item) {
+    return '<div class="litem"><span class="mkr">' + mark + '</span><span><b>' +
+      item.t + '</b><small>' + item.d + '</small></span></div>';
+  }
+  function render() {
+    var can = document.getElementById('can-list');
+    if (can) can.innerHTML = SPEC.can.map(function (x) { return litem('✓', x); }).join('');
+    var cannot = document.getElementById('cannot-list');
+    if (cannot) cannot.innerHTML = SPEC.cannot.map(function (x) { return litem('―', x); }).join('');
+
+    var faq = document.getElementById('faq-list');
+    if (faq) faq.innerHTML = SPEC.faq.map(function (x) {
+      return '<details class="qa"' + (x.open ? ' open' : '') + '><summary>' +
+        x.q + '</summary><p>' + x.a + '</p></details>';
+    }).join('');
+
+    [['hero-price', SPEC.price], ['price-amount', SPEC.price], ['eyebrow-ver', SPEC.version]]
+      .forEach(function (pair) {
+        var el = document.getElementById(pair[0]);
+        if (el) el.textContent = pair[1];
+      });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
+  else render();
+})();
+</script>
+</body>
+</html>

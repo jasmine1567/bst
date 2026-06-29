@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bst — kintoneの「使いにくい」を、買い切りで解く。</title>
+<meta name="description" content="kintoneの便利なプラグインを買い切りで販売。すべてローカル動作で、追加すればすぐ使えます。まずは一覧画面の部分一致検索から。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#252525; --ink2:#3a3a37; --paper:#FBFBF8; --paper2:#F3F2EC;
+    --line:#E4E3DB; --amber:#FFB800; --amber-deep:#B57E00; --mut:#6E6E68;
+    --hit:#18794E; --hit-bg:#E8F5EE; --miss:#C0392B; --miss-bg:#FBEAE7;
+    --blue:#2563eb;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    line-height:1.75;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .mono{font-family:"JetBrains Mono",monospace;}
+  .disp{font-family:"Archivo","Noto Sans JP",sans-serif;}
+
+  /* ---- header ---- */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(251,251,248,.82);
+    backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--line);}
+  .nav-in{display:flex;align-items:center;gap:24px;height:64px;}
+  .brand{font-family:"Archivo";font-weight:900;font-size:26px;letter-spacing:-.02em;}
+  .brand span{color:var(--amber-deep);}
+  .nav-links{display:flex;gap:22px;margin-left:auto;font-size:13px;font-weight:500;color:var(--mut);}
+  .nav-links a:hover{color:var(--ink);}
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;
+    font-weight:700;font-size:14px;padding:11px 20px;border:1.5px solid var(--ink);
+    transition:transform .12s ease, background .15s, color .15s;cursor:pointer;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn--amber{background:var(--amber);border-color:var(--amber);color:var(--ink);}
+  .btn--amber:hover{background:#ffc733;}
+  .btn--ink{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .btn--ghost{background:transparent;color:var(--ink);}
+  .nav .btn{padding:8px 16px;font-size:13px;}
+  @media(max-width:760px){.nav-links{display:none;}}
+
+  /* ---- hero ---- */
+  .hero{background:var(--ink);color:#fff;position:relative;overflow:hidden;}
+  .hero::after{content:"";position:absolute;right:-160px;top:-160px;width:520px;height:520px;
+    background:radial-gradient(circle,rgba(255,184,0,.16),transparent 62%);pointer-events:none;}
+  .hero-in{padding:clamp(72px,11vw,128px) 0 clamp(64px,9vw,104px);position:relative;z-index:1;}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:700;
+    letter-spacing:.12em;color:var(--amber);text-transform:uppercase;margin-bottom:22px;}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--amber);}
+  .hero h1{font-weight:900;font-size:clamp(34px,5.6vw,62px);line-height:1.12;
+    letter-spacing:-.02em;margin:0 0 22px;}
+  .hero h1 .hl{color:var(--amber);}
+  .hero p.lead{font-size:clamp(15px,1.9vw,19px);color:#d7d6cf;max-width:620px;margin:0 0 34px;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .hero-note{font-size:13px;color:#9a998f;margin-top:18px;}
+
+  /* trust strip */
+  .trust{border-top:1px solid #3a3a37;margin-top:clamp(48px,7vw,76px);padding-top:30px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .trust .t-num{font-family:"Archivo";font-weight:900;font-size:15px;color:var(--amber);letter-spacing:.08em;}
+  .trust .t-h{font-weight:700;font-size:15px;margin:6px 0 3px;}
+  .trust .t-d{font-size:12.5px;color:#9a998f;line-height:1.6;}
+  @media(max-width:760px){.trust{grid-template-columns:1fr 1fr;gap:18px;}}
+
+  /* ---- sections ---- */
+  .sec{padding:clamp(64px,9vw,116px) 0;}
+  .sec-head{max-width:640px;margin-bottom:48px;}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--amber-deep);
+    text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:9px;}
+  .kicker::before{content:"";width:26px;height:2px;background:var(--amber-deep);}
+  .sec h2{font-weight:900;font-size:clamp(26px,3.6vw,40px);line-height:1.22;letter-spacing:-.01em;margin:0 0 14px;}
+  .sec .sub{color:var(--mut);font-size:15.5px;}
+
+  /* tool grid */
+  .tools{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media(max-width:920px){.tools{grid-template-columns:1fr;}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    display:flex;flex-direction:column;transition:transform .15s ease, box-shadow .15s;}
+  .card:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(37,37,37,.10);}
+  .card.feature{grid-column:span 2;}
+  @media(max-width:920px){.card.feature{grid-column:span 1;}}
+  .card-vis{background:var(--paper2);border-bottom:1px solid var(--line);padding:26px;position:relative;}
+  .card.feature .card-vis{padding:30px;}
+  .card-tag{position:absolute;top:16px;left:16px;background:var(--amber);color:var(--ink);
+    font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.04em;}
+  .card-body{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1;}
+  .card h3{font-size:20px;font-weight:900;margin:0 0 8px;letter-spacing:-.01em;}
+  .card p{font-size:14px;color:var(--mut);margin:0 0 18px;flex:1;}
+  .price-row{display:flex;align-items:baseline;gap:8px;margin-bottom:18px;}
+  .price{font-family:"Archivo";font-weight:900;font-size:26px;}
+  .price small{font-size:12px;color:var(--mut);font-weight:500;font-family:"Noto Sans JP";}
+  .card-cta{display:flex;gap:10px;flex-wrap:wrap;}
+  .card-cta .btn{padding:10px 16px;font-size:13px;}
+
+  /* mini search preview inside card */
+  .mini{font-size:0;}
+  .mini-bar{display:flex;align-items:center;gap:7px;justify-content:flex-end;flex-wrap:wrap;}
+  .mini-badge{font-size:11.5px;font-weight:700;color:var(--hit);background:var(--hit-bg);
+    border:1px solid #a7d8bd;border-radius:999px;padding:3px 9px;}
+  .mini-seg{display:inline-flex;border:1px solid #cdd2d8;border-radius:14px;overflow:hidden;font-size:11px;}
+  .mini-seg b{background:var(--ink);color:#fff;padding:4px 9px;font-weight:700;}
+  .mini-seg span{padding:4px 9px;color:#6b7280;background:#fff;}
+  .mini-input{flex:1;min-width:120px;border:1px solid #cdd2d8;border-radius:16px;background:#fff;
+    padding:6px 12px;font-size:12.5px;color:var(--ink);}
+  .mini-btn{background:var(--blue);color:#fff;border-radius:16px;padding:6px 13px;font-size:12px;font-weight:700;}
+  .mini-list{margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:12px;}
+  .mini-list .r{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:7px 11px;border-top:1px solid #f0efe9;}
+  .mini-list .r:first-child{border-top:none;background:#faf9f4;font-weight:700;color:var(--mut);font-size:11px;}
+  .mk{background:#fff3cd;border-radius:3px;padding:0 2px;font-weight:700;}
+
+  .placeholder .card-vis{display:flex;align-items:center;justify-content:center;min-height:150px;color:#bdbcb2;}
+  .placeholder h3{color:#9a998f;}
+  .ph-icon{font-size:30px;opacity:.5;}
+
+  /* request band */
+  .band{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .band-in{padding:clamp(48px,7vw,82px) 0;display:flex;align-items:center;gap:40px;flex-wrap:wrap;}
+  .band-in h2{font-size:clamp(24px,3.2vw,34px);font-weight:900;margin:0 0 10px;letter-spacing:-.01em;flex:1;min-width:280px;}
+  .band-in p{color:var(--mut);font-size:15px;margin:0;}
+
+  /* footer */
+  footer{background:var(--ink);color:#cfcec6;padding:56px 0 30px;font-size:13px;}
+  .foot-top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start;
+    border-bottom:1px solid #3a3a37;padding-bottom:26px;margin-bottom:22px;}
+  .foot-brand{font-family:"Archivo";font-weight:900;font-size:24px;color:#fff;}
+  .foot-brand span{color:var(--amber);}
+  .foot-links{display:flex;gap:26px;flex-wrap:wrap;}
+  .foot-links a{color:#cfcec6;}.foot-links a:hover{color:var(--amber);}
+  .foot-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#8a8980;font-size:12px;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">b<span>s</span>t</a>
+    <nav class="nav-links">
+      <a href="#tools">ツール一覧</a>
+      <a href="https://bst.base.ec/about" target="_blank" rel="noopener">このお店について</a>
+      <a href="#request">リクエスト</a>
+      <a href="https://thebase.com/inquiry/bst-base-ec" target="_blank" rel="noopener">お問い合わせ</a>
+    </nav>
+    <a class="btn btn--amber" href="https://bst.base.ec/items/all" target="_blank" rel="noopener">BASEストアへ ↗</a>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="wrap hero-in">
+    <span class="eyebrow">kintone plugins · 買い切り</span>
+    <h1>kintoneの「<span class="hl">惜しい</span>」を、<br>ひとつずつ解いていく。</h1>
+    <p class="lead">標準機能のちょっとした不便を、現場でそのまま使えるプラグインに。すべて買い切り・ローカル動作で、追加すればすぐに効きます。最初の一本は、一覧画面の<strong style="color:#fff;">部分一致検索</strong>から。</p>
+    <div class="hero-cta">
+      <a class="btn btn--amber" href="#tools">ツールを見る</a>
+      <a class="btn btn--ghost" style="border-color:#54534e;color:#fff;" href="https://bst.base.ec/items/all" target="_blank" rel="noopener">BASEで全商品を見る ↗</a>
+    </div>
+    <p class="hero-note">¥49,800（税込）／買い切り・追加課金なし　—　決済・受け取りはBASEで安全に。</p>
+
+    <div class="trust">
+      <div><div class="t-num">01</div><div class="t-h">すべて買い切り</div><div class="t-d">月額・年額なし。一度の購入でずっと使えます。</div></div>
+      <div><div class="t-num">02</div><div class="t-h">完全ローカル動作</div><div class="t-d">外部通信・ライセンス認証なし。データは外に出ません。</div></div>
+      <div><div class="t-num">03</div><div class="t-h">追加してすぐ使える</div><div class="t-d">ZIPを読み込み、対象を選ぶだけ。専門知識は不要。</div></div>
+      <div><div class="t-num">04</div><div class="t-h">リクエスト歓迎</div><div class="t-d">「こんなの欲しい」をご相談ください。作ります。</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="tools">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Tools</div>
+      <h2>現場の「探せない・面倒」を<br>消すための道具。</h2>
+      <p class="sub">いまの一本と、これから増える一本。気になったツールは、専用ページで動きを確かめてからBASEでどうぞ。</p>
+    </div>
+
+    <div class="tools">
+      <!-- Feature card: partial search -->
+      <article class="card feature">
+        <div class="card-vis">
+          <span class="card-tag">Ver.2.2 · 一覧画面専用</span>
+          <div class="mini">
+            <div class="mini-bar">
+              <span class="mini-badge">3件ヒット</span>
+              <span class="mini-seg"><b>AND</b><span>OR</span></span>
+              <span class="mini-input">2026 九州メンテ</span>
+              <span class="mini-btn">検索</span>
+            </div>
+            <div class="mini-list">
+              <div class="r"><span>見積番号</span><span>宛名</span></div>
+              <div class="r"><span>EST-<span class="mk">2026</span>-0142</span><span><span class="mk">九州メンテ</span>ナンス（株）</span></div>
+              <div class="r"><span>EST-<span class="mk">2026</span>-0188</span><span><span class="mk">九州メンテ</span>サービス</span></div>
+              <div class="r"><span>EST-<span class="mk">2026</span>-0201</span><span>南<span class="mk">九州メンテ</span>工業</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>部分一致検索プラグイン</h3>
+          <p>一覧画面に検索バーを1つ追加。文字列・数値・日付・選択肢・添付ファイル名・サブテーブルまで横断し、標準検索では出てこない英数字・型番・管理番号を「含む」だけで抽出。既定は全件検索・全件表示で取りこぼさず、AND/OR切替・全角半角／大文字小文字を区別しない検索に対応。</p>
+          <div class="price-row"><span class="price">¥49,800</span><small>税込・買い切り</small></div>
+          <div class="card-cta">
+            <a class="btn btn--ink" href="lp-partial-search.html">詳しく見る</a>
+            <a class="btn btn--amber" href="https://bst.base.ec/items/133379006" target="_blank" rel="noopener">BASEで購入 ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- placeholder -->
+      <article class="card placeholder">
+        <div class="card-vis"><div style="text-align:center;"><div class="ph-icon">＋</div><div style="font-size:12px;margin-top:8px;">近日公開</div></div></div>
+        <div class="card-body">
+          <h3>次のツールを準備中</h3>
+          <p>一覧の一括編集、入力チェック、帳票出力など。現場で効くものから順に。リクエストも反映します。</p>
+          <div class="card-cta"><a class="btn btn--ghost" href="#request">リクエストする</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="request">
+  <div class="wrap band-in">
+    <div style="flex:1;min-width:280px;">
+      <h2>「これ、自動化できない？」<br>その一言から作ります。</h2>
+      <p>日々の運用で感じている小さなストレスを教えてください。汎用化できそうなものは、ツールとして仕上げてストアに並べます。まずは気軽にご相談を。</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a class="btn btn--ink" href="https://thebase.com/inquiry/bst-base-ec" target="_blank" rel="noopener">リクエスト・相談する ↗</a>
+      <a class="btn btn--ghost" href="https://bst.base.ec/items/all" target="_blank" rel="noopener">商品一覧 ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">b<span>s</span>t</div>
+        <div style="margin-top:8px;max-width:340px;color:#9a998f;font-size:13px;">kintoneの便利なプラグインを買い切りで販売しています。すべてローカル動作で、すぐにお試しいただけます。</div>
+      </div>
+      <div class="foot-links">
+        <a href="https://bst.base.ec" target="_blank" rel="noopener">HOME</a>
+        <a href="https://bst.base.ec/about" target="_blank" rel="noopener">ABOUT</a>
+        <a href="https://bst.base.ec/items/all" target="_blank" rel="noopener">ALL ITEM</a>
+        <a href="https://thebase.com/inquiry/bst-base-ec" target="_blank" rel="noopener">CONTACT</a>
+        <a href="https://bst.base.ec/privacy" target="_blank" rel="noopener">プライバシーポリシー</a>
+        <a href="https://bst.base.ec/law" target="_blank" rel="noopener">特定商取引法に基づく表記</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© bst</span>
+      <span>Powered by BASE　/　決済・配送はBASEのストアにて行われます。</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
