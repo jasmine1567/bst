@@ -1,0 +1,5 @@
+# 公開ドメインに合わせて YOUR-DOMAIN.example を置換してください
+User-agent: *
+Allow: /
+
+Sitemap: https://YOUR-DOMAIN.example/sitemap.xml

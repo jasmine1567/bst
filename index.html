@@ -3,8 +3,72 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>bst — kintoneの「使いにくい」を、買い切りで解く。</title>
-<meta name="description" content="kintoneの便利なプラグインを買い切りで販売。すべてローカル動作で、追加すればすぐ使えます。まずは一覧画面の部分一致検索から。">
+<title>kintoneプラグイン 買い切り｜部分一致検索・条件付きフィールド制御 — bst</title>
+<meta name="description" content="kintoneの便利なプラグインを買い切りで販売。一覧の部分一致検索、フィールドの条件付き表示・非表示・必須・読取制御など、完全ローカル動作で追加してすぐ使える現場ツール。月額不要・1ドメイン1ライセンス。">
+<!-- ===== SEO（公開ドメインは YOUR-DOMAIN.example を置換） ===== -->
+<link rel="canonical" href="https://YOUR-DOMAIN.example/">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="author" content="bst">
+<meta name="theme-color" content="#252525">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="bst">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="kintoneプラグイン 買い切り｜部分一致検索・条件付きフィールド制御 — bst">
+<meta property="og:description" content="kintoneの便利なプラグインを買い切りで販売。一覧の部分一致検索、フィールドの条件付き表示・非表示・必須・読取制御など、完全ローカル動作で追加してすぐ使える現場ツール。月額不要・1ドメイン1ライセンス。">
+<meta property="og:url" content="https://YOUR-DOMAIN.example/">
+<meta property="og:image" content="https://YOUR-DOMAIN.example/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="kintoneプラグイン 買い切り｜部分一致検索・条件付きフィールド制御 — bst">
+<meta name="twitter:description" content="kintoneの便利なプラグインを買い切りで販売。一覧の部分一致検索、フィールドの条件付き表示・非表示・必須・読取制御など、完全ローカル動作で追加してすぐ使える現場ツール。月額不要・1ドメイン1ライセンス。">
+<meta name="twitter:image" content="https://YOUR-DOMAIN.example/og-home.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "bst",
+  "url": "https://YOUR-DOMAIN.example/",
+  "logo": "https://YOUR-DOMAIN.example/logo.png",
+  "description": "kintoneの便利なプラグインを買い切りで販売するストア。すべて完全ローカル動作。",
+  "sameAs": [
+    "https://bst.base.ec"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "bst",
+  "url": "https://YOUR-DOMAIN.example/",
+  "inLanguage": "ja"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListOrder": "https://schema.org/ItemListUnordered",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "url": "https://YOUR-DOMAIN.example/lp-partial-search.html",
+      "name": "部分一致検索プラグイン（kintone）"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "url": "https://YOUR-DOMAIN.example/lp-conditional-field.html",
+      "name": "条件付きフィールド制御プラグイン（kintone）"
+    }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -148,6 +212,7 @@
     <a class="btn btn--amber" href="https://bst.base.ec/items/all" target="_blank" rel="noopener">BASEストアへ ↗</a>
   </div>
 </header>
+<main>
 
 <a id="top"></a>
 <section class="hero">
@@ -175,7 +240,7 @@
     <div class="sec-head">
       <div class="kicker">Tools</div>
       <h2>現場の「探せない・面倒」を<br>消すための道具。</h2>
-      <p class="sub">いまの一本と、これから増える一本。気になったツールは、専用ページで動きを確かめてからBASEでどうぞ。</p>
+      <p class="sub">いま並ぶツールと、これから増える一本。気になったツールは、専用ページで動きを確かめてからBASEでどうぞ。</p>
     </div>
 
     <div class="tools">
@@ -209,12 +274,42 @@
         </div>
       </article>
 
+      <!-- Conditional field control -->
+      <article class="card">
+        <div class="card-vis">
+          <span class="card-tag">Ver.1.0 · フォーム画面</span>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:0;">
+            <div style="display:grid;grid-template-columns:80px 1fr;gap:10px;align-items:center;margin-bottom:9px;">
+              <span style="font-size:12px;font-weight:700;color:var(--ink);">ステータス</span>
+              <span style="font-size:12px;border:1px solid #cdd2d8;border-radius:8px;padding:6px 10px;color:var(--ink);background:#fff;">受注 ▾</span>
+            </div>
+            <div style="display:grid;grid-template-columns:80px 1fr;gap:10px;align-items:center;margin-bottom:9px;">
+              <span style="font-size:12px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:6px;">受注日 <span style="font-size:10px;font-weight:700;color:var(--miss);background:var(--miss-bg);border:1px solid #e7b4ab;border-radius:999px;padding:0 6px;">必須</span></span>
+              <span style="font-size:12px;border:1px solid var(--amber);box-shadow:0 0 0 3px rgba(255,184,0,.16);border-radius:8px;padding:6px 10px;color:var(--ink);background:#fff;">2026-07-15</span>
+            </div>
+            <div style="display:grid;grid-template-columns:80px 1fr;gap:10px;align-items:center;">
+              <span style="font-size:12px;font-weight:700;color:var(--ink);">請求額</span>
+              <span style="font-size:12px;border:1px dashed #cdd2d8;border-radius:8px;padding:6px 10px;color:#9aa1a9;background:#f3f4f6;">¥120,000 🔒</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>条件付きフィールド制御プラグイン</h3>
+          <p>入力した値に応じて、フィールドを「表示／非表示・必須・読取専用」に動的制御。受注なら受注日を必須に、完了なら金額をロック、といった画面をノーコードで。サブスク不要の買い切り・完全ローカル動作。標準必須フィールドは設定画面で警告します。</p>
+          <div class="price-row"><span class="price">¥29,800</span><small>税込・買い切り</small></div>
+          <div class="card-cta">
+            <a class="btn btn--ink" href="lp-conditional-field.html">詳しく見る</a>
+            <a class="btn btn--amber" href="https://bst.base.ec/items/148833318" target="_blank" rel="noopener">BASEで購入 ↗</a>
+          </div>
+        </div>
+      </article>
+
       <!-- placeholder -->
       <article class="card placeholder">
         <div class="card-vis"><div style="text-align:center;"><div class="ph-icon">＋</div><div style="font-size:12px;margin-top:8px;">近日公開</div></div></div>
         <div class="card-body">
           <h3>次のツールを準備中</h3>
-          <p>一覧の一括編集、入力チェック、帳票出力など。現場で効くものから順に。リクエストも反映します。</p>
+          <p>一覧集計、重複チェック、自動採番、帳票出力など。現場で効くものから順に。リクエストも反映します。</p>
           <div class="card-cta"><a class="btn btn--ghost" href="#request">リクエストする</a></div>
         </div>
       </article>
@@ -235,6 +330,7 @@
   </div>
 </section>
 
+</main>
 <footer>
   <div class="wrap">
     <div class="foot-top">
