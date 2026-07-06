@@ -335,7 +335,7 @@
   .statepill .dot{width:8px;height:8px;border-radius:50%;background:var(--amber);}
   .fform{display:grid;grid-template-columns:1fr;gap:12px;max-width:560px;}
   .frow{display:grid;grid-template-columns:130px 1fr;gap:14px;align-items:center;padding:4px 0;transition:opacity .4s ease, max-height .4s ease, transform .4s ease;max-height:60px;overflow:hidden;}
-  .frow.is-hidden{opacity:0;max-height:0;transform:translateY(-6px);pointer-events:none;}
+  .frow.is-hidden{opacity:0;visibility:hidden;transform:translateY(-6px);pointer-events:none;}
   .flabel{font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:8px;}
   .fbadge{font-size:11px;font-weight:700;color:var(--miss);background:var(--miss-bg);border:1px solid var(--miss-line);border-radius:999px;padding:1px 8px;opacity:0;transition:opacity .3s;}
   .fbadge.on{opacity:1;}
@@ -443,7 +443,21 @@
   <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
     <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#B57E00;">SAMPLE SCREEN</div>
     <h2 style="font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:6px 0 6px;">導入すると、この画面になります。</h2>
-    <p style="font-size:15px;color:#6E6E68;margin:0 0 20px;">ステータスを「受注」に変えた瞬間、受注日が必須で現れ、請求額は読取専用にロック。入力ミスと事故を仕組みで防ぎます。</p>
+    <p style="font-size:15px;color:#6E6E68;margin:0 0 20px;">人に「気をつけて」と頼むのをやめて、フォーム自体に仕事をさせる。それがこのプラグインの価値です。</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:22px;">
+      <div style="background:#fff;border:1px solid #E4E3DB;border-top:5px solid #18794E;border-radius:14px;padding:18px 20px;">
+        <div style="font-weight:900;font-size:15px;margin-bottom:6px;">✅ 差し戻しが、なくなる</div>
+        <p style="margin:0;font-size:13.5px;color:#6E6E68;">「受注なのに受注日が空」を保存時にブロック。<b>抜け漏れを追いかけて連絡する時間</b>がゼロになります。</p>
+      </div>
+      <div style="background:#fff;border:1px solid #E4E3DB;border-top:5px solid #FFB800;border-radius:14px;padding:18px 20px;">
+        <div style="font-weight:900;font-size:15px;margin-bottom:6px;">⚡ 入力が、速くなる</div>
+        <p style="margin:0;font-size:13.5px;color:#6E6E68;">いま関係ない項目は出さないから、迷わない・間違えない。<b>縦に長いフォームのスクロール</b>から解放されます。</p>
+      </div>
+      <div style="background:#fff;border:1px solid #E4E3DB;border-top:5px solid #C0392B;border-radius:14px;padding:18px 20px;">
+        <div style="font-weight:900;font-size:15px;margin-bottom:6px;">🔒 確定データが、守られる</div>
+        <p style="margin:0;font-size:13.5px;color:#6E6E68;">完了案件の金額は自動ロック。<b>「誰かが触って数字が変わってた」</b>という経理との気まずい会話をなくします。</p>
+      </div>
+    </div>
     <img src="assets/sample-conditional.png" alt="条件付きフィールド制御プラグインのサンプル画面。ステータス変更で受注日が必須表示になり請求額が読取専用になる比較。" loading="lazy" style="display:block;width:100%;height:auto;border:1px solid #E4E3DB;border-radius:14px;box-shadow:0 18px 44px rgba(37,37,37,.12);">
   </div>
 </section>
@@ -674,7 +688,7 @@
         <div style="margin-top:8px;max-width:340px;color:#9a998f;">kintoneの便利なプラグインを買い切りで販売。すべてローカル動作で、すぐにお試しいただけます。</div>
       </div>
       <div class="foot-links">
-        <a href="https://bst.base.ec" target="_blank" rel="noopener">HOME</a>
+        <a href="index.html">ホーム</a>
         <a href="https://bst.base.ec/about" target="_blank" rel="noopener">ABOUT</a>
         <a href="https://bst.base.ec/items/all" target="_blank" rel="noopener">ALL ITEM</a>
         <a href="https://thebase.com/inquiry/bst-base-ec" target="_blank" rel="noopener">CONTACT</a>

@@ -144,18 +144,31 @@
       </div>
       <p class="note">外部通信なしの完全ローカル動作。kintoneスタンダードコース以上・PCブラウザ（Chrome／Edge）対応。</p>
     </div>
-    <div class="mock" aria-hidden="true">
-      <h4>案件一覧（条件書式の例）</h4>
-      <div class="row h"><span>案件名</span><span>状態</span><span>達成率</span></div>
-      <div class="row miss"><span>A社 改修案件</span><span><span class="dot">●</span> 未対応</span><span>32%</span></div>
-      <div class="row warn"><span>B社 定期保守</span><span><span class="dot">●</span> 対応中</span><span>68%</span></div>
-      <div class="row hit"><span>C社 納品完了</span><span><span class="dot">●</span> 完了</span><span>100%</span></div>
-      <h4 style="margin-top:14px;">売上（データバー）</h4>
-      <div class="bar" style="--p:34%;">¥1,240,000</div>
-      <div class="bar" style="--p:72%;">¥2,610,000</div>
-      <div class="bar" style="--p:100%;">¥3,580,000</div>
-    </div>
-  </div>
+    <div aria-hidden="true" style="background:#fff;border:1px solid #E4E3DB;border-radius:16px;box-shadow:0 18px 44px rgba(37,37,37,.10);padding:16px;font-size:12.5px;">
+      <div style="font-size:11.5px;font-weight:700;color:#6E6E68;margin:2px 4px 10px;">案件一覧（条件書式の適用例）</div>
+      <div style="display:grid;grid-template-columns:1.4fr .8fr 1fr;gap:8px;padding:6px 10px;color:#6E6E68;font-weight:700;font-size:11px;border-bottom:1px solid #E4E3DB;"><span>案件名</span><span>状態</span><span>金額</span></div>
+      <div style="display:grid;grid-template-columns:1.4fr .8fr 1fr;gap:8px;align-items:center;padding:9px 10px;background:#FBE8E5;border-left:4px solid #C0392B;border-radius:0 8px 8px 0;margin-top:6px;">
+        <span style="font-weight:700;">🔥 A社 改修案件<br><small style="color:#A41109;font-weight:700;">期限超過 3日</small></span>
+        <span><span style="background:#F6D2CC;color:#A41109;font-weight:700;border-radius:999px;padding:2px 9px;font-size:11px;white-space:nowrap;">未対応</span></span>
+        <span><span style="display:block;font-size:11px;margin-bottom:2px;">¥3,580,000</span><span style="display:block;height:9px;border-radius:5px;background:linear-gradient(90deg,#FFB800 100%,transparent 0);"></span></span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.4fr .8fr 1fr;gap:8px;align-items:center;padding:9px 10px;background:#FBEEC7;border-left:4px solid #E69500;border-radius:0 8px 8px 0;margin-top:6px;">
+        <span style="font-weight:700;">⚠ B社 定期保守<br><small style="color:#8A5A00;font-weight:700;">今日が期限</small></span>
+        <span><span style="background:#FBE3A1;color:#8A5A00;font-weight:700;border-radius:999px;padding:2px 9px;font-size:11px;white-space:nowrap;">対応中</span></span>
+        <span><span style="display:block;font-size:11px;margin-bottom:2px;">¥2,610,000</span><span style="display:block;height:9px;border-radius:5px;width:73%;background:#FFB800;"></span></span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.4fr .8fr 1fr;gap:8px;align-items:center;padding:9px 10px;background:#fff;border-left:4px solid #E4E3DB;border-radius:0 8px 8px 0;margin-top:6px;">
+        <span style="font-weight:500;">C社 保守契約 更新</span>
+        <span><span style="background:#DBEAFE;color:#1e40af;font-weight:700;border-radius:999px;padding:2px 9px;font-size:11px;white-space:nowrap;">対応中</span></span>
+        <span><span style="display:block;font-size:11px;margin-bottom:2px;">¥1,240,000</span><span style="display:block;height:9px;border-radius:5px;width:35%;background:#FFB800;"></span></span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.4fr .8fr 1fr;gap:8px;align-items:center;padding:9px 10px;background:#E7F5EC;border-left:4px solid #18794E;border-radius:0 8px 8px 0;margin-top:6px;">
+        <span style="font-weight:700;">✓ D社 納品完了</span>
+        <span><span style="background:#C7E9D4;color:#14683F;font-weight:700;border-radius:999px;padding:2px 9px;font-size:11px;white-space:nowrap;">完了</span></span>
+        <span><span style="display:block;font-size:11px;margin-bottom:2px;">¥620,000</span><span style="display:block;height:9px;border-radius:5px;width:18%;background:#FFB800;"></span></span>
+      </div>
+      <div style="margin-top:10px;font-size:11px;color:#6E6E68;">期限超過＝赤 ／ 今日期限＝アンバー ／ 完了＝グリーン ・ 金額はデータバー — すべてGUI設定のみ</div>
+    </div></div>
 </section>
 <!-- ===== 追加: サンプル画面 ===== -->
 <section style="padding:56px 0;background:#fff;">

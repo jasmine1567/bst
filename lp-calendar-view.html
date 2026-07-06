@@ -137,7 +137,7 @@
 
 <main>
 <section class="hero">
-  <div class="wrap hero-grid">
+  <div class="wrap" style="max-width:860px;">
     <div>
       <span class="eyebrow">kintone プラグイン ・ Ver.4 ・ 買い切り ・ 完全ローカル ・ モバイル対応</span>
       <h1 class="disp">kintoneが、<br>予定表になる。</h1>
@@ -150,35 +150,126 @@
       </div>
       <p class="note">外部通信なしの完全ローカル動作。kintoneスタンダードコース以上・PC（Chrome／Edge）とモバイルに対応。</p>
     </div>
-    <div class="mock" aria-hidden="true">
-      <h4>7月（月ビューの例）<span class="tabs"><span class="on">月</span><span>週</span><span>日</span><span>リスト</span></span></h4>
-      <div class="cal">
-        <div class="dow">月</div><div class="dow">火</div><div class="dow">水</div><div class="dow">木</div><div class="dow">金</div><div class="dow">土</div><div class="dow">日</div>
-        <div class="d"><b>29</b></div>
-        <div class="d"><b>30</b><span class="ev a">A社 定例</span></div>
-        <div class="d"><b>1</b><span class="ev b">現地調査</span></div>
-        <div class="d"><b>2</b></div>
-        <div class="d"><b>3</b><span class="ev c">見積提出</span></div>
-        <div class="d"><b>4</b></div>
-        <div class="d"><b>5</b></div>
-        <div class="d today"><b>6</b><span class="ev a">B社 打合せ</span><span class="ev x">請求締切</span></div>
-        <div class="d"><b>7</b><span class="ev b">保守点検</span></div>
-        <div class="d"><b>8</b></div>
-        <div class="d"><b>9</b><span class="ev c">納品</span></div>
-        <div class="d"><b>10</b><span class="ev a">C社 商談</span></div>
-        <div class="d"><b>11</b></div>
-        <div class="d"><b>12</b></div>
-      </div>
-    </div>
+    
   </div>
 </section>
 <!-- ===== 追加: サンプル画面 ===== -->
 <section style="padding:56px 0;background:#fff;">
   <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
     <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#B57E00;">SAMPLE SCREEN</div>
-    <h2 style="font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:6px 0 6px;">導入すると、この画面になります。</h2>
-    <p style="font-size:15px;color:#6E6E68;margin:0 0 20px;">いつもの一覧が、色分きの予定表に。日付クリックで追加、予定クリックで編集。月・週・日・リストを自由に切替。</p>
-    <img src="assets/sample-calendar.png" alt="カレンダービュープラグインのサンプル画面。月表示のカレンダーにカテゴリ色分けされた予定が並んでいる。" loading="lazy" style="display:block;width:100%;height:auto;border:1px solid #E4E3DB;border-radius:14px;box-shadow:0 18px 44px rgba(37,37,37,.12);">
+    <h2 style="font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:6px 0 6px;">触ってみてください。導入後は、この画面になります。</h2>
+    <p style="font-size:15px;color:#6E6E68;margin:0 0 20px;">下のカレンダーは<b>動くデモ</b>です。月・週・日・リストのタブ切替と、予定クリックの詳細表示を実際にお試しいただけます。</p>
+    <div id="bstcal" style="background:#fff;border:1px solid #E4E3DB;border-radius:14px;box-shadow:0 18px 44px rgba(37,37,37,.12);overflow:hidden;">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid #E4E3DB;">
+        <button class="bc-nav" data-act="prev" style="border:1px solid #E4E3DB;background:#fff;border-radius:8px;width:34px;height:34px;font-size:16px;cursor:pointer;">‹</button>
+        <button class="bc-nav" data-act="next" style="border:1px solid #E4E3DB;background:#fff;border-radius:8px;width:34px;height:34px;font-size:16px;cursor:pointer;">›</button>
+        <button class="bc-nav" data-act="today" style="border:1px solid #E4E3DB;background:#fff;border-radius:8px;height:34px;padding:0 12px;font-size:13px;font-weight:700;cursor:pointer;">今日</button>
+        <b style="font-size:18px;margin-left:4px;">2026年 7月</b>
+        <div style="margin-left:auto;display:flex;gap:6px;" id="bc-tabs">
+          <button data-view="month" style="border:none;background:#252525;color:#fff;border-radius:999px;height:34px;padding:0 16px;font-size:13px;font-weight:700;cursor:pointer;">月</button>
+          <button data-view="week" style="border:1px solid #E4E3DB;background:#fff;color:#6E6E68;border-radius:999px;height:34px;padding:0 16px;font-size:13px;font-weight:700;cursor:pointer;">週</button>
+          <button data-view="day" style="border:1px solid #E4E3DB;background:#fff;color:#6E6E68;border-radius:999px;height:34px;padding:0 16px;font-size:13px;font-weight:700;cursor:pointer;">日</button>
+          <button data-view="list" style="border:1px solid #E4E3DB;background:#fff;color:#6E6E68;border-radius:999px;height:34px;padding:0 16px;font-size:13px;font-weight:700;cursor:pointer;">リスト</button>
+        </div>
+      </div>
+      <div id="bc-toast" style="display:none;background:#252525;color:#FFB800;font-size:12.5px;font-weight:700;text-align:center;padding:8px 12px;"></div>
+      <div id="bc-body" style="padding:14px;min-height:480px;"></div>
+      <div id="bc-detail" style="border-top:1px solid #E4E3DB;background:#FBFBF8;padding:12px 18px;font-size:13px;color:#6E6E68;min-height:52px;">💡 予定をクリックすると、ここに詳細が表示されます（実物ではポップオーバー表示）。ビュー切替タブは実際に動きます。</div>
+    </div>
+    <p style="font-size:12.5px;color:#6E6E68;margin-top:10px;">※ 本デモは表示イメージです。予定の追加・編集・「今日」以外の月への移動などの操作は、<a href="trials/bst_calendar-view_v4_trial.zip" download style="color:#B57E00;font-weight:700;">30日無料試用版</a>で実データと一緒にお試しください。</p>
+    <script>
+    (function(){
+      var CAT={b:['#DBEAFE','#2563eb','#1e40af'],g:['#C7E9D4','#18794E','#14683F'],a:['#FBE3A1','#E69500','#8A5A00'],r:['#F6D2CC','#C0392B','#A41109']};
+      var EV=[
+        {d:30,m:6,t:'13:00',title:'A社 定例',cat:'b',place:'オンライン'},
+        {d:1,t:'10:00',title:'現地調査',cat:'g',place:'北九州市 小倉北区'},
+        {d:3,t:'15:00',title:'見積提出',cat:'a',place:'—'},
+        {d:6,t:'10:00',title:'B社 打合せ',cat:'b',place:'B社 本社 3F'},
+        {d:6,t:'終日',title:'請求締切',cat:'r',place:'—'},
+        {d:7,t:'09:00',title:'保守点検',cat:'g',place:'C社 工場'},
+        {d:9,t:'14:00',title:'納品',cat:'a',place:'D社 倉庫'},
+        {d:10,t:'11:00',title:'C社 商談',cat:'b',place:'オンライン'},
+        {d:15,t:'13:00',title:'棚卸し',cat:'g',place:'自社 倉庫'},
+        {d:21,t:'10:00',title:'D社 定例',cat:'b',place:'オンライン'},
+        {d:28,t:'終日',title:'月次締め',cat:'r',place:'—'}
+      ];
+      var TODAY=6;
+      var body=document.getElementById('bc-body'), detail=document.getElementById('bc-detail'), toast=document.getElementById('bc-toast');
+      function evs(day,mon){ return EV.filter(function(e){return e.d===day && (e.m||7)===(mon||7);}); }
+      function chip(e,big){
+        var c=CAT[e.cat];
+        return '<span class="bc-ev" data-d="'+e.d+'" data-title="'+e.title+'" style="display:block;background:'+c[0]+';border-left:3px solid '+c[1]+';color:'+c[2]+';border-radius:6px;padding:'+(big?'6px 10px':'3px 8px')+';margin-top:4px;font-weight:700;font-size:'+(big?'13px':'11.5px')+';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;">'+(e.t==='終日'?'':e.t+' ')+e.title+'</span>';
+      }
+      function month(){
+        var h='<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;">';
+        ['月','火','水','木','金','土','日'].forEach(function(w){h+='<div style="text-align:center;font-size:11.5px;font-weight:700;color:#6E6E68;padding:2px 0;">'+w+'</div>';});
+        var cells=[{d:29,m:6},{d:30,m:6}]; for(var i=1;i<=31;i++)cells.push({d:i,m:7}); cells.push({d:1,m:8},{d:2,m:8});
+        cells.forEach(function(c){
+          var isT=(c.d===TODAY&&c.m===7), out=(c.m!==7);
+          h+='<div class="bc-day" data-day="'+c.d+'" style="min-height:86px;border:1px solid '+(isT?'#FFB800':'#E4E3DB')+';'+(isT?'box-shadow:inset 0 0 0 1px #FFB800;':'')+'border-radius:8px;padding:4px 6px;cursor:pointer;background:#fff;">'
+            +'<b style="font-size:11px;color:'+(out?'#b8b7ae':'#252525')+';">'+c.d+'</b>';
+          if(!out) evs(c.d).forEach(function(e){h+=chip(e);});
+          if(c.m===6) evs(c.d,6).forEach(function(e){h+=chip(e);});
+          h+='</div>';
+        });
+        return h+'</div>';
+      }
+      function week(){
+        var h='<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;">';
+        var days=[6,7,8,9,10,11,12], names=['月','火','水','木','金','土','日'];
+        days.forEach(function(d,i){
+          var isT=(d===TODAY);
+          h+='<div style="border:1px solid '+(isT?'#FFB800':'#E4E3DB')+';border-radius:10px;min-height:360px;padding:8px;background:#fff;">'
+            +'<div style="text-align:center;font-size:12px;font-weight:700;color:'+(isT?'#B57E00':'#6E6E68')+';margin-bottom:8px;">'+names[i]+'<br><span style="font-size:16px;color:#252525;">'+d+'</span></div>';
+          evs(d).forEach(function(e){h+=chip(e,true);});
+          h+='</div>';
+        });
+        return h+'</div>';
+      }
+      function day(){
+        var hours=['09:00','10:00','11:00','12:00','13:00','14:00','15:00','終日'];
+        var h='<div style="max-width:640px;margin:0 auto;"><div style="font-weight:900;font-size:15px;margin:4px 0 10px;">7月6日（月）— 今日</div>';
+        hours.forEach(function(t){
+          h+='<div style="display:grid;grid-template-columns:70px 1fr;gap:10px;border-top:1px solid #EFEEE8;padding:7px 0;align-items:center;">'
+            +'<span style="font-size:11.5px;color:#6E6E68;font-family:monospace;">'+t+'</span><span>';
+          evs(TODAY).forEach(function(e){ if(e.t===t) h+=chip(e,true); });
+          h+='</span></div>';
+        });
+        return h+'</div>';
+      }
+      function list(){
+        var h='<div style="max-width:640px;margin:0 auto;"><div style="font-weight:900;font-size:15px;margin:4px 0 10px;">これからの予定</div>';
+        EV.filter(function(e){return (e.m||7)===7&&e.d>=TODAY;}).forEach(function(e){
+          h+='<div style="display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:center;border-top:1px solid #EFEEE8;padding:8px 0;">'
+            +'<span style="font-size:12px;color:#6E6E68;font-weight:700;">7/'+e.d+'　'+e.t+'</span><span>'+chip(e,true)+'</span></div>';
+        });
+        return h+'</div>';
+      }
+      var VIEWS={month:month,week:week,day:day,list:list};
+      function render(v){ body.innerHTML=VIEWS[v]();
+        document.querySelectorAll('#bc-tabs button').forEach(function(b){
+          var on=b.dataset.view===v;
+          b.style.background=on?'#252525':'#fff'; b.style.color=on?'#fff':'#6E6E68'; b.style.border=on?'none':'1px solid #E4E3DB';
+        });
+      }
+      function showToast(msg){ toast.textContent=msg; toast.style.display='block'; clearTimeout(toast._t); toast._t=setTimeout(function(){toast.style.display='none';},2200); }
+      document.getElementById('bc-tabs').addEventListener('click',function(e){ var b=e.target.closest('button'); if(b) render(b.dataset.view); });
+      document.querySelectorAll('.bc-nav').forEach(function(b){ b.addEventListener('click',function(){ showToast('デモでは月の移動はできません。試用版で実データとご一緒にどうぞ。'); }); });
+      document.getElementById('bstcal').addEventListener('click',function(e){
+        var ev=e.target.closest('.bc-ev');
+        if(ev){
+          var d=ev.dataset.d, item=EV.filter(function(x){return String(x.d)===d && x.title===ev.dataset.title;})[0];
+          var c=CAT[item.cat];
+          detail.innerHTML='<span style="display:inline-block;background:'+c[0]+';color:'+c[2]+';border-left:3px solid '+c[1]+';border-radius:6px;padding:3px 10px;font-weight:900;margin-right:10px;">'+item.title+'</span>'
+            +'<b style="color:#252525;">7月'+item.d+'日 '+item.t+'</b>　📍 '+item.place+'　<span style="color:#9a998f;">／ 実物ではポップオーバーで表示され、1クリックでレコード詳細へ移動できます</span>';
+          e.stopPropagation(); return;
+        }
+        var day=e.target.closest('.bc-day');
+        if(day){ showToast('デモでは予定の追加はできません。試用版では日付クリックでその場で追加できます。'); }
+      });
+      render('month');
+    })();
+    </script>
   </div>
 </section>
 <!-- ===== 追加: 標準機能との比較 ===== -->

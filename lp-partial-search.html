@@ -139,7 +139,7 @@
   .demo-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px;color:var(--ink);}
   .demo-head .q{font-size:13px;color:var(--mut);}
   .demo-typed{font-family:"JetBrains Mono";font-weight:700;background:var(--paper2);border:1px solid var(--line);
-    border-radius:8px;padding:5px 12px;font-size:15px;min-width:120px;}
+    border-radius:8px;padding:5px 12px;font-size:15px;min-width:150px;}
   .demo-typed .cur{display:inline-block;width:2px;height:1.05em;background:var(--ink);vertical-align:-2px;margin-left:1px;animation:blink 1s steps(1) infinite;}
   @keyframes blink{50%{opacity:0;}}
   .demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
@@ -149,7 +149,8 @@
   .panel.std .panel-top{background:#fafafa;color:var(--ink);}
   .panel.bst .panel-top{background:var(--ink);color:#fff;}
   .panel.bst .panel-top .badge-bst{color:var(--amber);}
-  .panel-body{padding:14px;min-height:188px;position:relative;}
+  .panel-body{padding:14px;min-height:264px;position:relative;}
+  @media(max-width:520px){.panel-body{min-height:320px;}}
   .result-count{font-family:"Archivo";font-weight:900;font-size:30px;line-height:1;display:flex;align-items:baseline;gap:8px;margin-bottom:12px;}
   .result-count small{font-family:"Noto Sans JP";font-size:13px;font-weight:700;}
   .rc-miss{color:var(--miss);}
@@ -349,7 +350,7 @@
     <div class="hero-cta">
       <a class="btn btn--amber btn--lg" href="trials/bst_partial-search_v2.3_trial.zip" download title="登録・メール不要。ダウンロードして読み込むだけで30日間試せます">30日無料試用版をダウンロード ↓</a>
       <a class="btn btn--lg" style="background:#252525;border-color:#252525;color:#fff;" href="https://bst.base.ec/items/133379006" target="_blank" rel="noopener">BASEで購入する ↗</a>
-      <a class="btn btn--ghost btn--lg" style="border-color:#54534e;color:#fff;" href="https://youtu.be/8DJ7G7xgVoc" target="_blank" rel="noopener">▶ 操作デモを見る</a>
+      <a class="btn btn--ghost btn--lg" style="border-color:#54534e;color:#fff;" href="https://youtu.be/8DJ7G7xgVoc" target="_blank" rel="noopener">▶ プラグインの追加方法（動画1分）</a>
     </div>
     <div class="hero-cta" style="margin-top:6px;">
       <span class="pricepill"><b id="hero-price">¥34,800</b> 税込・買い切り</span>
@@ -394,8 +395,41 @@
   <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
     <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#B57E00;">SAMPLE SCREEN</div>
     <h2 style="font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:6px 0 6px;">導入すると、この画面になります。</h2>
-    <p style="font-size:15px;color:#6E6E68;margin:0 0 20px;">一覧の上に検索バーが1本追加されます。「0142」のような番号の一部でも、全フィールド横断で瞬時にヒット。</p>
-    <img src="assets/sample-partial.png" alt="部分一致検索プラグインのサンプル画面。一覧上部の検索バーで「0142」を検索し、EST-2026-0142などが部分一致でヒットしている。" loading="lazy" style="display:block;width:100%;height:auto;border:1px solid #E4E3DB;border-radius:14px;box-shadow:0 18px 44px rgba(37,37,37,.12);">
+    <p style="font-size:15px;color:#6E6E68;margin:0 0 20px;">「あるはずのデータが検索に出てこない」——その目視で探し直す時間が、検索バー1本で消えます。</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:22px;">
+      <div style="background:#fff;border:1px solid #E4E3DB;border-left:6px solid #C0392B;border-radius:14px;padding:18px 20px;">
+        <div style="font-size:12px;font-weight:900;color:#C0392B;letter-spacing:.06em;">導入前 — kintone標準検索</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px;margin:10px 0 6px;">🔍 0142 → <b style="color:#C0392B;">0件</b></div>
+        <p style="margin:0;font-size:13.5px;color:#6E6E68;">「EST-2026-0142」は<b>確かに存在する</b>のにヒットしない。結局、1,248件の一覧を目視でスクロール…… <b style="color:#C0392B;">1回あたり数分〜十数分のロス</b>が毎日続きます。</p>
+      </div>
+      <div style="background:#FFFBEE;border:1px solid #E4E3DB;border-left:6px solid #18794E;border-radius:14px;padding:18px 20px;">
+        <div style="font-size:12px;font-weight:900;color:#18794E;letter-spacing:.06em;">導入後 — 本プラグイン</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px;margin:10px 0 6px;">🔍 0142 → <b style="color:#18794E;">一瞬で 3件ヒット</b></div>
+        <p style="margin:0;font-size:13.5px;color:#6E6E68;">番号の一部を入れるだけで、全フィールドを横断して即ヒット。<b>「目視で探す時間」がゼロに</b>。探す作業が、入力するだけの作業に変わります。</p>
+      </div>
+    </div>
+    <div class="screen">
+      <div class="k-toolbar">
+        <div class="k-view"><span class="chip">すべての見積 ▾</span></div>
+        <div class="k-plus">＋</div>
+        <div class="k-search">
+          <span class="xs-hit">3件</span>
+          <span class="xs-seg"><b>AND</b><span>OR</span></span>
+          <span class="xs-inp"><span class="ico">🔍</span>2026 九州メンテ</span>
+          <span class="xs-btn">検索</span>
+          <span class="xs-tgt">対象8項目</span>
+        </div>
+      </div>
+      <table class="k">
+        <thead><tr><th style="width:150px;">見積番号</th><th>宛名</th><th style="width:120px;">担当</th><th style="width:130px;">金額</th></tr></thead>
+        <tbody>
+          <tr><td><span class="mk">2026</span>-0142</td><td><span class="mk">九州メンテ</span>ナンス株式会社</td><td>田中</td><td>¥1,280,000</td></tr>
+          <tr><td><span class="mk">2026</span>-0188</td><td><span class="mk">九州メンテ</span>サービス</td><td>佐藤</td><td>¥640,000</td></tr>
+          <tr><td>南<span class="mk">2026</span>-0201</td><td>南<span class="mk">九州メンテ</span>工業</td><td>鈴木</td><td>¥2,150,000</td></tr>
+        </tbody>
+      </table>
+      <div class="k-foot">3件を表示　/　キーワード：2026 九州メンテ（AND）</div>
+    </div>
   </div>
 </section>
 <!-- ===== 追加: 標準機能との比較 ===== -->
@@ -676,7 +710,7 @@
       <div class="stp"><div class="sn">3</div><h4>対象を選んで更新</h4><p>検索したいフィールドにチェックして保存・更新。完了です。</p></div>
     </div>
     <div style="text-align:center;margin-top:30px;">
-      <a class="btn btn--ghost btn--lg" href="https://youtu.be/8DJ7G7xgVoc" target="_blank" rel="noopener">▶ 設定〜検索の流れを動画で見る</a>
+      <a class="btn btn--ghost btn--lg" href="https://youtu.be/8DJ7G7xgVoc" target="_blank" rel="noopener">▶ プラグインの追加方法を動画で見る</a>
     </div>
   </div>
 </section>
@@ -747,7 +781,7 @@
         <div style="margin-top:8px;max-width:340px;color:#9a998f;">kintoneの便利なプラグインを買い切りで販売。すべてローカル動作で、すぐにお試しいただけます。</div>
       </div>
       <div class="foot-links">
-        <a href="https://bst.base.ec" target="_blank" rel="noopener">HOME</a>
+        <a href="index.html">ホーム</a>
         <a href="https://bst.base.ec/about" target="_blank" rel="noopener">ABOUT</a>
         <a href="https://bst.base.ec/items/all" target="_blank" rel="noopener">ALL ITEM</a>
         <a href="https://thebase.com/inquiry/bst-base-ec" target="_blank" rel="noopener">CONTACT</a>
