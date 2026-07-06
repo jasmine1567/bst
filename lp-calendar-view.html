@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>カレンダービュープラグイン（kintone）月・週・日・リスト表示 買い切り — bst</title>
+<meta name="description" content="kintoneのレコードを月・週・日・リストのカレンダーで表示。カテゴリ色分け・詳細ポップオーバー・その場で追加/編集/削除・ライト/ダークテーマ・キーボードショートカット・モバイル対応。GUI設定だけ、完全ローカル動作の買い切りプラグイン。¥34,800（税込）。">
+<link rel="canonical" href="https://jasmine1567.github.io/bst/lp-calendar-view.html">
+<meta property="og:type" content="product">
+<meta property="og:title" content="カレンダービュープラグイン（kintone）月・週・日・リスト表示 買い切り — bst">
+<meta property="og:description" content="kintoneのレコードを月・週・日・リストのカレンダーで。カテゴリ色分け・その場で追加/編集・モバイル対応。GUIだけ・完全ローカル・買い切り。">
+<meta property="og:url" content="https://jasmine1567.github.io/bst/lp-calendar-view.html">
+<meta property="og:image" content="https://jasmine1567.github.io/bst/og-calendar.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="カレンダービュープラグイン（kintone）— bst">
+<meta name="twitter:description" content="kintoneのレコードを月・週・日・リストのカレンダーで。カテゴリ色分け・その場で追加/編集・モバイル対応。GUIだけ・完全ローカル・買い切り。">
+<meta name="twitter:image" content="https://jasmine1567.github.io/bst/og-calendar.png">
+<meta property="product:price:amount" content="34800">
+<meta property="product:price:currency" content="JPY">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "カレンダービュープラグイン（kintone）",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "kintone (Web, PC / Mobile)",
+  "offers": { "@type": "Offer", "price": "34800", "priceCurrency": "JPY", "availability": "https://schema.org/InStock", "url": "https://bst.base.ec/items/all" },
+  "description": "kintoneのレコードを月・週・日・リストのカレンダーで表示する買い切りプラグイン。カテゴリ色分け、詳細ポップオーバー、その場で追加・編集・削除、ライト/ダークテーマ、キーボードショートカット、モバイル対応。完全ローカル動作。",
+  "publisher": { "@type": "Organization", "name": "bst" }
+}
+</script>
+<style>
+  :root{
+    --ink:#252525; --ink2:#3a3a37; --paper:#FBFBF8; --paper2:#F3F2EC;
+    --line:#E4E3DB; --amber:#FFB800; --amber-deep:#B57E00; --mut:#6E6E68;
+    --hit:#18794E; --hit-bg:#C7E9D4; --miss:#C0392B; --miss-bg:#F6D2CC;
+    --warn:#8A5A00; --warn-bg:#FBE3A1; --blue:#2563eb; --blue-bg:#DBEAFE;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.78;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  .disp{font-family:"Archivo","Noto Sans JP",sans-serif;}
+  .mono{font-family:"JetBrains Mono",monospace;}
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(251,251,248,.82);backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--line);}
+  .nav-in{display:flex;align-items:center;gap:24px;height:64px;}
+  .brand{font-family:"Archivo";font-weight:900;font-size:26px;letter-spacing:-.02em;}
+  .brand span{color:var(--amber-deep);}
+  .nav-links{display:flex;gap:22px;margin-left:auto;font-size:13px;font-weight:500;color:var(--mut);}
+  .nav-links a:hover{color:var(--ink);}
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;font-weight:700;font-size:14px;padding:11px 20px;border:1.5px solid var(--ink);transition:transform .12s ease, background .15s, color .15s;cursor:pointer;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn--amber{background:var(--amber);border-color:var(--amber);color:var(--ink);}
+  .btn--ink{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .btn--ghost{background:transparent;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--amber-deep);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px;}
+  section{padding:64px 0;}
+  h1{font-size:clamp(30px,5vw,52px);line-height:1.18;letter-spacing:-.02em;margin:18px 0 14px;font-weight:900;}
+  h2{font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:0 0 10px;}
+  .lead{font-size:17px;color:var(--ink2);max-width:640px;}
+  .hero{padding-top:40px;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;}
+  @media(max-width:880px){.hero-grid{grid-template-columns:1fr;}}
+  .price-row{display:flex;align-items:baseline;gap:10px;margin:22px 0 18px;}
+  .price{font-family:"Archivo";font-weight:900;font-size:40px;letter-spacing:-.02em;}
+  .price small{font-size:13px;color:var(--mut);font-weight:500;}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;}
+  .note{font-size:12.5px;color:var(--mut);margin-top:12px;}
+  /* calendar mock */
+  .mock{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 44px rgba(37,37,37,.10);padding:16px;}
+  .mock h4{margin:2px 4px 12px;font-size:12px;color:var(--mut);font-weight:700;letter-spacing:.02em;display:flex;justify-content:space-between;align-items:center;}
+  .mock h4 .tabs{display:inline-flex;gap:4px;font-size:10.5px;}
+  .mock h4 .tabs span{padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mut);}
+  .mock h4 .tabs .on{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-size:10.5px;}
+  .cal .dow{text-align:center;color:var(--mut);font-weight:700;padding:2px 0;}
+  .cal .d{min-height:52px;border:1px solid var(--line);border-radius:6px;padding:3px 4px;color:var(--mut);background:#fff;}
+  .cal .d.today{border-color:var(--amber);box-shadow:inset 0 0 0 1px var(--amber);}
+  .cal .d b{display:block;font-size:10px;color:var(--ink);margin-bottom:2px;}
+  .ev{display:block;border-radius:4px;padding:1px 4px;margin-bottom:2px;font-weight:700;font-size:9.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .ev.a{background:var(--blue-bg);color:#1e40af;border-left:2px solid var(--blue);}
+  .ev.b{background:var(--hit-bg);color:#14683F;border-left:2px solid var(--hit);}
+  .ev.c{background:var(--warn-bg);color:var(--warn);border-left:2px solid var(--amber);}
+  .ev.x{background:var(--miss-bg);color:#A41109;border-left:2px solid var(--miss);}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media(max-width:880px){.grid{grid-template-columns:1fr;}}
+  .feat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 20px 18px;}
+  .feat .ic{width:36px;height:36px;border-radius:10px;background:var(--paper2);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px;}
+  .feat h3{margin:0 0 6px;font-size:16px;font-weight:900;}
+  .feat p{margin:0;font-size:13.5px;color:var(--mut);}
+  .viz{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  @media(max-width:880px){.viz{grid-template-columns:1fr 1fr;}}
+  .vizcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;}
+  .vizcard h3{margin:0 0 4px;font-size:15px;font-weight:900;}
+  .vizcard p{margin:0;font-size:12.5px;color:var(--mut);}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;}
+  .can{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  @media(max-width:780px){.can{grid-template-columns:1fr;}}
+  ul.clean{list-style:none;padding:0;margin:0;}
+  ul.clean li{position:relative;padding:6px 0 6px 26px;font-size:14px;border-bottom:1px dashed var(--line);}
+  ul.clean li::before{content:"";position:absolute;left:4px;top:13px;width:8px;height:8px;border-radius:2px;background:var(--hit);}
+  ul.no li::before{background:var(--miss);}
+  .spec{display:grid;grid-template-columns:160px 1fr;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;}
+  .spec dt{background:var(--paper2);padding:12px 16px;font-weight:700;font-size:13px;border-bottom:1px solid var(--line);}
+  .spec dd{margin:0;padding:12px 16px;font-size:13.5px;color:var(--ink2);border-bottom:1px solid var(--line);}
+  .band{background:var(--ink);color:#fff;}
+  .band h2{color:#fff;}
+  .band p{color:#cfcec6;}
+  .band-in{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+  footer{border-top:1px solid var(--line);padding:40px 0;color:#9a998f;font-size:13px;}
+  .foot-brand{font-family:"Archivo";font-weight:900;font-size:24px;color:var(--ink);}
+  .foot-brand span{color:var(--amber-deep);}
+  .foot-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;}
+  .sec-eyebrow{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--amber-deep);text-transform:uppercase;}
+  kbd{font-family:"JetBrains Mono",monospace;font-size:11.5px;background:var(--paper2);border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html">b<span>s</span>t</a>
+    <nav class="nav-links">
+      <a href="index.html">ホーム</a>
+      <a href="#features">機能</a>
+      <a href="#views">4つのビュー</a>
+      <a href="#price">価格</a>
+      <!-- TODO: BASE出品後、items/all を実際の商品URLに差し替え -->
+      <a href="https://bst.base.ec/items/all" target="_blank" rel="noopener">BASEで購入 ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">kintone プラグイン ・ Ver.4 ・ 買い切り ・ 完全ローカル ・ モバイル対応</span>
+      <h1 class="disp">kintoneが、<br>予定表になる。</h1>
+      <p class="lead">案件・予約・シフト・訪問予定。日付を持つレコードを<strong>月・週・日・リスト</strong>のカレンダーで表示し、<strong>その場で追加・編集・削除</strong>。カテゴリごとの色分けで、チームの動きがひと目で分かります。設定はGUIだけ、外部通信なしの完全ローカル動作です。</p>
+      <div class="price-row"><span class="price disp">¥34,800</span><small>税込・買い切り／月額なし・1ドメイン1ライセンス</small></div>
+      <div class="cta-row">
+        <!-- TODO: BASE出品後、items/all を実際の商品URLに差し替え -->
+        <a class="btn btn--amber" href="https://bst.base.ec/items/all" target="_blank" rel="noopener">BASEで購入 ↗</a>
+        <a class="btn btn--ghost" style="border-color:#FFB800;color:#B57E00;" href="https://thebase.com/inquiry/bst-base-ec" target="_blank" rel="noopener">30日無料で試す ↗</a>
+        <a class="btn btn--ghost" href="#features">機能を見る</a>
+      </div>
+      <p class="note">外部通信なしの完全ローカル動作。kintoneスタンダードコース以上・PC（Chrome／Edge）とモバイルに対応。</p>
+    </div>
+    <div class="mock" aria-hidden="true">
+      <h4>7月（月ビューの例）<span class="tabs"><span class="on">月</span><span>週</span><span>日</span><span>リスト</span></span></h4>
+      <div class="cal">
+        <div class="dow">月</div><div class="dow">火</div><div class="dow">水</div><div class="dow">木</div><div class="dow">金</div><div class="dow">土</div><div class="dow">日</div>
+        <div class="d"><b>29</b></div>
+        <div class="d"><b>30</b><span class="ev a">A社 定例</span></div>
+        <div class="d"><b>1</b><span class="ev b">現地調査</span></div>
+        <div class="d"><b>2</b></div>
+        <div class="d"><b>3</b><span class="ev c">見積提出</span></div>
+        <div class="d"><b>4</b></div>
+        <div class="d"><b>5</b></div>
+        <div class="d today"><b>6</b><span class="ev a">B社 打合せ</span><span class="ev x">請求締切</span></div>
+        <div class="d"><b>7</b><span class="ev b">保守点検</span></div>
+        <div class="d"><b>8</b></div>
+        <div class="d"><b>9</b><span class="ev c">納品</span></div>
+        <div class="d"><b>10</b><span class="ev a">C社 商談</span></div>
+        <div class="d"><b>11</b></div>
+        <div class="d"><b>12</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="views" style="background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <span class="sec-eyebrow">4つのビュー</span>
+    <h2>見たい粒度で、切り替える。</h2>
+    <p class="lead" style="margin-bottom:26px;">kintone標準のカレンダーは月表示のみ。本プラグインは4つのビューをワンクリック（またはキー1つ）で切り替えられます。</p>
+    <div class="viz">
+      <div class="vizcard"><h3>月ビュー</h3><p>全体の予定量とバランスを俯瞰。件数の多い日は「他N件」でまとめて確認。</p></div>
+      <div class="vizcard"><h3>週ビュー</h3><p>時間帯つきで1週間を並べて表示。ダブルブッキングの発見に。</p></div>
+      <div class="vizcard"><h3>日ビュー</h3><p>1日の動きを時系列で。当日のオペレーション確認に最適。</p></div>
+      <div class="vizcard"><h3>リストビュー</h3><p>これからの予定を時系列リストで。抜け漏れチェックや朝会の読み合わせに。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <span class="sec-eyebrow">主な機能</span>
+    <h2>見るだけでなく、その場で動かせる。</h2>
+    <div class="grid" style="margin-top:18px;">
+      <div class="feat"><div class="ic">🎨</div><h3>カテゴリ色分け</h3><p>ドロップダウン等の選択肢フィールドをカテゴリとして色を割り当て。凡例からのフィルター表示にも対応。</p></div>
+      <div class="feat"><div class="ic">🔍</div><h3>詳細ポップオーバー</h3><p>予定をクリックすると、タイトル・時間・場所・メモをその場で確認。レコード詳細への移動も1クリック。</p></div>
+      <div class="feat"><div class="ic">✍️</div><h3>その場で追加・編集・削除</h3><p>日付をクリックして新規予定を追加、既存予定はモーダルで編集・削除。許可する操作は設定でON/OFFできます。</p></div>
+      <div class="feat"><div class="ic">📱</div><h3>モバイル対応</h3><p>kintoneモバイルでもカレンダー表示。外出先から今日の予定を確認できます。</p></div>
+      <div class="feat"><div class="ic">⌨️</div><h3>キーボードショートカット</h3><p><kbd>←</kbd><kbd>→</kbd>で期間移動、キー1つでビュー切替。マウスに持ち替えず操作できます。</p></div>
+      <div class="feat"><div class="ic">🌗</div><h3>ライト／ダーク＋アクセント</h3><p>テーマとアクセントカラーを選択可能。チームの好みや既存カスタマイズの配色に合わせられます。</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <span class="sec-eyebrow">導入のかんたんさ</span>
+    <h2>フィールドを選ぶだけ。5分で予定表に。</h2>
+    <div class="grid" style="margin-top:18px;">
+      <div class="feat"><div class="ic">1️⃣</div><h3>日時フィールドを指定</h3><p>開始日時（必須）と、終了日時・終日フラグ（任意）を既存フィールドから選ぶだけ。アプリの作り替えは不要です。</p></div>
+      <div class="feat"><div class="ic">2️⃣</div><h3>表示内容を選ぶ</h3><p>タイトル・場所・メモに使うフィールドと、色分けに使うカテゴリを指定。既定のビュー（月／週／日／リスト）も選べます。</p></div>
+      <div class="feat"><div class="ic">3️⃣</div><h3>適用する一覧を選ぶ</h3><p>カレンダー化する一覧（ビュー）を指定。普段の表形式一覧はそのまま残せるので、使い分けができます。</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="sec-eyebrow">正直に</span>
+    <h2>できること・できないこと。</h2>
+    <div class="can" style="margin-top:18px;">
+      <div class="panel">
+        <h3 style="margin:0 0 12px;font-size:16px;">できること</h3>
+        <ul class="clean">
+          <li>月／週／日／リストの4ビュー切替（既定ビューは設定可能）</li>
+          <li>開始・終了・終日フィールドの割り当て（既存アプリのまま使える）</li>
+          <li>カテゴリ（選択肢フィールド）ごとの色分けとフィルター</li>
+          <li>詳細ポップオーバー／追加・編集・削除モーダル（操作権限は設定でON/OFF）</li>
+          <li>ライト／ダークテーマ・アクセントカラー・キーボードショートカット</li>
+          <li>モバイル対応・完全ローカル動作（外部通信なし）</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 style="margin:0 0 12px;font-size:16px;">できないこと（今後検討）</h3>
+        <ul class="clean no">
+          <li>ドラッグ＆ドロップでの日程変更（編集はモーダルから）</li>
+          <li>繰り返し予定の自動展開</li>
+          <li>複数アプリの予定を1つのカレンダーに合成</li>
+          <li>Googleカレンダー等の外部カレンダー連携（完全ローカル方針のため）</li>
+          <li>kintoneのアクセス権を超えた操作（アプリ側の権限に従います）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="price" style="background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <span class="sec-eyebrow">価格・ライセンス・動作環境</span>
+    <h2>月額なしの、買い切り。</h2>
+    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:start;margin-top:18px;">
+      <div class="panel" style="text-align:center;">
+        <div class="price disp" style="font-size:46px;">¥34,800</div>
+        <div style="color:var(--mut);font-size:13px;margin-bottom:16px;">税込・買い切り／追加課金なし</div>
+        <!-- TODO: BASE出品後、items/all を実際の商品URLに差し替え -->
+        <a class="btn btn--amber" href="https://bst.base.ec/items/all" target="_blank" rel="noopener" style="width:100%;justify-content:center;">BASEで購入 ↗</a>
+        <div style="margin-top:10px;">
+          <a class="btn btn--ghost" style="width:100%;justify-content:center;border-color:#FFB800;color:#B57E00;" href="https://thebase.com/inquiry/bst-base-ec" target="_blank" rel="noopener">30日無料試用版を申し込む ↗</a>
+        </div>
+        <p class="note">決済・受け取りはBASEで安全に。購入後30日間の無償メールサポート付き。</p>
+      </div>
+      <dl class="spec">
+        <dt>バージョン</dt><dd>Ver.4（同一プラグインの上書き読み込みで設定を保持したまま更新可能）</dd>
+        <dt>ライセンス</dt><dd>1ドメイン1ライセンス・買い切り（同一kintoneドメインのアプリで利用可）</dd>
+        <dt>動作環境</dt><dd>kintoneスタンダードコース以上／Google Chrome・Microsoft Edge 最新安定版（PC）／kintoneモバイル</dd>
+        <dt>通信</dt><dd>完全ローカル動作（外部通信・ライセンス認証なし）</dd>
+        <dt>対象画面</dt><dd>一覧（指定したビュー）を月／週／日／リストのカレンダーに変換</dd>
+        <dt>返金</dt><dd>デジタルコンテンツのため購入後のキャンセル・返金は不可（30日無料試用版で事前にご確認いただけます）</dd>
+        <dt>更新</dt><dd>同一プラグインの上書き読み込みで設定を保持したまま更新できます</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap band-in">
+    <div style="flex:1;min-width:280px;">
+      <h2>まずは、来週の予定を並べてみる。</h2>
+      <p>開始日時のフィールドを選んで保存するだけ。いつもの一覧が、5分でチームの予定表になります。</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <!-- TODO: BASE出品後、items/all を実際の商品URLに差し替え -->
+      <a class="btn btn--amber" href="https://bst.base.ec/items/all" target="_blank" rel="noopener">BASEで購入 ↗</a>
+      <a class="btn btn--ghost" style="border-color:#FFB800;color:#FFB800;" href="https://thebase.com/inquiry/bst-base-ec" target="_blank" rel="noopener">30日無料で試す ↗</a>
+      <a class="btn btn--ghost" style="border-color:#54534e;color:#fff;" href="index.html">他のツールを見る</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start;">
+      <div>
+        <div class="foot-brand">b<span>s</span>t</div>
+        <div style="margin-top:8px;max-width:360px;">kintoneの便利なプラグインを買い切りで販売しています。すべてローカル動作で、追加すればすぐ使えます。</div>
+      </div>
+      <div class="foot-links">
+        <a href="index.html">ホーム</a>
+        <a href="https://bst.base.ec/items/all" target="_blank" rel="noopener">商品一覧</a>
+        <a href="https://thebase.com/inquiry/bst-base-ec" target="_blank" rel="noopener">お問い合わせ</a>
+        <a href="https://bst.base.ec" target="_blank" rel="noopener">特商法</a>
+        <a href="https://bst.base.ec" target="_blank" rel="noopener">プライバシー</a>
+      </div>
+    </div>
+    <div style="margin-top:22px;border-top:1px solid var(--line);padding-top:14px;color:#b3b2a8;">© bst — kintone plugins, sold as buy-once. カレンダービュープラグインはサイボウズ株式会社の関連会社ではありません。kintoneはサイボウズ株式会社の登録商標です。</div>
+  </div>
+</footer>
+
+</body>
+</html>
