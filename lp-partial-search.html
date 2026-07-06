@@ -347,9 +347,9 @@
     <h1>「ないはずがない」を、<br><span class="hl">もう探さない。</span></h1>
     <p class="lead">型番、管理番号、英数字の一部。kintoneの標準検索では“あるのに出てこない”データを、一覧画面の検索バー1つで「含む」だけで引き当てます。</p>
     <div class="hero-cta">
-      <a class="btn btn--amber btn--lg" href="https://bst.base.ec/items/133379006" target="_blank" rel="noopener">BASEで購入する ↗</a>
+      <a class="btn btn--amber btn--lg" href="trials/bst_partial-search_v2.3_trial.zip" download title="登録・メール不要。ダウンロードして読み込むだけで30日間試せます">30日無料試用版をダウンロード ↓</a>
+      <a class="btn btn--lg" style="background:#252525;border-color:#252525;color:#fff;" href="https://bst.base.ec/items/133379006" target="_blank" rel="noopener">BASEで購入する ↗</a>
       <a class="btn btn--ghost btn--lg" style="border-color:#54534e;color:#fff;" href="https://youtu.be/8DJ7G7xgVoc" target="_blank" rel="noopener">▶ 操作デモを見る</a>
-      <a class="btn btn--ghost btn--lg" style="border-color:#FFB800;color:#FFB800;" href="trials/bst_partial-search_v2.3_trial.zip" download title="ダウンロード後、kintoneシステム管理 → プラグイン → 読み込む だけで試せます（登録・メール不要／30日間・外部通信なし）">30日無料試用版をダウンロード ↓</a>
     </div>
     <div class="hero-cta" style="margin-top:6px;">
       <span class="pricepill"><b id="hero-price">¥34,800</b> 税込・買い切り</span>
@@ -387,6 +387,74 @@
       </div>
     </div>
     <p class="hero-note">※ デモは挙動のイメージです。標準検索の制約はkintoneの公式仕様（英数字の部分一致不可・2文字以上の日本語の1文字検索不可）に基づきます。</p>
+  </div>
+</section>
+<!-- ===== 追加: サンプル画面 ===== -->
+<section style="padding:56px 0;background:#fff;">
+  <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#B57E00;">SAMPLE SCREEN</div>
+    <h2 style="font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:6px 0 6px;">導入すると、この画面になります。</h2>
+    <p style="font-size:15px;color:#6E6E68;margin:0 0 20px;">一覧の上に検索バーが1本追加されます。「0142」のような番号の一部でも、全フィールド横断で瞬時にヒット。</p>
+    <img src="assets/sample-partial.png" alt="部分一致検索プラグインのサンプル画面。一覧上部の検索バーで「0142」を検索し、EST-2026-0142などが部分一致でヒットしている。" loading="lazy" style="display:block;width:100%;height:auto;border:1px solid #E4E3DB;border-radius:14px;box-shadow:0 18px 44px rgba(37,37,37,.12);">
+  </div>
+</section>
+<!-- ===== 追加: 標準機能との比較 ===== -->
+<section style="padding:56px 0;background:#F3F2EC;border-top:1px solid #E4E3DB;border-bottom:1px solid #E4E3DB;">
+  <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#B57E00;">VS kintone標準</div>
+    <h2 style="font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:6px 0 18px;">標準機能と、何が変わるのか。</h2>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid #E4E3DB;border-radius:14px;overflow:hidden;min-width:640px;">
+      <thead><tr style="background:#252525;color:#fff;">
+        <th style="padding:14px 16px;text-align:left;font-size:13px;width:26%;">できること</th>
+        <th style="padding:14px 16px;text-align:left;font-size:13px;width:37%;">kintone標準</th>
+        <th style="padding:14px 16px;text-align:left;font-size:13px;width:37%;background:#B57E00;">本プラグイン</th>
+      </tr></thead>
+      <tbody><tr>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-weight:700;font-size:14px;">型番・管理番号の一部で検索</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;color:#6E6E68;"><span style="color:#C0392B;font-weight:900;">✕</span>　単語の途中はヒットしない（例:「0142」✕）</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;background:#FFFBEE;"><span style="color:#18794E;font-weight:900;">◎</span>　<b>真の部分一致。単語の途中でもヒット</b></td>
+</tr><tr>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-weight:700;font-size:14px;">日本語1〜2文字での検索</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;color:#6E6E68;"><span style="color:#C0392B;font-weight:900;">✕</span>　原則ヒットしない</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;background:#FFFBEE;"><span style="color:#18794E;font-weight:900;">◎</span>　<b>ヒットする</b></td>
+</tr><tr>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-weight:700;font-size:14px;">全角/半角・大文字/小文字の表記ゆれ</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;color:#6E6E68;"><span style="color:#C0392B;font-weight:900;">✕</span>　区別されて取りこぼし</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;background:#FFFBEE;"><span style="color:#18794E;font-weight:900;">◎</span>　<b>区別せず検索（カナ/かな同一視も可）</b></td>
+</tr><tr>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-weight:700;font-size:14px;">複数フィールドの横断検索</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;color:#6E6E68;"><span style="color:#C0392B;font-weight:900;">✕</span>　フィールドごとに絞り込みを組む</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;background:#FFFBEE;"><span style="color:#18794E;font-weight:900;">◎</span>　<b>検索バー1本で横断（サブテーブル・添付名も）</b></td>
+</tr><tr>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-weight:700;font-size:14px;">複数キーワード</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;color:#6E6E68;"><span style="color:#C0392B;font-weight:900;">✕</span>　絞り込み条件を毎回設定</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;background:#FFFBEE;"><span style="color:#18794E;font-weight:900;">◎</span>　<b>スペース区切りでAND/OR切替</b></td>
+</tr><tr>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-weight:700;font-size:14px;">操作</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;color:#6E6E68;"><span style="color:#C0392B;font-weight:900;">✕</span>　検索のたびに条件画面を開く</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;background:#FFFBEE;"><span style="color:#18794E;font-weight:900;">◎</span>　<b>一覧に常設のバーに入力するだけ</b></td>
+</tr></tbody>
+    </table>
+    </div>
+    <p style="font-size:12.5px;color:#6E6E68;margin-top:10px;">※ kintone標準の全文検索・絞り込みは単語単位（形態素解析）のため、英数字の連続や単語の途中では一致しません。</p>
+  </div>
+</section>
+<!-- ===== 追加: 30日無料試用（3ステップ） ===== -->
+<section style="padding:56px 0;background:#252525;color:#fff;">
+  <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#FFB800;">FREE TRIAL</div>
+    <h2 style="font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:6px 0 8px;color:#fff;">その便利さ、まず30日間ゼロ円で。</h2>
+    <p style="color:#cfcec6;font-size:15px;margin:0 0 26px;">登録・メールアドレス・支払い情報、すべて不要。ダウンロードして読み込むだけで、製品版と同じ機能を実データで試せます。</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:28px;">
+      <div style="background:#303030;border-radius:14px;padding:20px;"><div style="width:40px;height:40px;border-radius:50%;background:#FFB800;color:#252525;font-weight:900;font-size:20px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;">1</div><b style="font-size:15px;">ダウンロード</b><p style="margin:6px 0 0;font-size:13px;color:#cfcec6;">下のボタンからZIPを保存（約30KB・登録不要）。</p></div>
+      <div style="background:#303030;border-radius:14px;padding:20px;"><div style="width:40px;height:40px;border-radius:50%;background:#FFB800;color:#252525;font-weight:900;font-size:20px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;">2</div><b style="font-size:15px;">kintoneに読み込む</b><p style="margin:6px 0 0;font-size:13px;color:#cfcec6;">システム管理 → プラグイン → 読み込む。アプリに追加して設定を保存。</p></div>
+      <div style="background:#303030;border-radius:14px;padding:20px;"><div style="width:40px;height:40px;border-radius:50%;background:#FFB800;color:#252525;font-weight:900;font-size:20px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;">3</div><b style="font-size:15px;">設定した日から30日</b><p style="margin:6px 0 0;font-size:13px;color:#cfcec6;">試用開始は設定を保存した日。気に入ったら製品版を上書きするだけ、<b style="color:#FFB800;">設定はそのまま引き継ぎ</b>。</p></div>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+      <a href="trials/bst_partial-search_v2.3_trial.zip" download style="display:inline-flex;align-items:center;gap:8px;border-radius:999px;font-weight:700;font-size:16px;padding:16px 30px;background:#FFB800;color:#252525;text-decoration:none;">30日無料試用版をダウンロード ↓</a>
+      <span style="font-size:12.5px;color:#9a998f;">外部通信なし・試用版も完全ローカル動作／社内検証・稟議用の事前確認にどうぞ</span>
+    </div>
   </div>
 </section>
 

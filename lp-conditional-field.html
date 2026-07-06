@@ -408,8 +408,8 @@
     <p class="lead">「受注になったら受注日を必須に」「完了したら金額は読取専用に」。kintone標準では“一律”にしかできない必須・非表示・編集不可を、<b>フィールドの値（条件）で動的に</b>切り替えます。ノーコード設定・完全ローカル動作。</p>
     <div class="hero-cta">
       <span class="pricepill">買い切り <b id="hero-price">¥29,800</b> 税込</span>
-      <a class="btn btn--amber btn--lg js-buy" target="_blank" rel="noopener">BASEで購入する ↗</a>
-      <a class="btn btn--ghost btn--lg" style="border-color:#FFB800;color:#FFB800;" href="trials/bst_conditional-field_v1.0.1_trial.zip" download title="ダウンロード後、kintoneシステム管理 → プラグイン → 読み込む だけで試せます（登録・メール不要／30日間・外部通信なし）">30日無料試用版をダウンロード ↓</a>
+      <a class="btn btn--amber btn--lg" href="trials/bst_conditional-field_v1.0.1_trial.zip" download title="登録・メール不要。ダウンロードして読み込むだけで30日間試せます">30日無料試用版をダウンロード ↓</a>
+      <a class="btn btn--lg js-buy" style="background:#252525;border-color:#252525;color:#fff;" target="_blank" rel="noopener">BASEで購入する ↗</a>
     </div>
     <p class="hero-note">※ 継続課金なしの買い切り。1ドメイン1ライセンス・完全ローカル動作（外部通信なし）。</p>
 
@@ -435,6 +435,70 @@
         </div>
       </div>
       <p class="fdemo-note">※ デモは挙動のイメージです。実際はノーコードの設定画面で「条件→効果」を組み合わせて作成します。</p>
+    </div>
+  </div>
+</section>
+<!-- ===== 追加: サンプル画面 ===== -->
+<section style="padding:56px 0;background:#fff;">
+  <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#B57E00;">SAMPLE SCREEN</div>
+    <h2 style="font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:6px 0 6px;">導入すると、この画面になります。</h2>
+    <p style="font-size:15px;color:#6E6E68;margin:0 0 20px;">ステータスを「受注」に変えた瞬間、受注日が必須で現れ、請求額は読取専用にロック。入力ミスと事故を仕組みで防ぎます。</p>
+    <img src="assets/sample-conditional.png" alt="条件付きフィールド制御プラグインのサンプル画面。ステータス変更で受注日が必須表示になり請求額が読取専用になる比較。" loading="lazy" style="display:block;width:100%;height:auto;border:1px solid #E4E3DB;border-radius:14px;box-shadow:0 18px 44px rgba(37,37,37,.12);">
+  </div>
+</section>
+<!-- ===== 追加: 標準機能との比較 ===== -->
+<section style="padding:56px 0;background:#F3F2EC;border-top:1px solid #E4E3DB;border-bottom:1px solid #E4E3DB;">
+  <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#B57E00;">VS kintone標準</div>
+    <h2 style="font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:6px 0 18px;">標準機能と、何が変わるのか。</h2>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid #E4E3DB;border-radius:14px;overflow:hidden;min-width:640px;">
+      <thead><tr style="background:#252525;color:#fff;">
+        <th style="padding:14px 16px;text-align:left;font-size:13px;width:26%;">できること</th>
+        <th style="padding:14px 16px;text-align:left;font-size:13px;width:37%;">kintone標準</th>
+        <th style="padding:14px 16px;text-align:left;font-size:13px;width:37%;background:#B57E00;">本プラグイン</th>
+      </tr></thead>
+      <tbody><tr>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-weight:700;font-size:14px;">値に応じてフィールドを表示/非表示</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;color:#6E6E68;"><span style="color:#C0392B;font-weight:900;">✕</span>　不可（常に全項目表示）</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;background:#FFFBEE;"><span style="color:#18794E;font-weight:900;">◎</span>　<b>条件で自動切替。使う項目だけ表示</b></td>
+</tr><tr>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-weight:700;font-size:14px;">状況に応じた必須化</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;color:#6E6E68;"><span style="color:#C0392B;font-weight:900;">✕</span>　必須は固定設定のみ</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;background:#FFFBEE;"><span style="color:#18794E;font-weight:900;">◎</span>　<b>「受注なら受注日必須」など動的に必須化</b></td>
+</tr><tr>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-weight:700;font-size:14px;">確定後の値の保護</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;color:#6E6E68;"><span style="color:#C0392B;font-weight:900;">✕</span>　手動の権限変更が必要</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;background:#FFFBEE;"><span style="color:#18794E;font-weight:900;">◎</span>　<b>条件で自動的に読取専用ロック</b></td>
+</tr><tr>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-weight:700;font-size:14px;">入力画面の長さ</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;color:#6E6E68;"><span style="color:#C0392B;font-weight:900;">✕</span>　項目が増えるほど縦に長い</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;background:#FFFBEE;"><span style="color:#18794E;font-weight:900;">◎</span>　<b>関係ない項目を隠してスッキリ</b></td>
+</tr><tr>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-weight:700;font-size:14px;">実現手段</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;color:#6E6E68;"><span style="color:#C0392B;font-weight:900;">✕</span>　JavaScriptカスタマイズ開発</td>
+<td style="padding:14px 16px;border-bottom:1px solid #E4E3DB;font-size:14px;background:#FFFBEE;"><span style="color:#18794E;font-weight:900;">◎</span>　<b>GUI設定のみ・ノーコード</b></td>
+</tr></tbody>
+    </table>
+    </div>
+    <p style="font-size:12.5px;color:#6E6E68;margin-top:10px;">※ kintone標準ではフィールドの動的な表示制御・必須化・読取制御はできず、JS開発が必要です。</p>
+  </div>
+</section>
+<!-- ===== 追加: 30日無料試用（3ステップ） ===== -->
+<section style="padding:56px 0;background:#252525;color:#fff;">
+  <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
+    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#FFB800;">FREE TRIAL</div>
+    <h2 style="font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:6px 0 8px;color:#fff;">その便利さ、まず30日間ゼロ円で。</h2>
+    <p style="color:#cfcec6;font-size:15px;margin:0 0 26px;">登録・メールアドレス・支払い情報、すべて不要。ダウンロードして読み込むだけで、製品版と同じ機能を実データで試せます。</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:28px;">
+      <div style="background:#303030;border-radius:14px;padding:20px;"><div style="width:40px;height:40px;border-radius:50%;background:#FFB800;color:#252525;font-weight:900;font-size:20px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;">1</div><b style="font-size:15px;">ダウンロード</b><p style="margin:6px 0 0;font-size:13px;color:#cfcec6;">下のボタンからZIPを保存（約30KB・登録不要）。</p></div>
+      <div style="background:#303030;border-radius:14px;padding:20px;"><div style="width:40px;height:40px;border-radius:50%;background:#FFB800;color:#252525;font-weight:900;font-size:20px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;">2</div><b style="font-size:15px;">kintoneに読み込む</b><p style="margin:6px 0 0;font-size:13px;color:#cfcec6;">システム管理 → プラグイン → 読み込む。アプリに追加して設定を保存。</p></div>
+      <div style="background:#303030;border-radius:14px;padding:20px;"><div style="width:40px;height:40px;border-radius:50%;background:#FFB800;color:#252525;font-weight:900;font-size:20px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;">3</div><b style="font-size:15px;">設定した日から30日</b><p style="margin:6px 0 0;font-size:13px;color:#cfcec6;">試用開始は設定を保存した日。気に入ったら製品版を上書きするだけ、<b style="color:#FFB800;">設定はそのまま引き継ぎ</b>。</p></div>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+      <a href="trials/bst_conditional-field_v1.0.1_trial.zip" download style="display:inline-flex;align-items:center;gap:8px;border-radius:999px;font-weight:700;font-size:16px;padding:16px 30px;background:#FFB800;color:#252525;text-decoration:none;">30日無料試用版をダウンロード ↓</a>
+      <span style="font-size:12.5px;color:#9a998f;">外部通信なし・試用版も完全ローカル動作／社内検証・稟議用の事前確認にどうぞ</span>
     </div>
   </div>
 </section>
