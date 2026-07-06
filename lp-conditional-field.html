@@ -458,7 +458,33 @@
         <p style="margin:0;font-size:13.5px;color:#6E6E68;">完了案件の金額は自動ロック。<b>「誰かが触って数字が変わってた」</b>という経理との気まずい会話をなくします。</p>
       </div>
     </div>
-    <img src="assets/sample-conditional.png" alt="条件付きフィールド制御プラグインのサンプル画面。ステータス変更で受注日が必須表示になり請求額が読取専用になる比較。" loading="lazy" style="display:block;width:100%;height:auto;border:1px solid #E4E3DB;border-radius:14px;box-shadow:0 18px 44px rgba(37,37,37,.12);">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;align-items:stretch;">
+      <div style="background:#fff;border:1px solid #E4E3DB;border-radius:14px;overflow:hidden;">
+        <div style="background:#F5F5F5;padding:12px 16px;font-weight:900;font-size:14px;">ステータス＝<span style="background:#DBEAFE;color:#1e40af;border-radius:999px;padding:2px 12px;">商談中</span> のとき</div>
+        <div style="padding:18px;"><div style="margin-bottom:16px;">
+          <div style="font-size:12.5px;font-weight:700;color:#6E6E68;margin-bottom:5px;">ステータス</div>
+          <div style="border:2px solid #E0E0E0;border-radius:8px;padding:11px 14px;font-size:14px;background:#fff;">商談中　▾</div>
+        </div><div style="margin-bottom:16px;">
+          <div style="font-size:12.5px;font-weight:700;color:#6E6E68;margin-bottom:5px;">受注日</div>
+          <div style="border:2px dashed #E4E3DB;border-radius:8px;padding:11px 14px;font-size:13px;color:#b8b7ae;background:#FAFAF8;">（非表示 — 画面に出ません）</div>
+        </div><div style="margin-bottom:16px;">
+          <div style="font-size:12.5px;font-weight:700;color:#6E6E68;margin-bottom:5px;">請求額</div>
+          <div style="border:2px solid #E0E0E0;border-radius:8px;padding:11px 14px;font-size:14px;background:#fff;border-color:#cfcfcf;">¥1,280,000</div>
+        </div></div></div>
+      <div style="background:#fff;border:2px solid #FFB800;border-radius:14px;overflow:hidden;box-shadow:0 12px 30px rgba(255,184,0,.18);">
+        <div style="background:#FFF6DD;padding:12px 16px;font-weight:900;font-size:14px;">ステータスを <span style="background:#C7E9D4;color:#14683F;border-radius:999px;padding:2px 12px;">受注</span> に変えた瞬間</div>
+        <div style="padding:18px;"><div style="margin-bottom:16px;">
+          <div style="font-size:12.5px;font-weight:700;color:#6E6E68;margin-bottom:5px;">ステータス</div>
+          <div style="border:2px solid #E0E0E0;border-radius:8px;padding:11px 14px;font-size:14px;background:#fff;">受注　▾</div>
+        </div><div style="margin-bottom:16px;">
+          <div style="font-size:12.5px;font-weight:700;color:#6E6E68;margin-bottom:5px;">受注日<span style="color:#C0392B;font-weight:900;font-size:12px;margin-left:6px;">＊必須</span></div>
+          <div style="border:2px solid #E0E0E0;border-radius:8px;padding:11px 14px;font-size:14px;background:#fff;border-color:#C0392B;">2026-07-06</div>
+        </div><div style="margin-bottom:16px;">
+          <div style="font-size:12.5px;font-weight:700;color:#6E6E68;margin-bottom:5px;">請求額</div>
+          <div style="border:2px solid #E0E0E0;border-radius:8px;padding:11px 14px;font-size:14px;background:#F0F0EE;color:#6E6E68;">¥1,280,000　<span style="font-size:12px;font-weight:700;">🔒 読取専用</span></div>
+        </div></div></div>
+    </div>
+    <p style="font-size:12.5px;color:#6E6E68;margin-top:10px;">受注日は<b>必要になった瞬間だけ</b>現れて必須に。請求額は<b>確定したら自動ロック</b>。ルールはGUIで「条件→効果」を選ぶだけです。</p>
   </div>
 </section>
 <!-- ===== 追加: 標準機能との比較 ===== -->

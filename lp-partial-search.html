@@ -139,7 +139,7 @@
   .demo-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px;color:var(--ink);}
   .demo-head .q{font-size:13px;color:var(--mut);}
   .demo-typed{font-family:"JetBrains Mono";font-weight:700;background:var(--paper2);border:1px solid var(--line);
-    border-radius:8px;padding:5px 12px;font-size:15px;min-width:150px;}
+    border-radius:8px;padding:5px 12px;font-size:15px;width:170px;box-sizing:border-box;white-space:nowrap;overflow:hidden;}
   .demo-typed .cur{display:inline-block;width:2px;height:1.05em;background:var(--ink);vertical-align:-2px;margin-left:1px;animation:blink 1s steps(1) infinite;}
   @keyframes blink{50%{opacity:0;}}
   .demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
@@ -166,6 +166,7 @@
   .spin{width:15px;height:15px;border:2px solid #d8d7cf;border-top-color:var(--ink);border-radius:50%;animation:sp .7s linear infinite;}
   @keyframes sp{to{transform:rotate(360deg);}}
   .hidden{display:none !important;}
+  .ghost{visibility:hidden !important;}
 
   /* sections */
   .sec{padding:clamp(60px,8.5vw,108px) 0;}
@@ -369,7 +370,7 @@
           <div class="panel-top"><span>kintone 標準検索</span><span style="color:var(--mut);font-weight:500;">そのまま</span></div>
           <div class="panel-body">
             <div class="scanning" id="std-scan"><span class="spin"></span>検索中…</div>
-            <div id="std-result" class="hidden">
+            <div id="std-result" class="ghost">
               <div class="result-count rc-miss"><span id="std-count">0</span><small>件</small></div>
               <div class="miss-note">該当なし。英数字の一部・型番では、データがあってもヒットしません。</div>
             </div>
@@ -379,7 +380,7 @@
           <div class="panel-top"><span class="badge-bst">bst 部分一致検索</span><span style="color:#9a998f;font-weight:500;">プラグイン</span></div>
           <div class="panel-body">
             <div class="scanning" id="bst-scan"><span class="spin"></span>含むデータを確認中…</div>
-            <div id="bst-result" class="hidden">
+            <div id="bst-result" class="ghost">
               <div class="result-count rc-hit"><span id="bst-count">3</span><small>件ヒット</small></div>
               <div id="bst-rows"></div>
             </div>
@@ -821,14 +822,14 @@
   }
   function reset(){
     typed.textContent='';
-    stdScan.classList.remove('hidden'); stdRes.classList.add('hidden');
-    bstScan.classList.remove('hidden'); bstRes.classList.add('hidden');
+    stdScan.classList.remove('hidden'); stdRes.classList.add('ghost');
+    bstScan.classList.remove('hidden'); bstRes.classList.add('ghost');
     buildRows();
   }
   function finalState(){
     typed.textContent = keyword;
-    stdScan.classList.add('hidden'); stdRes.classList.remove('hidden');
-    bstScan.classList.add('hidden'); bstRes.classList.remove('hidden');
+    stdScan.classList.add('hidden'); stdRes.classList.remove('ghost');
+    bstScan.classList.add('hidden'); bstRes.classList.remove('ghost');
     bstRows.querySelectorAll('.row').forEach(function(el){ el.classList.add('show'); });
   }
 
@@ -846,10 +847,10 @@
     reset();
     typeIn(function(){
       setTimeout(function(){
-        stdScan.classList.add('hidden'); stdRes.classList.remove('hidden');
+        stdScan.classList.add('hidden'); stdRes.classList.remove('ghost');
       }, 700);
       setTimeout(function(){
-        bstScan.classList.add('hidden'); bstRes.classList.remove('hidden'); showRows();
+        bstScan.classList.add('hidden'); bstRes.classList.remove('ghost'); showRows();
       }, 1250);
       setTimeout(runOnce, 5200);
     });

@@ -176,7 +176,44 @@
     <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#B57E00;">SAMPLE SCREEN</div>
     <h2 style="font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:6px 0 6px;">導入すると、この画面になります。</h2>
     <p style="font-size:15px;color:#6E6E68;margin:0 0 20px;">期限超過は赤、今日期限はアンバー、完了はグリーン。金額はデータバー。見るべき行が、開いた瞬間にわかります。</p>
-    <img src="assets/sample-visual.png" alt="ビジュアル条件書式プラグインのサンプル画面。一覧の行が条件で色分けされ、金額列にデータバーが表示されている。" loading="lazy" style="display:block;width:100%;height:auto;border:1px solid #E4E3DB;border-radius:14px;box-shadow:0 18px 44px rgba(37,37,37,.12);">
+    <div style="overflow-x:auto;border:1px solid #E4E3DB;border-radius:14px;box-shadow:0 18px 44px rgba(37,37,37,.12);background:#fff;">
+      <div style="min-width:760px;">
+        <div style="background:#3a3a3a;color:#fff;font-weight:700;font-size:14px;padding:12px 16px;border-radius:13px 13px 0 0;">案件管理アプリ — 一覧（条件書式の適用例）</div>
+        <div style="display:grid;grid-template-columns:2fr 0.8fr 1.3fr 1.5fr 1fr;gap:10px;padding:10px 14px;background:#F5F5F5;font-weight:700;font-size:12.5px;color:#555;border-bottom:1px solid #E4E3DB;">
+          <span>案件名</span><span>担当</span><span>期限</span><span>金額</span><span>ステータス</span>
+        </div><div style="display:grid;grid-template-columns:2fr 0.8fr 1.3fr 1.5fr 1fr;gap:10px;align-items:center;padding:12px 14px;background:#FBE8E5;border-left:5px solid #C0392B;border-bottom:1px solid #E4E3DB;">
+          <span style="font-weight:700;font-size:14px;">🔥 基幹システム更改<br><small style="color:#A41109;font-weight:700;">期限超過 5日</small></span>
+          <span style="font-size:14px;">佐藤</span>
+          <span style="font-size:13.5px;font-weight:700;color:#A41109;">2026-07-01</span>
+          <span><span style="display:block;font-size:12px;margin-bottom:3px;">¥8,200,000</span><span style="display:block;height:10px;border-radius:5px;width:100%;background:#FFB800;"></span></span>
+          <span><span style="background:#F6D2CC;color:#A41109;font-weight:700;border-radius:999px;padding:3px 12px;font-size:12px;white-space:nowrap;">要対応</span></span>
+        </div><div style="display:grid;grid-template-columns:2fr 0.8fr 1.3fr 1.5fr 1fr;gap:10px;align-items:center;padding:12px 14px;background:#FBEEC7;border-left:5px solid #E69500;border-bottom:1px solid #E4E3DB;">
+          <span style="font-weight:700;font-size:14px;">⚠ Webサイト改修<br><small style="color:#8A5A00;font-weight:700;">今日が期限</small></span>
+          <span style="font-size:14px;">田中</span>
+          <span style="font-size:13.5px;font-weight:700;color:#8A5A00;">2026-07-06</span>
+          <span><span style="display:block;font-size:12px;margin-bottom:3px;">¥1,450,000</span><span style="display:block;height:10px;border-radius:5px;width:18%;background:#FFB800;"></span></span>
+          <span><span style="background:#FBE3A1;color:#8A5A00;font-weight:700;border-radius:999px;padding:3px 12px;font-size:12px;white-space:nowrap;">進行中</span></span>
+        </div><div style="display:grid;grid-template-columns:2fr 0.8fr 1.3fr 1.5fr 1fr;gap:10px;align-items:center;padding:12px 14px;background:#fff;border-left:5px solid transparent;border-bottom:1px solid #E4E3DB;">
+          <span style="font-weight:500;font-size:14px;">保守契約 更新</span>
+          <span style="font-size:14px;">鈴木</span>
+          <span style="font-size:13.5px;font-weight:400;color:#333;">2026-07-21</span>
+          <span><span style="display:block;font-size:12px;margin-bottom:3px;">¥620,000</span><span style="display:block;height:10px;border-radius:5px;width:8%;background:#FFB800;"></span></span>
+          <span><span style="background:#DBEAFE;color:#1e40af;font-weight:700;border-radius:999px;padding:3px 12px;font-size:12px;white-space:nowrap;">進行中</span></span>
+        </div><div style="display:grid;grid-template-columns:2fr 0.8fr 1.3fr 1.5fr 1fr;gap:10px;align-items:center;padding:12px 14px;background:#fff;border-left:5px solid transparent;border-bottom:1px solid #E4E3DB;">
+          <span style="font-weight:500;font-size:14px;">社内研修 企画</span>
+          <span style="font-size:14px;">高橋</span>
+          <span style="font-size:13.5px;font-weight:400;color:#333;">2026-07-30</span>
+          <span><span style="display:block;font-size:12px;margin-bottom:3px;">¥300,000</span><span style="display:block;height:10px;border-radius:5px;width:4%;background:#FFB800;"></span></span>
+          <span><span style="background:#DBEAFE;color:#1e40af;font-weight:700;border-radius:999px;padding:3px 12px;font-size:12px;white-space:nowrap;">進行中</span></span>
+        </div><div style="display:grid;grid-template-columns:2fr 0.8fr 1.3fr 1.5fr 1fr;gap:10px;align-items:center;padding:12px 14px;background:#E7F5EC;border-left:5px solid #18794E;border-bottom:1px solid #E4E3DB;">
+          <span style="font-weight:700;font-size:14px;">✓ 倉庫管理アプリ導入</span>
+          <span style="font-size:14px;">伊藤</span>
+          <span style="font-size:13.5px;font-weight:400;color:#333;">2026-06-20</span>
+          <span><span style="display:block;font-size:12px;margin-bottom:3px;">¥2,380,000</span><span style="display:block;height:10px;border-radius:5px;width:29%;background:#FFB800;"></span></span>
+          <span><span style="background:#C7E9D4;color:#14683F;font-weight:700;border-radius:999px;padding:3px 12px;font-size:12px;white-space:nowrap;">完了</span></span>
+        </div>      </div>
+    </div>
+    <p style="font-size:12.5px;color:#6E6E68;margin-top:10px;">期限超過＝赤 ／ 今日期限＝アンバー ／ 完了＝グリーン。金額はデータバーで大小がひと目。<b>すべてノーコードの条件設定だけ</b>で実現します。</p>
   </div>
 </section>
 <!-- ===== 追加: 標準機能との比較 ===== -->
