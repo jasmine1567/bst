@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jasmine1567.github.io/bst/sitemap.xml
+Sitemap: https://bst-plugins.com/sitemap.xml
