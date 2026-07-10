@@ -138,6 +138,35 @@ table.k td{border-bottom:1px solid #EFEEE8;padding:10px 14px;}
 .k-foot{padding:9px 14px;font-size:11.5px;color:var(--mut);}
 .ba{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:22px;}
 @media(max-width:820px){.demo2{grid-template-columns:1fr;}}
+
+/* ===== bstx: 追加セクション共通（デモ/CONFIG/比較表） ===== */
+.bstx-kick{font-size:12px;font-weight:700;letter-spacing:.08em;color:#B57E00;}
+.bstx-h2{font-size:clamp(21px,3.4vw,30px);font-weight:900;letter-spacing:-.01em;margin:6px 0 20px;}
+.bstx-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:18px;}
+.bstx-card{background:#fff;border:1px solid #E4E3DB;border-radius:16px;padding:18px 20px;}
+.bstx-card .em{font-size:22px;}
+.bstx-card b{display:block;font-size:14.5px;margin:6px 0 4px;}
+.bstx-card p{font-size:12.5px;color:#6E6E68;line-height:1.7;margin:0;}
+.bstx-cmp{border-collapse:collapse;width:100%;min-width:640px;background:#fff;border-radius:14px;overflow:hidden;font-size:12.5px;box-shadow:0 1px 0 #E4E3DB;}
+.bstx-cmp th,.bstx-cmp td{border:1px solid #E4E3DB;padding:10px 14px;text-align:left;vertical-align:top;line-height:1.6;}
+.bstx-cmp thead th{background:#F7F7F5;font-size:12px;}
+.bstx-cmp thead th.me{background:#252525;color:#FFB800;}
+.bstx-cmp td.me{background:#FFFBEB;font-weight:700;}
+.bstx-cmp td:first-child{font-weight:900;white-space:nowrap;background:#FCFCFA;}
+.bstx-note{font-size:11.5px;color:#6E6E68;margin-top:8px;}
+.bstx-democard{background:#fff;border:2px solid #FFB800;border-radius:18px;box-shadow:0 14px 36px rgba(255,184,0,.14);overflow:hidden;max-width:760px;}
+.bstx-democard .fh{background:#F7F7F5;border-bottom:1px solid #E4E3DB;padding:10px 16px;font-size:12.5px;font-weight:900;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;}
+.bstx-democard .fh span{color:#6E6E68;font-weight:700;font-size:11px;}
+.bstx-cfg{background:#fff;border:1px solid #E4E3DB;border-radius:18px;overflow:hidden;box-shadow:0 10px 28px rgba(0,0,0,.06);max-width:780px;}
+.bstx-cfg .ch{background:#F7F7F5;border-bottom:1px solid #E4E3DB;padding:11px 18px;font-size:13px;font-weight:900;display:flex;justify-content:space-between;align-items:center;}
+.bstx-cfg .ch span{color:#6E6E68;font-weight:700;font-size:11px;}
+.bstx-cfg .cb{padding:16px 18px;}
+.bstx-step{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:900;margin:10px 0;}
+.bstx-no{display:inline-flex;width:22px;height:22px;border-radius:999px;background:#2563EB;color:#fff;font-size:11px;align-items:center;justify-content:center;flex:none;}
+.bstx-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:999px;border:1.5px solid #d1d5db;background:#fff;font-size:11.5px;margin:2px;color:#9ca3af;}
+.bstx-chip.on{border-color:#16a34a;background:#f0fdf4;color:#15803d;font-weight:700;}
+.bstx-sim{border:2px solid #FFB800;border-radius:12px;background:#fffdf5;padding:9px 13px;margin-top:10px;font-size:12px;}
+.bstx-sim b{color:#B57E00;}
 </style>
 </head>
 <body>
@@ -182,6 +211,28 @@ table.k td{border-bottom:1px solid #EFEEE8;padding:10px 14px;}
         </div>
       </div>
     </div>
+  </div>
+</div></section>
+
+
+<section><div class="wrap">
+  <div class="bstx-kick">TRY — 触って試せる検索デモ</div>
+  <h2 class="bstx-h2">番号の一部を、打ってみてください。</h2>
+  <div class="bstx-democard" style="max-width:860px;">
+    <div class="fh">見積アプリ（8件のサンプル）<span>スペース区切りでAND検索。「0142」「九州」「保守 2026」などを試せます</span></div>
+    <div style="padding:14px 16px;">
+      <input id="psq" type="text" placeholder="🔍 含む言葉を入力（例: 0142 ／ 九州 2026）" style="width:100%;padding:11px 14px;border:2px solid #2563EB;border-radius:10px;font-size:14px;font-family:inherit;box-sizing:border-box;">
+      <div id="pscnt" style="font-size:12px;font-weight:900;color:#18794E;margin:8px 2px;">8件を表示</div>
+      <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
+        <thead><tr>
+          <th style="text-align:left;border-bottom:2px solid #E4E3DB;padding:7px 8px;width:150px;">見積番号</th>
+          <th style="text-align:left;border-bottom:2px solid #E4E3DB;padding:7px 8px;">宛名</th>
+          <th style="text-align:left;border-bottom:2px solid #E4E3DB;padding:7px 8px;width:110px;">種別</th>
+        </tr></thead>
+        <tbody id="psrows"></tbody>
+      </table>
+    </div>
+    <div style="padding:0 16px 14px;font-size:11.5px;color:#6E6E68;line-height:1.7;">標準の絞り込み（前方一致）では「0142」でヒットしない行も、部分一致なら一発。実物は数値・日付・選択肢・添付ファイル名・サブテーブル内まで対象にできます。</div>
   </div>
 </div></section>
 
@@ -233,6 +284,45 @@ table.k td{border-bottom:1px solid #EFEEE8;padding:10px 14px;}
     <div class="card"><span class="em">🔀</span><b>複数フィールド横断＋AND/OR</b><p>対象フィールドはGUIでチェックするだけ。スペース区切りでAND、切替でOR検索にも対応。</p></div>
     <div class="card"><span class="em">🧷</span><b>幅広いフィールド対応</b><p>文字列・数値・日付・選択肢・ユーザー・添付ファイル名・サブテーブル内の項目まで検索対象にできます。</p></div>
   </div>
+</div></section>
+
+
+<section class="band"><div class="wrap">
+  <div class="bstx-kick">CONFIG</div>
+  <h2 class="bstx-h2">設定は、対象フィールドにチェックするだけ。</h2>
+  <div class="bstx-cfg">
+    <div class="ch">部分一致検索プラグイン 設定<span>実際の設定画面のイメージ</span></div>
+    <div class="cb">
+      <div class="bstx-step"><span class="bstx-no">1</span>検索対象のフィールドを選ぶ（チェックするだけ）</div>
+      <div><span class="bstx-chip on">見積番号</span><span class="bstx-chip on">宛名</span><span class="bstx-chip on">担当者</span><span class="bstx-chip on">明細（サブテーブル内）</span><span class="bstx-chip on">添付ファイル名</span><span class="bstx-chip">作成日時</span><span class="bstx-chip">備考</span></div>
+      <div class="bstx-step" style="margin-top:14px;"><span class="bstx-no">2</span>動作オプション（そのままでも最適な既定値）</div>
+      <div style="font-size:12px;color:#6E6E68;line-height:1.9;">AND/OR ・ 全角半角/大文字小文字を無視 ・ 既定の検索範囲＝<b>一覧内</b>（全件に切替可） ・ 検索バーの表示位置</div>
+      <div class="bstx-sim">⏱ <b>導入からここまで約2分。</b>コードは1行も書きません。</div>
+    </div>
+  </div>
+  <div class="bstx-cards">
+    <div class="bstx-card"><span class="em">🖱</span><b>GUIでチェックするだけ</b><p>対象フィールドはフォームの一覧から選ぶだけ。追加したフィールドも設定画面を開けばすぐ対象にできます。</p></div>
+    <div class="bstx-card"><span class="em">🎯</span><b>既定値が現場最適</b><p>既定は「一覧内を検索」。いま見ている絞り込みの中から探す、現場の自然な動きに合わせています（全件にも切替可）。</p></div>
+    <div class="bstx-card"><span class="em">🧷</span><b>範囲も見た目も選べる</b><p>検索範囲の切替表示のON/OFF、バーの位置など、運用に合わせて調整できます。</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="bstx-kick">WHY BST</div>
+  <h2 class="bstx-h2">標準検索・他の検索プラグインとの違い。</h2>
+  <div style="overflow-x:auto;">
+  <table class="bstx-cmp">
+    <thead><tr><th></th><th class="me">部分一致検索（bst）</th><th>kintone標準の絞り込み</th><th>一般的な検索プラグイン</th></tr></thead>
+    <tbody>
+      <tr><td>一致方式</td><td class="me">◎ 含む（部分一致）＋全角半角・大文字小文字を無視</td><td>△ 原則、前方一致</td><td>○ 含む対応が多い</td></tr>
+      <tr><td>複数フィールド横断</td><td class="me">◎ 対象をGUIで選び、AND/OR切替</td><td>△ 1条件ずつ手で組む</td><td>△ 対象が全フィールド固定の製品も</td></tr>
+      <tr><td>サブテーブル内・添付ファイル名</td><td class="me">◎ 検索対象にできる</td><td>× 対象外</td><td>△ 非対応の製品も</td></tr>
+      <tr><td>検索範囲</td><td class="me">◎ 一覧内（既定）⇔ 全件を切替</td><td>△ 表示中の一覧のみ</td><td>△ 全件のみの製品も</td></tr>
+      <tr><td>データの扱い</td><td class="me">◎ 完全ローカル・外部送信なし</td><td>○ kintone内</td><td>△ 外部サーバー経由の製品も</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="bstx-note">※「一般的な検索プラグイン」は特定製品ではなく、検索系プラグインで見られる一般的な仕様・制約を指します。</p>
 </div></section>
 
 <section id="trial"><div class="wrap">
@@ -295,6 +385,52 @@ table.k td{border-bottom:1px solid #EFEEE8;padding:10px 14px;}
     }
   }
   loop();
+})();
+</script>
+<script>
+(function(){
+  var DATA = [
+    ['EST-2026-0142','九州メンテナンス株式会社','空調設備'],
+    ['EST-2026-0188','九州メンテサービス','年間契約'],
+    ['INV-0142-A','請求書 再発行分（佐藤）','請求'],
+    ['保守-0142','年間保守契約 第3期','保守'],
+    ['EST-2025-0907','南九州メンテ工業','電気工事'],
+    ['MTG-1101','東北設備サービス','打合せ'],
+    ['EST-2026-0355','関東ビルサービス','清掃'],
+    ['保守-0901','設備点検（月次）','保守']
+  ];
+  var q = document.getElementById('psq'), rows = document.getElementById('psrows'), cnt = document.getElementById('pscnt');
+  if (!q) return;
+  function esc(t){ return t.replace(/[&<>]/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[m]; }); }
+  function mark(text, terms){
+    var out = esc(text);
+    terms.forEach(function(t){
+      if (!t) return;
+      var re = new RegExp('(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      out = out.replace(re, '<span style="background:#FFE58A;border-radius:3px;padding:0 1px;">$1</span>');
+    });
+    return out;
+  }
+  function render(){
+    var terms = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    var hit = 0; rows.innerHTML = '';
+    DATA.forEach(function(r){
+      var joined = r.join(' ').toLowerCase();
+      var ok = terms.every(function(t){ return joined.indexOf(t) >= 0; });
+      if (!ok) return;
+      hit++;
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td style="padding:7px 8px;border-bottom:1px solid #F1F0EA;font-family:ui-monospace,Menlo,monospace;">' + mark(r[0], terms) + '</td>' +
+                     '<td style="padding:7px 8px;border-bottom:1px solid #F1F0EA;">' + mark(r[1], terms) + '</td>' +
+                     '<td style="padding:7px 8px;border-bottom:1px solid #F1F0EA;color:#6E6E68;">' + mark(r[2], terms) + '</td>';
+      rows.appendChild(tr);
+    });
+    cnt.textContent = terms.length ? hit + '件ヒット（' + terms.join(' AND ') + '）' : DATA.length + '件を表示';
+    cnt.style.color = hit ? '#18794E' : '#C0392B';
+    if (!hit && terms.length) { rows.innerHTML = '<tr><td colspan="3" style="padding:12px 8px;color:#C0392B;font-weight:700;">0件（標準の前方一致だとこうなりがちです…部分一致なら「0142」でもヒット）</td></tr>'; cnt.textContent = '0件'; }
+  }
+  q.addEventListener('input', render);
+  render();
 })();
 </script>
 </body>

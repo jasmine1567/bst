@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>選択肢絞り込みプラグイン（kintone）｜3段以上の連動ドロップダウン — bst</title>
+<meta name="description" content="kintoneのドロップダウンを親子で連動。大分類→中分類→小分類の3段以上に対応し、親を変えたときの子の扱いも3択から選択。選べない選択肢は非表示またはグレーアウト。対応表はクリックで作成、保存前にシミュレータで試せます。年額¥19,800（税込）・30日無料試用。">
+<link rel="canonical" href="https://bst-plugins.com/lp-option-filter.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="選択肢絞り込みプラグイン（kintone）｜3段以上の連動ドロップダウン — bst">
+<meta property="og:description" content="大分類→中分類→小分類、3段以上の連動に対応。選べない選択肢は非表示 or グレーアウト。対応表はクリックで作成、保存前にシミュレータで試せる。年額¥19,800（税込）・30日無料試用。">
+<meta property="og:image" content="https://bst-plugins.com/og-option.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://bst-plugins.com/lp-option-filter.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="product:price:amount" content="19800">
+<meta property="product:price:currency" content="JPY">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V964JH879G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-V964JH879G');
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="trials/"]');
+    if(a){
+      var f = a.getAttribute('href');
+      var pm = f.match(/bst_([a-z0-9-]+)_v/i);
+      gtag('event', 'trial_download', { file: f, plugin: pm ? pm[1] : 'unknown' });
+    }
+    var b = e.target.closest && e.target.closest('a[href*="buy.stripe.com"]');
+    if(b){ gtag('event', 'begin_checkout_click', { link: b.getAttribute('href') }); }
+  });
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "選択肢絞り込みプラグイン（kintone）", "operatingSystem": "kintone", "applicationCategory": "BusinessApplication", "description": "kintoneのドロップダウン・ラジオボタンを親子で連動させ選択肢を絞り込むプラグイン。3段以上の多段連動、親変更時の子の扱いは3択、非表示/グレーアウトの表示モード、保存時の整合性ガード搭載。年額¥19,800（税込）・30日無料試用あり。", "offers": {"@type": "Offer", "price": "19800", "priceCurrency": "JPY", "url": "https://bst-plugins.com/lp-option-filter.html#price"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "3段以上の連動はできますか？", "acceptedAnswer": {"@type": "Answer", "text": "できます。大分類→中分類→小分類のような3段はもちろん、最大5段まで連動できます。設定画面で「＋段を追加」を押すだけです。連動のまとまり（チェーン）は複数作れます。"}}, {"@type": "Question", "name": "親を変えたとき、子に入力済みの値はどうなりますか？", "acceptedAnswer": {"@type": "Answer", "text": "3つの挙動から選べます。①クリアする（推奨）②新しい親でも選べる値なら保持する③保持する（保存時チェックのみ）。孫・ひ孫まで設定どおりに連動します。"}}, {"@type": "Question", "name": "選べない選択肢はどう表示されますか？", "acceptedAnswer": {"@type": "Answer", "text": "「非表示にする」と「グレーアウトして選べなくする」の2モードから選べます。グレーアウトは全選択肢が見えるため『なぜ選べないのか』が利用者に伝わりやすい表示です。"}}, {"@type": "Question", "name": "CSV読み込みなどで矛盾したデータが入りませんか？", "acceptedAnswer": {"@type": "Answer", "text": "画面からの保存には整合性ガードが働き、親子の組み合わせが矛盾しているとkintone標準のエラー表示で保存を止めます。ガードは設定でオフにもできます。"}}, {"@type": "Question", "name": "プラグインは外部と通信しますか？", "acceptedAnswer": {"@type": "Answer", "text": "業務データの外部送信は一切ありません。年額プランのみ、ライセンス確認のために「kintoneドメイン名」を1日1回送信します（レコード内容は送りません）。通信不可の環境には完全オフラインの永久ライセンス版をご用意しています。"}}]}
+</script>
+<style>
+:root{--ink:#252525;--paper:#FBFBF8;--paper2:#F3F2EC;--line:#E4E3DB;--amber:#FFB800;--amber-d:#B57E00;--mut:#6E6E68;--ok:#18794E;--ng:#C0392B;--blue:#2563EB;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--paper);color:var(--ink);line-height:1.8;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+header{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:100;}
+.nav{display:flex;align-items:center;gap:22px;height:60px;}
+.brand{display:inline-block;background:var(--ink);color:var(--amber);padding:3px 13px;border-radius:9px;font-weight:900;font-size:18px;text-decoration:none;letter-spacing:.02em;}
+.nav a.item{font-size:13.5px;font-weight:500;text-decoration:none;color:var(--mut);}
+.nav a.item:hover{color:var(--ink);}
+.nav .cta{margin-left:auto;background:var(--ink);color:#fff;font-size:13px;font-weight:700;padding:9px 18px;border-radius:999px;text-decoration:none;}
+.hero{padding:56px 0 44px;}
+.eyebrow{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:12px;font-weight:700;padding:6px 16px;color:var(--amber-d);}
+h1{font-size:clamp(28px,4.6vw,44px);font-weight:900;letter-spacing:-.015em;line-height:1.4;margin:16px 0 12px;}
+h1 em{font-style:normal;background:linear-gradient(transparent 62%, var(--amber) 62%);}
+.lead{color:var(--mut);font-size:15px;max-width:680px;}
+.price-row{margin:16px 0 18px;font-weight:900;}
+.price-row .disp{font-size:30px;}
+.price-row small{font-size:12.5px;font-weight:500;color:var(--mut);margin-left:8px;}
+.btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;font-weight:700;font-size:14.5px;padding:13px 26px;text-decoration:none;border:2px solid transparent;}
+.btn--amber{background:var(--amber);color:var(--ink);}
+.btn--ghost{border-color:var(--line);background:#fff;}
+section{padding:52px 0;}
+.sec-kick{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--amber-d);}
+h2.sec{font-size:clamp(21px,3.4vw,30px);font-weight:900;letter-spacing:-.01em;margin:6px 0 20px;}
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;}
+.card .em{font-size:24px;}
+.card b{display:block;font-size:15px;margin:6px 0 4px;}
+.card p{font-size:13px;color:var(--mut);}
+.band{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+.step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;}
+.step .no{display:inline-flex;width:26px;height:26px;border-radius:999px;background:var(--ink);color:var(--amber);font-size:13px;font-weight:900;align-items:center;justify-content:center;margin-bottom:8px;}
+.step b{display:block;font-size:14.5px;margin-bottom:3px;}
+.step p{font-size:12.5px;color:var(--mut);}
+.pricebox{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px;display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:start;}
+.pricebox .big{font-size:44px;font-weight:900;}
+.pricebox .big span{font-size:16px;font-weight:500;}
+.pricebox .sub{color:var(--mut);font-size:12.5px;margin:2px 0 16px;}
+.alt{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);font-size:12.5px;line-height:2;}
+.alt a{color:var(--amber-d);font-weight:700;}
+.alt .mut{color:var(--mut);}
+.spec dt{font-weight:900;font-size:13px;margin-top:12px;}
+.spec dd{font-size:13px;color:var(--mut);}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 20px;margin-bottom:10px;}
+.faq summary{font-weight:700;font-size:14px;cursor:pointer;}
+.faq p{font-size:13px;color:var(--mut);margin-top:8px;}
+footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;color:var(--mut);}
+.frow2{display:flex;gap:18px;flex-wrap:wrap;}
+.frow2 a{text-decoration:none;color:var(--mut);}
+.cmp{border-collapse:collapse;width:100%;min-width:640px;background:#fff;border-radius:14px;overflow:hidden;font-size:12.5px;box-shadow:0 1px 0 var(--line);}
+.cmp th,.cmp td{border:1px solid var(--line);padding:10px 14px;text-align:left;vertical-align:top;line-height:1.6;}
+.cmp thead th{background:#F7F7F5;font-size:12px;}
+.cmp thead th.me{background:var(--ink);color:var(--amber);}
+.cmp td.me{background:#FFFBEB;font-weight:700;}
+.cmp td:first-child{font-weight:900;white-space:nowrap;background:#FCFCFA;}
+@media(max-width:820px){.pricebox{grid-template-columns:1fr;}}
+
+/* ===== ヒーロー: 連動デモ ===== */
+.demo2{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;margin-top:26px;max-width:860px;}
+@media(max-width:820px){.demo2{grid-template-columns:1fr;}}
+.dcard{background:#fff;border:2px solid var(--amber);border-radius:18px;box-shadow:0 14px 36px rgba(255,184,0,.14);overflow:hidden;}
+.dcard .fh{background:#F7F7F5;border-bottom:1px solid var(--line);padding:10px 16px;font-size:12px;font-weight:900;display:flex;justify-content:space-between;align-items:center;}
+.dcard .fh span{color:var(--mut);font-weight:700;font-size:11px;}
+.dbody{padding:16px;}
+.drow{margin-bottom:13px;}
+.dlabel{font-size:12px;font-weight:700;color:var(--mut);margin-bottom:5px;display:flex;gap:6px;align-items:center;}
+.dlabel .stage{font-size:9.5px;font-weight:900;color:#fff;background:var(--blue);border-radius:999px;padding:1px 7px;}
+.dsel{width:100%;padding:9px 12px;border:2px solid #E0E0E0;border-radius:9px;font-size:13.5px;background:#fff;font-family:inherit;color:var(--ink);}
+.dsel:focus{outline:none;border-color:var(--blue);}
+.dnote{font-size:11.5px;color:var(--mut);padding:0 16px 14px;line-height:1.7;}
+.dcount{font-weight:900;color:var(--ok);}
+/* 表示モードデモ */
+.modecard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;}
+.mode-toggle{display:flex;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:12px 16px 4px;}
+.mode-toggle button{flex:1;padding:8px;border:none;background:#fff;cursor:pointer;font-size:12px;font-weight:700;color:#6b7280;font-family:inherit;}
+.mode-toggle button.on{background:var(--ink);color:var(--amber);}
+.fakemenu{margin:10px 16px 16px;border:1px solid #d1d5db;border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.1);}
+.fakemenu .mi{padding:8px 14px;font-size:13px;border-bottom:1px solid #f1f5f9;background:#fff;transition:opacity .25s;}
+.fakemenu .mi:last-child{border-bottom:none;}
+.fakemenu .mi.sel{background:#EFF6FF;}
+.fakemenu .mi.off-hide{display:none;}
+.fakemenu .mi.off-dim{opacity:.32;}
+.mode-note{font-size:11.5px;color:var(--mut);padding:0 16px 14px;line-height:1.7;}
+
+/* トーストデザイン展示 */
+.toastrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;}
+.bstof-toast{--a:#FFB800;max-width:340px;padding:11px 16px 11px 13px;border-radius:12px;font-size:12.5px;line-height:1.6;box-shadow:0 8px 24px rgba(0,0,0,.15);display:flex;gap:9px;align-items:flex-start;border-left:4px solid var(--a);}
+.t-dark{background:#252525;color:#fff;}
+.t-light{background:#fff;color:#1f2937;border:1px solid #e5e7eb;border-left:4px solid var(--a);}
+.t-accent{background:var(--a);color:#252525;border-left-color:rgba(0,0,0,.25);}
+.swrow{display:flex;gap:8px;align-items:center;margin-top:16px;flex-wrap:wrap;font-size:12.5px;font-weight:700;}
+.sw{width:22px;height:22px;border-radius:50%;box-shadow:0 0 0 1px var(--line);}
+
+/* 設定モック */
+.cfgmock{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 10px 28px rgba(0,0,0,.06);max-width:780px;}
+.cm-head{background:#F7F7F5;border-bottom:1px solid var(--line);padding:11px 18px;font-size:13px;font-weight:900;display:flex;justify-content:space-between;align-items:center;}
+.cm-head span{color:var(--mut);font-weight:700;font-size:11px;}
+.cm-body{padding:16px 18px;}
+.cm-step{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:900;margin:10px 0;}
+.cm-no{display:inline-flex;width:24px;height:24px;border-radius:999px;background:var(--blue);color:#fff;font-size:12px;align-items:center;justify-content:center;flex:none;}
+.cm-mxrow{display:flex;gap:12px;align-items:center;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:9px 12px;margin-bottom:6px;font-size:12px;flex-wrap:wrap;}
+.cm-mxp{font-weight:900;width:110px;}
+.cm-k{padding:3px 11px;border-radius:999px;border:1.5px solid #d1d5db;background:#fff;font-size:11.5px;color:#9ca3af;}
+.cm-k.on{border-color:#16a34a;background:#f0fdf4;color:#15803d;font-weight:700;}
+.cm-sim{border:2px solid var(--amber);border-radius:12px;background:#fffdf5;padding:10px 14px;margin-top:10px;font-size:12px;}
+.cm-sim b{color:var(--amber-d);}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html">bst</a>
+  <a class="item" href="index.html#tools">プラグイン</a>
+  <a class="item" href="index.html#pricing">料金</a>
+  <a class="item" href="icons.html">無料アイコン</a>
+  <a class="cta" href="#trial">30日無料で試す</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <span class="eyebrow">kintone プラグイン ・ Ver.1.0 ・ 30日無料試用 ・ ノーコード導入</span>
+  <h1>選べないものは、<br><em>最初から見せない。</em></h1>
+  <p class="lead">大分類を選ぶと中分類が絞られ、中分類を選ぶと小分類が絞られる——kintoneのドロップダウンを親子で連動させるプラグインです。<b>3段以上の多段連動</b>に対応し、対応表は<b>クリックだけ</b>で作成。保存前に<b>シミュレータ</b>で動きを確かめられます。</p>
+  <div class="price-row"><span class="disp">¥19,800</span><small>/年 税込・1ドメイン（アプリ数・ユーザー数無制限）</small></div>
+  <div class="btns">
+    <a class="btn btn--amber" href="trials/bst_option-filter_v1.0.2_trial.zip" download>30日無料で試す ↓</a>
+    <a class="btn btn--ghost" href="#demo">動きを見る →</a>
+  </div>
+
+  <div class="demo2" id="demo">
+    <div class="dcard">
+      <div class="fh">3段連動デモ<span>実際に選んでみてください</span></div>
+      <div class="dbody">
+        <div class="drow"><div class="dlabel"><span class="stage">1段</span>大分類</div>
+          <select class="dsel" id="d1"><option value="">-----</option><option>電化製品</option><option>家具</option><option>食品</option></select></div>
+        <div class="drow"><div class="dlabel"><span class="stage">2段</span>中分類 <span id="c2" class="dcount"></span></div>
+          <select class="dsel" id="d2"><option value="">-----</option></select></div>
+        <div class="drow"><div class="dlabel"><span class="stage">3段</span>小分類 <span id="c3" class="dcount"></span></div>
+          <select class="dsel" id="d3"><option value="">-----</option></select></div>
+      </div>
+      <div class="dnote" id="dnote">大分類を選ぶと、中分類・小分類が連動して絞り込まれます。大分類を変えると下位の値は自動クリア（挙動は3択から設定可）。</div>
+    </div>
+    <div class="modecard">
+      <div class="fh" style="background:#F7F7F5;border-bottom:1px solid var(--line);padding:10px 16px;font-size:12px;font-weight:900;">選べない選択肢の見せ方は、2モード</div>
+      <div class="mode-toggle">
+        <button type="button" class="on" data-m="hide">非表示にする</button>
+        <button type="button" data-m="dim">グレーアウトで残す</button>
+      </div>
+      <div class="fakemenu" id="fakemenu">
+        <div class="mi">-----</div>
+        <div class="mi sel">冷蔵庫</div>
+        <div class="mi">洗濯機</div>
+        <div class="mi off">椅子</div>
+        <div class="mi off">机</div>
+        <div class="mi off">米</div>
+      </div>
+      <div class="mode-note" id="modenote">すっきり見せたいなら「非表示」。選択肢の全体像を見せつつ選ばせたくないなら「グレーアウト」。現場の運用に合わせて選べます。</div>
+    </div>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <div class="sec-kick">PROBLEM</div>
+  <h2 class="sec">選択肢が増えるほど、選び間違いも増えていく。</h2>
+  <div class="cards3">
+    <div class="card"><span class="em">🌀</span><b>100個の選択肢から探す苦行</b><p>分類が増えるほどドロップダウンは長大化。目当ての1つを探してスクロールする時間が、全員の入力のたびに発生します。</p></div>
+    <div class="card"><span class="em">😱</span><b>ありえない組み合わせが登録される</b><p>「大分類＝家具なのに小分類＝冷蔵庫」。人は間違えます。集計もレポートも、その1件の矛盾データで崩れます。</p></div>
+    <div class="card"><span class="em">🔧</span><b>JavaScriptカスタマイズは保守が重い</b><p>連動ドロップダウンは自作カスタマイズの定番ですが、分類の追加のたびにコード修正。作った人が異動したら誰も触れません。</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-kick">SOLUTION</div>
+  <h2 class="sec">多段で絞り込み、矛盾は2重のガードで通さない。</h2>
+  <div class="cards3">
+    <div class="card"><span class="em">🪜</span><b>3段以上の多段連動</b><p>大分類→中分類→小分類はもちろん、最大5段まで。「＋段を追加」を押すだけで、孫・ひ孫まで正しく連動します。連動のまとまりは複数作れます。</p></div>
+    <div class="card"><span class="em">🎛</span><b>親を変えたときの挙動は3択</b><p>①子をクリアする（推奨）②新しい親でも選べる値なら保持 ③保持して保存時にチェック。現場の入力スタイルに合わせて選べます。</p></div>
+    <div class="card"><span class="em">🛡</span><b>保存時の整合性ガード</b><p>画面の絞り込みをすり抜けた矛盾も、保存時に全チェーンを検証してkintone標準のエラーで止めます。データの正しさを二重に保証。</p></div>
+    <div class="card"><span class="em">👁</span><b>非表示／グレーアウトの2モード</b><p>選べない選択肢を消してすっきり見せるか、薄く残して「選べない理由」を伝えるか。表示ポリシーを選択できます。</p></div>
+    <div class="card"><span class="em">🔔</span><b>通知までデザインできる</b><p>自動クリア時のトースト通知は3スタイル×8色＋自由色、表示位置も選択可。クリアされた欄はハイライトで知らせます。</p></div>
+    <div class="card"><span class="em">🔒</span><b>データは外に出ない</b><p>値の制御はkintone公式イベントのみ。業務データの外部送信は一切なく、万一の環境差でも「全表示＋ガード」に安全に切り替わる設計です。</p></div>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <div class="sec-kick">CONFIG</div>
+  <h2 class="sec">対応表はクリックで。保存する前に、試せる。</h2>
+  <p style="font-size:13.5px;color:var(--mut);max-width:700px;margin-bottom:20px;">連動プラグインの挫折ポイントは「対応表づくり」と「設定ミスに保存後に気づく」こと。だから対応表は<b>親の選択肢ごとに子をクリックするだけ</b>のマトリクスにし、その真下に<b>動作シミュレータ</b>を置きました。<b>保存せずに、その場で連動を試せます</b>。</p>
+
+  <div class="cfgmock">
+    <div class="cm-head">選択肢絞り込みプラグイン 設定<span>実際の設定画面のイメージ</span></div>
+    <div class="cm-body">
+      <div class="cm-step"><span class="cm-no">1</span>連動チェーンを作る（大分類 → 中分類 → 小分類）… ＋段を追加で最大5段</div>
+      <div class="cm-step"><span class="cm-no">2</span>対応表を埋める — 親の値ごとに、選べる子をクリック（緑＝選べる）</div>
+      <div class="cm-mxrow"><span class="cm-mxp">電化製品</span><span class="cm-k on">冷蔵庫</span><span class="cm-k on">洗濯機</span><span class="cm-k">椅子</span><span class="cm-k">机</span><span class="cm-k">米</span></div>
+      <div class="cm-mxrow"><span class="cm-mxp">家具</span><span class="cm-k">冷蔵庫</span><span class="cm-k">洗濯機</span><span class="cm-k on">椅子</span><span class="cm-k on">机</span><span class="cm-k">米</span></div>
+      <div class="cm-sim">🧪 <b>動作シミュレータ</b> — この場で選んで連動を確認。「親変更時の挙動」設定も反映されます</div>
+      <div class="cm-step"><span class="cm-no">3</span>動作とデザイン（そのままでも最適な既定値）</div>
+    </div>
+  </div>
+
+  <div class="cards3" style="margin-top:18px;">
+    <div class="card"><span class="em">🖱</span><b>コード不要・クリックだけ</b><p>「全部／なし／未設定に戻す」の一括ボタンと選択肢の検索付き。選択肢が多い分類マスタでも迷いません。</p></div>
+    <div class="card"><span class="em">🧪</span><b>シミュレータで保存前に検証</b><p>対応表を編集した瞬間にシミュレータへ反映。「保存→アプリ更新→レコードで確認」の往復がなくなります。</p></div>
+    <div class="card"><span class="em">⚠️</span><b>設定漏れを自動で警告</b><p>「未設定の親」「子を選べない親」をその場で指摘。分類を追加したときの設定漏れにすぐ気づけます。</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-kick">DESIGN</div>
+  <h2 class="sec">通知ひとつまで、bstの品質で。</h2>
+  <p style="font-size:13.5px;color:var(--mut);max-width:680px;">値が自動クリアされたことを、美しいトーストで利用者に伝えます。ダーク／ライト／アクセントの3スタイル、8色スウォッチ＋自由色、表示位置3種。クリアされたフィールドはハイライトが走るので、見落としがありません。</p>
+  <div class="toastrow">
+    <div class="bstof-toast t-dark" style="--a:#FFB800;"><span>🔗</span><span><b>大分類</b>の変更に合わせて、<b>中分類</b>・<b>小分類</b>をクリアしました。</span></div>
+    <div class="bstof-toast t-light" style="--a:#2563EB;"><span>🔗</span><span><b>大分類</b>の変更に合わせて、<b>中分類</b>をクリアしました。</span></div>
+    <div class="bstof-toast t-accent" style="--a:#FFB800;"><span>⚠</span><span><b>小分類</b>「米」は、<b>中分類</b>が「椅子」のときは選べません。</span></div>
+  </div>
+  <div class="swrow">アクセントカラー:
+    <span class="sw" style="background:#FFB800;"></span><span class="sw" style="background:#2563EB;"></span><span class="sw" style="background:#16A34A;"></span><span class="sw" style="background:#DC2626;"></span><span class="sw" style="background:#7C3AED;"></span><span class="sw" style="background:#0D9488;"></span><span class="sw" style="background:#DB2777;"></span><span class="sw" style="background:#475569;"></span>
+    <span style="font-weight:500;color:var(--mut);">＋自由な色も指定可</span>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <div class="sec-kick">WHY BST</div>
+  <h2 class="sec">連動ドロップダウンの「困った」を、設計で潰しました。</h2>
+  <div style="overflow-x:auto;">
+  <table class="cmp">
+    <thead><tr><th></th><th class="me">選択肢絞り込みプラグイン（bst）</th><th>一般的な連動プラグイン／自作JS</th></tr></thead>
+    <tbody>
+      <tr><td>連動の段数</td><td class="me">◎ 3段以上（最大5段）・複数チェーン</td><td>△ 2段連動が基本の製品も</td></tr>
+      <tr><td>親変更時の子の値</td><td class="me">◎ クリア／有効なら保持／保持 の3択</td><td>△ クリア固定、または未定義の挙動</td></tr>
+      <tr><td>矛盾データの防止</td><td class="me">◎ 選択時＋保存時の2重ガード</td><td>△ 表示の絞り込みのみで保存は素通しの製品も</td></tr>
+      <tr><td>選べない選択肢の見せ方</td><td class="me">◎ 非表示／グレーアウトを選択可</td><td>△ 固定</td></tr>
+      <tr><td>設定の検証</td><td class="me">◎ 保存前に試せるシミュレータ＋設定漏れ警告</td><td>× 保存してレコード画面で確認</td></tr>
+      <tr><td>環境変化への耐性</td><td class="me">◎ 照合不能時は「全表示＋ガード」へ自動切替（壊れない）</td><td>△ 画面構造の変更で動作停止することも</td></tr>
+      <tr><td>通知</td><td class="me">◎ トースト3スタイル×8色＋ハイライト</td><td>△ alert表示や無通知</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:11.5px;color:var(--mut);margin-top:8px;">※「一般的な連動プラグイン／自作JS」は特定製品ではなく、連動ドロップダウン系の実装で見られる一般的な仕様・制約を指します。</p>
+</div></section>
+
+<section id="trial"><div class="wrap">
+  <div class="sec-kick">FREE TRIAL</div>
+  <h2 class="sec">まず30日、無料で確かめてください。</h2>
+  <div class="steps">
+    <div class="step"><span class="no">1</span><b>ダウンロード</b><p>登録・メールアドレス不要。下のボタンからZIPを保存します。</p></div>
+    <div class="step"><span class="no">2</span><b>kintoneに読み込む</b><p>kintoneシステム管理 → プラグイン → 読み込んで、アプリに追加します。</p></div>
+    <div class="step"><span class="no">3</span><b>全機能を30日</b><p>試用開始は設定を保存した日から。製品版は上書きするだけで、設定はそのまま引き継がれます。</p></div>
+  </div>
+  <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;">
+    <a class="btn btn--amber" href="trials/bst_option-filter_v1.0.2_trial.zip" download>試用版をダウンロード ↓</a>
+    <a class="btn btn--ghost" href="https://youtu.be/8DJ7G7xgVoc" target="_blank" rel="noopener">プラグインの追加方法（動画1分）↗</a>
+  </div>
+</div></section>
+
+<section class="band" id="price"><div class="wrap">
+  <div class="sec-kick">PRICING</div>
+  <h2 class="sec">シンプルな料金。</h2>
+  <div class="pricebox">
+    <div>
+      <div class="big">¥19,800<span>/年（税込）</span></div>
+      <div class="sub">単品・1ドメイン（アプリ数・ユーザー数は無制限）</div>
+      <a class="btn btn--amber" href="https://buy.stripe.com/cNi5kC0Tzg5cdnd9YfdfG0b" target="_blank" rel="noopener" style="width:100%;justify-content:center;">年額プランを購入 ↗</a><!-- STRIPE_LINK:year -->
+      <div class="alt">
+        <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --><span class="mut">　全6製品＋今後の基本新作も込み</span></div>
+        <div><a href="https://buy.stripe.com/bJecN41XDbOWdnd7Q7dfG0c" target="_blank" rel="noopener">永久ライセンス ¥98,000 ↗</a><!-- STRIPE_LINK:perp --><span class="mut">　通信が一切ない完全オフライン版・買い切り</span></div>
+        <div class="mut">解約後もお支払い済み期間の満了までは動作し、kintone上のデータ・設定は消えません。<a href="index.html#faq">詳細FAQ →</a></div>
+      </div>
+    </div>
+    <dl class="spec"><dt>主な機能</dt><dd>ドロップダウン・ラジオの多段連動（最大5段・複数チェーン）／親変更時の子の扱い3択／選択肢の非表示・グレーアウト／選択時・保存時の2重ガード／トースト通知（3スタイル×8色×位置3種）＋フィールドハイライト／対応表エディタ・動作シミュレータ・設定漏れ警告・JSON入出力</dd><dt>対応範囲</dt><dd>PC（追加・編集・一覧インライン編集）・モバイル（値の連動と保存時ガード。絞り込み表示は端末によりグレーアウト相当）</dd><dt>設定</dt><dd>ノーコード。3ステップ＋シミュレータ</dd><dt>動作環境</dt><dd>kintoneスタンダードコース以上／Chrome・Edge 最新安定版</dd><dt>ライセンス</dt><dd>1ドメイン（同一kintoneドメイン内のアプリ数・ユーザー数は無制限）</dd></dl>
+  </div>
+</div></section>
+
+<section class="faq"><div class="wrap"><div class="sec-kick">FAQ</div><h2 class="sec">よくある質問</h2>
+<details><summary>3段以上の連動はできますか？</summary><p>できます。大分類→中分類→小分類のような3段はもちろん、最大5段まで連動できます。設定画面で「＋段を追加」を押すだけです。連動のまとまり（チェーン）は複数作れます。</p></details>
+<details><summary>親を変えたとき、子に入力済みの値はどうなりますか？</summary><p>3つの挙動から選べます。①クリアする（推奨）②新しい親でも選べる値なら保持する③保持する（保存時チェックのみ）。孫・ひ孫まで設定どおりに連動します。</p></details>
+<details><summary>選べない選択肢はどう表示されますか？</summary><p>「非表示にする」と「グレーアウトして選べなくする」の2モードから選べます。グレーアウトは全選択肢が見えるため「なぜ選べないのか」が利用者に伝わりやすい表示です。</p></details>
+<details><summary>分類（選択肢）を後から追加したらどうなりますか？</summary><p>設定画面を開くと「未設定の親」「子を選べない親」が自動で警告されるので、追加分の対応表を埋めるだけです。未設定の親値の扱い（全表示／選べなくする）も選べます。</p></details>
+<details><summary>CSV読み込みなどで矛盾したデータが入りませんか？</summary><p>画面からの保存には整合性ガードが働き、親子の組み合わせが矛盾しているとkintone標準のエラー表示で保存を止めます。ガードは設定でオフにもできます。</p></details>
+<details><summary>プラグインは外部と通信しますか？</summary><p>業務データの外部送信は一切ありません。年額プランのみ、ライセンス確認のために「kintoneドメイン名」を1日1回送信します（レコード内容は送りません）。通信不可の環境には完全オフラインの永久ライセンス版をご用意しています。</p></details>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="frow2">
+    <a href="index.html">ホーム</a><a href="icons.html">無料アイコン素材</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="tokushoho.html">特定商取引法に基づく表記</a><a href="privacy.html">プライバシーポリシー</a>
+  </div>
+  <div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div>
+</footer>
+
+<script>
+(function(){
+  // ===== 3段連動デモ =====
+  var MAP1 = { '電化製品':['冷蔵庫','洗濯機','テレビ'], '家具':['椅子','机','棚'], '食品':['米','パン'] };
+  var MAP2 = { '冷蔵庫':['大型','小型'], '洗濯機':['ドラム式','縦型'], 'テレビ':['有機EL','液晶'],
+               '椅子':['木製','金属製'], '机':['スタンディング','ローデスク'], '棚':['本棚','食器棚'],
+               '米':['5kg','10kg'], 'パン':['食パン','菓子パン'] };
+  var d1=document.getElementById('d1'), d2=document.getElementById('d2'), d3=document.getElementById('d3');
+  var c2=document.getElementById('c2'), c3=document.getElementById('c3');
+  function fill(sel, opts){
+    sel.innerHTML='<option value="">-----</option>';
+    (opts||[]).forEach(function(o){ var op=document.createElement('option'); op.textContent=o; sel.appendChild(op); });
+  }
+  function count(el, opts, total){ el.textContent = opts ? '（'+opts.length+' / '+total+'件に絞り込み）' : ''; }
+  var ALL2 = 8, ALL3 = 16;
+  d1.addEventListener('change', function(){
+    var opts = MAP1[this.value];
+    fill(d2, opts); fill(d3, null);
+    count(c2, opts, ALL2); count(c3, null, ALL3);
+  });
+  d2.addEventListener('change', function(){
+    var opts = MAP2[this.value];
+    fill(d3, opts);
+    count(c3, opts, ALL3);
+  });
+
+  // ===== 表示モードデモ =====
+  var menu = document.getElementById('fakemenu');
+  var note = document.getElementById('modenote');
+  var notes = {
+    hide: 'すっきり見せたいなら「非表示」。選択肢が減った分、メニューはフィールドの直下に自動で再配置されます。',
+    dim:  '全体像を見せつつ選ばせたくないなら「グレーアウト」。薄い選択肢はクリックできません。'
+  };
+  document.querySelectorAll('.mode-toggle button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.mode-toggle button').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      var m = b.getAttribute('data-m');
+      menu.querySelectorAll('.mi.off, .mi.off-hide, .mi.off-dim').forEach(function(mi){
+        mi.classList.remove('off-hide','off-dim');
+        mi.classList.add(m === 'hide' ? 'off-hide' : 'off-dim');
+      });
+      note.textContent = notes[m];
+    });
+  });
+  // 初期状態: 非表示モード
+  menu.querySelectorAll('.mi.off').forEach(function(mi){ mi.classList.add('off-hide'); });
+})();
+</script>
+</body>
+</html>

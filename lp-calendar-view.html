@@ -120,6 +120,40 @@
   .foot-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;}
   .sec-eyebrow{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--amber-deep);text-transform:uppercase;}
   kbd{font-family:"JetBrains Mono",monospace;font-size:11.5px;background:var(--paper2);border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;}
+
+/* ===== bstx: 追加セクション共通（デモ/CONFIG/比較表） ===== */
+.bstx-kick{font-size:12px;font-weight:700;letter-spacing:.08em;color:#B57E00;}
+.bstx-h2{font-size:clamp(21px,3.4vw,30px);font-weight:900;letter-spacing:-.01em;margin:6px 0 20px;}
+.bstx-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:18px;}
+.bstx-card{background:#fff;border:1px solid #E4E3DB;border-radius:16px;padding:18px 20px;}
+.bstx-card .em{font-size:22px;}
+.bstx-card b{display:block;font-size:14.5px;margin:6px 0 4px;}
+.bstx-card p{font-size:12.5px;color:#6E6E68;line-height:1.7;margin:0;}
+.bstx-cmp{border-collapse:collapse;width:100%;min-width:640px;background:#fff;border-radius:14px;overflow:hidden;font-size:12.5px;box-shadow:0 1px 0 #E4E3DB;}
+.bstx-cmp th,.bstx-cmp td{border:1px solid #E4E3DB;padding:10px 14px;text-align:left;vertical-align:top;line-height:1.6;}
+.bstx-cmp thead th{background:#F7F7F5;font-size:12px;}
+.bstx-cmp thead th.me{background:#252525;color:#FFB800;}
+.bstx-cmp td.me{background:#FFFBEB;font-weight:700;}
+.bstx-cmp td:first-child{font-weight:900;white-space:nowrap;background:#FCFCFA;}
+.bstx-note{font-size:11.5px;color:#6E6E68;margin-top:8px;}
+.bstx-democard{background:#fff;border:2px solid #FFB800;border-radius:18px;box-shadow:0 14px 36px rgba(255,184,0,.14);overflow:hidden;max-width:760px;}
+.bstx-democard .fh{background:#F7F7F5;border-bottom:1px solid #E4E3DB;padding:10px 16px;font-size:12.5px;font-weight:900;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;}
+.bstx-democard .fh span{color:#6E6E68;font-weight:700;font-size:11px;}
+.bstx-cfg{background:#fff;border:1px solid #E4E3DB;border-radius:18px;overflow:hidden;box-shadow:0 10px 28px rgba(0,0,0,.06);max-width:780px;}
+.bstx-cfg .ch{background:#F7F7F5;border-bottom:1px solid #E4E3DB;padding:11px 18px;font-size:13px;font-weight:900;display:flex;justify-content:space-between;align-items:center;}
+.bstx-cfg .ch span{color:#6E6E68;font-weight:700;font-size:11px;}
+.bstx-cfg .cb{padding:16px 18px;}
+.bstx-step{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:900;margin:10px 0;}
+.bstx-no{display:inline-flex;width:22px;height:22px;border-radius:999px;background:#2563EB;color:#fff;font-size:11px;align-items:center;justify-content:center;flex:none;}
+.bstx-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:999px;border:1.5px solid #d1d5db;background:#fff;font-size:11.5px;margin:2px;color:#9ca3af;}
+.bstx-chip.on{border-color:#16a34a;background:#f0fdf4;color:#15803d;font-weight:700;}
+.bstx-sim{border:2px solid #FFB800;border-radius:12px;background:#fffdf5;padding:9px 13px;margin-top:10px;font-size:12px;}
+.bstx-sim b{color:#B57E00;}
+.bstx-seg{display:inline-flex;border:1px solid #d1d5db;border-radius:9px;overflow:hidden;}
+.bstx-seg button{border:none;background:#fff;padding:6px 13px;font-size:12px;cursor:pointer;color:#6b7280;font-family:inherit;font-weight:700;}
+.bstx-seg button.on{background:#252525;color:#FFB800;}
+.bstx-sw{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;cursor:pointer;user-select:none;padding:5px 11px;border:1.5px solid #d1d5db;border-radius:999px;background:#fff;color:#9ca3af;}
+.bstx-sw.on{border-color:#16a34a;background:#f0fdf4;color:#15803d;}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V964JH879G"></script>
@@ -171,6 +205,29 @@
     
   </div>
 </section>
+
+<!-- ===== bstx: 触れるデモ ===== -->
+<section style="padding:56px 0;">
+  <div class="wrap" style="max-width:860px;">
+    <div class="bstx-kick">TRY — 触って試せるカレンダーデモ</div>
+    <h2 class="bstx-h2">表示切替と色分けを、触ってみてください。</h2>
+    <div class="bstx-democard" style="max-width:860px;">
+      <div class="fh">
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+          <span style="color:#252525;font-weight:900;">2026年7月</span>
+          <span class="bstx-seg" id="cvView"><button data-v="month" class="on">月</button><button data-v="list">リスト</button></span>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span style="color:#6E6E68;">色分け:</span>
+          <span class="bstx-seg" id="cvColor"><button data-v="cat" class="on">種別</button><button data-v="who">担当者</button></span>
+        </div>
+      </div>
+      <div id="cvBody" style="padding:12px 14px;"></div>
+      <div style="padding:0 16px 14px;font-size:11.5px;color:#6E6E68;line-height:1.7;">実物はさらに<b>週・日表示</b>、予定の<b>その場での追加・編集・削除</b>、モバイル表示に対応。一覧の絞り込みもそのまま効きます。</div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== 追加: サンプル画面 ===== -->
 <section style="padding:56px 0;background:#fff;">
   <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
@@ -290,6 +347,50 @@
     </script>
   </div>
 </section>
+
+<!-- ===== bstx: CONFIG / WHY BST ===== -->
+<section style="padding:56px 0;">
+  <div class="wrap" style="max-width:860px;">
+    <div class="bstx-kick">CONFIG</div>
+    <h2 class="bstx-h2">設定は、3つ選ぶだけ。</h2>
+    <div class="bstx-cfg">
+      <div class="ch">カレンダービュープラグイン 設定<span>実際の設定画面のイメージ</span></div>
+      <div class="cb">
+        <div class="bstx-step"><span class="bstx-no">1</span>タイトルにするフィールド　<span style="font-weight:400;color:#6E6E68;">例:</span><span class="bstx-chip on">案件名</span></div>
+        <div class="bstx-step"><span class="bstx-no">2</span>日付（開始・終了）のフィールド　<span style="font-weight:400;color:#6E6E68;">例:</span><span class="bstx-chip on">訪問日</span><span class="bstx-chip on">終了日時（任意）</span></div>
+        <div class="bstx-step"><span class="bstx-no">3</span>色分けの基準　<span style="font-weight:400;color:#6E6E68;">例:</span><span class="bstx-chip on">種別</span><span class="bstx-chip">担当者</span><span class="bstx-chip">ステータス</span></div>
+        <div class="bstx-sim">⏱ <b>導入からここまで約3分。</b>色は選択肢ごとに自動割り当て（手動調整も可）。</div>
+      </div>
+    </div>
+    <div class="bstx-cards">
+      <div class="bstx-card"><span class="em">🖱</span><b>GUIで選ぶだけ</b><p>フィールドをドロップダウンから選ぶだけ。コードも数式も不要で、誰が設定しても同じ品質になります。</p></div>
+      <div class="bstx-card"><span class="em">🎨</span><b>色は自動、調整も自由</b><p>選択肢ごとに見分けやすい色を自動割り当て。ブランドカラーに合わせた手動指定もできます。</p></div>
+      <div class="bstx-card"><span class="em">🔀</span><b>一覧の絞り込みがそのまま効く</b><p>「自分の担当だけ」「今月の予約だけ」——kintoneの一覧絞り込みと組み合わせて自在に使えます。</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:56px 0;background:#F3F2EC;border-top:1px solid #E4E3DB;border-bottom:1px solid #E4E3DB;">
+  <div class="wrap" style="max-width:860px;">
+    <div class="bstx-kick">WHY BST</div>
+    <h2 class="bstx-h2">他のカレンダープラグインとの違い。</h2>
+    <div style="overflow-x:auto;">
+    <table class="bstx-cmp">
+      <thead><tr><th></th><th class="me">カレンダービュー（bst）</th><th>一般的なカレンダープラグイン</th></tr></thead>
+      <tbody>
+        <tr><td>表示の切替</td><td class="me">◎ 月・週・日・リストの4種</td><td>△ 月表示のみの製品も</td></tr>
+        <tr><td>予定の操作</td><td class="me">◎ その場で追加・編集・削除</td><td>△ 閲覧のみ（編集は一覧へ移動）の製品も</td></tr>
+        <tr><td>色分け</td><td class="me">◎ カテゴリごとに自動色分け＋手動調整</td><td>○ 対応製品が多いが固定配色も</td></tr>
+        <tr><td>モバイル</td><td class="me">◎ 対応</td><td>△ PCのみの製品も</td></tr>
+        <tr><td>データの扱い</td><td class="me">◎ 完全ローカル・外部送信なし</td><td>△ 外部カレンダー連携型は外部送信あり</td></tr>
+        <tr><td>導入</td><td class="me">◎ GUIだけ・約3分</td><td>○</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="bstx-note">※「一般的なカレンダープラグイン」は特定製品ではなく、カレンダー系プラグインで見られる一般的な仕様・制約を指します。kintone標準のカレンダー表示との比較は下のセクションをご覧ください。</p>
+  </div>
+</section>
+
 <!-- ===== 追加: 標準機能との比較 ===== -->
 <section style="padding:56px 0;background:#F3F2EC;border-top:1px solid #E4E3DB;border-bottom:1px solid #E4E3DB;">
   <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
@@ -487,5 +588,73 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var EVENTS = [
+    {d:2,t:'定期点検 A社',cat:'保守',who:'田中'},{d:3,t:'見積提出',cat:'営業',who:'佐藤'},
+    {d:7,t:'訪問 B社',cat:'営業',who:'田中'},{d:8,t:'設置工事',cat:'工事',who:'鈴木'},
+    {d:10,t:'月次報告会',cat:'社内',who:'佐藤'},{d:14,t:'定期点検 C社',cat:'保守',who:'鈴木'},
+    {d:16,t:'商談 D社',cat:'営業',who:'田中'},{d:17,t:'設置工事',cat:'工事',who:'鈴木'},
+    {d:21,t:'訪問 E社',cat:'営業',who:'佐藤'},{d:23,t:'保守契約更新',cat:'保守',who:'田中'},
+    {d:28,t:'棚卸し',cat:'社内',who:'鈴木'},{d:30,t:'月末締め',cat:'社内',who:'佐藤'}
+  ];
+  var COLORS = {
+    cat: {'保守':'#0D9488','営業':'#2563EB','工事':'#D97706','社内':'#7C3AED'},
+    who: {'田中':'#2563EB','佐藤':'#DB2777','鈴木':'#16A34A'}
+  };
+  var view='month', colorBy='cat';
+  var body = document.getElementById('cvBody');
+  if (!body) return;
+  function chip(e){
+    var c = COLORS[colorBy][colorBy==='cat'?e.cat:e.who];
+    var label = (colorBy==='cat'?e.cat:e.who);
+    return '<div style="background:'+c+'1A;border-left:3px solid '+c+';color:#252525;border-radius:5px;padding:1px 5px;font-size:10px;font-weight:700;margin:2px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="'+e.t+'（'+label+'）">'+e.t+'</div>';
+  }
+  function legend(){
+    var m = COLORS[colorBy];
+    return '<div style="display:flex;gap:12px;flex-wrap:wrap;font-size:11px;font-weight:700;margin-bottom:8px;">' +
+      Object.keys(m).map(function(k){ return '<span><i style="display:inline-block;width:9px;height:9px;border-radius:3px;background:'+m[k]+';margin-right:4px;"></i>'+k+'</span>'; }).join('') + '</div>';
+  }
+  function render(){
+    if (view==='list'){
+      var html = legend() + EVENTS.map(function(e){
+        var c = COLORS[colorBy][colorBy==='cat'?e.cat:e.who];
+        return '<div style="display:flex;gap:10px;align-items:center;padding:7px 6px;border-bottom:1px solid #F1F0EA;font-size:12.5px;">' +
+          '<span style="font-weight:900;width:52px;">7/'+e.d+'</span>' +
+          '<i style="width:10px;height:10px;border-radius:3px;background:'+c+';flex:none;"></i>' +
+          '<span style="flex:1;">'+e.t+'</span><span style="color:#6E6E68;font-size:11px;">'+e.cat+' / '+e.who+'</span></div>';
+      }).join('');
+      body.innerHTML = html;
+      return;
+    }
+    // 月表示: 2026-07-01は水曜(dow=3)
+    var first = 3, days = 31;
+    var html = legend() + '<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;">';
+    ['日','月','火','水','木','金','土'].forEach(function(w,i){
+      html += '<div style="text-align:center;font-size:10.5px;font-weight:900;color:'+(i===0?'#C0392B':i===6?'#2563EB':'#6E6E68')+';padding:2px 0;">'+w+'</div>';
+    });
+    for (var i=0;i<first;i++) html += '<div></div>';
+    for (var d=1; d<=days; d++){
+      var evs = EVENTS.filter(function(e){ return e.d===d; });
+      html += '<div style="min-height:52px;border:1px solid #EFEEE8;border-radius:7px;padding:2px 4px;background:'+(d===10?'#FFFBEB':'#fff')+';">' +
+        '<div style="font-size:10px;font-weight:900;color:#6E6E68;">'+d+'</div>' + evs.map(chip).join('') + '</div>';
+    }
+    html += '</div>';
+    body.innerHTML = html;
+  }
+  function seg(id, cb){
+    var el = document.getElementById(id);
+    el.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){
+        el.querySelectorAll('button').forEach(function(x){ x.classList.remove('on'); });
+        b.classList.add('on'); cb(b.getAttribute('data-v'));
+      });
+    });
+  }
+  seg('cvView', function(v){ view=v; render(); });
+  seg('cvColor', function(v){ colorBy=v; render(); });
+  render();
+})();
+</script>
 </body>
 </html>
