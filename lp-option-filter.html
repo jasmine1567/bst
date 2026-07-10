@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FBFBF8">
 <title>選択肢絞り込みプラグイン（kintone）｜3段以上の連動ドロップダウン — bst</title>
 <meta name="description" content="kintoneのドロップダウンを親子で連動。大分類→中分類→小分類の3段以上に対応し、親を変えたときの子の扱いも3択から選択。選べない選択肢は非表示またはグレーアウト。対応表はクリックで作成、保存前にシミュレータで試せます。年額¥19,800（税込）・30日無料試用。">
 <link rel="canonical" href="https://bst-plugins.com/lp-option-filter.html">
@@ -172,6 +173,55 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;col
 h1,h2,h3{text-wrap:balance;}
 p,li,dd,dt{text-wrap:pretty;}
 @supports (word-break: auto-phrase){h1,h2,h3,p{word-break:auto-phrase;}}
+
+/* =====================================================================
+   bstm: モバイル最適化（全ページ共通・スタイルの最後に置くこと）
+   ・インラインstyleの2カラムgridは属性セレクタ＋!importantで1カラム化
+   ・カード類のminmaxによる横あふれを防止
+   ===================================================================== */
+img,svg,table{max-width:100%;}
+body{-webkit-text-size-adjust:100%;}
+@media (max-width:860px){
+  [style*="grid-template-columns:1fr 1.2fr"],
+  [style*="grid-template-columns:1fr 1.1fr"],
+  [style*="grid-template-columns:1.1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1.2fr"]{grid-template-columns:1fr !important;}
+  .pricebox{grid-template-columns:1fr;}
+  .viz,.can,.hero-grid,.grid,.demo2{grid-template-columns:1fr !important;}
+}
+@media (max-width:640px){
+  /* ヘッダー: ブランド＋CTAのみ（他の導線はフッターと本文に確保済み） */
+  .bstnav-in{gap:12px;height:56px;padding:0 16px;}
+  .bstnav .bstitem{display:none;}
+  .bstnav .bstcta{margin-left:auto;font-size:12.5px;padding:8px 15px;}
+  .wrap,.bstfoot-in{padding:0 16px;}
+  section{padding:38px 0;}
+  /* カード/グリッドは必ず1カラム（minmaxの最小幅による横あふれを断つ） */
+  .cards3,.bstx-cards,.pgrid2,.steps,.cardrow,.pgrid,.plist{grid-template-columns:1fr !important;}
+  /* 主要ボタンは全幅・タップしやすく */
+  .btns .btn,.dlrow .btn,.pcard-btns .bt{flex:1 1 100%;justify-content:center;}
+  .btn{padding:13px 20px;}
+  /* 価格ボックスの余白 */
+  .pricebox{padding:22px 18px;}
+  .pricebox .big{font-size:36px;}
+  /* 比較表: 横スクロール前提で圧縮（親のoverflow-x:autoで操作可能） */
+  .bstx-cmp,.cmp{min-width:500px;font-size:11.5px;}
+  .bstx-cmp th,.bstx-cmp td,.cmp th,.cmp td{padding:8px 10px;}
+  /* 部分一致検索デモ: 列幅指定を解除して収める */
+  #psrows,#pscnt{font-size:12px;}
+  th[style*="width:150px"],th[style*="width:110px"]{width:auto !important;}
+  /* カレンダーデモ: セルを小さく */
+  #cvBody div[style*="repeat(7"]{gap:2px !important;}
+  #cvBody div[style*="min-height:52px"]{min-height:42px !important;padding:1px 2px !important;}
+  /* タブ表示デモ: タブバーを折り返す */
+  .tbar{flex-wrap:wrap;}
+  /* フッターのリンク間隔 */
+  .bstfoot .row{gap:12px 16px;}
+}
+@media (max-width:400px){
+  .bstnav .bstcta{font-size:12px;padding:7px 12px;}
+  .code{font-size:64px;}
+}
 </style>
 </head>
 <body>
