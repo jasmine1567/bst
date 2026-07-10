@@ -6,6 +6,9 @@
 <title>タブ表示プラグイン（kintone）｜縦長フォームをタブで整理・デザイン自在 — bst</title>
 <meta name="description" content="kintoneの縦長フォームをタブで整理。8種のデザインプリセット＋こだわり設定、必須未入力バッジ、印刷時の全タブ自動展開、ラベル対応。公式APIのみで壊れにくく、業務データは外に出ないローカル動作。年額¥19,800（税込）・登録不要の30日無料試用あり。">
 <link rel="canonical" href="https://bst-plugins.com/lp-tab-view.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:title" content="タブ表示プラグイン（kintone）｜縦長フォームをタブで整理・デザイン自在 — bst">
 <meta property="og:description" content="kintoneの縦長フォームをタブで整理。8種のデザインプリセット＋こだわり設定、必須未入力バッジ、印刷時の全タブ自動展開。公式APIのみで壊れにくいローカル動作。年額¥19,800（税込）・30日無料試用。">
 <meta property="og:image" content="https://bst-plugins.com/og-tab.png">
@@ -27,7 +30,11 @@
   gtag('config', 'G-V964JH879G');
   document.addEventListener('click', function(e){
     var a = e.target.closest && e.target.closest('a[href^="trials/"]');
-    if(a){ gtag('event', 'trial_download', { file: a.getAttribute('href') }); }
+    if(a){
+      var f = a.getAttribute('href');
+      var pm = f.match(/bst_([a-z0-9-]+)_v/i);
+      gtag('event', 'trial_download', { file: f, plugin: pm ? pm[1] : 'unknown' });
+    }
     var b = e.target.closest && e.target.closest('a[href*="buy.stripe.com"]');
     if(b){ gtag('event', 'begin_checkout_click', { link: b.getAttribute('href') }); }
   });
@@ -101,7 +108,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;col
 .ttab{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;background:#F3F4F6;color:#4B5563;font-size:13px;font-weight:700;cursor:pointer;user-select:none;transition:all .2s;border:none;font-family:inherit;}
 .ttab.on{background:var(--amber);color:var(--ink);}
 .tbadge{min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--ng);color:#fff;font-size:11px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;}
-.tbody{padding:16px 18px 6px;min-height:196px;}
+.tbody{padding:16px 18px 6px;display:grid;}
 .trow{margin-bottom:14px;}
 .tlabel{font-size:12px;font-weight:700;color:var(--mut);margin-bottom:5px;}
 .tlabel .rq{color:var(--ng);font-weight:900;font-size:11px;margin-left:6px;}
@@ -109,8 +116,8 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;col
 .tbox.emp{border-color:var(--ng);background:#FFF8F7;color:#b8b7ae;}
 .thead-lb{background:#FFF6DD;border-left:4px solid var(--amber);border-radius:6px;padding:6px 12px;font-size:12.5px;font-weight:900;margin-bottom:12px;}
 .tnote{font-size:11.5px;color:var(--mut);padding:0 18px 14px;}
-.tpane{display:none;}
-.tpane.on{display:block;animation:tfade .25s;}
+.tpane{grid-area:1/1;visibility:hidden;opacity:0;}
+.tpane.on{visibility:visible;opacity:1;animation:tfade .25s;}
 @keyframes tfade{from{opacity:0;transform:translateY(3px);}to{opacity:1;transform:none;}}
 
 /* ===== デザインプリセット展示（実CSSで再現） ===== */
@@ -141,6 +148,34 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;col
 .pv.p-pastel .t{background:#F8FAFC;color:#64748B;border-radius:14px;}
 .pv.p-pastel .t.a{background:#CCFBF1;color:#0F766E;}
 .swrow{display:flex;gap:8px;align-items:center;margin-top:16px;flex-wrap:wrap;font-size:12.5px;font-weight:700;}
+
+/* 設定画面モック */
+.cfgmock{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 10px 28px rgba(0,0,0,.06);max-width:760px;}
+.cm-head{background:#F7F7F5;border-bottom:1px solid var(--line);padding:11px 18px;font-size:13px;font-weight:900;display:flex;justify-content:space-between;align-items:center;}
+.cm-head span{color:var(--mut);font-weight:700;font-size:11px;}
+.cm-body{padding:16px 18px;}
+.cm-step{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:900;margin-bottom:10px;}
+.cm-no{display:inline-flex;width:24px;height:24px;border-radius:999px;background:var(--blue);color:#fff;font-size:12px;align-items:center;justify-content:center;flex:none;}
+.cm-pal{background:#F8FAFC;border:1px dashed #CBD5E1;border-radius:12px;padding:10px 12px;margin-bottom:10px;}
+.cm-pal-t{font-size:11.5px;font-weight:700;color:#475569;margin-bottom:8px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+.cm-search{color:#94A3B8;font-weight:500;background:#fff;border:1px solid #CBD5E1;border-radius:8px;padding:2px 10px;}
+.cm-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.cm-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;border:1px solid #CBD5E1;background:#fff;font-size:11.5px;font-weight:700;}
+.cm-chip i{font-style:normal;font-size:9.5px;color:#94A3B8;font-weight:500;}
+.cm-chip.cm-lb{background:#FFFBEB;border-color:#FCD34D;}
+.cm-chip.cm-st{background:#F5F3FF;border-color:#C4B5FD;}
+.cm-tab{display:flex;align-items:center;gap:9px;border:2px solid var(--blue);border-radius:12px;background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.12);padding:9px 13px;font-size:12.5px;}
+.cm-radio{color:var(--blue);}
+.cm-cnt{font-size:10.5px;color:#94A3B8;}
+.cm-sel{font-size:10.5px;color:var(--blue);font-weight:900;margin-left:auto;}
+
+/* 比較表 */
+.cmp{border-collapse:collapse;width:100%;min-width:640px;background:#fff;border-radius:14px;overflow:hidden;font-size:12.5px;box-shadow:0 1px 0 var(--line);}
+.cmp th,.cmp td{border:1px solid var(--line);padding:10px 14px;text-align:left;vertical-align:top;line-height:1.6;}
+.cmp thead th{background:#F7F7F5;font-size:12px;}
+.cmp thead th.me{background:var(--ink);color:var(--amber);}
+.cmp td.me{background:#FFFBEB;font-weight:700;}
+.cmp td:first-child{font-weight:900;white-space:nowrap;background:#FCFCFA;}
 .sw{width:22px;height:22px;border-radius:50%;box-shadow:0 0 0 1px var(--line);}
 </style>
 </head>
@@ -233,6 +268,54 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;col
   </div>
 </div></section>
 
+<section><div class="wrap">
+  <div class="sec-kick">CONFIG</div>
+  <h2 class="sec">設定画面まで、デザインした。</h2>
+  <p style="font-size:13.5px;color:var(--mut);max-width:680px;margin-bottom:20px;">プラグインは「入れた後」より「設定するとき」に挫折します。だから設定画面そのものを製品として磨きました。<b>3ステップ・クリックだけ・常にプレビュー</b>。マニュアルを読まずに完成します。</p>
+
+  <div class="cfgmock">
+    <div class="cm-head">タブ表示プラグイン 設定 <span>実際の設定画面のイメージ</span></div>
+    <div class="cm-body">
+      <div class="cm-step"><span class="cm-no">1</span>タブを作って、項目を振り分ける</div>
+      <div class="cm-pal">
+        <div class="cm-pal-t">未割り当ての項目（12件）— クリックで選択中のタブへ　<span class="cm-search">🔍 項目名で検索…</span></div>
+        <div class="cm-chips">
+          <span class="cm-chip">見積金額 <i>数値</i></span><span class="cm-chip">支払条件 <i>ドロップダウン</i></span><span class="cm-chip cm-lb">■ 経理確認項目 <i>ラベル</i></span><span class="cm-chip cm-st">明細 <i>テーブル</i></span><span class="cm-chip">納期 <i>日付</i></span>
+        </div>
+      </div>
+      <div class="cm-tab"><span class="cm-radio">◉</span><span class="cm-emoji">💰</span><b>取引条件</b><span class="cm-cnt">5項目</span><span class="cm-sel">← 項目の追加先</span></div>
+      <div class="cm-step" style="margin-top:14px;"><span class="cm-no">2</span>デザインを選ぶ（ライブプレビュー付き）</div>
+      <div class="cm-step"><span class="cm-no">3</span>動作オプション（そのままでも最適な既定値）</div>
+    </div>
+  </div>
+
+  <div class="cards3" style="margin-top:18px;">
+    <div class="card"><span class="em">🖱</span><b>クリックだけで振り分け</b><p>フォームの並び順どおりに項目チップが並び、クリックでタブへ。検索と種類フィルタ（入力項目／ラベル／テーブル）で100項目超でも迷いません。</p></div>
+    <div class="card"><span class="em">👀</span><b>常に見えるライブプレビュー</b><p>プリセットも、こだわり設定の1項目も、変えた瞬間に実物の見た目で確認。保存してから「思ってたのと違う」がありません。</p></div>
+    <div class="card"><span class="em">🩺</span><b>レイアウト診断</b><p>タブと項目の配置が不自然になる設定を自動で検知して、具体的な直し方を提示。設定ミスを設定画面の中で潰します。</p></div>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <div class="sec-kick">WHY BST</div>
+  <h2 class="sec">タブUIの「あるある不満」を、全部設計で潰しました。</h2>
+  <div style="overflow-x:auto;">
+  <table class="cmp">
+    <thead><tr><th></th><th class="me">タブ表示プラグイン（bst）</th><th>一般的なタブ系プラグイン</th></tr></thead>
+    <tbody>
+      <tr><td>印刷・PDF保存</td><td class="me">◎ 全タブ自動展開（設定不要）</td><td>△ 表示中のタブしか印刷されない製品も</td></tr>
+      <tr><td>必須の入れ忘れ</td><td class="me">◎ タブに赤バッジ＋保存時に該当タブへ自動切替</td><td>× 隠れたタブのエラーで迷子になりがち</td></tr>
+      <tr><td>ラベル（見出し）</td><td class="me">◎ ラベルごとタブで切替可</td><td>△ 入力フィールドのみが一般的</td></tr>
+      <tr><td>表示制御系プラグインとの併用</td><td class="me">◎ 表示合成レイヤーで共存（空タブは自動で退避）</td><td>△ 「あと勝ち」で表示が壊れることも</td></tr>
+      <tr><td>フィールドを後から追加</td><td class="me">◎ 既定で常に表示（勝手に隠れない）</td><td>△ 新項目がタブの外で行方不明になる製品も</td></tr>
+      <tr><td>実装方式</td><td class="me">◎ kintone公式APIのみ・DOM組み替えなし</td><td>△ 画面構造依存でアップデートに弱い製品も</td></tr>
+      <tr><td>デザイン</td><td class="me">◎ 8プリセット＋約20項目のこだわり設定＋タブ個別色</td><td>△ 固定デザイン〜数パターン</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:11.5px;color:var(--mut);margin-top:8px;">※「一般的なタブ系プラグイン」は特定製品ではなく、タブ表示系プラグインで見られる一般的な仕様・制約を指します。</p>
+</div></section>
+
 <section id="trial"><div class="wrap">
   <div class="sec-kick">FREE TRIAL</div>
   <h2 class="sec">まず30日、無料で確かめてください。</h2>
@@ -254,10 +337,10 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;col
     <div>
       <div class="big">¥19,800<span>/年（税込）</span></div>
       <div class="sub">単品・1ドメイン（アプリ数・ユーザー数は無制限）</div>
-      <a class="btn btn--amber" href="https://buy.stripe.com/TODO_TAB_YEAR" target="_blank" rel="noopener" style="width:100%;justify-content:center;">年額プランを購入 ↗</a><!-- STRIPE_LINK:year TODO:Payment Link発行後に差替 -->
+      <a class="btn btn--amber" href="https://buy.stripe.com/fZu28qcCh1ai96X5HZdfG09" target="_blank" rel="noopener" style="width:100%;justify-content:center;">年額プランを購入 ↗</a><!-- STRIPE_LINK:year -->
       <div class="alt">
         <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --><span class="mut">　全5製品＋今後の基本新作も込み</span></div>
-        <div><a href="https://buy.stripe.com/TODO_TAB_PERP" target="_blank" rel="noopener">永久ライセンス ¥98,000 ↗</a><!-- STRIPE_LINK:perp TODO:Payment Link発行後に差替 --><span class="mut">　通信が一切ない完全オフライン版・買い切り</span></div>
+        <div><a href="https://buy.stripe.com/5kQbJ0fOt1aigzpdardfG0a" target="_blank" rel="noopener">永久ライセンス ¥98,000 ↗</a><!-- STRIPE_LINK:perp --><span class="mut">　通信が一切ない完全オフライン版・買い切り</span></div>
         <div class="mut">解約後もお支払い済み期間の満了までは動作し、kintone上のデータ・設定は消えません。<a href="index.html#faq">詳細FAQ →</a></div>
       </div>
     </div>

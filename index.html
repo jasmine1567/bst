@@ -6,6 +6,9 @@
 <title>kintoneプラグインのbst｜検索・カレンダー・条件書式・入力制御</title>
 <meta name="description" content="kintoneの「あと少し」を解決するプラグイン。部分一致検索、カレンダービュー、ビジュアル条件書式、条件付きフィールド制御。全製品30日無料試用・登録不要。年額でもデータは外に出ません。">
 <link rel="canonical" href="https://bst-plugins.com/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:title" content="kintoneプラグインのbst">
 <meta property="og:description" content="kintoneの「あと少し」を解決する単機能プラグイン。全製品30日無料試用・登録不要。年額でもデータは外に出ません。">
 <meta property="og:image" content="https://bst-plugins.com/og-home.png">
@@ -23,7 +26,11 @@
   gtag('config', 'G-V964JH879G');
   document.addEventListener('click', function(e){
     var a = e.target.closest && e.target.closest('a[href^="trials/"]');
-    if(a){ gtag('event', 'trial_download', { file: a.getAttribute('href') }); }
+    if(a){
+      var f = a.getAttribute('href');
+      var pm = f.match(/bst_([a-z0-9-]+)_v/i);
+      gtag('event', 'trial_download', { file: f, plugin: pm ? pm[1] : 'unknown' });
+    }
     var b = e.target.closest && e.target.closest('a[href*="buy.stripe.com"]');
     if(b){ gtag('event', 'begin_checkout_click', { link: b.getAttribute('href') }); }
   });
@@ -136,7 +143,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:12.5px;col
         <p>「あるはずのデータが検索に出ない」を解決。型番・番号の一部でも、全フィールド横断で一発ヒット。</p>
         <div class="pcard-price">¥19,800<span>/年（税込）・1ドメイン</span></div>
         <div class="pcard-btns">
-          <a class="bt bt-amber" href="trials/bst_partial-search_v2.3_trial.zip" download>30日無料で試す ↓</a>
+          <a class="bt bt-amber" href="trials/bst_partial-search_v2.3.1_trial.zip" download>30日無料で試す ↓</a>
           <a class="bt bt-ghost" href="lp-partial-search.html">詳しく見る →</a>
         </div>
       </article>

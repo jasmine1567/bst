@@ -6,6 +6,9 @@
 <title>条件付きフィールド制御プラグイン（kintone）｜表示・必須・読取専用を自動切替 — bst</title>
 <meta name="description" content="kintoneの追加・編集画面で、フィールドの値に応じて他の項目を表示／非表示・必須・読取専用に自動制御。ノーコード設定・業務データは外に出ないローカル動作。年額¥19,800（税込）・登録不要の30日無料試用あり。">
 <link rel="canonical" href="https://bst-plugins.com/lp-conditional-field.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:title" content="条件付きフィールド制御プラグイン（kintone）｜表示・必須・読取専用を自動切替 — bst">
 <meta property="og:description" content="kintoneの追加・編集画面で、フィールドの値に応じて他の項目を表示／非表示・必須・読取専用に自動制御。ノーコード設定・業務データは外に出ないローカル動作。年額¥19,800（税込）・登録不要の30日無料試用あり。">
 <meta property="og:image" content="https://bst-plugins.com/og-conditional.png">
@@ -27,7 +30,11 @@
   gtag('config', 'G-V964JH879G');
   document.addEventListener('click', function(e){
     var a = e.target.closest && e.target.closest('a[href^="trials/"]');
-    if(a){ gtag('event', 'trial_download', { file: a.getAttribute('href') }); }
+    if(a){
+      var f = a.getAttribute('href');
+      var pm = f.match(/bst_([a-z0-9-]+)_v/i);
+      gtag('event', 'trial_download', { file: f, plugin: pm ? pm[1] : 'unknown' });
+    }
     var b = e.target.closest && e.target.closest('a[href*="buy.stripe.com"]');
     if(b){ gtag('event', 'begin_checkout_click', { link: b.getAttribute('href') }); }
   });
