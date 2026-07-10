@@ -154,6 +154,23 @@
 .bstx-seg button.on{background:#252525;color:#FFB800;}
 .bstx-sw{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;cursor:pointer;user-select:none;padding:5px 11px;border:1.5px solid #d1d5db;border-radius:999px;background:#fff;color:#9ca3af;}
 .bstx-sw.on{border-color:#16a34a;background:#f0fdf4;color:#15803d;}
+
+/* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
+.bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
+.bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
+.bstnav .bstbrand{display:inline-block;background:#252525;color:#FFB800;padding:3px 13px;border-radius:9px;font-weight:900;font-size:18px;text-decoration:none;letter-spacing:.02em;}
+.bstnav .bstitem{font-size:13.5px;font-weight:500;text-decoration:none;color:#6E6E68;}
+.bstnav .bstitem:hover{color:#252525;}
+.bstnav .bstcta{margin-left:auto;background:#252525;color:#fff;font-size:13px;font-weight:700;padding:9px 18px;border-radius:999px;text-decoration:none;white-space:nowrap;}
+.bstfoot{border-top:1px solid #E4E3DB;padding:28px 0 38px;font-size:12.5px;color:#6E6E68;}
+.bstfoot-in{max-width:1080px;margin:0 auto;padding:0 24px;}
+.bstfoot .row{display:flex;gap:18px;flex-wrap:wrap;}
+.bstfoot a{text-decoration:none;color:#6E6E68;}
+.bstfoot a:hover{color:#252525;}
+/* ===== 日本語の折り返し品質（中途半端な改行の防止） ===== */
+h1,h2,h3{text-wrap:balance;}
+p,li,dd,dt{text-wrap:pretty;}
+@supports (word-break: auto-phrase){h1,h2,h3,p{word-break:auto-phrase;}}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V964JH879G"></script>
@@ -174,18 +191,7 @@
 </head>
 <body>
 
-<header class="nav">
-  <div class="wrap nav-in">
-    <a class="brand" href="index.html">bst</a>
-    <nav class="nav-links">
-      <a href="index.html">ホーム</a>
-      <a href="#features">機能</a>
-      <a href="#views">4つのビュー</a>
-      <a href="#price">価格</a>
-      <a href="https://buy.stripe.com/00wbJ06dT8CKbf55HZdfG03" target="_blank" rel="noopener">年額プランを購入 ↗<!-- STRIPE_LINK:year --></a>
-    </nav>
-  </div>
-</header>
+<header class="bstnav"><div class="bstnav-in"><a class="bstbrand" href="index.html">bst</a><a class="bstitem" href="index.html#tools">プラグイン</a><a class="bstitem" href="index.html#pricing">料金</a><a class="bstitem" href="icons.html">無料アイコン</a><a class="bstcta" href="#trial">30日無料で試す</a></div></header>
 
 <main>
 <section class="hero">
@@ -434,7 +440,7 @@
   </div>
 </section>
 <!-- ===== 追加: 30日無料試用（3ステップ） ===== -->
-<section style="padding:56px 0;background:#252525;color:#fff;">
+<section id="trial" style="padding:56px 0;background:#252525;color:#fff;">
   <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
     <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#FFB800;">FREE TRIAL</div>
     <h2 style="font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:6px 0 8px;color:#fff;">その便利さ、まず30日間ゼロ円で。</h2>
@@ -532,7 +538,7 @@
         <div style="color:var(--mut);font-size:13px;margin-bottom:16px;">税込・単品年額（基本パック¥39,800/年・永久ライセンス¥98,000も下記に）</div>
           <a class="btn btn--amber" href="https://buy.stripe.com/00wbJ06dT8CKbf55HZdfG03" target="_blank" rel="noopener" style="width:100%;justify-content:center;">年額プランを購入 ↗</a><!-- STRIPE_LINK:year -->
           <div style="margin-top:12px;font-size:12.5px;line-height:2;text-align:left;">
-            <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener" style="color:#B57E00;font-weight:700;">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --> 全4製品＋今後の基本新作込み</div>
+            <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener" style="color:#B57E00;font-weight:700;">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --> 公開中の基本プラグインすべて＋今後の新作も込み</div>
             <div><a href="https://buy.stripe.com/eVq7sKbyd4mu0ArgmDdfG02" target="_blank" rel="noopener">永久ライセンス ¥98,000 ↗</a><!-- STRIPE_LINK:perp --> 完全オフライン版・買い切り</div>
             <div style="color:var(--mut);">解約後も支払い済み期間は動作。データ・設定は消えません。<a href="index.html#faq">FAQ →</a></div>
           </div>
@@ -569,24 +575,7 @@
 </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start;">
-      <div>
-        <div class="foot-brand">b<span>s</span>t</div>
-        <div style="margin-top:8px;max-width:360px;">kintoneの「あと少し」を解決するプラグインを開発。全製品、登録不要の30日無料試用つき。業務データは外に出ません。</div>
-      </div>
-      <div class="foot-links">
-        <a href="index.html">ホーム</a>
-        <a href="icons.html">無料アイコン素材</a>
-        <a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a>
-        <a href="tokushoho.html">特商法</a>
-        <a href="privacy.html">プライバシー</a>
-      </div>
-    </div>
-    <div style="margin-top:22px;border-top:1px solid var(--line);padding-top:14px;color:#b3b2a8;">© bst — kintone plugins, sold as buy-once. カレンダービュープラグインはサイボウズ株式会社の関連会社ではありません。kintoneはサイボウズ株式会社の登録商標です。</div>
-  </div>
-</footer>
+<footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="index.html">ホーム</a><a href="index.html#tools">プラグイン</a><a href="icons.html">無料アイコン素材</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="tokushoho.html">特定商取引法に基づく表記</a><a href="privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
 
 <script>
 (function(){

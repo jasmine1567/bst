@@ -29,8 +29,25 @@ th,td{border:1px solid var(--line);padding:10px 14px;text-align:left;vertical-al
 th{background:#F3F2EC;width:34%;font-weight:700;}
 footer{border-top:1px solid var(--line);padding:24px 0 32px;font-size:12.5px;color:var(--mut);}
 a{color:var(--amber-d);}
+
+/* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
+.bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
+.bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
+.bstnav .bstbrand{display:inline-block;background:#252525;color:#FFB800;padding:3px 13px;border-radius:9px;font-weight:900;font-size:18px;text-decoration:none;letter-spacing:.02em;}
+.bstnav .bstitem{font-size:13.5px;font-weight:500;text-decoration:none;color:#6E6E68;}
+.bstnav .bstitem:hover{color:#252525;}
+.bstnav .bstcta{margin-left:auto;background:#252525;color:#fff;font-size:13px;font-weight:700;padding:9px 18px;border-radius:999px;text-decoration:none;white-space:nowrap;}
+.bstfoot{border-top:1px solid #E4E3DB;padding:28px 0 38px;font-size:12.5px;color:#6E6E68;}
+.bstfoot-in{max-width:1080px;margin:0 auto;padding:0 24px;}
+.bstfoot .row{display:flex;gap:18px;flex-wrap:wrap;}
+.bstfoot a{text-decoration:none;color:#6E6E68;}
+.bstfoot a:hover{color:#252525;}
+/* ===== 日本語の折り返し品質（中途半端な改行の防止） ===== */
+h1,h2,h3{text-wrap:balance;}
+p,li,dd,dt{text-wrap:pretty;}
+@supports (word-break: auto-phrase){h1,h2,h3,p{word-break:auto-phrase;}}
 </style></head>
-<body><header><div class="wrap nav"><a class="brand" href="index.html">bst</a></div></header><main><div class="wrap">
+<body><header class="bstnav"><div class="bstnav-in"><a class="bstbrand" href="index.html">bst</a><a class="bstitem" href="index.html#tools">プラグイン</a><a class="bstitem" href="index.html#pricing">料金</a><a class="bstitem" href="icons.html">無料アイコン</a><a class="bstcta" href="index.html#tools">30日無料で試す</a></div></header><main><div class="wrap">
 <h1>プライバシーポリシー</h1>
 <p>bst（以下「当方」）は、当サイトおよび提供するkintoneプラグイン（以下「本製品」）における情報の取り扱いについて、以下のとおり定めます。</p>
 <h2>1. 取得する情報</h2>
@@ -46,4 +63,4 @@ a{color:var(--amber-d);}
 <h2>5. お問い合わせ</h2>
 <p>本ポリシーに関するお問い合わせは support@bst-plugins.com までお願いします。</p>
 <p style="margin-top:14px;font-size:12.5px;color:var(--mut);">制定日：2026年7月7日</p>
-</div></main><footer><div class="wrap"><a href="index.html" style="color:var(--mut);text-decoration:none;">← ホームへ戻る</a></div></footer></body></html>
+</div></main><footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="index.html">ホーム</a><a href="index.html#tools">プラグイン</a><a href="icons.html">無料アイコン素材</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="tokushoho.html">特定商取引法に基づく表記</a><a href="privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer></body></html>

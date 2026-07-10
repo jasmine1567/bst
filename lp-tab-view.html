@@ -177,16 +177,27 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;col
 .cmp td.me{background:#FFFBEB;font-weight:700;}
 .cmp td:first-child{font-weight:900;white-space:nowrap;background:#FCFCFA;}
 .sw{width:22px;height:22px;border-radius:50%;box-shadow:0 0 0 1px var(--line);}
+
+/* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
+.bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
+.bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
+.bstnav .bstbrand{display:inline-block;background:#252525;color:#FFB800;padding:3px 13px;border-radius:9px;font-weight:900;font-size:18px;text-decoration:none;letter-spacing:.02em;}
+.bstnav .bstitem{font-size:13.5px;font-weight:500;text-decoration:none;color:#6E6E68;}
+.bstnav .bstitem:hover{color:#252525;}
+.bstnav .bstcta{margin-left:auto;background:#252525;color:#fff;font-size:13px;font-weight:700;padding:9px 18px;border-radius:999px;text-decoration:none;white-space:nowrap;}
+.bstfoot{border-top:1px solid #E4E3DB;padding:28px 0 38px;font-size:12.5px;color:#6E6E68;}
+.bstfoot-in{max-width:1080px;margin:0 auto;padding:0 24px;}
+.bstfoot .row{display:flex;gap:18px;flex-wrap:wrap;}
+.bstfoot a{text-decoration:none;color:#6E6E68;}
+.bstfoot a:hover{color:#252525;}
+/* ===== 日本語の折り返し品質（中途半端な改行の防止） ===== */
+h1,h2,h3{text-wrap:balance;}
+p,li,dd,dt{text-wrap:pretty;}
+@supports (word-break: auto-phrase){h1,h2,h3,p{word-break:auto-phrase;}}
 </style>
 </head>
 <body>
-<header><div class="wrap nav">
-  <a class="brand" href="index.html">bst</a>
-  <a class="item" href="index.html#tools">プラグイン</a>
-  <a class="item" href="index.html#pricing">料金</a>
-  <a class="item" href="icons.html">無料アイコン</a>
-  <a class="cta" href="#trial">30日無料で試す</a>
-</div></header>
+<header class="bstnav"><div class="bstnav-in"><a class="bstbrand" href="index.html">bst</a><a class="bstitem" href="index.html#tools">プラグイン</a><a class="bstitem" href="index.html#pricing">料金</a><a class="bstitem" href="icons.html">無料アイコン</a><a class="bstcta" href="#trial">30日無料で試す</a></div></header>
 
 <section class="hero"><div class="wrap">
   <span class="eyebrow">kintone プラグイン ・ Ver.1.3 ・ 30日無料試用 ・ ノーコード導入</span>
@@ -339,7 +350,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;col
       <div class="sub">単品・1ドメイン（アプリ数・ユーザー数は無制限）</div>
       <a class="btn btn--amber" href="https://buy.stripe.com/fZu28qcCh1ai96X5HZdfG09" target="_blank" rel="noopener" style="width:100%;justify-content:center;">年額プランを購入 ↗</a><!-- STRIPE_LINK:year -->
       <div class="alt">
-        <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --><span class="mut">　全6製品＋今後の基本新作も込み</span></div>
+        <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --><span class="mut">　公開中の基本プラグインすべて＋今後の新作も込み</span></div>
         <div><a href="https://buy.stripe.com/5kQbJ0fOt1aigzpdardfG0a" target="_blank" rel="noopener">永久ライセンス ¥98,000 ↗</a><!-- STRIPE_LINK:perp --><span class="mut">　通信が一切ない完全オフライン版・買い切り</span></div>
         <div class="mut">解約後もお支払い済み期間の満了までは動作し、kintone上のデータ・設定は消えません。<a href="index.html#faq">詳細FAQ →</a></div>
       </div>
@@ -357,12 +368,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;col
 <details><summary>プラグインは外部と通信しますか？</summary><p>業務データの外部送信は一切ありません。年額プランのみ、ライセンス確認のために「kintoneドメイン名」を1日1回送信します（レコード内容は送りません）。通信不可の環境には完全オフラインの永久ライセンス版をご用意しています。</p></details>
 </div></section>
 
-<footer><div class="wrap">
-  <div class="frow2">
-    <a href="index.html">ホーム</a><a href="icons.html">無料アイコン素材</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="tokushoho.html">特定商取引法に基づく表記</a><a href="privacy.html">プライバシーポリシー</a>
-  </div>
-  <div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div>
-</div></footer>
+<footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="index.html">ホーム</a><a href="index.html#tools">プラグイン</a><a href="icons.html">無料アイコン素材</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="tokushoho.html">特定商取引法に基づく表記</a><a href="privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
 
 <script>
 (function(){
