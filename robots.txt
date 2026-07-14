@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /trials/
 
 Sitemap: https://bst-plugins.com/sitemap.xml
