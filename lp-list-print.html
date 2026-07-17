@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FBFBF8">
+<title>一覧印刷プラグイン（kintone）｜表示中の一覧をA4・B5・A3にきれいに印刷 — bst</title>
+<meta name="description" content="kintoneの一覧をボタンひとつで印刷。A4・B5・A3×縦横、実寸プレビュー付き。行が途中で切れない自前ページ分割、全ページの列見出し、ページ番号、棚卸しに使えるチェック欄、設定のプリセット保存。年額¥19,800（税込）・30日無料試用。">
+<link rel="canonical" href="https://bst-plugins.com/lp-list-print.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="一覧印刷プラグイン（kintone）｜表示中の一覧をA4・B5・A3にきれいに印刷 — bst">
+<meta property="og:description" content="ボタンを押して用紙と列を選ぶだけ。実寸プレビュー・自前ページ分割・チェック欄・プリセット保存。年額¥19,800（税込）・30日無料試用。">
+<meta property="og:image" content="https://bst-plugins.com/og-print.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://bst-plugins.com/lp-list-print.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V964JH879G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-V964JH879G');
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="trials/"]');
+    if(a){
+      var f = a.getAttribute('href');
+      var pm = f.match(/bst_([a-z0-9-]+)_v/i);
+      gtag('event', 'trial_download', { file: f, plugin: pm ? pm[1] : 'unknown' });
+    }
+    var b = e.target.closest && e.target.closest('a[href*="buy.stripe.com"]');
+    if(b){ gtag('event', 'begin_checkout_click', { link: b.getAttribute('href') }); }
+  });
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "一覧印刷プラグイン（kintone）", "operatingSystem": "kintone", "applicationCategory": "BusinessApplication", "description": "kintoneのレコード一覧を印刷用ページにして印刷するプラグイン。A4・B5・A3×縦横、実寸プレビュー、自前のページ分割とページ番号、棚卸し用チェック欄、設定のプリセット保存に対応。年額¥19,800（税込）・30日無料試用あり。", "offers": {"@type": "Offer", "price": "19800", "priceCurrency": "JPY", "url": "https://bst-plugins.com/lp-list-print.html#price"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "どの一覧でも印刷できますか？", "acceptedAnswer": {"@type": "Answer", "text": "表形式の一覧に対応しています。いま表示している一覧の列・絞り込み・並び順がそのまま印刷に反映されます。列はダイアログでオン／オフでき、印刷対象は「絞り込み全件」と「表示中のページ」から選べます。"}}, {"@type": "Question", "name": "ページの途中で行が切れたり、ページ番号が出なかったりしませんか？", "acceptedAnswer": {"@type": "Answer", "text": "しません。ページ分割はブラウザ任せにせず、プラグインが行の高さを計測して割り付けます。行は途中で切れず、列見出しは全ページに入り、ページ番号は「1 / 12」形式で印字されます。プレビューは実寸なので、見たままが印刷されます。"}}, {"@type": "Question", "name": "棚卸しのチェック表として使えますか？", "acceptedAnswer": {"@type": "Answer", "text": "使えます。右端に最大3列のチェック欄を追加でき、□を印刷して手でチェックを付けるか、空白の記入欄にして数量やメモを書き込むかを選べます。設定は「棚卸し用」などの名前を付けて保存でき、次回から呼び出すだけです。"}}, {"@type": "Question", "name": "帳票のような自由なレイアウト設計はできますか？", "acceptedAnswer": {"@type": "Answer", "text": "本製品は「一覧をそのまま、きれいに印刷する」ことに絞った単機能プラグインです。伝票や請求書のような自由レイアウトの帳票設計は対象外です。そのぶん、テンプレート設計なし・設定3分で使い始められます。"}}, {"@type": "Question", "name": "プラグインは外部と通信しますか？", "acceptedAnswer": {"@type": "Answer", "text": "業務データの外部送信は一切ありません。印刷処理はすべてブラウザ内で完結します。年額プランのみ、ライセンス確認のために「kintoneドメイン名」を1日1回送信します（レコード内容は送りません）。通信不可の環境には完全オフラインの永久ライセンス版をご用意しています。"}}]}
+</script>
+<style>
+:root{--ink:#252525;--paper:#FBFBF8;--paper2:#F3F2EC;--line:#E4E3DB;--amber:#FFB800;--amber-d:#B57E00;--mut:#6E6E68;--ok:#18794E;--blue:#2563EB;--kb:#3498db;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--paper);color:var(--ink);line-height:1.8;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+.hero{padding:56px 0 44px;}
+.eyebrow{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:12px;font-weight:700;padding:6px 16px;color:var(--amber-d);}
+h1{font-size:clamp(28px,4.6vw,44px);font-weight:900;letter-spacing:-.015em;line-height:1.4;margin:16px 0 12px;}
+h1 em{font-style:normal;background:linear-gradient(transparent 62%, var(--amber) 62%);}
+.lead{color:var(--mut);font-size:15px;max-width:680px;}
+.price-row{margin:16px 0 18px;font-weight:900;}
+.price-row .disp{font-size:30px;}
+.price-row small{font-size:12.5px;font-weight:500;color:var(--mut);margin-left:8px;}
+.btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;font-weight:700;font-size:14.5px;padding:13px 26px;text-decoration:none;border:2px solid transparent;}
+.btn--amber{background:var(--amber);color:var(--ink);}
+.btn--ghost{border-color:var(--line);background:#fff;}
+section{padding:52px 0;}
+.sec-kick{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--amber-d);}
+h2.sec{font-size:clamp(21px,3.4vw,30px);font-weight:900;letter-spacing:-.01em;margin:6px 0 20px;}
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;}
+.card .em{font-size:24px;}
+.card b{display:block;font-size:15px;margin:6px 0 4px;}
+.card p{font-size:13px;color:var(--mut);}
+.band{background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+.step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;}
+.step .no{display:inline-flex;width:26px;height:26px;border-radius:999px;background:var(--ink);color:var(--amber);font-size:13px;font-weight:900;align-items:center;justify-content:center;margin-bottom:8px;}
+.step b{display:block;font-size:14.5px;margin-bottom:3px;}
+.step p{font-size:12.5px;color:var(--mut);}
+.pricebox{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px;display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:start;}
+.pricebox .big{font-size:44px;font-weight:900;}
+.pricebox .big span{font-size:16px;font-weight:500;}
+.pricebox .sub{color:var(--mut);font-size:12.5px;margin:2px 0 16px;}
+.alt{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);font-size:12.5px;line-height:2;}
+.alt a{color:var(--amber-d);font-weight:700;}
+.alt .mut{color:var(--mut);}
+.spec dt{font-weight:900;font-size:13px;margin-top:12px;}
+.spec dd{font-size:13px;color:var(--mut);}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 20px;margin-bottom:10px;}
+.faq summary{font-weight:700;font-size:14px;cursor:pointer;}
+.faq p{font-size:13px;color:var(--mut);margin-top:8px;}
+.cmp{border-collapse:collapse;width:100%;min-width:640px;background:#fff;border-radius:14px;overflow:hidden;font-size:12.5px;box-shadow:0 1px 0 var(--line);}
+.cmp th,.cmp td{border:1px solid var(--line);padding:10px 14px;text-align:left;vertical-align:top;line-height:1.6;}
+.cmp thead th{background:#F7F7F5;font-size:12px;}
+.cmp thead th.me{background:var(--ink);color:var(--amber);}
+.cmp td.me{background:#FFFBEB;font-weight:700;}
+.cmp td:first-child{font-weight:900;white-space:nowrap;background:#FCFCFA;}
+@media(max-width:820px){.pricebox{grid-template-columns:1fr;}}
+
+/* ===== ヒーロー: 触れる印刷プレビューデモ ===== */
+.demo2{display:grid;grid-template-columns:1fr 1.15fr;gap:16px;margin-top:26px;max-width:900px;}
+@media(max-width:820px){.demo2{grid-template-columns:1fr;}}
+.dcard{background:#fff;border:2px solid var(--amber);border-radius:18px;box-shadow:0 14px 36px rgba(255,184,0,.14);overflow:hidden;}
+.dcard .fh{background:#F7F7F5;border-bottom:1px solid var(--line);padding:10px 16px;font-size:12px;font-weight:900;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;}
+.dcard .fh span{color:var(--mut);font-weight:700;font-size:11px;}
+.dbody{padding:14px 16px;}
+.drow{margin-bottom:12px;}
+.dlabel{font-size:11.5px;font-weight:900;color:#374151;margin-bottom:5px;}
+.dseg{display:inline-flex;border:1px solid #d1d5db;border-radius:9px;overflow:hidden;flex-wrap:wrap;}
+.dseg button{border:none;background:#fff;padding:7px 13px;font-size:12px;cursor:pointer;color:#6b7280;font-family:inherit;font-weight:700;border-right:1px solid #e5e7eb;}
+.dseg button:last-child{border-right:none;}
+.dseg button.on{background:var(--kb);color:#fff;}
+.dstat{font-size:12px;font-weight:900;color:var(--ok);margin-top:4px;}
+/* ミニ用紙 */
+.sheetwrap{background:#6b7280;background-image:linear-gradient(45deg,rgba(0,0,0,.06) 25%,transparent 25%),linear-gradient(-45deg,rgba(0,0,0,.06) 25%,transparent 25%);background-size:16px 16px;padding:18px;display:flex;align-items:center;justify-content:center;min-height:320px;}
+.sheet{background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.28);padding:4.5%;display:flex;flex-direction:column;transition:width .2s,height .2s;font-size:6.5px;line-height:1.5;color:#111;}
+.sheet .sh-ttl{font-size:9.5px;font-weight:900;}
+.sheet .sh-meta{display:flex;justify-content:space-between;color:#555;border-bottom:1px solid #333;padding-bottom:2px;margin-bottom:3px;font-size:6px;}
+.sheet table{width:100%;border-collapse:collapse;table-layout:fixed;}
+.sheet th,.sheet td{border:.5px solid #999;padding:1.5px 3px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.sheet thead th{background:#EFEFEA;border-bottom:1px solid #333;font-weight:700;}
+.sheet .zeb td{background:#F6F6F3;}
+.sheet .chk{text-align:center;}
+.sheet .bx{display:inline-block;width:5px;height:5px;border:.6px solid #333;border-radius:1px;}
+.sheet .sh-ft{margin-top:auto;text-align:right;color:#555;font-size:6px;padding-top:2px;}
+/* =====================================================================
+   bstm: モバイル最適化（全ページ共通・スタイルの最後に置くこと）
+   ・インラインstyleの2カラムgridは属性セレクタ＋!importantで1カラム化
+   ・カード類のminmaxによる横あふれを防止
+   ===================================================================== */
+img,svg,table{max-width:100%;}
+body{-webkit-text-size-adjust:100%;}
+@media (max-width:860px){
+  [style*="grid-template-columns:1fr 1.2fr"],
+  [style*="grid-template-columns:1fr 1.1fr"],
+  [style*="grid-template-columns:1.1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1.2fr"]{grid-template-columns:1fr !important;}
+  .pricebox{grid-template-columns:1fr;}
+  .viz,.can,.hero-grid,.grid,.demo2{grid-template-columns:1fr !important;}
+}
+@media (max-width:640px){
+  /* ヘッダー: ブランド＋CTAのみ（他の導線はフッターと本文に確保済み） */
+  .bstnav-in{gap:12px;height:56px;padding:0 16px;}
+  .bstnav .bstitem{display:none;}
+  .bstnav .bstcta{margin-left:auto;font-size:12.5px;padding:8px 15px;}
+  .wrap,.bstfoot-in{padding:0 16px;}
+  section{padding:38px 0;}
+  /* カード/グリッドは必ず1カラム（minmaxの最小幅による横あふれを断つ） */
+  .cards3,.bstx-cards,.pgrid2,.steps,.cardrow,.pgrid,.plist{grid-template-columns:1fr !important;}
+  /* 主要ボタンは全幅・タップしやすく */
+  .btns .btn,.dlrow .btn,.pcard-btns .bt{flex:1 1 100%;justify-content:center;}
+  .btn{padding:13px 20px;}
+  /* 価格ボックスの余白 */
+  .pricebox{padding:22px 18px;}
+  .pricebox .big{font-size:36px;}
+  /* 比較表: 横スクロール前提で圧縮（親のoverflow-x:autoで操作可能） */
+  .bstx-cmp,.cmp{min-width:500px;font-size:11.5px;}
+  .bstx-cmp th,.bstx-cmp td,.cmp th,.cmp td{padding:8px 10px;}
+  /* 部分一致検索デモ: 列幅指定を解除して収める */
+  #psrows,#pscnt{font-size:12px;}
+  th[style*="width:150px"],th[style*="width:110px"]{width:auto !important;}
+  /* カレンダーデモ: セルを小さく */
+  #cvBody div[style*="repeat(7"]{gap:2px !important;}
+  #cvBody div[style*="min-height:52px"]{min-height:42px !important;padding:1px 2px !important;}
+  /* タブ表示デモ: タブバーを折り返す */
+  .tbar{flex-wrap:wrap;}
+  /* フッターのリンク間隔 */
+  .bstfoot .row{gap:12px 16px;}
+}
+@media (max-width:400px){
+  .bstnav .bstcta{font-size:12px;padding:7px 12px;}
+  .code{font-size:64px;}
+}
+</style>
+</head>
+<body>
+<header class="bstnav"><div class="bstnav-in"><a class="bstbrand" href="index.html">bst</a><a class="bstitem" href="index.html#tools">プラグイン</a><a class="bstitem" href="index.html#pricing">料金</a><a class="bstitem" href="icons.html">無料アイコン</a><a class="bstcta" href="#trial">30日無料で試す</a></div></header>
+
+<section class="hero"><div class="wrap">
+  <span class="eyebrow">kintone プラグイン ・ Ver.1.1 ・ 30日無料試用 ・ ノーコード導入</span>
+  <h1>その一覧、そのまま<br><em>きれいに印刷。</em></h1>
+  <p class="lead">ブラウザの「そのまま印刷」は、画面が混ざり、行が切れ、ページ番号も出ません。このプラグインは、いま表示している一覧を<b>印刷のためだけに組み直します</b>。用紙と列を選ぶだけ、プレビューは実寸、行はページの途中で切れません。棚卸しに使える<b>チェック欄</b>付き。</p>
+  <div class="price-row"><span class="disp">¥19,800</span><small>/年 税込・1ドメイン（アプリ数・ユーザー数無制限）</small></div>
+  <div class="btns">
+    <a class="btn btn--amber" href="trials/bst_list-print_v1.1.0_trial.zip" download>30日無料で試す ↓</a>
+    <a class="btn btn--ghost" href="#demo">動きを見る →</a>
+  </div>
+
+  <div class="demo2" id="demo">
+    <div class="dcard">
+      <div class="fh">印刷設定<span>実物と同じ項目を触れます</span></div>
+      <div class="dbody">
+        <div class="drow"><div class="dlabel">用紙</div>
+          <span class="dseg" id="dPaper"><button data-v="A4" class="on">A4</button><button data-v="B5">B5</button><button data-v="A3">A3</button></span></div>
+        <div class="drow"><div class="dlabel">向き</div>
+          <span class="dseg" id="dOrient"><button data-v="landscape" class="on">横</button><button data-v="portrait">縦</button></span></div>
+        <div class="drow"><div class="dlabel">チェック欄（棚卸し用）</div>
+          <span class="dseg" id="dChk"><button data-v="0" class="on">なし</button><button data-v="1">□ 1列</button><button data-v="2">□ 2列</button></span></div>
+        <div class="drow"><div class="dlabel">レイアウト</div>
+          <span class="dseg" id="dZebra"><button data-v="1" class="on">1行おきに色</button><button data-v="0">白のみ</button></span></div>
+        <div class="dstat" id="dStat"></div>
+      </div>
+    </div>
+    <div class="dcard" style="border-color:var(--line);box-shadow:0 10px 28px rgba(0,0,0,.10);">
+      <div class="fh">実寸プレビュー（縮小表示）<span>行の割り付け・ページ番号までプラグインが計算</span></div>
+      <div class="sheetwrap"><div class="sheet" id="sheet"></div></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <div class="sec-kick">PROBLEM</div>
+  <h2 class="sec">kintoneの一覧、そのまま印刷すると残念になる。</h2>
+  <div class="cards3">
+    <div class="card"><span class="em">🖨</span><b>ブラウザ印刷は「画面ごと」出る</b><p>メニューもヘッダーも混ざり、行はページの途中でぶつ切り。ページ番号も付かず、会議に出せる代物になりません。</p></div>
+    <div class="card"><span class="em">📤</span><b>毎回Excelに書き出して整形</b><p>CSV書き出し→列幅調整→印刷設定。5分の作業でも、毎週・毎月・全員分と積み重なれば大きなムダです。</p></div>
+    <div class="card"><span class="em">📋</span><b>棚卸し・点検は結局「紙」が要る</b><p>現場を歩きながらチェックするのは紙が速い。でもkintoneからチェック表を作る手段がありません。</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-kick">SOLUTION</div>
+  <h2 class="sec">印刷のためだけに、一覧を組み直す。</h2>
+  <div class="cards3">
+    <div class="card"><span class="em">📐</span><b>プレビュー＝実寸＝印刷結果</b><p>A4・B5・A3×縦横。ダイアログのプレビューは実際の用紙と同じ寸法なので、印刷してから「思ってたのと違う」がありません。</p></div>
+    <div class="card"><span class="em">✂️</span><b>行が途中で切れない</b><p>ページ分割はブラウザ任せにせず、行の高さを計測してプラグインが割り付け。列見出しは全ページに入り、ページ番号は「1 / 12」形式で印字されます。</p></div>
+    <div class="card"><span class="em">🔍</span><b>いまの絞り込み・並び順のまま</b><p>「自分の担当だけ」「今月分だけ」——一覧の絞り込みと並び順がそのまま反映。範囲は絞り込み全件／表示中のページを選べます。</p></div>
+    <div class="card"><span class="em">☑️</span><b>チェック欄で、そのまま棚卸し表に</b><p>右端に最大3列の記入欄を追加。□を印刷して手でチェック、または空白欄に数量やメモを記入。点検表・持ち出し表が一瞬で作れます。</p></div>
+    <div class="card"><span class="em">💾</span><b>設定は保存して呼び出すだけ</b><p>「棚卸し用」「会議配布用」——名前を付けて設定を保存（最大12件）。次回からはボタン→呼び出し→印刷の3クリックです。</p></div>
+    <div class="card"><span class="em">🔒</span><b>データは外に出ない</b><p>印刷処理はすべてブラウザ内で完結。業務データの外部送信は一切ありません。kintone本体の画面にも手を加えないので安全です。</p></div>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <div class="sec-kick">CONFIG</div>
+  <h2 class="sec">管理者は初期値を決めるだけ。利用者はダイアログで完結。</h2>
+  <p style="font-size:13.5px;color:var(--mut);max-width:700px;margin-bottom:20px;">設定画面で決めるのは<b>「ダイアログを開いたときの初期値」</b>だけ。よく使う形にしておけば、利用者はボタンを押して「印刷する」の2クリックで済みます。印刷ボタンはkintone標準のアイコンと<b>同じ40pxの高さ・角丸</b>で描画され、既定の配色は画面になじむライトです。</p>
+  <div class="steps">
+    <div class="step"><span class="no">1</span><b>ボタンの見た目</b><p>文字・配色（ライト／ダーク／bstゴールド）・アイコンのみ／文字付き・置き場所。プレビューで確認しながら選べます。</p></div>
+    <div class="step"><span class="no">2</span><b>用紙とレイアウトの初期値</b><p>用紙・向き・余白・文字サイズ・罫線。ダイアログで選ばせる用紙を限定することもできます。</p></div>
+    <div class="step"><span class="no">3</span><b>内容の初期値</b><p>タイトル・日時・件数・ページ番号・ゼブラ・連番・合計行・チェック欄。前回の指定の自動記憶もオンにできます。</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-kick">WHY BST</div>
+  <h2 class="sec">「そのまま印刷」とも、帳票プラグインとも違います。</h2>
+  <div style="overflow-x:auto;">
+  <table class="cmp">
+    <thead><tr><th></th><th class="me">一覧印刷プラグイン（bst）</th><th>ブラウザのそのまま印刷</th><th>一般的な帳票プラグイン</th></tr></thead>
+    <tbody>
+      <tr><td>導入の手間</td><td class="me">◎ 設定3分・テンプレート設計なし</td><td>○ 不要</td><td>△ 帳票テンプレートの設計が必要</td></tr>
+      <tr><td>仕上がり</td><td class="me">◎ 印刷専用に組み直し（画面が混ざらない）</td><td>× メニューやヘッダーが混入・行が切れる</td><td>◎ 設計しだい</td></tr>
+      <tr><td>ページ分割・番号</td><td class="me">◎ 行を切らずに割り付け・全ページ見出し・「1 / n」印字</td><td>× ブラウザ任せ</td><td>○ 対応が多い</td></tr>
+      <tr><td>プレビュー</td><td class="me">◎ 実寸（見たまま印刷される）</td><td>△ 印刷直前のみ</td><td>△ 製品による</td></tr>
+      <tr><td>棚卸し用チェック欄</td><td class="me">◎ 右端に最大3列（□／空白記入欄）</td><td>×</td><td>△ テンプレ設計しだい</td></tr>
+      <tr><td>価格帯</td><td class="me">◎ 単機能・¥19,800/年</td><td>○ 無料</td><td>△ 高機能ぶん高価格の製品が多い</td></tr>
+      <tr><td>データの扱い</td><td class="me">◎ 完全ローカル・外部送信なし</td><td>○</td><td>△ 外部サーバー生成の製品も</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:11.5px;color:var(--mut);margin-top:8px;">※「一般的な帳票プラグイン」は特定製品ではなく、帳票・印刷系プラグインで見られる一般的な仕様・制約を指します。自由レイアウトの帳票が必要な場合は、帳票専用製品をご検討ください（本製品は「一覧をそのまま」に特化しています）。</p>
+</div></section>
+
+<section id="trial" class="band"><div class="wrap">
+  <div class="sec-kick">FREE TRIAL</div>
+  <h2 class="sec">まず30日、無料で確かめてください。</h2>
+  <div class="steps">
+    <div class="step"><span class="no">1</span><b>ダウンロード</b><p>登録・メールアドレス不要。下のボタンからZIPを保存します。</p></div>
+    <div class="step"><span class="no">2</span><b>kintoneに読み込む</b><p>kintoneシステム管理 → プラグイン → 読み込んで、アプリに追加します。</p></div>
+    <div class="step"><span class="no">3</span><b>全機能を30日</b><p>試用開始は設定を保存した日から。製品版は上書きするだけで、設定はそのまま引き継がれます。</p></div>
+  </div>
+  <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;">
+    <a class="btn btn--amber" href="trials/bst_list-print_v1.1.0_trial.zip" download>試用版をダウンロード ↓</a>
+    <a class="btn btn--ghost" href="https://youtu.be/8DJ7G7xgVoc" target="_blank" rel="noopener">プラグインの追加方法（動画1分）↗</a>
+  </div>
+</div></section>
+
+<section id="price"><div class="wrap">
+  <div class="sec-kick">PRICING</div>
+  <h2 class="sec">シンプルな料金。</h2>
+  <div class="pricebox">
+    <div>
+      <div class="big">¥19,800<span>/年（税込）</span></div>
+      <div class="sub">単品・1ドメイン（アプリ数・ユーザー数は無制限）</div>
+      <a class="btn btn--amber" href="https://buy.stripe.com/00weVccCh5qydndfizdfG0d" target="_blank" rel="noopener" style="width:100%;justify-content:center;">年額プランを購入 ↗</a><!-- STRIPE_LINK:year -->
+      <div class="alt">
+        <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --><span class="mut">　公開中の基本プラグインすべて＋今後の新作も込み</span></div>
+        <div><a href="https://buy.stripe.com/8x2fZgfOtaKS6YP3zRdfG0e" target="_blank" rel="noopener">永久ライセンス ¥98,000 ↗</a><!-- STRIPE_LINK:perp --><span class="mut">　通信が一切ない完全オフライン版・買い切り</span></div>
+        <div class="mut">解約後もお支払い済み期間の満了までは動作し、kintone上のデータ・設定は消えません。<a href="index.html#faq">詳細FAQ →</a></div>
+      </div>
+    </div>
+    <dl class="spec"><dt>主な機能</dt><dd>一覧の印刷（A4・B5・A3×縦横／余白3種／文字サイズ4種）／実寸プレビュー（ズーム付き）／自前ページ分割（行を切らない・全ページ列見出し・ページ番号）／範囲＝絞り込み全件・表示中ページ／列のオン・オフ／連番・数値列の合計行・ゼブラ・罫線3種・省略表示／チェック欄（最大3列・□または空白記入欄）／設定のプリセット保存（12件）＋前回指定の自動記憶</dd><dt>値の表示</dt><dd>数値の桁区切り・単位・小数桁、日時、ユーザー・組織・複数選択などをkintoneの表示に合わせて整形</dd><dt>対応範囲</dt><dd>PC の表形式一覧（カレンダー・カスタマイズビューは対象外）</dd><dt>設定</dt><dd>ノーコード。初期値を決めるだけ（約3分）</dd><dt>動作環境</dt><dd>kintoneスタンダードコース以上／Chrome・Edge 最新安定版</dd><dt>ライセンス</dt><dd>1ドメイン（同一kintoneドメイン内のアプリ数・ユーザー数は無制限）</dd></dl>
+  </div>
+</div></section>
+
+<section class="faq band"><div class="wrap"><div class="sec-kick">FAQ</div><h2 class="sec">よくある質問</h2>
+<details><summary>どの一覧でも印刷できますか？</summary><p>表形式の一覧に対応しています。いま表示している一覧の列・絞り込み・並び順がそのまま印刷に反映されます。列はダイアログでオン／オフでき、印刷対象は「絞り込み全件」と「表示中のページ」から選べます。</p></details>
+<details><summary>ページの途中で行が切れたり、ページ番号が出なかったりしませんか？</summary><p>しません。ページ分割はブラウザ任せにせず、プラグインが行の高さを計測して割り付けます。行は途中で切れず、列見出しは全ページに入り、ページ番号は「1 / 12」形式で印字されます。プレビューは実寸なので、見たままが印刷されます。</p></details>
+<details><summary>棚卸しのチェック表として使えますか？</summary><p>使えます。右端に最大3列のチェック欄を追加でき、□を印刷して手でチェックを付けるか、空白の記入欄にして数量やメモを書き込むかを選べます。設定は「棚卸し用」などの名前を付けて保存でき、次回から呼び出すだけです。</p></details>
+<details><summary>大量のレコードでも大丈夫ですか？</summary><p>既定で最大1,000件（設定で10,000件まで）を取得して印刷できます。件数が多い場合は読み込みの進行状況が表示されます。実用上は、絞り込んでから印刷する運用をおすすめします。</p></details>
+<details><summary>帳票のような自由なレイアウト設計はできますか？</summary><p>本製品は「一覧をそのまま、きれいに印刷する」ことに絞った単機能プラグインです。伝票や請求書のような自由レイアウトの帳票設計は対象外です。そのぶん、テンプレート設計なし・設定3分で使い始められます。</p></details>
+<details><summary>プラグインは外部と通信しますか？</summary><p>業務データの外部送信は一切ありません。印刷処理はすべてブラウザ内で完結します。年額プランのみ、ライセンス確認のために「kintoneドメイン名」を1日1回送信します（レコード内容は送りません）。通信不可の環境には完全オフラインの永久ライセンス版をご用意しています。</p></details>
+</div></section>
+
+<footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="index.html">ホーム</a><a href="index.html#tools">プラグイン</a><a href="icons.html">無料アイコン素材</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="tokushoho.html">特定商取引法に基づく表記</a><a href="privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
+
+<script>
+(function(){
+  // ===== 触れる印刷プレビューデモ =====
+  var PAPERS = { A4:[210,297], B5:[182,257], A3:[297,420] };
+  var ROWS = [
+    ['PC-0012','ノートPC 14型','倉庫A','12'], ['PC-0013','ノートPC 16型','倉庫A','8'],
+    ['MN-0201','モニタ 24型','倉庫B','30'], ['MN-0202','モニタ 27型','倉庫B','16'],
+    ['KB-0301','キーボード','倉庫A','45'], ['MS-0302','マウス','倉庫A','52'],
+    ['DC-0401','ドック','倉庫C','9'], ['CB-0402','ケーブル類','倉庫C','120'],
+    ['TB-0501','タブレット','金庫室','6'], ['PR-0601','プリンタ','倉庫B','3']
+  ];
+  var st = { paper:'A4', orient:'landscape', chk:0, zebra:true };
+  var sheet = document.getElementById('sheet');
+  var stat = document.getElementById('dStat');
+  function seg(id, cb){
+    var el = document.getElementById(id);
+    el.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){
+        el.querySelectorAll('button').forEach(function(x){ x.classList.remove('on'); });
+        b.classList.add('on'); cb(b.getAttribute('data-v'));
+      });
+    });
+  }
+  function render(){
+    var p = PAPERS[st.paper]; var w = p[0], h = p[1];
+    if (st.orient === 'landscape'){ var t = w; w = h; h = t; }
+    var maxW = Math.min(360, (sheet.parentElement.clientWidth || 360) - 36);
+    var scale = Math.min(maxW / w, 300 / h);
+    sheet.style.width = Math.round(w * scale) + 'px';
+    sheet.style.height = Math.round(h * scale) + 'px';
+    // 1ページに入る行数を紙の高さから概算（デモ用の簡易計算）
+    var per = Math.max(4, Math.floor((h - 60) / (st.paper === 'A3' ? 9 : 14)));
+    var shown = ROWS.slice(0, Math.min(ROWS.length, per));
+    var pages = Math.ceil(ROWS.length / per);
+    var chkTh = '', chkTd = '';
+    for (var i = 0; i < st.chk; i++){
+      chkTh += '<th class="chk" style="width:9%;">' + (st.chk === 1 ? '確認' : (i === 0 ? '確認' : '数量')) + '</th>';
+      chkTd += '<td class="chk"><span class="bx"></span></td>';
+    }
+    var rows = shown.map(function(r, i){
+      return '<tr' + (st.zebra && i % 2 ? ' class="zeb"' : '') + '><td style="width:16%;">' + r[0] + '</td><td>' + r[1] + '</td><td style="width:18%;">' + r[2] + '</td><td style="width:12%;text-align:right;">' + r[3] + '</td>' + chkTd + '</tr>';
+    }).join('');
+    sheet.innerHTML =
+      '<div class="sh-ttl">備品一覧（棚卸し）</div>' +
+      '<div class="sh-meta"><span></span><span>2026/07/17 10:00　/　全 ' + ROWS.length + ' 件</span></div>' +
+      '<table><thead><tr><th style="width:16%;">管理番号</th><th>品名</th><th style="width:18%;">保管場所</th><th style="width:12%;">数量</th>' + chkTh + '</tr></thead><tbody>' + rows + '</tbody></table>' +
+      '<div class="sh-ft">1 / ' + pages + '</div>';
+    stat.textContent = st.paper + ' ' + (st.orient === 'landscape' ? '横' : '縦') + '・全' + pages + 'ページ' + (st.chk ? '・チェック欄' + st.chk + '列' : '');
+  }
+  seg('dPaper', function(v){ st.paper = v; render(); });
+  seg('dOrient', function(v){ st.orient = v; render(); });
+  seg('dChk', function(v){ st.chk = parseInt(v, 10); render(); });
+  seg('dZebra', function(v){ st.zebra = v === '1'; render(); });
+  render();
+  window.addEventListener('resize', render);
+})();
+</script>
+</body>
+</html>
