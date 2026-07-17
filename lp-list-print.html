@@ -49,11 +49,12 @@
 html{scroll-behavior:smooth;}
 body{font-family:"Noto Sans JP",sans-serif;background:var(--paper);color:var(--ink);line-height:1.8;}
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
-.hero{padding:56px 0 44px;}
+.hero{padding:52px 0 40px;}
 .eyebrow{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:12px;font-weight:700;padding:6px 16px;color:var(--amber-d);}
 h1{font-size:clamp(28px,4.6vw,44px);font-weight:900;letter-spacing:-.015em;line-height:1.4;margin:16px 0 12px;}
 h1 em{font-style:normal;background:linear-gradient(transparent 62%, var(--amber) 62%);}
-.lead{color:var(--mut);font-size:15px;max-width:680px;}
+.lead{color:var(--mut);font-size:15px;max-width:720px;}
+.lead b{color:var(--ink);}
 .price-row{margin:16px 0 18px;font-weight:900;}
 .price-row .disp{font-size:30px;}
 .price-row small{font-size:12.5px;font-weight:500;color:var(--mut);margin-left:8px;}
@@ -95,32 +96,74 @@ h2.sec{font-size:clamp(21px,3.4vw,30px);font-weight:900;letter-spacing:-.01em;ma
 .cmp td:first-child{font-weight:900;white-space:nowrap;background:#FCFCFA;}
 @media(max-width:820px){.pricebox{grid-template-columns:1fr;}}
 
-/* ===== ヒーロー: 触れる印刷プレビューデモ ===== */
-.demo2{display:grid;grid-template-columns:1fr 1.15fr;gap:16px;margin-top:26px;max-width:900px;}
-@media(max-width:820px){.demo2{grid-template-columns:1fr;}}
-.dcard{background:#fff;border:2px solid var(--amber);border-radius:18px;box-shadow:0 14px 36px rgba(255,184,0,.14);overflow:hidden;}
-.dcard .fh{background:#F7F7F5;border-bottom:1px solid var(--line);padding:10px 16px;font-size:12px;font-weight:900;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;}
-.dcard .fh span{color:var(--mut);font-weight:700;font-size:11px;}
-.dbody{padding:14px 16px;}
-.drow{margin-bottom:12px;}
-.dlabel{font-size:11.5px;font-weight:900;color:#374151;margin-bottom:5px;}
-.dseg{display:inline-flex;border:1px solid #d1d5db;border-radius:9px;overflow:hidden;flex-wrap:wrap;}
-.dseg button{border:none;background:#fff;padding:7px 13px;font-size:12px;cursor:pointer;color:#6b7280;font-family:inherit;font-weight:700;border-right:1px solid #e5e7eb;}
+/* =====================================================================
+   触れるデモ: 製品版ダイアログと同じ項目構成
+   ===================================================================== */
+.demo{margin-top:26px;background:#fff;border:2px solid var(--amber);border-radius:18px;box-shadow:0 16px 40px rgba(255,184,0,.15);overflow:hidden;}
+.demo-hd{background:#F7F7F5;border-bottom:1px solid var(--line);padding:11px 18px;font-size:13px;font-weight:900;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.demo-hd .tag{font-size:10.5px;font-weight:900;color:#fff;background:var(--kb);border-radius:999px;padding:2px 10px;}
+.demo-hd .mut{color:var(--mut);font-weight:700;font-size:11px;margin-left:auto;}
+/* プリセットバー（製品と同じ位置＝ヘッダー） */
+.dpreset{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.dpreset select,.dpreset input{height:29px;padding:0 8px;font-size:12px;font-family:inherit;border:1px solid #d1d5db;border-radius:8px;background:#fff;}
+.dpreset input{width:150px;border-color:var(--kb);display:none;}
+.dpreset button{height:29px;padding:0 11px;font-size:11.5px;font-family:inherit;border:1px solid #d1d5db;border-radius:8px;background:#fff;cursor:pointer;color:#374151;font-weight:700;}
+.dpreset button:hover{background:#f3f4f6;}
+.dpreset button.pok{background:var(--kb);border-color:var(--kb);color:#fff;display:none;}
+.demo-bd{display:grid;grid-template-columns:262px 1fr;min-height:430px;}
+@media(max-width:820px){.demo-bd{grid-template-columns:1fr;}}
+.dside{background:#fff;border-right:1px solid #eceff1;padding:13px 15px;overflow-y:auto;max-height:520px;}
+@media(max-width:820px){.dside{border-right:none;border-bottom:1px solid #eceff1;max-height:none;}}
+.dg{margin-bottom:12px;}
+.dg>label{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;font-weight:900;color:#374151;margin-bottom:5px;}
+.dg .mini{font-size:10.5px;font-weight:700;color:var(--kb);cursor:pointer;}
+.dseg{display:flex;border:1px solid #d1d5db;border-radius:8px;overflow:hidden;}
+.dseg button{flex:1;border:none;background:#fff;padding:6px 2px;font-size:11.5px;cursor:pointer;color:#6b7280;font-family:inherit;border-right:1px solid #e5e7eb;white-space:nowrap;}
 .dseg button:last-child{border-right:none;}
-.dseg button.on{background:var(--kb);color:#fff;}
-.dstat{font-size:12px;font-weight:900;color:var(--ok);margin-top:4px;}
-/* ミニ用紙 */
-.sheetwrap{background:#6b7280;background-image:linear-gradient(45deg,rgba(0,0,0,.06) 25%,transparent 25%),linear-gradient(-45deg,rgba(0,0,0,.06) 25%,transparent 25%);background-size:16px 16px;padding:18px;display:flex;align-items:center;justify-content:center;min-height:320px;}
-.sheet{background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.28);padding:4.5%;display:flex;flex-direction:column;transition:width .2s,height .2s;font-size:6.5px;line-height:1.5;color:#111;}
-.sheet .sh-ttl{font-size:9.5px;font-weight:900;}
-.sheet .sh-meta{display:flex;justify-content:space-between;color:#555;border-bottom:1px solid #333;padding-bottom:2px;margin-bottom:3px;font-size:6px;}
+.dseg button.on{background:var(--kb);color:#fff;font-weight:700;}
+.dcols,.dchecks{border:1px solid #e5e7eb;border-radius:8px;padding:6px 9px;background:#fcfcfc;}
+.dcols label,.dchecks label{display:flex;align-items:center;gap:6px;font-size:11.5px;padding:2.5px 0;cursor:pointer;color:#1f2937;}
+.dcols input,.dchecks input{accent-color:var(--kb);}
+.dchecks{display:grid;grid-template-columns:1fr 1fr;gap:0 8px;}
+/* プレビュー */
+.dmain{display:flex;flex-direction:column;min-width:0;}
+.dbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:11.5px;color:#4b5563;background:#fff;border-bottom:1px solid #eceff1;flex-wrap:wrap;}
+.dbar b{color:var(--ok);}
+.dpage{display:inline-flex;align-items:center;gap:7px;}
+.dpage button{width:24px;height:24px;border-radius:6px;border:1px solid #d1d5db;background:#fff;cursor:pointer;font-size:12px;color:#374151;line-height:1;}
+.dpage button:disabled{opacity:.35;cursor:default;}
+.sheetwrap{flex:1;background:#6b7280;background-image:linear-gradient(45deg,rgba(0,0,0,.06) 25%,transparent 25%),linear-gradient(-45deg,rgba(0,0,0,.06) 25%,transparent 25%);background-size:16px 16px;padding:18px;display:flex;align-items:flex-start;justify-content:center;overflow:auto;}
+.sheet{background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.28);display:flex;flex-direction:column;color:#111;flex:none;}
 .sheet table{width:100%;border-collapse:collapse;table-layout:fixed;}
-.sheet th,.sheet td{border:.5px solid #999;padding:1.5px 3px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.sheet .sh-ttl{font-weight:900;}
+.sheet .sh-meta{display:flex;justify-content:space-between;color:#555;border-bottom:1px solid #333;margin-bottom:3px;}
+.sheet th,.sheet td{padding:1.5px 3px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;text-align:left;}
 .sheet thead th{background:#EFEFEA;border-bottom:1px solid #333;font-weight:700;}
-.sheet .zeb td{background:#F6F6F3;}
+.sheet .num{text-align:right;}
+.sheet .no{text-align:right;color:#666;}
 .sheet .chk{text-align:center;}
-.sheet .bx{display:inline-block;width:5px;height:5px;border:.6px solid #333;border-radius:1px;}
-.sheet .sh-ft{margin-top:auto;text-align:right;color:#555;font-size:6px;padding-top:2px;}
+.sheet .bx{display:inline-block;border:.6px solid #333;border-radius:1px;}
+.sheet tr.sum td{font-weight:900;background:#FFF6DD;border-top:1px solid #333;}
+.sheet .sh-ft{margin-top:auto;text-align:right;color:#555;}
+/* デモ直下CTA */
+.demo-cta{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;background:var(--ink);color:#fff;padding:13px 18px;font-size:13px;font-weight:700;}
+.demo-cta .btn{padding:10px 20px;font-size:13.5px;}
+/* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
+.bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
+.bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
+.bstnav .bstbrand{display:inline-block;background:#252525;color:#FFB800;padding:3px 13px;border-radius:9px;font-weight:900;font-size:18px;text-decoration:none;letter-spacing:.02em;}
+.bstnav .bstitem{font-size:13.5px;font-weight:500;text-decoration:none;color:#6E6E68;}
+.bstnav .bstitem:hover{color:#252525;}
+.bstnav .bstcta{margin-left:auto;background:#252525;color:#fff;font-size:13px;font-weight:700;padding:9px 18px;border-radius:999px;text-decoration:none;white-space:nowrap;}
+.bstfoot{border-top:1px solid #E4E3DB;padding:28px 0 38px;font-size:12.5px;color:#6E6E68;}
+.bstfoot-in{max-width:1080px;margin:0 auto;padding:0 24px;}
+.bstfoot .row{display:flex;gap:18px;flex-wrap:wrap;}
+.bstfoot a{text-decoration:none;color:#6E6E68;}
+.bstfoot a:hover{color:#252525;}
+/* ===== 日本語の折り返し品質（中途半端な改行の防止） ===== */
+h1,h2,h3{text-wrap:balance;}
+p,li,dd,dt{text-wrap:pretty;}
+@supports (word-break: auto-phrase){h1,h2,h3,p{word-break:auto-phrase;}}
 /* =====================================================================
    bstm: モバイル最適化（全ページ共通・スタイルの最後に置くこと）
    ・インラインstyleの2カラムgridは属性セレクタ＋!importantで1カラム化
@@ -177,31 +220,57 @@ body{-webkit-text-size-adjust:100%;}
 <section class="hero"><div class="wrap">
   <span class="eyebrow">kintone プラグイン ・ Ver.1.1 ・ 30日無料試用 ・ ノーコード導入</span>
   <h1>その一覧、そのまま<br><em>きれいに印刷。</em></h1>
-  <p class="lead">ブラウザの「そのまま印刷」は、画面が混ざり、行が切れ、ページ番号も出ません。このプラグインは、いま表示している一覧を<b>印刷のためだけに組み直します</b>。用紙と列を選ぶだけ、プレビューは実寸、行はページの途中で切れません。棚卸しに使える<b>チェック欄</b>付き。</p>
+  <p class="lead">用紙を選び、<b>列を選び</b>、レイアウトを整えて、<b>設定に名前を付けて残す</b>。次からは呼び出して印刷するだけ。棚卸し表も会議資料も、kintoneの一覧から3クリックで紙になります。下のデモは<b>製品版とほぼ同じ操作項目</b>です——まず触ってみてください。</p>
   <div class="price-row"><span class="disp">¥19,800</span><small>/年 税込・1ドメイン（アプリ数・ユーザー数無制限）</small></div>
   <div class="btns">
     <a class="btn btn--amber" href="trials/bst_list-print_v1.1.0_trial.zip" download>30日無料で試す ↓</a>
-    <a class="btn btn--ghost" href="#demo">動きを見る →</a>
+    <a class="btn btn--ghost" href="#demo">デモを触る →</a>
   </div>
 
-  <div class="demo2" id="demo">
-    <div class="dcard">
-      <div class="fh">印刷設定<span>実物と同じ項目を触れます</span></div>
-      <div class="dbody">
-        <div class="drow"><div class="dlabel">用紙</div>
-          <span class="dseg" id="dPaper"><button data-v="A4" class="on">A4</button><button data-v="B5">B5</button><button data-v="A3">A3</button></span></div>
-        <div class="drow"><div class="dlabel">向き</div>
-          <span class="dseg" id="dOrient"><button data-v="landscape" class="on">横</button><button data-v="portrait">縦</button></span></div>
-        <div class="drow"><div class="dlabel">チェック欄（棚卸し用）</div>
-          <span class="dseg" id="dChk"><button data-v="0" class="on">なし</button><button data-v="1">□ 1列</button><button data-v="2">□ 2列</button></span></div>
-        <div class="drow"><div class="dlabel">レイアウト</div>
-          <span class="dseg" id="dZebra"><button data-v="1" class="on">1行おきに色</button><button data-v="0">白のみ</button></span></div>
-        <div class="dstat" id="dStat"></div>
+  <div class="demo" id="demo">
+    <div class="demo-hd">
+      <span class="tag">触れるデモ</span>印刷
+      <span class="dpreset">
+        <select id="dpSel"><option value="">保存した設定…</option></select>
+        <button type="button" id="dpSave">この設定を保存</button>
+        <input type="text" id="dpName" maxlength="16" placeholder="設定の名前">
+        <button type="button" class="pok" id="dpOk">保存</button>
+        <button type="button" id="dpDel" disabled>削除</button>
+      </span>
+      <span class="mut">備品一覧（53件のサンプル）</span>
+    </div>
+    <div class="demo-bd">
+      <div class="dside">
+        <div class="dg"><label>用紙</label><div class="dseg" id="cPaper"><button data-v="A4" class="on">A4</button><button data-v="B5">B5</button><button data-v="A3">A3</button></div></div>
+        <div class="dg"><label>向き</label><div class="dseg" id="cOrient"><button data-v="landscape" class="on">横</button><button data-v="portrait">縦</button></div></div>
+        <div class="dg"><label>余白</label><div class="dseg" id="cMargin"><button data-v="narrow">狭い</button><button data-v="normal" class="on">標準</button><button data-v="wide">広い</button></div></div>
+        <div class="dg"><label>文字サイズ</label><div class="dseg" id="cFont"><button data-v="s">小</button><button data-v="m" class="on">標準</button><button data-v="l">大</button></div></div>
+        <div class="dg"><label>列（6）<span class="mini" id="cColAll">すべて / 解除</span></label>
+          <div class="dcols" id="cCols"></div></div>
+        <div class="dg"><label>レイアウト</label>
+          <div class="dchecks">
+            <label><input type="checkbox" id="cTitle" checked> タイトル</label>
+            <label><input type="checkbox" id="cDate" checked> 印刷日時</label>
+            <label><input type="checkbox" id="cCount" checked> 件数</label>
+            <label><input type="checkbox" id="cPageNo" checked> ページ番号</label>
+            <label><input type="checkbox" id="cZebra" checked> 1行おきに色</label>
+            <label><input type="checkbox" id="cRowNo"> 連番を付ける</label>
+            <label><input type="checkbox" id="cSum"> 数量の合計行</label>
+          </div></div>
+        <div class="dg"><label>罫線</label><div class="dseg" id="cBorder"><button data-v="all" class="on">格子</button><button data-v="h">横線のみ</button><button data-v="none">なし</button></div></div>
+        <div class="dg"><label>チェック欄（右端）</label><div class="dseg" id="cChk"><button data-v="0" class="on">なし</button><button data-v="1">□ 1列</button><button data-v="2">□ 2列</button><button data-v="w">記入欄</button></div></div>
+      </div>
+      <div class="dmain">
+        <div class="dbar">
+          <span id="cStat"></span>
+          <span class="dpage"><button type="button" id="pgPrev">‹</button><span id="pgNo">1 / 1</span><button type="button" id="pgNext">›</button></span>
+        </div>
+        <div class="sheetwrap"><div class="sheet" id="sheet"></div></div>
       </div>
     </div>
-    <div class="dcard" style="border-color:var(--line);box-shadow:0 10px 28px rgba(0,0,0,.10);">
-      <div class="fh">実寸プレビュー（縮小表示）<span>行の割り付け・ページ番号までプラグインが計算</span></div>
-      <div class="sheetwrap"><div class="sheet" id="sheet"></div></div>
+    <div class="demo-cta">
+      いま触った操作が、そのまま製品です。実物はさらに<b>実寸プレビュー</b>と<b>プリセット12件保存</b>。
+      <a class="btn btn--amber" href="trials/bst_list-print_v1.1.0_trial.zip" download>試用版を無料ダウンロード ↓</a>
     </div>
   </div>
 </div></section>
@@ -210,33 +279,33 @@ body{-webkit-text-size-adjust:100%;}
   <div class="sec-kick">PROBLEM</div>
   <h2 class="sec">kintoneの一覧、そのまま印刷すると残念になる。</h2>
   <div class="cards3">
-    <div class="card"><span class="em">🖨</span><b>ブラウザ印刷は「画面ごと」出る</b><p>メニューもヘッダーも混ざり、行はページの途中でぶつ切り。ページ番号も付かず、会議に出せる代物になりません。</p></div>
-    <div class="card"><span class="em">📤</span><b>毎回Excelに書き出して整形</b><p>CSV書き出し→列幅調整→印刷設定。5分の作業でも、毎週・毎月・全員分と積み重なれば大きなムダです。</p></div>
-    <div class="card"><span class="em">📋</span><b>棚卸し・点検は結局「紙」が要る</b><p>現場を歩きながらチェックするのは紙が速い。でもkintoneからチェック表を作る手段がありません。</p></div>
+    <div class="card"><span class="em">🖨</span><b>ブラウザ印刷は「画面ごと」出る</b><p>メニューもヘッダーも混ざり、行はページの途中でぶつ切り。ページ番号も付かず、そのまま会議には出せません。</p></div>
+    <div class="card"><span class="em">📤</span><b>毎回Excelに書き出して整形</b><p>CSV書き出し→不要な列を削除→列幅調整→印刷設定。毎週・毎月・全員分と積み重なる、静かで大きなムダです。</p></div>
+    <div class="card"><span class="em">📋</span><b>棚卸し・点検は結局「紙」が要る</b><p>現場を歩きながらのチェックは紙が速い。でもkintoneからチェック表を作る手段がありません。</p></div>
   </div>
 </div></section>
 
 <section><div class="wrap">
   <div class="sec-kick">SOLUTION</div>
-  <h2 class="sec">印刷のためだけに、一覧を組み直す。</h2>
+  <h2 class="sec">選ぶ。整える。残す。—— 印刷のストレスを全部なくす。</h2>
   <div class="cards3">
-    <div class="card"><span class="em">📐</span><b>プレビュー＝実寸＝印刷結果</b><p>A4・B5・A3×縦横。ダイアログのプレビューは実際の用紙と同じ寸法なので、印刷してから「思ってたのと違う」がありません。</p></div>
-    <div class="card"><span class="em">✂️</span><b>行が途中で切れない</b><p>ページ分割はブラウザ任せにせず、行の高さを計測してプラグインが割り付け。列見出しは全ページに入り、ページ番号は「1 / 12」形式で印字されます。</p></div>
-    <div class="card"><span class="em">🔍</span><b>いまの絞り込み・並び順のまま</b><p>「自分の担当だけ」「今月分だけ」——一覧の絞り込みと並び順がそのまま反映。範囲は絞り込み全件／表示中のページを選べます。</p></div>
-    <div class="card"><span class="em">☑️</span><b>チェック欄で、そのまま棚卸し表に</b><p>右端に最大3列の記入欄を追加。□を印刷して手でチェック、または空白欄に数量やメモを記入。点検表・持ち出し表が一瞬で作れます。</p></div>
-    <div class="card"><span class="em">💾</span><b>設定は保存して呼び出すだけ</b><p>「棚卸し用」「会議配布用」——名前を付けて設定を保存（最大12件）。次回からはボタン→呼び出し→印刷の3クリックです。</p></div>
-    <div class="card"><span class="em">🔒</span><b>データは外に出ない</b><p>印刷処理はすべてブラウザ内で完結。業務データの外部送信は一切ありません。kintone本体の画面にも手を加えないので安全です。</p></div>
+    <div class="card"><span class="em">☑️</span><b>列は、チェックで選ぶだけ</b><p>「社内メモの列は外して顧客に渡したい」——ダイアログで列をオン/オフするだけ。Excelで列を消して整形し直す作業が消えます。</p></div>
+    <div class="card"><span class="em">🎛</span><b>レイアウトは用途に合わせて自在</b><p>用紙（A4・B5・A3）×縦横、余白、文字サイズ、罫線3種、ゼブラ、連番、数値の合計行、タイトル・日時・件数・ページ番号——すべてワンクリックで切替、プレビューに即反映。</p></div>
+    <div class="card"><span class="em">💾</span><b>作った設定は、名前を付けて残せる</b><p>「棚卸し用」「会議配布用」——列の選択からチェック欄まで丸ごと保存（12件）。<b>次からはボタン→呼び出し→印刷の3クリック</b>。前回の指定も自動で記憶します。</p></div>
+    <div class="card"><span class="em">📐</span><b>プレビュー＝実寸＝印刷結果</b><p>プレビューは実際の用紙と同じ寸法。行が途中で切れないよう、ページ分割はプラグインが行の高さを計測して割り付けます。列見出しは全ページに、ページ番号は「1 / 12」形式で。</p></div>
+    <div class="card"><span class="em">📋</span><b>チェック欄で、そのまま棚卸し表</b><p>右端に最大3列の記入欄。□を印刷して手でチェック、または空白欄に数量やメモを記入。点検表・持ち出し表が一瞬で作れます。</p></div>
+    <div class="card"><span class="em">🔒</span><b>データは外に出ない</b><p>印刷処理はすべてブラウザ内で完結し、業務データの外部送信は一切なし。kintone本体の画面にも手を加えません。</p></div>
   </div>
 </div></section>
 
 <section class="band"><div class="wrap">
   <div class="sec-kick">CONFIG</div>
   <h2 class="sec">管理者は初期値を決めるだけ。利用者はダイアログで完結。</h2>
-  <p style="font-size:13.5px;color:var(--mut);max-width:700px;margin-bottom:20px;">設定画面で決めるのは<b>「ダイアログを開いたときの初期値」</b>だけ。よく使う形にしておけば、利用者はボタンを押して「印刷する」の2クリックで済みます。印刷ボタンはkintone標準のアイコンと<b>同じ40pxの高さ・角丸</b>で描画され、既定の配色は画面になじむライトです。</p>
+  <p style="font-size:13.5px;color:var(--mut);max-width:700px;margin-bottom:20px;">設定画面で決めるのは<b>「ダイアログを開いたときの初期値」</b>だけ。よく使う形にしておけば、利用者は<b>ボタンを押して「印刷する」の2クリック</b>で済みます。印刷ボタンはkintone標準のアイコンと同じ40pxの高さ・角丸、既定の配色は画面になじむライトです。</p>
   <div class="steps">
-    <div class="step"><span class="no">1</span><b>ボタンの見た目</b><p>文字・配色（ライト／ダーク／bstゴールド）・アイコンのみ／文字付き・置き場所。プレビューで確認しながら選べます。</p></div>
+    <div class="step"><span class="no">1</span><b>ボタンの見た目</b><p>文字・配色（ライト／ダーク／bstゴールド）・文字付き／アイコンのみ・置き場所。プレビューで確認しながら選べます。</p></div>
     <div class="step"><span class="no">2</span><b>用紙とレイアウトの初期値</b><p>用紙・向き・余白・文字サイズ・罫線。ダイアログで選ばせる用紙を限定することもできます。</p></div>
-    <div class="step"><span class="no">3</span><b>内容の初期値</b><p>タイトル・日時・件数・ページ番号・ゼブラ・連番・合計行・チェック欄。前回の指定の自動記憶もオンにできます。</p></div>
+    <div class="step"><span class="no">3</span><b>内容の初期値</b><p>タイトル・日時・件数・ページ番号・ゼブラ・連番・合計行・チェック欄。前回指定の自動記憶もオンにできます。</p></div>
   </div>
 </div></section>
 
@@ -248,16 +317,17 @@ body{-webkit-text-size-adjust:100%;}
     <thead><tr><th></th><th class="me">一覧印刷プラグイン（bst）</th><th>ブラウザのそのまま印刷</th><th>一般的な帳票プラグイン</th></tr></thead>
     <tbody>
       <tr><td>導入の手間</td><td class="me">◎ 設定3分・テンプレート設計なし</td><td>○ 不要</td><td>△ 帳票テンプレートの設計が必要</td></tr>
-      <tr><td>仕上がり</td><td class="me">◎ 印刷専用に組み直し（画面が混ざらない）</td><td>× メニューやヘッダーが混入・行が切れる</td><td>◎ 設計しだい</td></tr>
+      <tr><td>列の取捨選択</td><td class="me">◎ その場でチェックするだけ</td><td>× 画面のまま</td><td>△ テンプレを作り直し</td></tr>
+      <tr><td>設定の保存・呼び出し</td><td class="me">◎ 名前付きで12件＋前回を自動記憶</td><td>×</td><td>○ テンプレとして保存</td></tr>
+      <tr><td>仕上がり</td><td class="me">◎ 印刷専用に組み直し（画面が混ざらない）</td><td>× メニュー混入・行が切れる</td><td>◎ 設計しだい</td></tr>
       <tr><td>ページ分割・番号</td><td class="me">◎ 行を切らずに割り付け・全ページ見出し・「1 / n」印字</td><td>× ブラウザ任せ</td><td>○ 対応が多い</td></tr>
-      <tr><td>プレビュー</td><td class="me">◎ 実寸（見たまま印刷される）</td><td>△ 印刷直前のみ</td><td>△ 製品による</td></tr>
       <tr><td>棚卸し用チェック欄</td><td class="me">◎ 右端に最大3列（□／空白記入欄）</td><td>×</td><td>△ テンプレ設計しだい</td></tr>
       <tr><td>価格帯</td><td class="me">◎ 単機能・¥19,800/年</td><td>○ 無料</td><td>△ 高機能ぶん高価格の製品が多い</td></tr>
       <tr><td>データの扱い</td><td class="me">◎ 完全ローカル・外部送信なし</td><td>○</td><td>△ 外部サーバー生成の製品も</td></tr>
     </tbody>
   </table>
   </div>
-  <p style="font-size:11.5px;color:var(--mut);margin-top:8px;">※「一般的な帳票プラグイン」は特定製品ではなく、帳票・印刷系プラグインで見られる一般的な仕様・制約を指します。自由レイアウトの帳票が必要な場合は、帳票専用製品をご検討ください（本製品は「一覧をそのまま」に特化しています）。</p>
+  <p style="font-size:11.5px;color:var(--mut);margin-top:8px;">※「一般的な帳票プラグイン」は特定製品ではなく、帳票・印刷系プラグインで見られる一般的な仕様・制約を指します。自由レイアウトの帳票が必要な場合は帳票専用製品をご検討ください（本製品は「一覧をそのまま」に特化しています）。</p>
 </div></section>
 
 <section id="trial" class="band"><div class="wrap">
@@ -273,7 +343,6 @@ body{-webkit-text-size-adjust:100%;}
     <a class="btn btn--ghost" href="https://youtu.be/8DJ7G7xgVoc" target="_blank" rel="noopener">プラグインの追加方法（動画1分）↗</a>
   </div>
 </div></section>
-
 <section id="price"><div class="wrap">
   <div class="sec-kick">PRICING</div>
   <h2 class="sec">シンプルな料金。</h2>
@@ -305,57 +374,202 @@ body{-webkit-text-size-adjust:100%;}
 
 <script>
 (function(){
-  // ===== 触れる印刷プレビューデモ =====
+  // =====================================================================
+  // 触れるデモ: 製品版と同じ設定項目でページ割り付けまで再現
+  // =====================================================================
   var PAPERS = { A4:[210,297], B5:[182,257], A3:[297,420] };
-  var ROWS = [
-    ['PC-0012','ノートPC 14型','倉庫A','12'], ['PC-0013','ノートPC 16型','倉庫A','8'],
-    ['MN-0201','モニタ 24型','倉庫B','30'], ['MN-0202','モニタ 27型','倉庫B','16'],
-    ['KB-0301','キーボード','倉庫A','45'], ['MS-0302','マウス','倉庫A','52'],
-    ['DC-0401','ドック','倉庫C','9'], ['CB-0402','ケーブル類','倉庫C','120'],
-    ['TB-0501','タブレット','金庫室','6'], ['PR-0601','プリンタ','倉庫B','3']
+  var COLS = [
+    { code:'no',  label:'管理番号', w:14 },
+    { code:'name',label:'品名', w:0 },
+    { code:'cat', label:'カテゴリ', w:13 },
+    { code:'loc', label:'保管場所', w:13 },
+    { code:'who', label:'担当者', w:12 },
+    { code:'qty', label:'数量', w:9, num:true }
   ];
-  var st = { paper:'A4', orient:'landscape', chk:0, zebra:true };
-  var sheet = document.getElementById('sheet');
-  var stat = document.getElementById('dStat');
-  function seg(id, cb){
-    var el = document.getElementById(id);
+  var NAMES=['ノートPC 14型','ノートPC 16型','モニタ 24型','モニタ 27型','キーボード','マウス','ドッキングステーション','HDMIケーブル','LANケーブル','タブレット','プリンタ','ラベルライター','Webカメラ','ヘッドセット'];
+  var CATS=['PC','PC','周辺機器','周辺機器','入力機器','入力機器','周辺機器','ケーブル','ケーブル','PC','事務機','事務機','会議','会議'];
+  var LOCS=['倉庫A','倉庫A','倉庫B','倉庫B','倉庫A','倉庫A','倉庫C','倉庫C','倉庫C','金庫室','倉庫B','倉庫B','倉庫A','倉庫A'];
+  var WHOS=['田中','田中','佐藤','佐藤','鈴木','鈴木','田中','高橋','高橋','佐藤','鈴木','田中','高橋','佐藤'];
+  var ROWS = [];
+  for (var i=0;i<53;i++){
+    var j=i%14;
+    ROWS.push({ no:'BH-'+String(1001+i), name:NAMES[j], cat:CATS[j], loc:LOCS[j], who:WHOS[j], qty:(i*7)%48+1 });
+  }
+  var st = { paper:'A4', orient:'landscape', margin:'normal', font:'m',
+             cols:{no:true,name:true,cat:true,loc:true,who:true,qty:true},
+             title:true, date:true, count:true, pageNo:true, zebra:true, rowNo:false, sum:false,
+             border:'all', chk:'0' };
+  var page = 0;
+  var presets = [
+    { id:'p1', name:'棚卸し用', st:{ paper:'A4', orient:'portrait', margin:'normal', font:'m',
+        cols:{no:true,name:true,cat:false,loc:true,who:false,qty:true},
+        title:true, date:true, count:true, pageNo:true, zebra:false, rowNo:true, sum:false, border:'all', chk:'1' } },
+    { id:'p2', name:'会議配布用', st:{ paper:'A4', orient:'landscape', margin:'wide', font:'l',
+        cols:{no:false,name:true,cat:true,loc:true,who:true,qty:true},
+        title:true, date:true, count:true, pageNo:true, zebra:true, rowNo:false, sum:true, border:'h', chk:'0' } }
+  ];
+  var $ = function(id){ return document.getElementById(id); };
+
+  // 列チェックの生成
+  COLS.forEach(function(c){
+    var l=document.createElement('label');
+    l.innerHTML='<input type="checkbox" data-c="'+c.code+'" checked> '+c.label;
+    $('cCols').appendChild(l);
+  });
+
+  function seg(id, key, map){
+    var el=$(id);
     el.querySelectorAll('button').forEach(function(b){
       b.addEventListener('click', function(){
-        el.querySelectorAll('button').forEach(function(x){ x.classList.remove('on'); });
-        b.classList.add('on'); cb(b.getAttribute('data-v'));
+        el.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+        b.classList.add('on');
+        st[key]= map ? map(b.getAttribute('data-v')) : b.getAttribute('data-v');
+        page=0; render();
       });
     });
   }
-  function render(){
-    var p = PAPERS[st.paper]; var w = p[0], h = p[1];
-    if (st.orient === 'landscape'){ var t = w; w = h; h = t; }
-    var maxW = Math.min(360, (sheet.parentElement.clientWidth || 360) - 36);
-    var scale = Math.min(maxW / w, 300 / h);
-    sheet.style.width = Math.round(w * scale) + 'px';
-    sheet.style.height = Math.round(h * scale) + 'px';
-    // 1ページに入る行数を紙の高さから概算（デモ用の簡易計算）
-    var per = Math.max(4, Math.floor((h - 60) / (st.paper === 'A3' ? 9 : 14)));
-    var shown = ROWS.slice(0, Math.min(ROWS.length, per));
-    var pages = Math.ceil(ROWS.length / per);
-    var chkTh = '', chkTd = '';
-    for (var i = 0; i < st.chk; i++){
-      chkTh += '<th class="chk" style="width:9%;">' + (st.chk === 1 ? '確認' : (i === 0 ? '確認' : '数量')) + '</th>';
-      chkTd += '<td class="chk"><span class="bx"></span></td>';
-    }
-    var rows = shown.map(function(r, i){
-      return '<tr' + (st.zebra && i % 2 ? ' class="zeb"' : '') + '><td style="width:16%;">' + r[0] + '</td><td>' + r[1] + '</td><td style="width:18%;">' + r[2] + '</td><td style="width:12%;text-align:right;">' + r[3] + '</td>' + chkTd + '</tr>';
-    }).join('');
-    sheet.innerHTML =
-      '<div class="sh-ttl">備品一覧（棚卸し）</div>' +
-      '<div class="sh-meta"><span></span><span>2026/07/17 10:00　/　全 ' + ROWS.length + ' 件</span></div>' +
-      '<table><thead><tr><th style="width:16%;">管理番号</th><th>品名</th><th style="width:18%;">保管場所</th><th style="width:12%;">数量</th>' + chkTh + '</tr></thead><tbody>' + rows + '</tbody></table>' +
-      '<div class="sh-ft">1 / ' + pages + '</div>';
-    stat.textContent = st.paper + ' ' + (st.orient === 'landscape' ? '横' : '縦') + '・全' + pages + 'ページ' + (st.chk ? '・チェック欄' + st.chk + '列' : '');
+  seg('cPaper','paper'); seg('cOrient','orient'); seg('cMargin','margin'); seg('cFont','font');
+  seg('cBorder','border'); seg('cChk','chk');
+  [['cTitle','title'],['cDate','date'],['cCount','count'],['cPageNo','pageNo'],['cZebra','zebra'],['cRowNo','rowNo'],['cSum','sum']]
+    .forEach(function(p){
+      $(p[0]).addEventListener('change', function(){ st[p[1]]=this.checked; page=0; render(); });
+    });
+  $('cCols').addEventListener('change', function(e){
+    var cb=e.target.closest('input[data-c]'); if(!cb) return;
+    st.cols[cb.getAttribute('data-c')]=cb.checked; page=0; render();
+  });
+  $('cColAll').addEventListener('click', function(){
+    var anyOff=COLS.some(function(c){return !st.cols[c.code];});
+    COLS.forEach(function(c){ st.cols[c.code]=anyOff; });
+    syncUI(); page=0; render();
+  });
+  $('pgPrev').addEventListener('click', function(){ if(page>0){page--; render();} });
+  $('pgNext').addEventListener('click', function(){ page++; render(); });
+
+  function setSeg(id,v){ $(id).querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-v')===String(v)); }); }
+  function syncUI(){
+    setSeg('cPaper',st.paper); setSeg('cOrient',st.orient); setSeg('cMargin',st.margin);
+    setSeg('cFont',st.font); setSeg('cBorder',st.border); setSeg('cChk',st.chk);
+    $('cTitle').checked=st.title; $('cDate').checked=st.date; $('cCount').checked=st.count;
+    $('cPageNo').checked=st.pageNo; $('cZebra').checked=st.zebra; $('cRowNo').checked=st.rowNo; $('cSum').checked=st.sum;
+    $('cCols').querySelectorAll('input[data-c]').forEach(function(cb){ cb.checked=!!st.cols[cb.getAttribute('data-c')]; });
   }
-  seg('dPaper', function(v){ st.paper = v; render(); });
-  seg('dOrient', function(v){ st.orient = v; render(); });
-  seg('dChk', function(v){ st.chk = parseInt(v, 10); render(); });
-  seg('dZebra', function(v){ st.zebra = v === '1'; render(); });
+
+  // ---- プリセット（デモではページ内メモリに保存。実物はブラウザに保存されます） ----
+  function renderPresets(sel){
+    var s=$('dpSel');
+    s.innerHTML='<option value="">保存した設定…</option>'+presets.map(function(p){return '<option value="'+p.id+'">'+p.name+'</option>';}).join('');
+    s.value=sel||''; $('dpDel').disabled=!s.value;
+  }
+  renderPresets('');
+  $('dpSel').addEventListener('change', function(){
+    $('dpDel').disabled=!this.value;
+    var p=presets.filter(function(x){return x.id===this.value;}.bind(this))[0];
+    if(!p) return;
+    st=JSON.parse(JSON.stringify(p.st)); syncUI(); page=0; render();
+  });
+  function naming(show){
+    $('dpName').style.display=show?'':'none';
+    $('dpOk').style.display=show?'':'none';
+    $('dpSave').style.display=show?'none':'';
+    if(show){$('dpName').value=''; $('dpName').focus();}
+  }
+  naming(false);
+  $('dpSave').addEventListener('click', function(){ naming(true); });
+  $('dpName').addEventListener('keydown', function(e){ if(e.key==='Enter') $('dpOk').click(); });
+  $('dpOk').addEventListener('click', function(){
+    var name=($('dpName').value||'').trim()||'マイ設定';
+    var ex=presets.filter(function(x){return x.name===name;})[0];
+    if(ex){ ex.st=JSON.parse(JSON.stringify(st)); }
+    else { ex={id:'p'+Date.now(), name:name, st:JSON.parse(JSON.stringify(st))}; presets.push(ex); }
+    naming(false); renderPresets(ex.id);
+  });
+  $('dpDel').addEventListener('click', function(){
+    var id=$('dpSel').value;
+    presets=presets.filter(function(x){return x.id!==id;});
+    renderPresets('');
+  });
+
+  // ---- 描画（割り付け・ページ番号まで再現） ----
+  function activeCols(){
+    var out=[];
+    if(st.rowNo) out.push({code:'_no',label:'No.',w:7,cls:'no'});
+    COLS.forEach(function(c){ if(st.cols[c.code]) out.push({code:c.code,label:c.label,w:c.w,cls:c.num?'num':''}); });
+    var n = st.chk==='1'?1 : st.chk==='2'?2 : 0;
+    for(var i=0;i<n;i++) out.push({code:'_chk',label:i===0?'確認':'数量',w:8,cls:'chk',box:true});
+    if(st.chk==='w') out.push({code:'_chk',label:'記入欄',w:18,cls:'chk',box:false});
+    return out;
+  }
+  function render(){
+    var p=PAPERS[st.paper], w=p[0], h=p[1];
+    if(st.orient==='landscape'){ var t=w; w=h; h=t; }
+    var host=$('sheet').parentElement;
+    var maxW=Math.min(520,(host.clientWidth||520)-36);
+    var scale=Math.min(maxW/w, 420/h);
+    var W=Math.round(w*scale), H=Math.round(h*scale);
+    var mMM={narrow:8,normal:12,wide:18}[st.margin];
+    var pad=Math.max(4,Math.round(mMM*scale));
+    var fs={s:{A4:6,B5:5.5,A3:7.5},m:{A4:7,B5:6.5,A3:9},l:{A4:8.5,B5:8,A3:11}}[st.font][st.paper]*scale/ (st.paper==='A3'?1.4:1);
+    fs=Math.max(4.5,Math.round(fs*10)/10);
+    var sheet=$('sheet');
+    sheet.style.width=W+'px'; sheet.style.height=H+'px'; sheet.style.padding=pad+'px';
+    sheet.style.fontSize=fs+'px'; sheet.style.lineHeight='1.5';
+    var cols=activeCols();
+    var dataCols=cols.filter(function(c){return c.code!=='_chk'&&c.code!=='_no';});
+    if(!dataCols.length){
+      sheet.innerHTML='<div style="margin:auto;color:#999;font-size:'+Math.max(8,fs+2)+'px;">列を1つ以上選んでください</div>';
+      $('cStat').textContent='列が選ばれていません'; $('pgNo').textContent='- / -';
+      $('pgPrev').disabled=$('pgNext').disabled=true;
+      return;
+    }
+    // 行の割り付け（行高からページ当たり件数を計算）
+    var rowH=fs*1.5+3;
+    var headH=(st.title?fs*1.9:0)+((st.date||st.count||!st.title)?fs*1.6:0)+4;
+    var footH=st.pageNo?fs*1.8:0;
+    var avail=H-pad*2-headH-(fs*1.6+3)-footH;
+    var per=Math.max(2,Math.floor(avail/rowH));
+    var totalRows=ROWS.length;
+    var pages=Math.max(1,Math.ceil(totalRows/per));
+    if(st.sum && totalRows-(pages-1)*per >= per) pages++; // 合計行が入らない場合の追いページ（簡易）
+    if(page>pages-1) page=pages-1;
+    var slice=ROWS.slice(page*per,(page+1)*per);
+    // 幅の按分
+    var fixed=cols.reduce(function(a,c){return a+(c.w||0);},0);
+    var widths=cols.map(function(c){ return c.w||Math.max(10,100-fixed); });
+    var bAll=st.border==='all', bNone=st.border==='none';
+    var cellB=bNone?'border:none;':(bAll?'border:.6px solid #999;':'border:none;border-bottom:.6px solid #ccc;');
+    var thB=bNone?'border:none;border-bottom:1px solid #333;':(bAll?'border:.6px solid #999;border-bottom:1px solid #333;':'border:none;border-bottom:1px solid #333;');
+    var bxs=Math.max(4,Math.round(fs*0.9));
+    function td(c,r,ri){
+      if(c.code==='_chk') return '<td class="chk" style="'+cellB+'">'+(c.box?'<span class="bx" style="width:'+bxs+'px;height:'+bxs+'px;"></span>':'')+'</td>';
+      if(c.code==='_no') return '<td class="no" style="'+cellB+'">'+(page*per+ri+1)+'</td>';
+      var v=r[c.code];
+      return '<td class="'+c.cls+'" style="'+cellB+'">'+v+'</td>';
+    }
+    var thead='<tr>'+cols.map(function(c,i){return '<th class="'+c.cls+'" style="width:'+widths[i]+'%;'+thB+'">'+c.label+'</th>';}).join('')+'</tr>';
+    var body=slice.map(function(r,ri){
+      return '<tr'+(st.zebra&&ri%2?' style="background:#F6F6F3;"':'')+'>'+cols.map(function(c){return td(c,r,ri);}).join('')+'</tr>';
+    }).join('');
+    if(st.sum && page===pages-1){
+      var total=ROWS.reduce(function(a,r){return a+r.qty;},0);
+      body+='<tr class="sum">'+cols.map(function(c,i){
+        if(i===0) return '<td style="'+cellB+'">合計</td>';
+        if(c.code==='qty') return '<td class="num" style="'+cellB+'">'+total.toLocaleString()+'</td>';
+        return '<td class="'+(c.cls==='chk'?'chk':c.cls)+'" style="'+cellB+'"></td>';
+      }).join('')+'</tr>';
+    }
+    var meta=[];
+    if(st.date) meta.push('2026/07/17 10:00');
+    if(st.count) meta.push('全 '+totalRows+' 件');
+    sheet.innerHTML=
+      (st.title?'<div class="sh-ttl" style="font-size:'+(fs*1.35)+'px;">備品一覧（棚卸し）</div>':'')+
+      ((meta.length||!st.title)?'<div class="sh-meta" style="font-size:'+(fs*0.9)+'px;padding-bottom:2px;"><span>'+(st.title?'':'備品一覧（棚卸し）')+'</span><span>'+meta.join('　/　')+'</span></div>':'')+
+      '<table><thead>'+thead+'</thead><tbody>'+body+'</tbody></table>'+
+      (st.pageNo?'<div class="sh-ft" style="font-size:'+(fs*0.9)+'px;">'+(page+1)+' / '+pages+'</div>':'');
+    $('cStat').innerHTML='<b>'+totalRows+'件 / '+pages+'ページ</b>（'+st.paper+' '+(st.orient==='landscape'?'横':'縦')+'・'+cols.filter(function(c){return c.code!=='_chk';}).length+'列'+(st.chk!=='0'?'・チェック欄':'')+'）';
+    $('pgNo').textContent=(page+1)+' / '+pages;
+    $('pgPrev').disabled=page<=0; $('pgNext').disabled=page>=pages-1;
+  }
   render();
   window.addEventListener('resize', render);
 })();
