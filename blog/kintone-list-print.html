@@ -58,6 +58,44 @@ a{color:var(--blue);}
 table.tb{border-collapse:collapse;width:100%;font-size:13px;margin:0 0 16px;background:#fff;}
 table.tb th,table.tb td{border:1px solid var(--line);padding:8px 12px;text-align:left;line-height:1.7;}
 table.tb th{background:#F7F7F5;}
+/* ===== ブログ組版強化（読みやすさ・余白・キーメッセージ・ミニデモ） ===== */
+p{margin:0 0 18px;}
+h2{margin-top:48px;}
+h3{margin-top:30px;}
+.key{margin:28px 0;padding:18px 22px;border-left:6px solid var(--amber);background:#fff;border-radius:0 12px 12px 0;font-size:16.5px;font-weight:900;line-height:2.05;letter-spacing:.01em;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.key small{display:block;font-weight:500;font-size:12.5px;color:var(--mut);margin-top:8px;line-height:1.8;}
+.opt3{display:flex;flex-direction:column;gap:10px;margin:14px 0 18px;}
+.opt3 .o{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 15px;font-size:13.5px;line-height:1.85;}
+.opt3 .o b{color:var(--amber-d);margin-right:6px;}
+.adm{border:2px solid var(--amber);border-radius:14px;background:#fff;overflow:hidden;margin:26px 0;box-shadow:0 10px 26px rgba(255,184,0,.10);}
+.adm-hd{background:#F7F7F5;border-bottom:1px solid var(--line);padding:9px 14px;font-size:12px;font-weight:900;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.adm-hd .tag{font-size:10px;color:#fff;background:#3498db;border-radius:999px;padding:2px 9px;flex:none;}
+.adm-bd{padding:14px 16px;}
+.adm-seg{display:inline-flex;border:1px solid #d1d5db;border-radius:8px;overflow:hidden;margin:0 8px 12px 0;flex-wrap:wrap;}
+.adm-seg button{border:none;background:#fff;padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;color:#6b7280;font-family:inherit;border-right:1px solid #e5e7eb;}
+.adm-seg button:last-child{border-right:none;}
+.adm-seg button.on{background:#3498db;color:#fff;}
+.adm-note{font-size:11.5px;color:var(--mut);margin-top:8px;}
+
+.pd-wrap{display:flex;justify-content:center;background:#6b7280;padding:16px;border-radius:10px;}
+.pd-sheet{background:#fff;width:250px;height:180px;box-shadow:0 4px 14px rgba(0,0,0,.3);padding:10px 12px;font-size:7px;line-height:1.6;color:#111;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.pd-chrome{background:#e5e7eb;margin:-10px -12px 6px;padding:3px 8px;font-size:6px;color:#555;}
+.pd-menu{background:#3498db;color:#fff;padding:2px 6px;margin:0 -12px 4px;font-size:6px;}
+.pd-tb{width:100%;border-collapse:collapse;}
+.pd-tb th,.pd-tb td{border:.5px solid #aaa;padding:1px 3px;text-align:left;}
+.pd-tb th{background:#EFEFEA;}
+.pd-cut{position:absolute;left:0;right:0;bottom:0;height:14px;background:linear-gradient(rgba(255,255,255,0),#fff);}
+.pd-cutrow{height:7px;overflow:hidden;}
+.pd-ttl{font-size:9px;font-weight:900;}
+.pd-meta{display:flex;justify-content:space-between;color:#555;font-size:6px;border-bottom:1px solid #333;margin-bottom:3px;}
+.pd-ft{margin-top:auto;text-align:right;color:#555;font-size:6px;}
+.pd-zeb{background:#F6F6F3;}
+.pd-chk{text-align:center;}
+.pd-bx{display:inline-block;width:5px;height:5px;border:.6px solid #333;border-radius:1px;}
+.pd-cap{font-size:12px;font-weight:900;margin-top:10px;}
+.pd-cap.ng{color:#991b1b;}
+.pd-cap.ok{color:#18794E;}
+
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -135,7 +173,8 @@ body{-webkit-text-size-adjust:100%;}
 <p>「kintoneの一覧を印刷したら、メニューまで印刷されて表が途中で切れた」——kintoneには一覧画面を印刷する機能がなく、ブラウザの印刷をそのまま使うとほぼ確実にこうなります。この記事では、なぜ崩れるのかという原因と、標準機能でできる回避策、そして一覧を「そのまま、きれいに」印刷したい場合の方法を整理します。</p>
 
 <h2>原因: kintoneに「一覧の印刷機能」は存在しない</h2>
-<p>意外に知られていませんが、kintoneが標準で用意している印刷は<b>レコード単体の「レコードを印刷する」だけ</b>です。一覧（表）を印刷用に整える機能はありません。そのためブラウザの印刷（Ctrl+P）を使うことになりますが、ブラウザ印刷は「画面をそのまま紙にする」機能なので、次の問題が必ず起きます。</p>
+<div class="key">kintoneが標準で印刷できるのは、レコード「1件ずつ」だけ。<br>一覧（表）を印刷する機能は、そもそも存在しません。</div>
+<p>そのためブラウザの印刷（Ctrl+P）を使うことになります。しかしブラウザ印刷は「画面をそのまま紙にする」機能です。結果として、次の問題が必ず起きます。</p>
 <ul class="plain">
 <li>ヘッダーやメニューなど、画面の部品が印刷物に混ざる</li>
 <li>表がページの途中でぶつ切りになり、行が泣き別れする</li>
@@ -144,9 +183,18 @@ body{-webkit-text-size-adjust:100%;}
 <li>上から順の連番も振れない</li>
 </ul>
 
+<div class="adm"><div class="adm-hd"><span class="tag">目で確認</span>同じ一覧が、印刷方法でこう変わる</div>
+<div class="adm-bd">
+<span class="adm-seg" id="pdMode"><button data-v="ng" class="on">ブラウザでそのまま印刷</button><button data-v="ok">一覧印刷プラグイン</button></span>
+<div class="pd-wrap"><div class="pd-sheet" id="pdSheet"></div></div>
+<div id="pdCap"></div>
+</div></div>
+
+
 <h2>標準機能でできる回避策</h2>
 <h3>1. CSVに書き出してExcelで整形する</h3>
-<p>最も一般的な方法です。一覧をCSVで書き出し、Excelで不要な列を消し、列幅を整え、印刷設定をする。確実にきれいになりますが、<b>1回あたり10〜15分の作業が毎回発生</b>します。週次・月次の定例資料や棚卸しのたびにこの作業が要るなら、コストは小さくありません。</p>
+<p>最も一般的な方法です。一覧をCSVで書き出し、Excelで不要な列を消し、列幅を整え、印刷設定をする。確実にきれいになります。</p>
+<p>ただし、<b>1回あたり10〜15分の作業が毎回発生</b>します。週次・月次の定例資料や棚卸しのたびにこの作業が要るなら、コストは小さくありません。</p>
 <h3>2. レコード単体の印刷でしのぐ</h3>
 <p>「レコードを印刷する」は1件ずつなら整った出力になります。ただし一覧をまとめて出す用途には使えません。</p>
 <h3>3. 印刷の代わりに画面共有・PDF回覧にする</h3>
@@ -154,7 +202,12 @@ body{-webkit-text-size-adjust:100%;}
 
 <h2>一覧を「そのまま、きれいに」印刷する方法</h2>
 <p>Excel整形の時間を毎回払いたくない、棚卸しのチェック表をkintoneから直接作りたい——そうなったら、一覧印刷に特化したプラグインが選択肢になります。</p>
-<p>bstの<a href="/lp-list-print.html">一覧印刷プラグイン</a>は、一覧画面のボタンから印刷ダイアログを開き、<b>A4・B5・A3×縦横を選んで、列をチェックで取捨選択するだけ</b>。プレビューは実際の用紙と同じ寸法で、行がページの途中で切れないようプラグインが割り付けを計算します。列見出しは全ページに入り、ページ番号は「1 / 12」形式で印字。連番や数値列の合計行もワンクリックです。</p>
+<p>bstの<a href="/lp-list-print.html">一覧印刷プラグイン</a>は、一覧画面のボタンから印刷ダイアログを開いて使います。操作は3つだけです。</p>
+<div class="opt3">
+<div class="o"><b>①用紙を選ぶ</b>A4・B5・A3×縦横。プレビューは実際の用紙と同じ寸法（実寸）です。</div>
+<div class="o"><b>②列をチェックで選ぶ</b>不要な列を外すだけ。Excelで列を消す作業が要らなくなります。</div>
+<div class="o"><b>③印刷する</b>行が途中で切れないよう割り付けを自動計算。列見出しは全ページに入り、ページ番号は「1 / 12」形式、連番や合計行もワンクリックです。</div>
+</div>
 <p>棚卸し用途では、<b>右端にチェック欄（□または空白の記入欄）を最大3列追加</b>できます。「棚卸し用」「会議配布用」のように設定へ名前を付けて保存できるので、2回目からは呼び出して印刷するだけ。Excel整形の15分が3クリックになります。印刷処理はすべてブラウザ内で完結し、業務データの外部送信はありません。</p>
 <table class="tb">
 <tr><th></th><th>ブラウザでそのまま印刷</th><th>CSV→Excel整形</th><th>一覧印刷プラグイン</th></tr>
@@ -175,5 +228,35 @@ body{-webkit-text-size-adjust:100%;}
 
 </div></main>
 <footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="/index.html">ホーム</a><a href="/index.html#tools">プラグイン</a><a href="/blog/index.html">ブログ</a><a href="/icons.html">無料アイコン素材</a><a href="/about.html">bstについて</a><a href="/news.html">お知らせ</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="/tokushoho.html">特定商取引法に基づく表記</a><a href="/privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
+<script>
+(function(){
+  var sheet=document.getElementById('pdSheet'), cap=document.getElementById('pdCap');
+  var ROWS=[['BH-1001','ノートPC','倉庫A','12'],['BH-1002','モニタ','倉庫B','30'],['BH-1003','キーボード','倉庫A','45'],['BH-1004','ドック','倉庫C','9'],['BH-1005','タブレット','金庫室','6']];
+  function ng(){
+    var rows=ROWS.slice(0,3).map(function(r){return '<tr><td>'+r.join('</td><td>')+'</td></tr>';}).join('');
+    sheet.innerHTML='<div class="pd-chrome">https://example.cybozu.com/k/12/ — kintone</div>'+
+      '<div class="pd-menu">☰ アプリ: 備品管理　［絞り込み▼］［＋］</div>'+
+      '<table class="pd-tb"><tr><th>管理番号</th><th>品名</th><th>場所</th><th>数量</th></tr>'+rows+
+      '<tr><td class="pd-cutrow">BH-1004</td><td class="pd-cutrow">ドック</td><td class="pd-cutrow">倉庫C</td><td class="pd-cutrow">9</td></tr></table>'+
+      '<div class="pd-cut"></div>';
+    cap.innerHTML='<div class="pd-cap ng">✕ メニューが混ざる／行が途中で切れる／ページ番号なし</div>';
+  }
+  function ok(){
+    var rows=ROWS.map(function(r,i){return '<tr'+(i%2?' class="pd-zeb"':'')+'><td>'+(i+1)+'</td><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td style="text-align:right;">'+r[3]+'</td><td class="pd-chk"><span class="pd-bx"></span></td></tr>';}).join('');
+    sheet.innerHTML='<div class="pd-ttl">備品一覧（棚卸し）</div>'+
+      '<div class="pd-meta"><span></span><span>2026/07/22　全 53 件</span></div>'+
+      '<table class="pd-tb"><tr><th>No.</th><th>管理番号</th><th>品名</th><th>場所</th><th>数量</th><th>確認</th></tr>'+rows+'</table>'+
+      '<div class="pd-ft">1 / 3</div>';
+    cap.innerHTML='<div class="pd-cap ok">○ タイトル・連番・チェック欄・ページ番号つき。行は切れません</div>';
+  }
+  document.getElementById('pdMode').addEventListener('click', function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on');
+    (b.getAttribute('data-v')==='ng'?ng:ok)();
+  });
+  ng();
+})();
+</script>
 </body>
 </html>

@@ -58,6 +58,34 @@ a{color:var(--blue);}
 table.tb{border-collapse:collapse;width:100%;font-size:13px;margin:0 0 16px;background:#fff;}
 table.tb th,table.tb td{border:1px solid var(--line);padding:8px 12px;text-align:left;line-height:1.7;}
 table.tb th{background:#F7F7F5;}
+
+/* ===== ブログ組版強化（読みやすさ・余白・キーメッセージ・ミニデモ） ===== */
+p{margin:0 0 18px;}
+h2{margin-top:48px;}
+h3{margin-top:30px;}
+.key{margin:28px 0;padding:18px 22px;border-left:6px solid var(--amber);background:#fff;border-radius:0 12px 12px 0;font-size:16.5px;font-weight:900;line-height:2.05;letter-spacing:.01em;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.key small{display:block;font-weight:500;font-size:12.5px;color:var(--mut);margin-top:8px;line-height:1.8;}
+.opt3{display:flex;flex-direction:column;gap:10px;margin:14px 0 18px;}
+.opt3 .o{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 15px;font-size:13.5px;line-height:1.85;}
+.opt3 .o b{color:var(--amber-d);margin-right:6px;}
+.adm{border:2px solid var(--amber);border-radius:14px;background:#fff;overflow:hidden;margin:26px 0;box-shadow:0 10px 26px rgba(255,184,0,.10);}
+.adm-hd{background:#F7F7F5;border-bottom:1px solid var(--line);padding:9px 14px;font-size:12px;font-weight:900;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.adm-hd .tag{font-size:10px;color:#fff;background:#3498db;border-radius:999px;padding:2px 9px;flex:none;}
+.adm-bd{padding:14px 16px;}
+.adm-seg{display:inline-flex;border:1px solid #d1d5db;border-radius:8px;overflow:hidden;margin:0 8px 12px 0;flex-wrap:wrap;}
+.adm-seg button{border:none;background:#fff;padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;color:#6b7280;font-family:inherit;border-right:1px solid #e5e7eb;}
+.adm-seg button:last-child{border-right:none;}
+.adm-seg button.on{background:#3498db;color:#fff;}
+.adm-note{font-size:11.5px;color:var(--mut);margin-top:8px;}
+
+.sd-rec{border:1px solid var(--line);border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;font-size:13px;background:#fff;}
+.sd-rec b{font-family:ui-monospace,Consolas,monospace;}
+.sd-hit{border-color:#18794E;background:#F0FAF4;}
+.sd-hit .st{color:#18794E;font-weight:900;}
+.sd-miss{opacity:.55;}
+.sd-miss .st{color:#991b1b;font-weight:900;}
+.sd-sum{font-size:12.5px;font-weight:900;margin-top:10px;}
+
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -132,15 +160,27 @@ body{-webkit-text-size-adjust:100%;}
 <h1>kintoneの検索で部分一致ができない？<br>「あるはずのレコードが出てこない」原因と対処法</h1>
 <p class="meta">2026-07-21 ／ カテゴリ: 検索・絞り込み</p>
 
-<p>「見積番号の下4桁で検索したのに、0件と表示される」「データは確かにあるのに、検索に出てこない」——kintoneを使い始めた方が最初につまずくのが、この検索の挙動です。結論から言うと、これは不具合ではなく<b>kintoneの絞り込みが原則「前方一致」で動く仕様</b>によるものです。この記事では、原因の正確な理解と、標準機能でできる回避策、そして根本的に解決したい場合の選択肢を、実務の順番で解説します。</p>
+<p>「見積番号の一部で検索したのに、0件と表示される」「データは確かにあるのに、検索に出てこない」——kintoneを使い始めた方が最初につまずくのが、この検索の挙動です。</p>
+<div class="key">あるはずのレコードが出てこないのは、不具合でも操作ミスでもありません。<br>kintoneの検索が「前方一致」で動く、仕様の問題です。<small>この記事では、原因の正確な理解 → 標準機能でできる回避策 → 根本的に解決する選択肢、の順で解説します。</small></div>
 
 <h2>原因: kintoneの絞り込みは「前方一致」が原則</h2>
-<p>kintoneの一覧画面の絞り込みで、文字列（1行）フィールドに対して「〜を含む」条件を指定した場合でも、内部の検索は<b>単語の先頭からの一致</b>を基本に動作します。たとえばレコードに「EST-2026-0142」という見積番号が入っているとき、「EST」や「EST-2026」ではヒットしますが、<b>「0142」だけではヒットしません</b>。番号や型番のように記号で連結された値の「途中」は、検索の起点にならないためです。</p>
+<p>kintoneの一覧画面の絞り込みで「〜を含む」条件を指定しても、内部の検索は<b>単語の先頭からの一致</b>を基本に動作します。</p>
+<p>たとえば「EST-2026-0142」という見積番号なら、「EST」や「2026」のように区切りの直後から始まる文字では見つかります。しかし「142」のような単語の途中の文字は、検索の起点にならないためヒットしません。覚えている断片が、ちょうど区切り位置から始まっているとは限らない——ここが実務でつまずく理由です。</p>
+
+<div class="adm"><div class="adm-hd"><span class="tag">触って確認</span>「EST-2026-0142」を探せるか？（検索方式と検索語を切り替え）</div>
+<div class="adm-bd">
+<span class="adm-seg" id="sdMode"><button data-v="std" class="on">kintone標準（前方一致）</button><button data-v="part">部分一致検索</button></span>
+<span class="adm-seg" id="sdQ"><button data-v="EST" class="on">「EST」</button><button data-v="2026">「2026」</button><button data-v="142">「142」</button></span>
+<div class="sd-rec" id="sdRec"><b>EST-2026-0142</b><span class="st" id="sdSt"></span></div>
+<div class="sd-sum" id="sdSum"></div>
+<div class="adm-note">※標準の検索は「区切り（ハイフン等）の直後」からは一致しますが、単語の途中からは一致しません。</div>
+</div></div>
+
 <p>これはkintoneの全文検索の索引の作り方に由来する挙動で、ユーザー側の操作ミスではありません。「あるはずなのに出ない」と感じたら、まず前方一致を疑ってください。</p>
 
 <h2>標準機能でできる回避策</h2>
 <h3>1. 検索の起点になる単位で入力を区切る</h3>
-<p>「EST-2026-0142」のように<b>ハイフンで区切って登録されている場合、区切りの直後は検索の起点になります</b>。運用でフォーマットを統一できるなら、これが最も安価な対策です。ただし「0142」のような末尾検索は区切り位置に依存し、既存データの一括修正も必要になります。</p>
+<p>「EST-2026-0142」のように<b>ハイフンで区切って登録されている場合、区切りの直後は検索の起点になります</b>。運用でフォーマットを統一できるなら、これが最も安価な対策です。ただし、覚えている断片が区切りから始まるとは限らず、既存データの一括修正も必要になります。</p>
 <h3>2. 絞り込み条件を工夫する</h3>
 <p>探す範囲があらかじめ限定できるなら、日付や担当者など<b>他のフィールドで先に絞り込み、目視で探す</b>方法が現実的です。件数が数十件までなら十分機能しますが、電話対応中など時間がない場面では厳しくなります。</p>
 <h3>3. アプリ横断の全文検索を使う</h3>
@@ -148,15 +188,21 @@ body{-webkit-text-size-adjust:100%;}
 
 <h2>根本的に解決するなら: 部分一致検索という選択肢</h2>
 <p>回避策で運用が回るならそれで十分です。ただ、<b>「番号や型番の一部で探す」ことが日常業務になっている</b>場合——問い合わせ対応、在庫照会、図面検索など——は、検索そのものを部分一致にする方が確実です。</p>
-<p>bstの<a href="/lp-partial-search.html">部分一致検索プラグイン</a>は、一覧画面に検索バーを1本追加し、<b>含まれる文字でのヒット・スペース区切りのAND検索・複数フィールドの横断検索</b>を可能にします。全角半角・大文字小文字の違いも吸収し、サブテーブルの中身や添付ファイル名まで対象にできます。検索処理はブラウザ内で完結し、業務データが外部に送信されることはありません。</p>
+<p>bstの<a href="/lp-partial-search.html">部分一致検索プラグイン</a>は、一覧画面に検索バーを1本追加します。できるようになることは3つです。</p>
+<div class="opt3">
+<div class="o"><b>①含む文字でヒット</b>単語の途中でも末尾でも見つかります。全角半角・大文字小文字の違いも吸収します。</div>
+<div class="o"><b>②スペース区切りのAND検索</b>「九州 2026」のように、記憶の断片を並べて絞り込めます。</div>
+<div class="o"><b>③フィールドを横断して一度に検索</b>サブテーブルの中身や添付ファイル名まで対象にできます。</div>
+</div>
+<p>検索処理はブラウザ内で完結し、業務データが外部に送信されることはありません。</p>
 <table class="tb">
 <tr><th></th><th>kintone標準の絞り込み</th><th>部分一致検索プラグイン</th></tr>
-<tr><td>「0142」で EST-2026-0142</td><td>ヒットしない</td><td>ヒットする</td></tr>
+<tr><td>「142」で EST-2026-0142</td><td>ヒットしない</td><td>ヒットする</td></tr>
 <tr><td>複数フィールド横断</td><td>条件を1つずつ指定</td><td>まとめて一度に検索</td></tr>
 <tr><td>全角半角・大小文字</td><td>区別される場合あり</td><td>吸収する</td></tr>
 <tr><td>サブテーブル・添付名</td><td>対象にしにくい</td><td>対象にできる</td></tr>
 </table>
-<div class="cta"><b>30日、無料で試せます（登録不要）</b><br>製品ページには実際に文字を打って試せるデモがあります。「0142」のもどかしさが消える感覚を体験してみてください。<br><a class="b" href="/lp-partial-search.html">部分一致検索プラグインを見る →</a></div>
+<div class="cta"><b>30日、無料で試せます（登録不要）</b><br>製品ページには実際に文字を打って試せるデモがあります。「あるはずなのに出ない」のもどかしさが消える感覚を体験してみてください。<br><a class="b" href="/lp-partial-search.html">部分一致検索プラグインを見る →</a></div>
 
 <h2>まとめ</h2>
 <ul class="plain">
@@ -168,5 +214,32 @@ body{-webkit-text-size-adjust:100%;}
 
 </div></main>
 <footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="/index.html">ホーム</a><a href="/index.html#tools">プラグイン</a><a href="/blog/index.html">ブログ</a><a href="/icons.html">無料アイコン素材</a><a href="/about.html">bstについて</a><a href="/news.html">お知らせ</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="/tokushoho.html">特定商取引法に基づく表記</a><a href="/privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
+<script>
+(function(){
+  var mode='std', q='EST';
+  var TOKENS=['EST','2026','0142'], VALUE='EST-2026-0142';
+  function seg(id, cb){
+    var el=document.getElementById(id);
+    el.addEventListener('click', function(e){
+      var b=e.target.closest('button'); if(!b) return;
+      el.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on'); cb(b.getAttribute('data-v'));
+    });
+  }
+  function render(){
+    var hit = mode==='part' ? VALUE.indexOf(q)>=0
+      : TOKENS.some(function(t){ return t.indexOf(q)===0; });
+    var rec=document.getElementById('sdRec');
+    rec.className='sd-rec '+(hit?'sd-hit':'sd-miss');
+    document.getElementById('sdSt').textContent = hit?'✔ ヒット':'✕ 0件';
+    document.getElementById('sdSum').textContent = hit
+      ? '「'+q+'」で見つかりました（'+(mode==='part'?'含む文字で一致':'区切り直後から一致')+'）'
+      : '「'+q+'」では見つかりません — 単語の途中の文字は検索の起点にならないためです';
+  }
+  seg('sdMode', function(v){mode=v;render();});
+  seg('sdQ', function(v){q=v;render();});
+  render();
+})();
+</script>
 </body>
 </html>

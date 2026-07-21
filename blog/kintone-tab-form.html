@@ -69,6 +69,38 @@ table.tb th{background:#F7F7F5;white-space:nowrap;}
 details.faq{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 18px;margin-bottom:10px;}
 details.faq summary{font-weight:700;font-size:14px;cursor:pointer;}
 details.faq p{font-size:13.5px;color:#444;margin:8px 0 0;}
+/* ===== ブログ組版強化（読みやすさ・余白・キーメッセージ・ミニデモ） ===== */
+p{margin:0 0 18px;}
+h2{margin-top:48px;}
+h3{margin-top:30px;}
+.key{margin:28px 0;padding:18px 22px;border-left:6px solid var(--amber);background:#fff;border-radius:0 12px 12px 0;font-size:16.5px;font-weight:900;line-height:2.05;letter-spacing:.01em;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.key small{display:block;font-weight:500;font-size:12.5px;color:var(--mut);margin-top:8px;line-height:1.8;}
+.opt3{display:flex;flex-direction:column;gap:10px;margin:14px 0 18px;}
+.opt3 .o{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 15px;font-size:13.5px;line-height:1.85;}
+.opt3 .o b{color:var(--amber-d);margin-right:6px;}
+.adm{border:2px solid var(--amber);border-radius:14px;background:#fff;overflow:hidden;margin:26px 0;box-shadow:0 10px 26px rgba(255,184,0,.10);}
+.adm-hd{background:#F7F7F5;border-bottom:1px solid var(--line);padding:9px 14px;font-size:12px;font-weight:900;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.adm-hd .tag{font-size:10px;color:#fff;background:#3498db;border-radius:999px;padding:2px 9px;flex:none;}
+.adm-bd{padding:14px 16px;}
+.adm-seg{display:inline-flex;border:1px solid #d1d5db;border-radius:8px;overflow:hidden;margin:0 8px 12px 0;flex-wrap:wrap;}
+.adm-seg button{border:none;background:#fff;padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;color:#6b7280;font-family:inherit;border-right:1px solid #e5e7eb;}
+.adm-seg button:last-child{border-right:none;}
+.adm-seg button.on{background:#3498db;color:#fff;}
+.adm-note{font-size:11.5px;color:var(--mut);margin-top:8px;}
+
+.td-form{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;}
+.td-scroll{height:150px;overflow-y:auto;padding:8px 12px;}
+.td-f{display:flex;gap:8px;align-items:center;padding:4.5px 0;border-bottom:1px dashed #eee;font-size:12px;}
+.td-f .lb{width:110px;color:#374151;font-weight:700;flex:none;}
+.td-f .bx{flex:1;height:18px;border:1px solid #d5dee3;border-radius:5px;background:#fafafa;}
+.td-f .req{color:#c0392b;font-size:10px;font-weight:900;}
+.td-tabs{display:flex;gap:2px;background:#f3f6f8;padding:6px 8px 0;border-bottom:1px solid var(--line);}
+.td-tab{border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0;background:#fff;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;color:#6b7280;position:relative;font-family:inherit;}
+.td-tab.on{color:#1f2937;border-color:#3498db;}
+.td-badge{position:absolute;top:-6px;right:-6px;background:#c0392b;color:#fff;font-size:9px;font-weight:900;border-radius:999px;padding:1px 5px;}
+.td-body{padding:8px 12px;}
+.td-cap{font-size:11.5px;color:var(--mut);margin-top:8px;}
+
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -155,7 +187,13 @@ body{-webkit-text-size-adjust:100%;}
 <li>失敗しないタブ設計のコツと、導入前に確認すべきポイント</li>
 </ul></div>
 
-<div class="point"><b>先に結論</b>：kintoneの標準機能に「タブ」はありません。グループフィールドなどで整理はできますが、縦長の構造そのものは変えられません。タブ化するなら方法は3つ——<b>①運用とフォーム設計の工夫で縦長を緩和する（無料）、②JavaScriptで自作する（無料だが開発・保守の負担が大きい）、③タブ表示プラグインを使う（有料だがノーコードで5分）</b>。件数の多い入力業務が毎日あるなら、総コストではプラグインが最も安くつくケースが多い、というのが本記事の結論です。理由を順に説明します。</div>
+<div class="point"><b>先に結論</b>：kintoneの標準機能に「タブ」はありません。グループフィールドなどで整理はできますが、縦長の構造そのものは変えられません。タブ化する方法は、次の3つです。</div>
+<div class="opt3">
+<div class="o"><b>①運用とフォーム設計の工夫</b>縦長を「緩和」する方法。無料で今日できますが、項目が多いと頭打ちになります。</div>
+<div class="o"><b>②JavaScriptで自作</b>ライセンス費用は不要。ただし開発2〜5人日と、kintone更新のたびの保守が自社の負担になります。</div>
+<div class="o"><b>③タブ表示プラグイン</b>有料（年額）ですが、ノーコード・約5分で導入でき、保守は提供者に任せられます。</div>
+</div>
+<p>件数の多い入力業務が毎日あるなら、<b>総コストではプラグインが最も安くつくケースが多い</b>——これが本記事の結論です。理由を順に説明します。</p>
 
 <h2>kintoneのフォームはなぜ縦に長くなる？標準機能でできること・できないこと</h2>
 
@@ -178,7 +216,7 @@ body{-webkit-text-size-adjust:100%;}
 <li><b>グループの横並び切り替え</b>：グループフィールドは縦に積まれるため、折りたたんでも縦長の構造は残ります。開閉の手間も利用者側に発生します。</li>
 <li><b>条件によって見せる項目を変える</b>：「この選択肢のときだけこの項目群を表示する」制御は標準にはありません（これは<a href="/lp-conditional-field.html">条件付きフィールド制御</a>という別の解決領域です）。</li>
 </ul>
-<p>つまり、<b>整理はできるが、構造は変えられない</b>。ここが標準機能の到達点です。グループフィールドで運用が回るならそれが最善です。回らないとき、初めてタブ化を検討します。</p>
+<div class="key">整理はできる。しかし、構造は変えられない。<br>——それが標準機能の到達点です。<small>グループフィールドで運用が回るなら、それが最善です。回らないときに初めて、タブ化を検討します。</small></div>
 
 <h2>kintoneフォームをタブで整理する3つの方法【比較】</h2>
 
@@ -198,6 +236,14 @@ body{-webkit-text-size-adjust:100%;}
 
 <h3>方法3：タブ表示プラグインを使う（ノーコード・5分）</h3>
 <p>プラグインは、kintoneに機能を追加するための公式の仕組みです。ZIPファイルをkintoneに読み込み、アプリに追加して、設定画面で「どのタブに、どのフィールドを入れるか」を選ぶだけ——<b>コードを1行も書かずに、タブ化が完了します</b>。</p>
+
+<div class="adm"><div class="adm-hd"><span class="tag">触って確認</span>同じ12項目のフォームが、タブでこう変わる</div>
+<div class="adm-bd">
+<span class="adm-seg" id="tdMode"><button data-v="long" class="on">タブなし（現状）</button><button data-v="tab">タブ表示</button></span>
+<div class="td-form" id="tdForm"></div>
+<div class="td-cap" id="tdCap"></div>
+</div></div>
+
 <p>導入手順は次の5ステップです。</p>
 <ol class="plain">
 <li>プラグインのZIPファイルを入手する（試用版で構いません）</li>
@@ -226,7 +272,13 @@ body{-webkit-text-size-adjust:100%;}
 <tr><td>kintone更新への追随</td><td>不要</td><td>自社で対応</td><td>提供者が対応</td></tr>
 </table>
 
-<p>判断の目安はシンプルです。<b>フィールドが30個未満なら方法1で十分。開発体制が社内にあり内製方針なら方法2。それ以外——つまり大半の現場では、方法3が総コスト最小</b>になります。年額約2万円は、入力担当者が毎日数分のスクロールと項目探しに費やす時間を考えると、多くの場合短期間で回収できる計算です。</p>
+<p>判断の目安はシンプルです。</p>
+<div class="opt3">
+<div class="o"><b>フィールド30個未満</b>→ 方法1（標準機能の工夫）で十分です。</div>
+<div class="o"><b>社内に開発・保守体制があり内製方針</b>→ 方法2（JavaScript）が有力です。</div>
+<div class="o"><b>それ以外＝大半の現場</b>→ 方法3（プラグイン）が総コスト最小です。</div>
+</div>
+<p>年額約2万円は、入力担当者が毎日数分のスクロールと項目探しに費やす時間を考えると、多くの場合短期間で回収できる計算です。</p>
 
 <h3>失敗しないタブ設計の3つのコツ（業務改善の視点）</h3>
 <p>どの方法を選ぶにしても、タブの分け方を誤ると「どのタブに何があるか分からない」という新しい迷子が生まれます。設計のコツは3つです。</p>
@@ -270,5 +322,42 @@ bstの<a href="/lp-tab-view.html">タブ表示プラグイン</a>は、この記
 
 </div></main>
 <footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="/index.html">ホーム</a><a href="/index.html#tools">プラグイン</a><a href="/blog/index.html">ブログ</a><a href="/icons.html">無料アイコン素材</a><a href="/about.html">bstについて</a><a href="/news.html">お知らせ</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="/tokushoho.html">特定商取引法に基づく表記</a><a href="/privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
+<script>
+(function(){
+  var FIELDS=[['会社名','基本情報',1],['担当者','基本情報',0],['電話番号','基本情報',0],['住所','基本情報',0],
+    ['商談メモ','営業メモ',0],['次回アクション','営業メモ',1],['確度','営業メモ',0],['競合状況','営業メモ',0],
+    ['請求先','請求・入金',0],['支払条件','請求・入金',0],['入金予定日','請求・入金',0],['入金ステータス','請求・入金',0]];
+  var TABS=['基本情報','営業メモ','請求・入金'];
+  var mode='long', cur=0;
+  var form=document.getElementById('tdForm'), cap=document.getElementById('tdCap');
+  function frow(f){
+    return '<div class="td-f"><span class="lb">'+f[0]+(f[2]?' <span class="req">＊</span>':'')+'</span><span class="bx"></span></div>';
+  }
+  function render(){
+    if(mode==='long'){
+      form.innerHTML='<div class="td-scroll">'+FIELDS.map(frow).join('')+'</div>';
+      cap.textContent='12項目が1枚に並び、スクロールして探すことになります（実際のアプリでは50項目以上も珍しくありません）';
+      return;
+    }
+    var tabs=TABS.map(function(t,i){
+      var badge = (t==='営業メモ') ? '<span class="td-badge">必須</span>' : '';
+      return '<button type="button" class="td-tab'+(i===cur?' on':'')+'" data-i="'+i+'">'+t+badge+'</button>';
+    }).join('');
+    var rows=FIELDS.filter(function(f){return f[1]===TABS[cur];}).map(frow).join('');
+    form.innerHTML='<div class="td-tabs">'+tabs+'</div><div class="td-body">'+rows+'</div>';
+    cap.textContent='役割ごとに1タブ。「営業メモ」タブのバッジは、未入力の必須項目があることを知らせています';
+  }
+  form.addEventListener('click', function(e){
+    var b=e.target.closest('.td-tab'); if(!b) return;
+    cur=+b.getAttribute('data-i'); render();
+  });
+  document.getElementById('tdMode').addEventListener('click', function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on'); mode=b.getAttribute('data-v'); cur=0; render();
+  });
+  render();
+})();
+</script>
 </body>
 </html>
