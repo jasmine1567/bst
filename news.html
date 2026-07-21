@@ -4,28 +4,60 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#FBFBF8">
-<title>ページが見つかりません｜bst</title>
-<meta name="robots" content="noindex">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>お知らせ・更新履歴｜kintoneプラグインのbst</title>
+<meta name="description" content="bstのkintoneプラグインのリリース情報・機能追加の記録。新製品の発売やアイコン素材の追加などをお知らせします。">
+<link rel="canonical" href="https://bst-plugins.com/news.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="お知らせ・更新履歴｜kintoneプラグインのbst">
+<meta property="og:description" content="bstのkintoneプラグインのリリース情報・機能追加の記録。新製品の発売やアイコン素材の追加などをお知らせします。">
+<meta property="og:image" content="https://bst-plugins.com/og-home.png">
+<meta property="og:url" content="https://bst-plugins.com/news.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V964JH879G"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V964JH879G');</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-V964JH879G');
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href*="/trials/"]');
+    if(a){
+      var f = a.getAttribute('href');
+      var pm = f.match(/bst_([a-z0-9-]+)_v/i);
+      gtag('event', 'trial_download', { file: f, plugin: pm ? pm[1] : 'unknown' });
+    }
+  });
+</script>
 <style>
+:root{--ink:#252525;--paper:#FBFBF8;--paper2:#F3F2EC;--line:#E4E3DB;--amber:#FFB800;--amber-d:#B57E00;--mut:#6E6E68;--ok:#18794E;--blue:#2563EB;}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:"Noto Sans JP",sans-serif;background:#FBFBF8;color:#252525;line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
-main{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 24px;}
-.box{text-align:center;max-width:520px;}
-.code{font-size:84px;font-weight:900;letter-spacing:.02em;line-height:1;}
-.code em{font-style:normal;background:linear-gradient(transparent 62%, #FFB800 62%);}
-h1{font-size:20px;font-weight:900;margin:14px 0 8px;}
-p{font-size:13.5px;color:#6E6E68;}
-.links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px;}
-.b{display:inline-flex;align-items:center;border-radius:999px;font-weight:700;font-size:13.5px;padding:11px 22px;text-decoration:none;border:2px solid transparent;}
-.b--amber{background:#FFB800;color:#252525;}
-.b--ghost{border-color:#E4E3DB;background:#fff;color:#252525;}
+html{scroll-behavior:smooth;}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;}
+.wrap{max-width:820px;margin:0 auto;padding:0 24px;}
+main{padding:44px 0 64px;}
+.kick{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--amber-d);}
+h1{font-size:clamp(24px,4vw,34px);font-weight:900;letter-spacing:-.01em;line-height:1.5;margin:6px 0 10px;}
+.meta{font-size:12.5px;color:var(--mut);margin-bottom:26px;}
+h2{font-size:clamp(18px,2.8vw,23px);font-weight:900;margin:38px 0 12px;padding-top:8px;border-top:1px solid var(--line);}
+h3{font-size:16px;font-weight:900;margin:24px 0 8px;}
+p{font-size:14.5px;margin:0 0 16px;}
+b{font-weight:700;}
+.note{border:1.5px solid #bcd9ee;border-radius:12px;background:#F5F9FF;padding:12px 16px;font-size:13px;line-height:1.9;margin:18px 0;}
+.cta{border:2px solid var(--amber);border-radius:14px;background:#fffdf5;padding:16px 20px;margin:26px 0;font-size:14px;}
+.cta a.b{display:inline-flex;margin-top:10px;background:var(--amber);color:var(--ink);font-weight:700;font-size:14px;padding:11px 22px;border-radius:999px;text-decoration:none;}
+.cta a.tx{color:var(--amber-d);font-weight:700;}
+ul.plain{margin:0 0 16px 22px;font-size:14.5px;}
+ul.plain li{margin-bottom:6px;}
+a{color:var(--blue);}
+.nitem{border:1px solid var(--line);border-radius:14px;background:#fff;padding:16px 20px;margin-bottom:12px;}
+.nitem time{font-size:12px;color:var(--mut);font-weight:700;}
+.nitem b{display:block;font-size:15px;margin:2px 0 4px;}
+.nitem p{font-size:13px;color:var(--mut);margin:0;}
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -42,7 +74,6 @@ p{font-size:13.5px;color:#6E6E68;}
 h1,h2,h3{text-wrap:balance;}
 p,li,dd,dt{text-wrap:pretty;}
 @supports (word-break: auto-phrase){h1,h2,h3,p{word-break:auto-phrase;}}
-
 /* =====================================================================
    bstm: モバイル最適化（全ページ共通・スタイルの最後に置くこと）
    ・インラインstyleの2カラムgridは属性セレクタ＋!importantで1カラム化
@@ -95,14 +126,20 @@ body{-webkit-text-size-adjust:100%;}
 </head>
 <body>
 <header class="bstnav"><div class="bstnav-in"><a class="bstbrand" href="/index.html">bst</a><a class="bstitem" href="/index.html#tools">プラグイン</a><a class="bstitem" href="/index.html#pricing">料金</a><a class="bstitem" href="/blog/index.html">ブログ</a><a class="bstitem" href="/icons.html">無料アイコン</a><a class="bstcta" href="/index.html#tools">30日無料で試す</a></div></header>
-<main><div class="box">
-  <div class="code"><em>404</em></div>
-  <h1>お探しのページが見つかりませんでした。</h1>
-  <p>URLが変更されたか、ページが削除された可能性があります。プラグイン一覧か無料アイコンからお探しください。</p>
-  <div class="links">
-    <a class="b b--amber" href="index.html#tools">プラグイン一覧へ →</a>
-    <a class="b b--ghost" href="icons.html">無料アイコン素材へ →</a>
-  </div>
+<main><div class="wrap">
+
+<span class="kick">NEWS</span>
+<h1>お知らせ・更新履歴</h1>
+<p class="meta">製品リリース・機能追加の記録</p>
+
+<div class="nitem"><time>2026-07-21</time><b>サイトを更新しました（ブログ開設・bstについて・お知らせページ）</b><p>ブログでは、kintone活用の実務情報を継続的に公開していきます。</p></div>
+<div class="nitem"><time>2026-07-17</time><b>新製品「一覧印刷プラグイン」を発売しました</b><p>表示中の一覧をA4・B5・A3にきれいに印刷。実寸プレビュー、行を切らないページ分割、棚卸しに使えるチェック欄。基本パックにも追加費用なしで含まれます。</p></div>
+<div class="nitem"><time>2026-07-10</time><b>新製品「タブ表示」「選択肢絞り込み」を発売しました</b><p>縦に長いフォームのタブ整理と、3段以上に対応した連動ドロップダウン。あわせてサイトを全面リニューアルしました。</p></div>
+<div class="nitem"><time>2026-07</time><b>kintoneアプリ用アイコン素材の無料配布を開始しました</b><p>日本語で検索でき、色・形・光沢をその場でカスタマイズして1クリックでダウンロードできます。商用OK・クレジット不要。</p></div>
+<div class="nitem"><time>2026-06</time><b>販売基盤を移行し、全製品の30日無料試用（登録不要）を開始しました</b><p>クレジットカードに加え、請求書払い・銀行振込にも対応しています。</p></div>
+
+<div class="cta"><b>新着情報を受け取る</b><br>製品リリースや機能追加は X でもお知らせしています。<br><a class="b" href="https://x.com/bst_plugins" target="_blank" rel="noopener">X（@bst_plugins）をフォロー ↗</a></div>
+
 </div></main>
 <footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="/index.html">ホーム</a><a href="/index.html#tools">プラグイン</a><a href="/blog/index.html">ブログ</a><a href="/icons.html">無料アイコン素材</a><a href="/about.html">bstについて</a><a href="/news.html">お知らせ</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="/tokushoho.html">特定商取引法に基づく表記</a><a href="/privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
 </body>
