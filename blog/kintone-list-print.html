@@ -106,6 +106,29 @@ h3{margin-top:30px;}
 .pd-cap{font-size:12px;font-weight:900;margin-top:10px;}
 .pd-cap.ng{color:#991b1b;}
 .pd-cap.ok{color:#18794E;}
+/* ===== 並列比較デモ dcp（標準✕ vs プラグイン○） ===== */
+.dcp{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:4px;position:relative;}
+.dcp-p{border:2px solid;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.dcp-p.ngp{border-color:#B3261E;background:#FFF6F5;}
+.dcp-p.okp{border-color:#18794E;background:#F4FBF6;}
+.dcp-h{font-size:12px;font-weight:900;padding:8px 12px;display:flex;gap:7px;align-items:center;color:#fff;letter-spacing:.02em;line-height:1.5;}
+.ngp .dcp-h{background:#B3261E;}
+.okp .dcp-h{background:#18794E;}
+.dcp-tag{margin-left:auto;font-size:9.5px;font-weight:900;background:rgba(255,255,255,.25);border-radius:999px;padding:2px 9px;letter-spacing:.1em;flex:none;}
+.dcp-b{padding:12px;flex:1;}
+.dcp-v{font-size:11.5px;font-weight:900;padding:8px 12px;border-top:1.5px solid;line-height:1.7;}
+.ngp .dcp-v{color:#8a1d16;border-color:#EFC4C4;background:#FDECEA;}
+.okp .dcp-v{color:#135f3e;border-color:#BBDFC9;background:#E7F6EC;}
+.dcp-vs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.28);border:2.5px solid #fff;}
+.dcp-arrow{display:none;}
+.dcp-ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px;font-size:12.5px;font-weight:700;}
+.dcp-ctl select{height:32px;padding:0 10px;font-size:13px;font-family:inherit;border:1px solid #d5dee3;border-radius:8px;background:#fff;}
+@media (max-width:640px){
+.dcp{grid-template-columns:1fr;gap:10px;}
+.dcp-vs{display:none;}
+.dcp-arrow{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;font-size:12.5px;font-weight:900;color:var(--amber-d);padding:1px 0;}
+}
+
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -217,11 +240,12 @@ body{-webkit-text-size-adjust:100%;}
 
 <div class="adm"><div class="adm-hd"><span class="tag">目で比較</span>同じ一覧を印刷すると、紙はこうなる</div>
 <div class="adm-bd">
-<div class="cmp">
-<div class="cmp-p ngp"><div class="cmp-h">✕ ブラウザでそのまま印刷</div><div class="cmp-b"><div class="pd-wrap"><div class="pd-sheet" id="pdSheetN"></div></div></div>
-<div class="cmp-v">メニューが混ざる／行が途中で切れる／ページ番号なし</div></div>
-<div class="cmp-p okp"><div class="cmp-h">○ 一覧印刷プラグイン</div><div class="cmp-b"><div class="pd-wrap"><div class="pd-sheet" id="pdSheetP"></div></div></div>
-<div class="cmp-v">タイトル・連番・チェック欄・「1 / 3」入り。行は切れません</div></div>
+<div class="dcp"><div class="dcp-vs" aria-hidden="true">VS</div>
+<div class="dcp-p ngp"><div class="dcp-h">✕ kintone標準（ブラウザでそのまま印刷）<span class="dcp-tag">BEFORE</span></div><div class="dcp-b"><div class="pd-wrap"><div class="pd-sheet" id="pdSheetN"></div></div></div>
+<div class="dcp-v">メニューが混ざる／行が途中で切れる／ページ番号なし</div></div>
+<div class="dcp-arrow">▼ bstプラグインを入れると</div>
+<div class="dcp-p okp"><div class="dcp-h">○ bst 一覧印刷プラグイン<span class="dcp-tag">AFTER</span></div><div class="dcp-b"><div class="pd-wrap"><div class="pd-sheet" id="pdSheetP"></div></div></div>
+<div class="dcp-v">タイトル・連番・チェック欄・「1 / 3」入り。行は切れません</div></div>
 </div></div></div>
 
 <h3>標準機能でできること（まずは無料でここまで）</h3>
