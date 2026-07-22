@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#FBFBF8">
-<title>kintoneの一覧を印刷するとレイアウトが崩れる問題の原因と、きれいに印刷する方法｜bstブログ</title>
-<meta name="description" content="kintoneの一覧をブラウザで印刷するとメニューが混ざり行が途切れる原因と、標準機能での回避策（CSV書き出し・レコード印刷）、一覧をそのままきれいに印刷する方法を解説します。">
+<title>kintoneの一覧を印刷する方法3選｜崩れる原因と解決策｜bstブログ</title>
+<meta name="description" content="kintoneの一覧をブラウザで印刷するとメニューが混ざり行が切れる原因を解説。CSV書き出しでの整形、JavaScriptで実現する方法、一覧印刷プラグインの3つの解決策を費用・工数・注意点まで比較します。棚卸しのチェック表づくりにも。">
 <link rel="canonical" href="https://bst-plugins.com/blog/kintone-list-print.html">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:title" content="kintoneの一覧を印刷するとレイアウトが崩れる問題の原因と、きれいに印刷する方法｜bstブログ">
-<meta property="og:description" content="kintoneの一覧をブラウザで印刷するとメニューが混ざり行が途切れる原因と、標準機能での回避策（CSV書き出し・レコード印刷）、一覧をそのままきれいに印刷する方法を解説します。">
+<meta property="og:title" content="kintoneの一覧を印刷する方法3選｜崩れる原因と解決策｜bstブログ">
+<meta property="og:description" content="kintoneの一覧をブラウザで印刷するとメニューが混ざり行が切れる原因を解説。CSV書き出しでの整形、JavaScriptで実現する方法、一覧印刷プラグインの3つの解決策を費用・工数・注意点まで比較します。棚卸しのチェック表づくりにも。">
 <meta property="og:image" content="https://bst-plugins.com/og-home.png">
 <meta property="og:url" content="https://bst-plugins.com/blog/kintone-list-print.html">
 <meta property="og:type" content="article">
@@ -34,30 +34,41 @@
   });
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"kintoneの一覧を印刷するとレイアウトが崩れる問題の原因と、きれいに印刷する方法","description":"kintoneの一覧をブラウザで印刷するとメニューが混ざり行が途切れる原因と、標準機能での回避策（CSV書き出し・レコード印刷）、一覧をそのままきれいに印刷する方法を解説します。","datePublished":"2026-07-21","dateModified":"2026-07-21","author":{"@type":"Organization","name":"bst"},"publisher":{"@type":"Organization","name":"bst"},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-list-print.html"}
+{"@context":"https://schema.org","@type":"Article","headline":"kintoneの一覧を印刷する方法3選｜崩れる原因と解決策","description":"kintoneの一覧をブラウザで印刷するとメニューが混ざり行が切れる原因を解説。CSV書き出しでの整形、JavaScriptで実現する方法、一覧印刷プラグインの3つの解決策を費用・工数・注意点まで比較します。棚卸しのチェック表づくりにも。","datePublished":"2026-07-21","dateModified":"2026-07-22","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst"},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-list-print.html"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"何件まで印刷できますか？","acceptedAnswer":{"@type":"Answer","text":"bstの一覧印刷プラグインでは既定で最大1,000件、設定で10,000件まで印刷できます。件数が多い場合は、絞り込んでから印刷する運用をおすすめします。"}},{"@type":"Question","name":"カレンダー形式の一覧も印刷できますか？","acceptedAnswer":{"@type":"Answer","text":"対象は表形式の一覧です。カレンダー形式やカスタマイズビューは対象外です。"}},{"@type":"Question","name":"請求書のような帳票レイアウトは作れますか？","acceptedAnswer":{"@type":"Answer","text":"作れません。一覧印刷プラグインは「表示中の一覧をそのまま、きれいに印刷する」ことに特化した製品です。自由なレイアウト設計が必要な場合は、帳票専用の製品をご検討ください。"}},{"@type":"Question","name":"業務データが外部に送信されませんか？","acceptedAnswer":{"@type":"Answer","text":"送信されません。印刷処理はすべてブラウザ内で完結します。年額プランのライセンス確認で送信されるのは「kintoneドメイン名」のみで、レコードの内容は送られません。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。"}}]}
 </script>
 <style>
 :root{--ink:#252525;--paper:#FBFBF8;--paper2:#F3F2EC;--line:#E4E3DB;--amber:#FFB800;--amber-d:#B57E00;--mut:#6E6E68;--ok:#18794E;--blue:#2563EB;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:"Noto Sans JP",sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--paper);color:var(--ink);line-height:1.95;}
 .wrap{max-width:820px;margin:0 auto;padding:0 24px;}
 main{padding:44px 0 64px;}
 .kick{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--amber-d);}
-h1{font-size:clamp(24px,4vw,34px);font-weight:900;letter-spacing:-.01em;line-height:1.5;margin:6px 0 10px;}
-.meta{font-size:12.5px;color:var(--mut);margin-bottom:26px;}
-h2{font-size:clamp(18px,2.8vw,23px);font-weight:900;margin:38px 0 12px;padding-top:8px;border-top:1px solid var(--line);}
-h3{font-size:16px;font-weight:900;margin:24px 0 8px;}
-p{font-size:14.5px;margin:0 0 16px;}
+h1{font-size:clamp(23px,3.8vw,32px);font-weight:900;letter-spacing:-.01em;line-height:1.55;margin:6px 0 10px;}
+.meta{font-size:12.5px;color:var(--mut);margin-bottom:24px;}
+h2{font-size:clamp(18px,2.8vw,23px);font-weight:900;margin:40px 0 14px;padding:10px 0 0;border-top:1px solid var(--line);}
+h3{font-size:16.5px;font-weight:900;margin:26px 0 10px;padding-left:10px;border-left:4px solid var(--amber);}
+p{font-size:14.5px;margin:0 0 15px;}
+.lead{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px 18px;margin:0 0 22px;}
+.lead b{display:block;font-size:13px;color:var(--amber-d);margin-bottom:6px;}
+.lead ul{margin:0 0 0 20px;font-size:13.5px;}
+.lead li{margin-bottom:4px;}
+.point{border:2px solid var(--amber);border-radius:12px;background:#fffdf5;padding:13px 17px;margin:0 0 20px;font-size:14.5px;line-height:1.9;}
 .note{border:1.5px solid #bcd9ee;border-radius:12px;background:#F5F9FF;padding:12px 16px;font-size:13px;line-height:1.9;margin:18px 0;}
 .cta{border:2px solid var(--amber);border-radius:14px;background:#fffdf5;padding:16px 20px;margin:26px 0;font-size:14px;}
 .cta a.b{display:inline-flex;margin-top:10px;background:var(--amber);color:var(--ink);font-weight:700;font-size:14px;padding:11px 22px;border-radius:999px;text-decoration:none;}
-ul.plain{margin:0 0 16px 22px;font-size:14.5px;}
-ul.plain li{margin-bottom:6px;}
+ul.plain,ol.plain{margin:0 0 16px 22px;font-size:14.5px;}
+ul.plain li,ol.plain li{margin-bottom:7px;}
 a{color:var(--blue);}
-table.tb{border-collapse:collapse;width:100%;font-size:13px;margin:0 0 16px;background:#fff;}
-table.tb th,table.tb td{border:1px solid var(--line);padding:8px 12px;text-align:left;line-height:1.7;}
-table.tb th{background:#F7F7F5;}
+table.tb{border-collapse:collapse;width:100%;font-size:13px;margin:0 0 18px;background:#fff;}
+table.tb th,table.tb td{border:1px solid var(--line);padding:9px 12px;text-align:left;line-height:1.7;vertical-align:top;}
+table.tb th{background:#F7F7F5;white-space:nowrap;}
+details.faq{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 18px;margin-bottom:10px;}
+details.faq summary{font-weight:700;font-size:14px;cursor:pointer;}
+details.faq p{font-size:13.5px;color:#444;margin:8px 0 0;}
 /* ===== ブログ組版強化（読みやすさ・余白・キーメッセージ・ミニデモ） ===== */
 p{margin:0 0 18px;}
 h2{margin-top:48px;}
@@ -95,7 +106,6 @@ h3{margin-top:30px;}
 .pd-cap{font-size:12px;font-weight:900;margin-top:10px;}
 .pd-cap.ng{color:#991b1b;}
 .pd-cap.ok{color:#18794E;}
-
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -167,14 +177,36 @@ body{-webkit-text-size-adjust:100%;}
 <main><div class="wrap">
 
 <span class="kick">BLOG</span>
-<h1>kintoneの一覧を印刷するとレイアウトが崩れる問題の原因と、きれいに印刷する方法</h1>
-<p class="meta">2026-07-21 ／ カテゴリ: 印刷・帳票</p>
+<h1>kintoneの一覧を印刷する方法3選｜崩れる原因と解決策</h1>
+<p class="meta">2026-07-21公開・2026-07-22更新 ／ カテゴリ: 印刷・帳票 ／ 執筆: bst（kintoneプラグイン開発者）</p>
 
-<p>「kintoneの一覧を印刷したら、メニューまで印刷されて表が途中で切れた」——kintoneには一覧画面を印刷する機能がなく、ブラウザの印刷をそのまま使うとほぼ確実にこうなります。この記事では、なぜ崩れるのかという原因と、標準機能でできる回避策、そして一覧を「そのまま、きれいに」印刷したい場合の方法を整理します。</p>
+<p>「kintoneの一覧を印刷したら、メニューまで印刷されて表が途中で切れた」——ブラウザの印刷をそのまま使うと、ほぼ確実にこうなります。</p>
+<p>会議の5分前に崩れた紙を握りしめる、棚卸しのたびにExcelへ書き出して整形する。多くの現場が毎週・毎月くり返している作業です。筆者はkintoneプラグインの開発者として、この「印刷できない」相談を数多く受けてきました。本記事は2026年7月時点の仕様に基づいて、原因と解決策を整理します。</p>
 
-<h2>原因: kintoneに「一覧の印刷機能」は存在しない</h2>
-<div class="key">kintoneが標準で印刷できるのは、レコード「1件ずつ」だけ。<br>一覧（表）を印刷する機能は、そもそも存在しません。</div>
-<p>そのためブラウザの印刷（Ctrl+P）を使うことになります。しかしブラウザ印刷は「画面をそのまま紙にする」機能です。結果として、次の問題が必ず起きます。</p>
+<div class="key">kintoneが標準で印刷できるのは、レコード「1件ずつ」だけ。<br>一覧（表）を印刷する機能は、そもそも存在しません。<small>この記事では、崩れる原因 → 標準機能でできること → 解決方法3つの比較、の順で解説します。</small></div>
+
+<div class="lead"><b>この記事で分かること</b>
+<ul>
+<li>ブラウザ印刷で一覧が崩れる技術的な理由</li>
+<li>標準機能でできる印刷と、できないことの境界線</li>
+<li>解決方法3つ（CSV書き出し・JavaScript自作・プラグイン）の費用と工数の比較</li>
+<li>それぞれのメリット・デメリットと、導入前に確認すべき注意点</li>
+<li>棚卸し・会議配布など現場での活用イメージと、よくある質問への回答</li>
+</ul></div>
+
+<div class="point"><b>先に結論</b>：kintoneに一覧の印刷機能はなく、ブラウザ印刷は「画面をそのまま紙にする」ため必ず崩れます。解決方法は、次の3つです。</div>
+<div class="opt3">
+<div class="o"><b>①CSVに書き出してExcelで整形する</b>無料で確実。ただし1回10〜15分の作業が、印刷のたびに発生します。</div>
+<div class="o"><b>②JavaScriptで印刷画面を自作する</b>ライセンス費用は不要。ただし「行を切らないページ分割」の実装は難度が高く、保守も自社の負担です。</div>
+<div class="o"><b>③一覧印刷プラグインを使う</b>有料（年額）ですが、ボタンから用紙と列を選ぶだけの3クリック。棚卸し用のチェック欄も付けられます。</div>
+</div>
+<p>一覧を紙にする業務が定期的にあるなら、<b>総コストではプラグインが最も安くつくケースが多い</b>——これが本記事の結論です。理由を順に説明します。</p>
+
+<h2>kintoneの一覧印刷が崩れる原因｜標準機能でできること・できないこと</h2>
+
+<h3>原因：ブラウザ印刷は「画面の複製」であって「紙のための組版」ではない</h3>
+<p>ブラウザの印刷（Ctrl+P）は、いま表示されている画面をそのまま紙に写す機能です。画面はスクロール前提で作られており、紙の寸法もページの区切りも知りません。</p>
+<p>その結果、kintoneの一覧では次の問題が必ず起きます。</p>
 <ul class="plain">
 <li>ヘッダーやメニューなど、画面の部品が印刷物に混ざる</li>
 <li>表がページの途中でぶつ切りになり、行が泣き別れする</li>
@@ -190,41 +222,120 @@ body{-webkit-text-size-adjust:100%;}
 <div id="pdCap"></div>
 </div></div>
 
+<h3>標準機能でできること（まずは無料でここまで）</h3>
+<ul class="plain">
+<li><b>レコード単体の印刷</b>：「レコードを印刷する」機能は1件ずつなら整った出力になります。</li>
+<li><b>CSVファイルへの書き出し</b>：一覧のデータをファイルに書き出し、Excelで自由に加工できます（詳しくは方法1で解説）。</li>
+<li><b>紙をやめる</b>：会議がオンライン中心なら、画面共有やPDF回覧に置き換える選択もあります。</li>
+</ul>
 
-<h2>標準機能でできる回避策</h2>
-<h3>1. CSVに書き出してExcelで整形する</h3>
-<p>最も一般的な方法です。一覧をCSVで書き出し、Excelで不要な列を消し、列幅を整え、印刷設定をする。確実にきれいになります。</p>
-<p>ただし、<b>1回あたり10〜15分の作業が毎回発生</b>します。週次・月次の定例資料や棚卸しのたびにこの作業が要るなら、コストは小さくありません。</p>
-<h3>2. レコード単体の印刷でしのぐ</h3>
-<p>「レコードを印刷する」は1件ずつなら整った出力になります。ただし一覧をまとめて出す用途には使えません。</p>
-<h3>3. 印刷の代わりに画面共有・PDF回覧にする</h3>
-<p>会議がオンライン中心なら、そもそも紙をやめる選択もあります。ただし棚卸しや現場点検のように<b>「歩きながら紙に書き込む」業務</b>は残ります。ここはデジタル化の最後に残る領域です。</p>
+<h3>標準機能ではできないこと</h3>
+<ul class="plain">
+<li><b>一覧（表）をそのまま印刷用に整える</b>：メニューを除き、用紙に収める機能はありません。</li>
+<li><b>連番・ページ番号・全ページの列見出し</b>：紙の資料として最低限ほしい要素が付けられません。</li>
+<li><b>棚卸し用のチェック欄</b>：現場を歩きながら☑を付ける紙のリストは、標準では作れません。「歩きながら紙に書き込む」業務は、デジタル化の最後に残る領域です。</li>
+</ul>
 
-<h2>一覧を「そのまま、きれいに」印刷する方法</h2>
-<p>Excel整形の時間を毎回払いたくない、棚卸しのチェック表をkintoneから直接作りたい——そうなったら、一覧印刷に特化したプラグインが選択肢になります。</p>
-<p>bstの<a href="/lp-list-print.html">一覧印刷プラグイン</a>は、一覧画面のボタンから印刷ダイアログを開いて使います。操作は3つだけです。</p>
+<h2>kintoneの一覧をきれいに印刷する3つの方法【比較】</h2>
+
+<h3>方法1：CSVに書き出してExcelで整形する（代替方法・無料）</h3>
+<p>最も一般的な方法です。手順は次の5ステップになります。</p>
+<ol class="plain">
+<li>一覧画面のオプションから「ファイルに書き出す」でCSVを保存する</li>
+<li>Excelで開き、不要な列を削除する</li>
+<li>列幅・罫線・見出しを整える（チェック欄が要る場合は空白列を追加）</li>
+<li>印刷範囲・用紙サイズ・ヘッダーフッターを設定する</li>
+<li>印刷プレビューで確認して印刷する</li>
+</ol>
+<p><b>メリット</b>は費用ゼロで、レイアウトを自由に作り込めることです。</p>
+<p><b>デメリット</b>は、この5ステップに<b>1回あたり10〜15分</b>かかり、印刷のたびに毎回発生することです。週次の定例や月次の棚卸しで積み重なると、無視できないコストになります。データが更新されるたびに書き出し直しになる点も見落とせません。</p>
+
+<h3>方法2：JavaScriptで印刷画面を自作する（無料〜外注）</h3>
+<p>kintoneはJavaScriptカスタマイズを公式にサポートしており、一覧のデータから印刷用の画面を組み立てて、ブラウザの印刷機能に渡す実装が可能です。</p>
+<p><b>メリット</b>は、ライセンス費用が不要で、自社の様式に完全に合わせられることです。</p>
+<p><b>デメリットと注意点</b>は、見た目以上に実装の難度が高いことです。特に次の3つは、印刷向けWeb実装の定番の難所です。</p>
+<ol class="plain">
+<li><b>行を切らないページ分割</b>：ブラウザ任せの改ページは行の途中で切れることがあり、行の高さを計算して割り付ける作りが必要になります。</li>
+<li><b>全ページへの列見出しの繰り返し</b>：ブラウザによって挙動が異なり、安定させるには工夫が要ります。</li>
+<li><b>ページ番号の印字</b>：CSSでの制御は主要ブラウザで制約が多く、確実に出すには自前でページを組む必要があります。</li>
+</ol>
+<p>ここまで作り込むと開発は数人日規模になり、kintoneのアップデートのたびの動作確認と、作った人が異動したときの属人化リスクも残ります。</p>
+
+<h3>方法3：一覧印刷プラグインを使う（ノーコード・3クリック）</h3>
+<p>プラグインは、kintoneに機能を追加する公式の仕組みです。導入は「ZIPを読み込む→アプリに追加→初期値を設定」の約5分で完了し、以後の利用者の操作は3つだけです。</p>
 <div class="opt3">
 <div class="o"><b>①用紙を選ぶ</b>A4・B5・A3×縦横。プレビューは実際の用紙と同じ寸法（実寸）です。</div>
 <div class="o"><b>②列をチェックで選ぶ</b>不要な列を外すだけ。Excelで列を消す作業が要らなくなります。</div>
 <div class="o"><b>③印刷する</b>行が途中で切れないよう割り付けを自動計算。列見出しは全ページに入り、ページ番号は「1 / 12」形式、連番や合計行もワンクリックです。</div>
 </div>
-<p>棚卸し用途では、<b>右端にチェック欄（□または空白の記入欄）を最大3列追加</b>できます。「棚卸し用」「会議配布用」のように設定へ名前を付けて保存できるので、2回目からは呼び出して印刷するだけ。Excel整形の15分が3クリックになります。印刷処理はすべてブラウザ内で完結し、業務データの外部送信はありません。</p>
-<table class="tb">
-<tr><th></th><th>ブラウザでそのまま印刷</th><th>CSV→Excel整形</th><th>一覧印刷プラグイン</th></tr>
-<tr><td>仕上がり</td><td>画面が混ざり行が切れる</td><td>きれい</td><td>きれい（実寸プレビュー）</td></tr>
-<tr><td>毎回の手間</td><td>少ないが使えない</td><td>10〜15分</td><td>3クリック</td></tr>
-<tr><td>ページ番号・全頁見出し</td><td>不安定</td><td>手設定</td><td>自動</td></tr>
-<tr><td>棚卸し用チェック欄</td><td>不可</td><td>手作業で列追加</td><td>ワンクリック</td></tr>
-</table>
-<div class="cta"><b>30日、無料で試せます（登録不要）</b><br>製品ページでは、列の選択や用紙の切替、チェック欄まで、ブラウザ上のデモで実際に操作できます。<br><a class="b" href="/lp-list-print.html">一覧印刷プラグインを見る →</a></div>
+<p>bstの<a href="/lp-list-print.html">一覧印刷プラグイン</a>では、棚卸し用に<b>右端へ最大3列のチェック欄</b>（□または空白の記入欄）を追加でき、「棚卸し用」「会議配布用」のように<b>設定へ名前を付けて保存</b>できます。2回目からは呼び出して印刷するだけです。</p>
+<p><b>メリット</b>は速さと再現性、保守を提供者に任せられること。<b>デメリット</b>は年額費用（例: ¥19,800/年）と、レイアウトが製品仕様の範囲に限られることです。</p>
 
-<h2>まとめ</h2>
+<h3>用紙と向きの選び方の目安</h3>
+<p>意外と迷うのが用紙の選択です。印刷してから「入りきらない」に気づくと手戻りになるため、最初に目安を決めておくのがおすすめです。</p>
+<div class="opt3">
+<div class="o"><b>A4横＝迷ったらこれ</b>列数が5〜8列の一般的な一覧に最適です。横向きにするだけで、1行に収まる情報量が大きく増えます。</div>
+<div class="o"><b>B5＝手元のチェック用</b>持ち歩いて☑を付ける棚卸し・点検リストは、小ぶりなB5のほうがバインダーで扱いやすくなります。</div>
+<div class="o"><b>A3＝列の多い台帳</b>10列を超える管理台帳や、文字を大きくしたい会議配布用はA3が安全です。</div>
+</div>
+<p>どれを選んでも、実寸プレビューがあれば印刷前に仕上がりを確認できるので、紙とインクを無駄にせずに済みます。</p>
+
+<table class="tb">
+<tr><th>比較項目</th><th>①CSV→Excel整形</th><th>②JavaScript自作</th><th>③プラグイン</th></tr>
+<tr><td>仕上がり</td><td>◎ 作り込み次第</td><td>◎ 実装次第</td><td>◎ 実寸プレビュー</td></tr>
+<tr><td>毎回の手間</td><td><b>10〜15分</b></td><td>ボタン操作</td><td>3クリック</td></tr>
+<tr><td>初期費用</td><td>0円</td><td>0円〜（外注は数十万円規模も）</td><td>0円（試用30日）</td></tr>
+<tr><td>継続費用</td><td>作業時間</td><td>保守工数（更新のたび）</td><td>年額ライセンス</td></tr>
+<tr><td>ページ番号・全頁見出し</td><td>手設定</td><td>実装難度が高い</td><td>自動</td></tr>
+<tr><td>棚卸し用チェック欄</td><td>手作業で列追加</td><td>実装次第</td><td>ワンクリック</td></tr>
+<tr><td>属人化リスク</td><td>中（整形手順）</td><td><b>高</b></td><td>低</td></tr>
+</table>
+
+<p>導入前の<b>注意点</b>として、印刷系プラグインを選ぶ際は次の4点を確認してください。</p>
+<ol class="plain">
+<li><b>プレビューの正確さ</b>：プレビューと印刷結果が一致するか（実寸プレビューか）</li>
+<li><b>ページ分割の品質</b>：行が途中で切れないか、列見出しが全ページに入るか、ページ番号が印字されるか</li>
+<li><b>データの扱い</b>：印刷処理が外部サーバーを経由しないか（情報システム部門の審査ポイントです）</li>
+<li><b>試用の可否</b>：本番相当の一覧で、実際に印刷して確かめられるか</li>
+</ol>
+
+<h3>社内稟議・情報システム部門への説明ポイント</h3>
+<p>有料プラグインの導入に承認が必要な場合は、次の3点で説明すると通りやすくなります。</p>
+<div class="opt3">
+<div class="o"><b>費用対効果</b>「Excel整形15分 × 頻度 × 人数」で試算します。週2回・担当3人なら月に約6時間分。年額費用と比べれば判断は明快です。</div>
+<div class="o"><b>セキュリティ</b>印刷処理がブラウザ内で完結し、業務データの外部送信がないことを、提供元の仕様説明で確認して稟議に添付します。</div>
+<div class="o"><b>やめられるか</b>解約・削除してもkintone上のデータには影響せず、CSV書き出しの運用にいつでも戻れることを確認しておきます。</div>
+</div>
+
+<h2>活用イメージとよくある質問</h2>
+
+<h3>現場での活用イメージ</h3>
+<p>一覧印刷がよく使われる典型的な場面を3つ紹介します（特定の導入企業の事例ではなく、想定される代表的な活用パターンです）。自社の業務に近いものがあれば、試用版で同じ形を再現してみてください。</p>
 <ul class="plain">
-<li>kintoneに一覧の印刷機能はなく、ブラウザ印刷は「画面をそのまま紙にする」ため崩れる</li>
-<li>CSV→Excel整形で回避できるが、毎回10〜15分のコストが積み上がる</li>
-<li>定例資料や棚卸しで一覧を紙にする業務が続くなら、一覧印刷プラグインが確実</li>
+<li><b>棚卸し・現物照合</b>：備品一覧にチェック欄を付けて印刷し、倉庫を歩きながら☑を付けていきます。空白の記入欄にすれば実数の書き込みもできます。</li>
+<li><b>会議への配布資料</b>：案件一覧を「会議配布用」の保存済み設定で呼び出し、余白広め・文字大きめ・合計行付きで人数分印刷します。</li>
+<li><b>持ち出し・点検リスト</b>：現場作業のチェックリストを出発前に印刷。ネットワークが不安定な現場でも、紙は確実に機能します。</li>
 </ul>
-<p>関連: <a href="/blog/kintone-search-partial-match.html">kintoneの検索で部分一致ができない？原因と対処法</a></p>
+
+<h3>よくある質問</h3>
+<details class="faq"><summary>何件まで印刷できますか？</summary><p>bstの一覧印刷プラグインでは既定で最大1,000件、設定で10,000件まで印刷できます。件数が多い場合は、絞り込んでから印刷する運用をおすすめします。</p></details><details class="faq"><summary>カレンダー形式の一覧も印刷できますか？</summary><p>対象は表形式の一覧です。カレンダー形式やカスタマイズビューは対象外です。</p></details><details class="faq"><summary>請求書のような帳票レイアウトは作れますか？</summary><p>作れません。一覧印刷プラグインは「表示中の一覧をそのまま、きれいに印刷する」ことに特化した製品です。自由なレイアウト設計が必要な場合は、帳票専用の製品をご検討ください。</p></details><details class="faq"><summary>業務データが外部に送信されませんか？</summary><p>送信されません。印刷処理はすべてブラウザ内で完結します。年額プランのライセンス確認で送信されるのは「kintoneドメイン名」のみで、レコードの内容は送られません。</p></details><details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。</p></details>
+
+<h2>まとめ：一覧の印刷は「仕組み化」した瞬間にコストが消える</h2>
+<ul class="plain">
+<li>kintoneに一覧の印刷機能はなく、ブラウザ印刷は「画面の複製」のため必ず崩れる</li>
+<li>まずは<b>CSV→Excel整形</b>で回るか試す。毎回15分のコストが許容できるなら、それで十分</li>
+<li>定期的な印刷業務があるなら、<b>内製体制があればJavaScript、なければプラグイン</b>が総コスト最小</li>
+<li>選定時は<b>実寸プレビュー・ページ分割の品質・外部通信なし・試用可否</b>の4点を確認する</li>
+<li>迷ったら、まず30日の試用で「いつもの一覧」を実際に印刷して仕上がりを確かめる</li>
+</ul>
+
+<p>最後にひとつだけ。印刷は「なくすのが理想」と言われがちですが、棚卸しや点検のように紙が最速の現場は確かに存在します。なくせない印刷なら、せめて毎回の手間をなくす——それがこの記事の提案です。</p>
+
+<div class="cta"><b>この課題を最も簡単に解決する方法</b><br>
+bstの<a href="/lp-list-print.html">一覧印刷プラグイン</a>は、この記事で挙げた選定ポイントを満たすように作られています——実寸プレビュー、行を切らない自動ページ分割と「1 / n」のページ番号、棚卸し用チェック欄、設定のプリセット保存、そして業務データの外部送信なし。30日間・登録不要で試せます。製品ページでは列の選択や用紙の切替をブラウザ上のデモで実際に操作できますので、まずは触ってみてください。<br>
+<a class="b" href="/lp-list-print.html">一覧印刷プラグインを見る →</a></div>
+
+<p>関連記事: <a href="/blog/kintone-search-partial-match.html">kintoneで部分一致検索ができない理由と3つの解決方法</a> ／ <a href="/blog/kintone-tab-form.html">kintoneフォームをタブで整理する方法3選</a></p>
 
 </div></main>
 <footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="/index.html">ホーム</a><a href="/index.html#tools">プラグイン</a><a href="/blog/index.html">ブログ</a><a href="/icons.html">無料アイコン素材</a><a href="/about.html">bstについて</a><a href="/news.html">お知らせ</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="/tokushoho.html">特定商取引法に基づく表記</a><a href="/privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>

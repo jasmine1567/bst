@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#FBFBF8">
-<title>kintoneの検索で部分一致ができない？「あるはずのレコードが出てこない」原因と対処法｜bstブログ</title>
-<meta name="description" content="kintoneの絞り込みは原則「前方一致」。見積番号の下4桁や型番の一部で検索してもヒットしない理由と、標準機能でできる回避策、プラグインという選択肢まで実務目線で解説します。">
+<title>kintoneで部分一致検索ができない理由と3つの解決方法｜bstブログ</title>
+<meta name="description" content="kintoneの検索で「あるはずのレコードが出てこない」のは前方一致という仕様が原因です。標準機能でできる回避策、JavaScriptで実現する方法、プラグインの3つの解決方法を、費用・工数・注意点まで比較して解説します。">
 <link rel="canonical" href="https://bst-plugins.com/blog/kintone-search-partial-match.html">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:title" content="kintoneの検索で部分一致ができない？「あるはずのレコードが出てこない」原因と対処法｜bstブログ">
-<meta property="og:description" content="kintoneの絞り込みは原則「前方一致」。見積番号の下4桁や型番の一部で検索してもヒットしない理由と、標準機能でできる回避策、プラグインという選択肢まで実務目線で解説します。">
+<meta property="og:title" content="kintoneで部分一致検索ができない理由と3つの解決方法｜bstブログ">
+<meta property="og:description" content="kintoneの検索で「あるはずのレコードが出てこない」のは前方一致という仕様が原因です。標準機能でできる回避策、JavaScriptで実現する方法、プラグインの3つの解決方法を、費用・工数・注意点まで比較して解説します。">
 <meta property="og:image" content="https://bst-plugins.com/og-home.png">
 <meta property="og:url" content="https://bst-plugins.com/blog/kintone-search-partial-match.html">
 <meta property="og:type" content="article">
@@ -34,31 +34,41 @@
   });
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"kintoneの検索で部分一致ができない？「あるはずのレコードが出てこない」原因と対処法","description":"kintoneの絞り込みは原則「前方一致」。見積番号の下4桁や型番の一部で検索してもヒットしない理由と、標準機能でできる回避策、プラグインという選択肢まで実務目線で解説します。","datePublished":"2026-07-21","dateModified":"2026-07-21","author":{"@type":"Organization","name":"bst"},"publisher":{"@type":"Organization","name":"bst"},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-search-partial-match.html"}
+{"@context":"https://schema.org","@type":"Article","headline":"kintoneで部分一致検索ができない理由と3つの解決方法","description":"kintoneの検索で「あるはずのレコードが出てこない」のは前方一致という仕様が原因です。標準機能でできる回避策、JavaScriptで実現する方法、プラグインの3つの解決方法を、費用・工数・注意点まで比較して解説します。","datePublished":"2026-07-21","dateModified":"2026-07-22","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst"},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-search-partial-match.html"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"検索できるのは、どのフィールドですか？","acceptedAnswer":{"@type":"Answer","text":"部分一致検索プラグインでは、文字列・数値・日付・選択肢・リンクなどの主要フィールドに加え、サブテーブルの中身や添付ファイル名まで検索対象に指定できます。対象は設定画面のチェックで選べます。"}},{"@type":"Question","name":"権限のないレコードまで見えてしまいませんか？","acceptedAnswer":{"@type":"Answer","text":"見えません。検索はkintoneのAPIを通じて行われるため、そのユーザーが閲覧権限を持つレコードだけがヒットします。kintone本体のアクセス権がそのまま適用されます。"}},{"@type":"Question","name":"レコード件数が多くても使えますか？","acceptedAnswer":{"@type":"Answer","text":"検索範囲を「表示中の一覧内」と「アプリ全件」から選べます。普段は絞り込んだ一覧内を検索する運用にすると、大量データのアプリでも快適に使えます。"}},{"@type":"Question","name":"全角・半角や大文字・小文字の違いは吸収されますか？","acceptedAnswer":{"@type":"Answer","text":"されます。「ｅｓｔ」と入力してもESTを含むレコードがヒットします。入力のゆらぎを利用者に意識させないための機能です。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。"}}]}
 </script>
 <style>
 :root{--ink:#252525;--paper:#FBFBF8;--paper2:#F3F2EC;--line:#E4E3DB;--amber:#FFB800;--amber-d:#B57E00;--mut:#6E6E68;--ok:#18794E;--blue:#2563EB;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:"Noto Sans JP",sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--paper);color:var(--ink);line-height:1.95;}
 .wrap{max-width:820px;margin:0 auto;padding:0 24px;}
 main{padding:44px 0 64px;}
 .kick{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--amber-d);}
-h1{font-size:clamp(24px,4vw,34px);font-weight:900;letter-spacing:-.01em;line-height:1.5;margin:6px 0 10px;}
-.meta{font-size:12.5px;color:var(--mut);margin-bottom:26px;}
-h2{font-size:clamp(18px,2.8vw,23px);font-weight:900;margin:38px 0 12px;padding-top:8px;border-top:1px solid var(--line);}
-h3{font-size:16px;font-weight:900;margin:24px 0 8px;}
-p{font-size:14.5px;margin:0 0 16px;}
+h1{font-size:clamp(23px,3.8vw,32px);font-weight:900;letter-spacing:-.01em;line-height:1.55;margin:6px 0 10px;}
+.meta{font-size:12.5px;color:var(--mut);margin-bottom:24px;}
+h2{font-size:clamp(18px,2.8vw,23px);font-weight:900;margin:40px 0 14px;padding:10px 0 0;border-top:1px solid var(--line);}
+h3{font-size:16.5px;font-weight:900;margin:26px 0 10px;padding-left:10px;border-left:4px solid var(--amber);}
+p{font-size:14.5px;margin:0 0 15px;}
+.lead{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px 18px;margin:0 0 22px;}
+.lead b{display:block;font-size:13px;color:var(--amber-d);margin-bottom:6px;}
+.lead ul{margin:0 0 0 20px;font-size:13.5px;}
+.lead li{margin-bottom:4px;}
+.point{border:2px solid var(--amber);border-radius:12px;background:#fffdf5;padding:13px 17px;margin:0 0 20px;font-size:14.5px;line-height:1.9;}
 .note{border:1.5px solid #bcd9ee;border-radius:12px;background:#F5F9FF;padding:12px 16px;font-size:13px;line-height:1.9;margin:18px 0;}
 .cta{border:2px solid var(--amber);border-radius:14px;background:#fffdf5;padding:16px 20px;margin:26px 0;font-size:14px;}
 .cta a.b{display:inline-flex;margin-top:10px;background:var(--amber);color:var(--ink);font-weight:700;font-size:14px;padding:11px 22px;border-radius:999px;text-decoration:none;}
-ul.plain{margin:0 0 16px 22px;font-size:14.5px;}
-ul.plain li{margin-bottom:6px;}
+ul.plain,ol.plain{margin:0 0 16px 22px;font-size:14.5px;}
+ul.plain li,ol.plain li{margin-bottom:7px;}
 a{color:var(--blue);}
-table.tb{border-collapse:collapse;width:100%;font-size:13px;margin:0 0 16px;background:#fff;}
-table.tb th,table.tb td{border:1px solid var(--line);padding:8px 12px;text-align:left;line-height:1.7;}
-table.tb th{background:#F7F7F5;}
-
+table.tb{border-collapse:collapse;width:100%;font-size:13px;margin:0 0 18px;background:#fff;}
+table.tb th,table.tb td{border:1px solid var(--line);padding:9px 12px;text-align:left;line-height:1.7;vertical-align:top;}
+table.tb th{background:#F7F7F5;white-space:nowrap;}
+details.faq{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 18px;margin-bottom:10px;}
+details.faq summary{font-weight:700;font-size:14px;cursor:pointer;}
+details.faq p{font-size:13.5px;color:#444;margin:8px 0 0;}
 /* ===== ブログ組版強化（読みやすさ・余白・キーメッセージ・ミニデモ） ===== */
 p{margin:0 0 18px;}
 h2{margin-top:48px;}
@@ -85,7 +95,6 @@ h3{margin-top:30px;}
 .sd-miss{opacity:.55;}
 .sd-miss .st{color:#991b1b;font-weight:900;}
 .sd-sum{font-size:12.5px;font-weight:900;margin-top:10px;}
-
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -157,15 +166,37 @@ body{-webkit-text-size-adjust:100%;}
 <main><div class="wrap">
 
 <span class="kick">BLOG</span>
-<h1>kintoneの検索で部分一致ができない？<br>「あるはずのレコードが出てこない」原因と対処法</h1>
-<p class="meta">2026-07-21 ／ カテゴリ: 検索・絞り込み</p>
+<h1>kintoneで部分一致検索ができない理由と3つの解決方法</h1>
+<p class="meta">2026-07-21公開・2026-07-22更新 ／ カテゴリ: 検索・絞り込み ／ 執筆: bst（kintoneプラグイン開発者）</p>
 
 <p>「見積番号の一部で検索したのに、0件と表示される」「データは確かにあるのに、検索に出てこない」——kintoneを使い始めた方が最初につまずくのが、この検索の挙動です。</p>
-<div class="key">あるはずのレコードが出てこないのは、不具合でも操作ミスでもありません。<br>kintoneの検索が「前方一致」で動く、仕様の問題です。<small>この記事では、原因の正確な理解 → 標準機能でできる回避策 → 根本的に解決する選択肢、の順で解説します。</small></div>
+<p>電話でお客様を待たせながら番号の断片を打ち込み、0件の画面を前に冷や汗をかく。多くの現場で毎日起きている光景です。筆者はkintoneプラグインの開発者として、この「出てこない」の相談を数多く受けてきました。本記事は2026年7月時点の仕様に基づいて、原因と解決策を整理します。</p>
 
-<h2>原因: kintoneの絞り込みは「前方一致」が原則</h2>
-<p>kintoneの一覧画面の絞り込みで「〜を含む」条件を指定しても、内部の検索は<b>単語の先頭からの一致</b>を基本に動作します。</p>
-<p>たとえば「EST-2026-0142」という見積番号なら、「EST」や「2026」のように区切りの直後から始まる文字では見つかります。しかし「142」のような単語の途中の文字は、検索の起点にならないためヒットしません。覚えている断片が、ちょうど区切り位置から始まっているとは限らない——ここが実務でつまずく理由です。</p>
+<div class="key">あるはずのレコードが出てこないのは、不具合でも操作ミスでもありません。<br>kintoneの検索が「前方一致」で動く、仕様の問題です。<small>この記事では、原因の正確な理解 → 標準機能でできる回避策 → 根本的に解決する3つの方法、の順で解説します。</small></div>
+
+<div class="lead"><b>この記事で分かること</b>
+<ul>
+<li>kintoneの検索で部分一致ができない技術的な理由（前方一致の仕組み）</li>
+<li>標準機能でできる検索の工夫と、できないことの境界線</li>
+<li>解決方法3つ（運用の工夫・JavaScript自作・プラグイン）の費用と工数の比較</li>
+<li>それぞれのメリット・デメリットと、導入前に確認すべき注意点</li>
+<li>現場での活用イメージと、よくある質問への回答</li>
+</ul></div>
+
+<div class="point"><b>先に結論</b>：kintoneの絞り込みは原則「前方一致」で、単語の途中の文字では検索できません。解決方法は、次の3つです。</div>
+<div class="opt3">
+<div class="o"><b>①データ側を検索に合わせる（運用の工夫）</b>命名規則の統一や検索用フィールドの追加。無料ですが、既存データの修正と運用の徹底が必要です。</div>
+<div class="o"><b>②JavaScriptで検索バーを自作する</b>ライセンス費用は不要。ただし開発と、kintone更新のたびの保守が自社の負担になります。</div>
+<div class="o"><b>③部分一致検索プラグインを使う</b>有料（年額）ですが、ノーコード・約2分で導入でき、Googleのように「含む文字」で検索できるようになります。</div>
+</div>
+<p>検索は全員が毎日使う機能です。番号や型番の断片で探す業務が日常にあるなら、<b>総コストではプラグインが最も安くつくケースが多い</b>——これが本記事の結論です。理由を順に説明します。</p>
+
+<h2>kintoneで部分一致検索ができない理由｜標準機能でできること・できないこと</h2>
+
+<h3>原因：kintoneの検索は「単語の先頭」からしか一致しない</h3>
+<p>kintoneの一覧画面の絞り込みで「〜を含む」条件を指定しても、内部の検索は<b>単語の先頭からの一致（前方一致）</b>を基本に動作します。</p>
+<p>たとえば「EST-2026-0142」という見積番号なら、「EST」や「2026」のように区切りの直後から始まる文字では見つかります。しかし「142」のような単語の途中の文字は、検索の起点にならないためヒットしません。</p>
+<p>覚えている断片が、ちょうど区切り位置から始まっているとは限らない——ここが実務でつまずく理由です。実際に下のデモで確かめてみてください。</p>
 
 <div class="adm"><div class="adm-hd"><span class="tag">触って確認</span>「EST-2026-0142」を探せるか？（検索方式と検索語を切り替え）</div>
 <div class="adm-bd">
@@ -176,41 +207,105 @@ body{-webkit-text-size-adjust:100%;}
 <div class="adm-note">※標準の検索は「区切り（ハイフン等）の直後」からは一致しますが、単語の途中からは一致しません。</div>
 </div></div>
 
-<p>これはkintoneの全文検索の索引の作り方に由来する挙動で、ユーザー側の操作ミスではありません。「あるはずなのに出ない」と感じたら、まず前方一致を疑ってください。</p>
+<p>これはkintoneが検索を高速に返すための索引（インデックス）の作り方に由来する挙動で、ユーザー側の設定で変えることはできません。「あるはずなのに出ない」と感じたら、まず前方一致を疑ってください。</p>
 
-<h2>標準機能でできる回避策</h2>
-<h3>1. 検索の起点になる単位で入力を区切る</h3>
-<p>「EST-2026-0142」のように<b>ハイフンで区切って登録されている場合、区切りの直後は検索の起点になります</b>。運用でフォーマットを統一できるなら、これが最も安価な対策です。ただし、覚えている断片が区切りから始まるとは限らず、既存データの一括修正も必要になります。</p>
-<h3>2. 絞り込み条件を工夫する</h3>
-<p>探す範囲があらかじめ限定できるなら、日付や担当者など<b>他のフィールドで先に絞り込み、目視で探す</b>方法が現実的です。件数が数十件までなら十分機能しますが、電話対応中など時間がない場面では厳しくなります。</p>
-<h3>3. アプリ横断の全文検索を使う</h3>
-<p>画面上部のkintone全体検索は対象が広い一方、こちらも部分一致の制約は同様で、意図しないアプリのレコードまで混ざります。「このアプリの中で、番号の一部から一発で出したい」という要求には届きません。</p>
+<h3>標準機能でできること（まずは無料でここまで）</h3>
+<p>標準機能にも、検索のストレスを減らす道具はあります。お金をかける前に、まずここまで試すのが正しい順番です。</p>
+<ul class="plain">
+<li><b>絞り込み条件の保存（一覧の作成）</b>：よく使う条件は一覧として保存し、探す範囲を最初から狭めておきます。</li>
+<li><b>複数条件の組み合わせ</b>：「担当者＝自分」かつ「今月」など、他のフィールドで範囲を絞ってから目視で探します。</li>
+<li><b>kintone全体検索</b>：画面上部の検索窓はアプリ横断で探せます。ただし前方一致の制約は同じで、対象が広すぎて絞り込みにくい面もあります。</li>
+</ul>
 
-<h2>根本的に解決するなら: 部分一致検索という選択肢</h2>
-<p>回避策で運用が回るならそれで十分です。ただ、<b>「番号や型番の一部で探す」ことが日常業務になっている</b>場合——問い合わせ対応、在庫照会、図面検索など——は、検索そのものを部分一致にする方が確実です。</p>
-<p>bstの<a href="/lp-partial-search.html">部分一致検索プラグイン</a>は、一覧画面に検索バーを1本追加します。できるようになることは3つです。</p>
+<h3>標準機能ではできないこと</h3>
+<ul class="plain">
+<li><b>単語の途中の文字で探す</b>：「142」でEST-2026-0142を見つけることはできません。</li>
+<li><b>複数フィールドをまとめて一度に検索</b>：フィールドごとに条件を1つずつ組む必要があり、急ぎの場面では現実的ではありません。</li>
+<li><b>サブテーブルの中身や添付ファイル名の検索</b>：絞り込みの対象にしにくく、「明細にあの商品が入っていた案件」を探すのは困難です。</li>
+</ul>
+
+<h2>部分一致検索を実現する3つの解決方法【比較】</h2>
+
+<h3>方法1：データ側を検索に合わせる（代替方法・無料）</h3>
+<p>検索の仕様が変えられないなら、データを仕様に合わせる方法があります。具体的には次の2つです。</p>
+<p>1つめは<b>命名規則の統一</b>です。番号をハイフンで区切って登録すれば、区切りの直後は検索の起点になります。2つめは<b>検索用フィールドの追加</b>です。「よみがな」や「検索キーワード」フィールドを設け、探されそうな断片をあらかじめ入れておきます。</p>
+<p><b>メリット</b>は費用ゼロ。<b>デメリット</b>は、覚えている断片が区切りから始まるとは限らないこと、既存データの一括修正が必要なこと、そして入力運用の徹底を全員に求め続けることです。データが増えるほど、この方法の維持コストは上がっていきます。</p>
+
+<h3>方法2：JavaScriptで検索バーを自作する（無料〜外注10万円台）</h3>
+<p>kintoneはJavaScriptカスタマイズを公式にサポートしており、検索バーを自作することもできます。一覧画面のイベント（app.record.index.show）で検索窓を設置し、REST API（/k/v1/records）のクエリを組み立てて結果を表示する実装が一般的です。</p>
+<p><b>メリット</b>は、ライセンス費用が不要で、自社の要件に完全に合わせられることです。</p>
+<p><b>デメリットと注意点</b>は3つあります。まず、部分一致をAPIで実現するには工夫が必要で、対象フィールドの型ごとの処理・全角半角の正規化・複数語のAND検索まで作り込むと<b>開発は2〜5人日</b>が目安になります。次に、kintoneのアップデートのたびに動作確認と修正が必要です。最後に、作った人が異動すると誰も触れなくなる属人化のリスクです。</p>
+
+<h3>方法3：部分一致検索プラグインを使う（ノーコード・2分）</h3>
+<p>プラグインは、kintoneに機能を追加する公式の仕組みです。導入手順は次の5ステップだけです。</p>
+<ol class="plain">
+<li>プラグインのZIPファイルを入手する（試用版で構いません）</li>
+<li>kintoneシステム管理 →「プラグイン」→「読み込む」でZIPを登録する</li>
+<li>対象アプリの設定 →「プラグイン」→「追加」で有効化する</li>
+<li>設定画面で、検索対象にしたいフィールドにチェックを付ける</li>
+<li>「アプリを更新」して、一覧画面の検索バーを確認する</li>
+</ol>
+<p>bstの<a href="/lp-partial-search.html">部分一致検索プラグイン</a>の場合、できるようになることは3つです。</p>
 <div class="opt3">
 <div class="o"><b>①含む文字でヒット</b>単語の途中でも末尾でも見つかります。全角半角・大文字小文字の違いも吸収します。</div>
 <div class="o"><b>②スペース区切りのAND検索</b>「九州 2026」のように、記憶の断片を並べて絞り込めます。</div>
-<div class="o"><b>③フィールドを横断して一度に検索</b>サブテーブルの中身や添付ファイル名まで対象にできます。</div>
+<div class="o"><b>③フィールドを横断して一度に検索</b>サブテーブルの中身や添付ファイル名まで対象にできます。検索範囲は「表示中の一覧内」と「アプリ全件」を切り替えられます。</div>
 </div>
-<p>検索処理はブラウザ内で完結し、業務データが外部に送信されることはありません。</p>
-<table class="tb">
-<tr><th></th><th>kintone標準の絞り込み</th><th>部分一致検索プラグイン</th></tr>
-<tr><td>「142」で EST-2026-0142</td><td>ヒットしない</td><td>ヒットする</td></tr>
-<tr><td>複数フィールド横断</td><td>条件を1つずつ指定</td><td>まとめて一度に検索</td></tr>
-<tr><td>全角半角・大小文字</td><td>区別される場合あり</td><td>吸収する</td></tr>
-<tr><td>サブテーブル・添付名</td><td>対象にしにくい</td><td>対象にできる</td></tr>
-</table>
-<div class="cta"><b>30日、無料で試せます（登録不要）</b><br>製品ページには実際に文字を打って試せるデモがあります。「あるはずなのに出ない」のもどかしさが消える感覚を体験してみてください。<br><a class="b" href="/lp-partial-search.html">部分一致検索プラグインを見る →</a></div>
+<p><b>メリット</b>は導入の速さと、保守を提供者に任せられること。<b>デメリット</b>は年額費用（例: ¥19,800/年）がかかることです。検索処理はブラウザ内で完結し、業務データが外部に送信されることはありません。</p>
 
-<h2>まとめ</h2>
+<table class="tb">
+<tr><th>比較項目</th><th>①運用の工夫</th><th>②JavaScript自作</th><th>③プラグイン</th></tr>
+<tr><td>「142」で EST-2026-0142</td><td>△（区切り次第）</td><td>◎（実装次第）</td><td>◎ ヒットする</td></tr>
+<tr><td>初期費用</td><td>0円（修正作業は必要）</td><td>0円〜（外注10万円台〜）</td><td>0円（試用30日）</td></tr>
+<tr><td>継続費用</td><td>運用徹底の負荷</td><td>保守工数（更新のたび）</td><td>年額ライセンス</td></tr>
+<tr><td>導入までの時間</td><td>数日〜（データ修正）</td><td>数日〜数週間</td><td>約2分</td></tr>
+<tr><td>複数フィールド横断</td><td>×</td><td>実装次第</td><td>◎</td></tr>
+<tr><td>属人化リスク</td><td>中（運用ルール）</td><td><b>高</b></td><td>低</td></tr>
+</table>
+
+<p>導入前の<b>注意点</b>として、プラグインを選ぶ際は次の4点を確認してください。</p>
+<ol class="plain">
+<li><b>検索対象の範囲</b>：サブテーブルや添付ファイル名まで対象にできるか</li>
+<li><b>検索範囲の切り替え</b>：「一覧内」と「全件」を使い分けられるか（大量データで効きます）</li>
+<li><b>外部通信の有無</b>：業務データが外部サーバーへ送られない設計か</li>
+<li><b>権限の扱い</b>：kintoneのアクセス権に準拠し、閲覧権限のないレコードが見えないこと</li>
+</ol>
+
+<h3>社内稟議・情報システム部門への説明ポイント</h3>
+<p>有料プラグインの導入には、社内の承認が必要な組織も多いはずです。説明は次の3点を押さえると通りやすくなります。</p>
+<div class="opt3">
+<div class="o"><b>費用対効果</b>「検索にかかる時間 × 回数 × 人数」で試算します。1人1日10回・1回30秒の短縮でも、10人の組織なら月に約17時間分。年額費用との比較は明快です。</div>
+<div class="o"><b>セキュリティ</b>業務データの外部送信がないこと、kintoneのアクセス権にそのまま準拠することの2点を、提供元の仕様説明で確認して稟議に添付します。</div>
+<div class="o"><b>やめられるか</b>解約・削除してもkintone上のデータには一切影響しない（追加した検索機能が外れるだけ）ことを確認しておくと、導入の心理的ハードルが下がります。</div>
+</div>
+
+<h2>活用イメージとよくある質問</h2>
+
+<h3>現場での活用イメージ</h3>
+<p>部分一致検索がよく使われる典型的な場面を3つ紹介します（特定の導入企業の事例ではなく、想定される代表的な活用パターンです）。</p>
 <ul class="plain">
-<li>kintoneの検索は原則「前方一致」。あるはずのレコードが出ないのは仕様で、操作ミスではない</li>
-<li>区切り文字の統一・事前の絞り込みで回避できる場面も多い</li>
-<li>番号・型番の一部で探すのが日常なら、部分一致検索プラグインで検索自体を変えるのが確実</li>
+<li><b>電話対応×番号の断片</b>：お客様が口にした番号の一部・会社名の一部をそのまま打てば出てくるので、保留時間が短くなります。</li>
+<li><b>製造・卸×型番の一部</b>：「末尾がB-03だったはず」という記憶から在庫や図面を一発で引けます。</li>
+<li><b>表記ゆらぎ対策</b>：「株式会社◯◯」と「◯◯株式会社」が混在していても、社名の核の部分だけでどちらもヒットします。</li>
 </ul>
-<p>関連: <a href="/blog/kintone-list-print.html">kintoneの一覧を印刷するときれいに出ない問題の解決法</a></p>
+
+<h3>よくある質問</h3>
+<details class="faq"><summary>検索できるのは、どのフィールドですか？</summary><p>部分一致検索プラグインでは、文字列・数値・日付・選択肢・リンクなどの主要フィールドに加え、サブテーブルの中身や添付ファイル名まで検索対象に指定できます。対象は設定画面のチェックで選べます。</p></details><details class="faq"><summary>権限のないレコードまで見えてしまいませんか？</summary><p>見えません。検索はkintoneのAPIを通じて行われるため、そのユーザーが閲覧権限を持つレコードだけがヒットします。kintone本体のアクセス権がそのまま適用されます。</p></details><details class="faq"><summary>レコード件数が多くても使えますか？</summary><p>検索範囲を「表示中の一覧内」と「アプリ全件」から選べます。普段は絞り込んだ一覧内を検索する運用にすると、大量データのアプリでも快適に使えます。</p></details><details class="faq"><summary>全角・半角や大文字・小文字の違いは吸収されますか？</summary><p>されます。「ｅｓｔ」と入力してもESTを含むレコードがヒットします。入力のゆらぎを利用者に意識させないための機能です。</p></details><details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。</p></details>
+
+<h2>まとめ：検索の1秒は、チーム全体では大きな時間になる</h2>
+<ul class="plain">
+<li>kintoneの検索は原則「前方一致」。単語の途中の文字では見つからないのは仕様であり、操作ミスではない</li>
+<li>まずは絞り込みの保存や命名規則など、<b>標準機能と運用の工夫をやり切る</b></li>
+<li>それでも足りなければ、<b>内製体制があるならJavaScript、なければプラグイン</b>が総コスト最小</li>
+<li>選定時は<b>検索対象の範囲・範囲切替・外部通信なし・権限準拠</b>の4点を確認する</li>
+<li>迷ったら、まず30日の試用で「現場の検索が何秒変わるか」を実測してから決める</li>
+</ul>
+
+<div class="cta"><b>この課題を最も簡単に解決する方法</b><br>
+bstの<a href="/lp-partial-search.html">部分一致検索プラグイン</a>は、この記事で挙げた選定ポイントを満たすように作られています——設定はチェックを付けるだけ（約2分）、サブテーブル・添付ファイル名まで対象化、kintoneの権限に完全準拠、業務データの外部送信なし。30日間・登録不要で試せます。製品ページには実際に文字を打って試せるデモがありますので、まずは「あるはずなのに出ない」のもどかしさが消える感覚を体験してみてください。<br>
+<a class="b" href="/lp-partial-search.html">部分一致検索プラグインを見る →</a></div>
+
+<p>関連記事: <a href="/blog/kintone-tab-form.html">kintoneフォームをタブで整理する方法3選</a> ／ <a href="/blog/kintone-list-print.html">kintoneの一覧を印刷する方法3選</a></p>
 
 </div></main>
 <footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="/index.html">ホーム</a><a href="/index.html#tools">プラグイン</a><a href="/blog/index.html">ブログ</a><a href="/icons.html">無料アイコン素材</a><a href="/about.html">bstについて</a><a href="/news.html">お知らせ</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="/tokushoho.html">特定商取引法に基づく表記</a><a href="/privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
