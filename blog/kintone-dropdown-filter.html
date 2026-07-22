@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FBFBF8">
+<title>kintoneのドロップダウンを連動させる方法3選｜bstブログ</title>
+<meta name="description" content="kintoneで「大分類を選んだら小分類を絞り込みたい」連動ドロップダウンは標準機能では作れません。選択肢の命名などの代替策、JavaScriptで実現する方法、プラグインの3つを費用・工数・注意点まで比較して解説します。">
+<link rel="canonical" href="https://bst-plugins.com/blog/kintone-dropdown-filter.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="kintoneのドロップダウンを連動させる方法3選｜bstブログ">
+<meta property="og:description" content="kintoneで「大分類を選んだら小分類を絞り込みたい」連動ドロップダウンは標準機能では作れません。選択肢の命名などの代替策、JavaScriptで実現する方法、プラグインの3つを費用・工数・注意点まで比較して解説します。">
+<meta property="og:image" content="https://bst-plugins.com/og-home.png">
+<meta property="og:url" content="https://bst-plugins.com/blog/kintone-dropdown-filter.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V964JH879G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-V964JH879G');
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href*="/trials/"]');
+    if(a){
+      var f = a.getAttribute('href');
+      var pm = f.match(/bst_([a-z0-9-]+)_v/i);
+      gtag('event', 'trial_download', { file: f, plugin: pm ? pm[1] : 'unknown' });
+    }
+  });
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"kintoneのドロップダウンを連動させる方法3選","description":"kintoneで「大分類を選んだら小分類を絞り込みたい」連動ドロップダウンは標準機能では作れません。選択肢の命名などの代替策、JavaScriptで実現する方法、プラグインの3つを費用・工数・注意点まで比較して解説します。","datePublished":"2026-07-22","dateModified":"2026-07-22","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst"},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-dropdown-filter.html"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"何段階まで連動できますか？","acceptedAnswer":{"@type":"Answer","text":"bstの選択肢絞り込みプラグインは、大分類→中分類→小分類のような3段階以上の多段連動に対応しています。段数の設計は設定画面のGUIで行えます。"}},{"@type":"Question","name":"連動のルールはどうやって設定しますか？","acceptedAnswer":{"@type":"Answer","text":"設定画面で「親の選択肢ごとに、子に表示する選択肢」をチェックで選ぶだけです。コードや対応表ファイルの作成は不要です。"}},{"@type":"Question","name":"既存のレコードやデータに影響はありませんか？","acceptedAnswer":{"@type":"Answer","text":"ありません。プラグインが制御するのは入力画面での選択肢の表示だけで、フィールドや保存済みデータの構造には手を加えません。プラグインを外せば元の表示に戻ります。"}},{"@type":"Question","name":"業務データが外部に送信されませんか？","acceptedAnswer":{"@type":"Answer","text":"送信されません。絞り込みの処理はすべてブラウザ内で完結します。年額プランのライセンス確認で送信されるのは「kintoneドメイン名」のみです。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。"}}]}
+</script>
+<style>
+:root{--ink:#252525;--paper:#FBFBF8;--paper2:#F3F2EC;--line:#E4E3DB;--amber:#FFB800;--amber-d:#B57E00;--mut:#6E6E68;--ok:#18794E;--blue:#2563EB;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--paper);color:var(--ink);line-height:1.95;}
+.wrap{max-width:820px;margin:0 auto;padding:0 24px;}
+main{padding:44px 0 64px;}
+.kick{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--amber-d);}
+h1{font-size:clamp(23px,3.8vw,32px);font-weight:900;letter-spacing:-.01em;line-height:1.55;margin:6px 0 10px;}
+.meta{font-size:12.5px;color:var(--mut);margin-bottom:24px;}
+h2{font-size:clamp(18px,2.8vw,23px);font-weight:900;margin:40px 0 14px;padding:10px 0 0;border-top:1px solid var(--line);}
+h3{font-size:16.5px;font-weight:900;margin:26px 0 10px;padding-left:10px;border-left:4px solid var(--amber);}
+p{font-size:14.5px;margin:0 0 15px;}
+.lead{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px 18px;margin:0 0 22px;}
+.lead b{display:block;font-size:13px;color:var(--amber-d);margin-bottom:6px;}
+.lead ul{margin:0 0 0 20px;font-size:13.5px;}
+.lead li{margin-bottom:4px;}
+.point{border:2px solid var(--amber);border-radius:12px;background:#fffdf5;padding:13px 17px;margin:0 0 20px;font-size:14.5px;line-height:1.9;}
+.note{border:1.5px solid #bcd9ee;border-radius:12px;background:#F5F9FF;padding:12px 16px;font-size:13px;line-height:1.9;margin:18px 0;}
+.cta{border:2px solid var(--amber);border-radius:14px;background:#fffdf5;padding:16px 20px;margin:26px 0;font-size:14px;}
+.cta a.b{display:inline-flex;margin-top:10px;background:var(--amber);color:var(--ink);font-weight:700;font-size:14px;padding:11px 22px;border-radius:999px;text-decoration:none;}
+ul.plain,ol.plain{margin:0 0 16px 22px;font-size:14.5px;}
+ul.plain li,ol.plain li{margin-bottom:7px;}
+a{color:var(--blue);}
+table.tb{border-collapse:collapse;width:100%;font-size:13px;margin:0 0 18px;background:#fff;}
+table.tb th,table.tb td{border:1px solid var(--line);padding:9px 12px;text-align:left;line-height:1.7;vertical-align:top;}
+table.tb th{background:#F7F7F5;white-space:nowrap;}
+details.faq{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 18px;margin-bottom:10px;}
+details.faq summary{font-weight:700;font-size:14px;cursor:pointer;}
+details.faq p{font-size:13.5px;color:#444;margin:8px 0 0;}
+/* ===== ブログ組版強化（読みやすさ・余白・キーメッセージ・ミニデモ） ===== */
+p{margin:0 0 18px;}
+h2{margin-top:48px;}
+h3{margin-top:30px;}
+.key{margin:28px 0;padding:18px 22px;border-left:6px solid var(--amber);background:#fff;border-radius:0 12px 12px 0;font-size:16.5px;font-weight:900;line-height:2.05;letter-spacing:.01em;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.key small{display:block;font-weight:500;font-size:12.5px;color:var(--mut);margin-top:8px;line-height:1.8;}
+.opt3{display:flex;flex-direction:column;gap:10px;margin:14px 0 18px;}
+.opt3 .o{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 15px;font-size:13.5px;line-height:1.85;}
+.opt3 .o b{color:var(--amber-d);margin-right:6px;}
+.adm{border:2px solid var(--amber);border-radius:14px;background:#fff;overflow:hidden;margin:26px 0;box-shadow:0 10px 26px rgba(255,184,0,.10);}
+.adm-hd{background:#F7F7F5;border-bottom:1px solid var(--line);padding:9px 14px;font-size:12px;font-weight:900;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.adm-hd .tag{font-size:10px;color:#fff;background:#3498db;border-radius:999px;padding:2px 9px;flex:none;}
+.adm-bd{padding:14px 16px;}
+.adm-seg{display:inline-flex;border:1px solid #d1d5db;border-radius:8px;overflow:hidden;margin:0 8px 12px 0;flex-wrap:wrap;}
+.adm-seg button{border:none;background:#fff;padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;color:#6b7280;font-family:inherit;border-right:1px solid #e5e7eb;}
+.adm-seg button:last-child{border-right:none;}
+.adm-seg button.on{background:#3498db;color:#fff;}
+.adm-note{font-size:11.5px;color:var(--mut);margin-top:8px;}
+
+.od-form{border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px 14px;}
+.od-row{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap;}
+.od-row label{width:80px;font-size:12.5px;font-weight:700;color:#374151;flex:none;}
+.od-row select{flex:1;min-width:180px;height:34px;padding:0 10px;font-size:13px;font-family:inherit;border:1px solid #d5dee3;border-radius:8px;background:#fff;}
+.od-cnt{font-size:11px;font-weight:900;border-radius:999px;padding:2px 10px;flex:none;}
+.od-cnt.many{background:#fff1f2;color:#991b1b;border:1px solid #fecaca;}
+.od-cnt.few{background:#F0FAF4;color:#18794E;border:1px solid #bbe5c8;}
+.od-cap{font-size:11.5px;color:var(--mut);margin-top:6px;}
+/* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
+.bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
+.bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
+.bstnav .bstbrand{display:inline-block;background:#252525;color:#FFB800;padding:3px 13px;border-radius:9px;font-weight:900;font-size:18px;text-decoration:none;letter-spacing:.02em;}
+.bstnav .bstitem{font-size:13.5px;font-weight:500;text-decoration:none;color:#6E6E68;}
+.bstnav .bstitem:hover{color:#252525;}
+.bstnav .bstcta{margin-left:auto;background:#252525;color:#fff;font-size:13px;font-weight:700;padding:9px 18px;border-radius:999px;text-decoration:none;white-space:nowrap;}
+.bstfoot{border-top:1px solid #E4E3DB;padding:28px 0 38px;font-size:12.5px;color:#6E6E68;}
+.bstfoot-in{max-width:1080px;margin:0 auto;padding:0 24px;}
+.bstfoot .row{display:flex;gap:18px;flex-wrap:wrap;}
+.bstfoot a{text-decoration:none;color:#6E6E68;}
+.bstfoot a:hover{color:#252525;}
+/* ===== 日本語の折り返し品質（中途半端な改行の防止） ===== */
+h1,h2,h3{text-wrap:balance;}
+p,li,dd,dt{text-wrap:pretty;}
+@supports (word-break: auto-phrase){h1,h2,h3,p{word-break:auto-phrase;}}
+/* =====================================================================
+   bstm: モバイル最適化（全ページ共通・スタイルの最後に置くこと）
+   ・インラインstyleの2カラムgridは属性セレクタ＋!importantで1カラム化
+   ・カード類のminmaxによる横あふれを防止
+   ===================================================================== */
+img,svg,table{max-width:100%;}
+body{-webkit-text-size-adjust:100%;}
+@media (max-width:860px){
+  [style*="grid-template-columns:1fr 1.2fr"],
+  [style*="grid-template-columns:1fr 1.1fr"],
+  [style*="grid-template-columns:1.1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1.2fr"]{grid-template-columns:1fr !important;}
+  .pricebox{grid-template-columns:1fr;}
+  .viz,.can,.hero-grid,.grid,.demo2{grid-template-columns:1fr !important;}
+}
+@media (max-width:640px){
+  /* ヘッダー: ブランド＋CTAのみ（他の導線はフッターと本文に確保済み） */
+  .bstnav-in{gap:12px;height:56px;padding:0 16px;}
+  .bstnav .bstitem{display:none;}
+  .bstnav .bstcta{margin-left:auto;font-size:12.5px;padding:8px 15px;}
+  .wrap,.bstfoot-in{padding:0 16px;}
+  section{padding:38px 0;}
+  /* カード/グリッドは必ず1カラム（minmaxの最小幅による横あふれを断つ） */
+  .cards3,.bstx-cards,.pgrid2,.steps,.cardrow,.pgrid,.plist{grid-template-columns:1fr !important;}
+  /* 主要ボタンは全幅・タップしやすく */
+  .btns .btn,.dlrow .btn,.pcard-btns .bt{flex:1 1 100%;justify-content:center;}
+  .btn{padding:13px 20px;}
+  /* 価格ボックスの余白 */
+  .pricebox{padding:22px 18px;}
+  .pricebox .big{font-size:36px;}
+  /* 比較表: 横スクロール前提で圧縮（親のoverflow-x:autoで操作可能） */
+  .bstx-cmp,.cmp{min-width:500px;font-size:11.5px;}
+  .bstx-cmp th,.bstx-cmp td,.cmp th,.cmp td{padding:8px 10px;}
+  /* 部分一致検索デモ: 列幅指定を解除して収める */
+  #psrows,#pscnt{font-size:12px;}
+  th[style*="width:150px"],th[style*="width:110px"]{width:auto !important;}
+  /* カレンダーデモ: セルを小さく */
+  #cvBody div[style*="repeat(7"]{gap:2px !important;}
+  #cvBody div[style*="min-height:52px"]{min-height:42px !important;padding:1px 2px !important;}
+  /* タブ表示デモ: タブバーを折り返す */
+  .tbar{flex-wrap:wrap;}
+  /* フッターのリンク間隔 */
+  .bstfoot .row{gap:12px 16px;}
+}
+@media (max-width:400px){
+  .bstnav .bstcta{font-size:12px;padding:7px 12px;}
+  .code{font-size:64px;}
+}
+</style>
+</head>
+<body>
+<header class="bstnav"><div class="bstnav-in"><a class="bstbrand" href="/index.html">bst</a><a class="bstitem" href="/index.html#tools">プラグイン</a><a class="bstitem" href="/index.html#pricing">料金</a><a class="bstitem" href="/blog/index.html">ブログ</a><a class="bstitem" href="/icons.html">無料アイコン</a><a class="bstcta" href="/index.html#tools">30日無料で試す</a></div></header>
+<main><div class="wrap">
+
+<span class="kick">BLOG</span>
+<h1>kintoneのドロップダウンを連動させる方法3選</h1>
+<p class="meta">2026-07-22公開 ／ カテゴリ: 入力支援・選択肢 ／ 執筆: bst（kintoneプラグイン開発者）</p>
+
+<p>「大分類で『パソコン』を選んだら、小分類には『ノートPC』『デスクトップPC』だけを出したい」——kintoneでアプリを作り込むと、必ず一度は欲しくなるのが、この連動ドロップダウン（絞り込み選択）です。</p>
+<p>しかし実際に設定画面を探しても、それらしい項目は見つかりません。筆者はkintoneプラグインの開発者として、この「連動できない」相談を数多く受けてきました。本記事は2026年7月時点の仕様に基づいて、できない理由と3つの解決方法を整理します。</p>
+
+<div class="key">kintoneの標準機能に、ドロップダウン同士を連動させる仕組みはありません。<br>選択肢は、何を選んでも常に全件表示されます。<small>この記事では、標準機能でできる工夫 → JavaScriptで実現する方法 → プラグインという選択肢、の順で解説します。</small></div>
+
+<div class="lead"><b>この記事で分かること</b>
+<ul>
+<li>kintoneで連動ドロップダウンが作れない理由と、誤選択が起きる構造</li>
+<li>標準機能でできる選択肢の工夫と、できないことの境界線</li>
+<li>解決方法3つ（選択肢設計の工夫・JavaScript自作・プラグイン）の費用と工数の比較</li>
+<li>それぞれのメリット・デメリットと、導入前に確認すべき注意点</li>
+<li>誤選択を減らす選択肢設計のコツと、よくある質問への回答</li>
+</ul></div>
+
+<div class="point"><b>先に結論</b>：ドロップダウンの選択肢を、別のフィールドの値に応じて絞り込むことは標準機能ではできません。解決方法は、次の3つです。</div>
+<div class="opt3">
+<div class="o"><b>①選択肢の設計と運用で工夫する</b>選択肢名に大分類を含める、ルックアップを活用するなど。無料ですが、根本解決にはなりません。</div>
+<div class="o"><b>②JavaScriptで出し分けを自作する</b>ライセンス費用は不要。ただし選択肢そのものはJSで書き換えられないため、フィールドを複数用意して切り替える大がかりな作りになります。</div>
+<div class="o"><b>③選択肢絞り込みプラグインを使う</b>有料（年額）ですが、GUIの設定だけで親子の連動が完成します。3段階以上の多段にも対応します。</div>
+</div>
+<p>選択肢が多いアプリほど、誤選択とその手戻りは静かに積み上がります。分類のある入力が日常業務にあるなら、<b>総コストではプラグインが最も安くつくケースが多い</b>——これが本記事の結論です。理由を順に説明します。</p>
+
+<h2>kintoneでドロップダウンが連動できない理由｜標準機能でできること・できないこと</h2>
+
+<h3>原因：選択肢は「固定リスト」として定義される</h3>
+<p>kintoneのドロップダウン（選択肢フィールド）は、アプリ設定時に決めた選択肢のリストをそのまま表示する仕組みです。入力画面で他のフィールドが何を選ばれているかは、選択肢の表示に影響しません。</p>
+<p>その結果、大分類・小分類のような階層のあるデータでは、<b>小分類の欄に全分類の選択肢がずらりと並ぶ</b>ことになります。下のデモで、その差を体感してみてください。</p>
+
+<div class="adm"><div class="adm-hd"><span class="tag">触って確認</span>大分類を選ぶと、小分類はどうなる？</div>
+<div class="adm-bd">
+<span class="adm-seg" id="odMode"><button data-v="std" class="on">kintone標準（連動なし）</button><button data-v="flt">選択肢絞り込み</button></span>
+<div class="od-form">
+<div class="od-row"><label>大分類</label><select id="odBig"></select></div>
+<div class="od-row"><label>小分類</label><select id="odSmall"></select><span class="od-cnt" id="odCnt"></span></div>
+</div>
+<div class="od-cap" id="odCap"></div>
+</div></div>
+
+<p>9件から探すのと、3件から選ぶのとでは、選ぶ速さもミスの起きやすさもまるで違います。しかも実務の選択肢は9件では済みません。商品分類や勘定科目なら、数十件から探すことになります。</p>
+
+<h3>標準機能でできること（まずは無料でここまで）</h3>
+<ul class="plain">
+<li><b>選択肢名に分類を含める</b>：「PC/ノート」「家具/チェア」のように命名すれば、五十音順で分類ごとに固まり、探しやすくなります。</li>
+<li><b>ルックアップの絞り込み</b>：マスタを別アプリにしてルックアップで参照する方式なら、取得時の絞り込み条件をあらかじめ設定できます。連動とは違いますが、候補を減らす効果があります。</li>
+<li><b>フィールドの分割</b>：分類ごとに入力アプリや一覧を分ければ、そもそも混在しなくなります（管理の手間は増えます）。</li>
+</ul>
+
+<h3>標準機能ではできないこと</h3>
+<ul class="plain">
+<li><b>選んだ値に応じて別のドロップダウンの選択肢を絞る</b>：いわゆるカスケード（連動）は設定項目自体が存在しません。</li>
+<li><b>選択肢の動的な変更</b>：入力画面で選択肢リストを状況に応じて増減させることはできません。</li>
+<li><b>誤った組み合わせの入力防止</b>：「大分類＝パソコン」なのに「小分類＝チェア」という矛盾した入力を、標準機能では止められません。</li>
+</ul>
+
+<div class="key">連動とは、便利機能ではなく「選択肢を減らす仕組み」。<br>選ばせない工夫が、誤選択と手戻りを根元から断ちます。</div>
+
+<h2>連動ドロップダウンを実現する3つの方法【比較】</h2>
+
+<h3>方法1：選択肢の設計と運用で工夫する（代替方法・無料）</h3>
+<p>連動そのものは諦め、誤選択を減らす方向の工夫です。前述の命名規則（「PC/ノート」方式）が代表で、今日から無料でできます。</p>
+<p><b>メリット</b>は費用ゼロと導入の速さ。<b>デメリット</b>は、選択肢の件数自体は減らないため、リストが長くなるほど効果が薄れることです。また命名規則の徹底は運用に依存し、矛盾した組み合わせの入力も防げません。</p>
+
+<h3>方法2：JavaScriptで出し分けを自作する（無料〜外注）</h3>
+<p>kintoneはJavaScriptカスタマイズを公式にサポートしています。ただし連動ドロップダウンの自作には、知っておくべき制約があります。<b>選択肢フィールドの中身（選択肢リスト）は、JavaScriptから書き換えられない</b>のです（画面の内部構造を直接操作する方法はサポート外で、アップデートで壊れるリスクがあります）。</p>
+<p>そのため公式APIの範囲で実現するには、<b>「小分類フィールドを大分類の数だけ用意し、changeイベントと表示切り替えAPI（setFieldShown）で出し分ける」</b>という作りになります。大分類が「パソコン」なら「小分類（パソコン用）」フィールドだけを表示する、という方式です。</p>
+<p><b>メリット</b>はライセンス費用が不要なこと。<b>デメリットと注意点</b>は3つあります。</p>
+<ol class="plain">
+<li><b>フィールド数が分類の数だけ増える</b>：集計・一覧・CSV出力もフィールドごとに分かれ、後工程が複雑になります。</li>
+<li><b>開発と保守の負担</b>：分類の追加・変更のたびにフィールドとコードの両方をメンテナンスすることになります。</li>
+<li><b>属人化</b>：作った人が異動すると、仕組み全体がブラックボックス化しがちです。</li>
+</ol>
+
+<h3>方法3：選択肢絞り込みプラグインを使う（ノーコード・GUI設定）</h3>
+<p>プラグインは、kintoneに機能を追加する公式の仕組みです。導入手順は次の5ステップだけです。</p>
+<ol class="plain">
+<li>プラグインのZIPファイルを入手する（試用版で構いません）</li>
+<li>kintoneシステム管理 →「プラグイン」→「読み込む」でZIPを登録する</li>
+<li>対象アプリの設定 →「プラグイン」→「追加」で有効化する</li>
+<li>設定画面で親フィールドと子フィールドを選び、親の選択肢ごとに表示する子の選択肢をチェックする</li>
+<li>「アプリを更新」して、入力画面で連動を確認する</li>
+</ol>
+<p>bstの<a href="/lp-option-filter.html">選択肢絞り込みプラグイン</a>の場合、できるようになることは3つです。</p>
+<div class="opt3">
+<div class="o"><b>①親子の連動</b>大分類を選ぶと、小分類には対応する選択肢だけが表示されます。矛盾した組み合わせは選べなくなります。</div>
+<div class="o"><b>②3段階以上の多段連動</b>大分類→中分類→小分類のような階層にも対応。マスタの階層をそのまま入力画面に持ち込めます。</div>
+<div class="o"><b>③フィールドは1つのまま</b>出し分け方式と違いフィールドを増やさないので、集計も一覧もCSVもこれまで通りです。</div>
+</div>
+<p><b>メリット</b>は導入の速さと、データ構造を変えずに済むこと。<b>デメリット</b>は年額費用（例: ¥19,800/年）がかかることです。絞り込みの処理はブラウザ内で完結し、業務データが外部に送信されることはありません。</p>
+
+<table class="tb">
+<tr><th>比較項目</th><th>①選択肢設計の工夫</th><th>②JavaScript自作</th><th>③プラグイン</th></tr>
+<tr><td>連動の実現度</td><td>×（探しやすくなるのみ）</td><td>△（出し分けで擬似的に）</td><td>◎</td></tr>
+<tr><td>矛盾入力の防止</td><td>×</td><td>△（実装次第）</td><td>◎</td></tr>
+<tr><td>初期費用</td><td>0円</td><td>0円〜（外注は10万円台〜）</td><td>0円（試用30日）</td></tr>
+<tr><td>継続費用</td><td>運用徹底の負荷</td><td>保守工数（分類変更のたび）</td><td>年額ライセンス</td></tr>
+<tr><td>フィールド数への影響</td><td>なし</td><td><b>分類の数だけ増加</b></td><td>なし</td></tr>
+<tr><td>多段（3段以上）</td><td>×</td><td>実装が急激に複雑化</td><td>◎</td></tr>
+<tr><td>属人化リスク</td><td>中（命名ルール）</td><td><b>高</b></td><td>低</td></tr>
+</table>
+
+<p>導入前の<b>注意点</b>として、連動系プラグインを選ぶ際は次の4点を確認してください。</p>
+<ol class="plain">
+<li><b>多段対応</b>：2段だけでなく、3段以上の階層に対応できるか（業務の分類は育ちます）</li>
+<li><b>設定のしやすさ</b>：対応表をGUIで設定できるか。ファイルやコードでの管理は引き継ぎの負債になります</li>
+<li><b>データの扱い</b>：フィールドや保存済みデータに手を加えない設計か。外したら元に戻れるか</li>
+<li><b>外部通信の有無</b>：業務データが外部サーバーへ送られない設計か（情報システム部門の審査ポイントです）</li>
+</ol>
+
+<h3>誤選択を減らす選択肢設計の3つのコツ（業務改善の視点）</h3>
+<p>どの方法を選ぶにしても、選択肢そのものの設計が悪いと効果は半減します。コツは3つです。</p>
+<div class="opt3">
+<div class="o"><b>大分類は7±2件に収める</b>人が一目で把握できる分類数には限界があります。大分類が10件を超えたら、階層の切り方を見直すサインです。</div>
+<div class="o"><b>「その他」を放置しない</b>「その他」に3割も入るなら分類が実務に合っていません。定期的に中身を見て、新しい分類に昇格させます。</div>
+<div class="o"><b>分類の言葉は現場の言葉で</b>管理側の用語ではなく、入力する人が普段使う言葉を選択肢名にします。迷いが減れば、入力は速くなります。</div>
+</div>
+
+<h3>社内稟議・情報システム部門への説明ポイント</h3>
+<p>有料プラグインの導入に承認が必要な場合は、次の3点で説明すると通りやすくなります。</p>
+<div class="opt3">
+<div class="o"><b>費用対効果</b>「誤選択1件の手戻り（気づく→確認→修正）を10分」として、発生頻度×人数で試算します。週5件なら月に約3.5時間分。集計のやり直しまで含めれば、実際の損失はさらに大きくなります。</div>
+<div class="o"><b>セキュリティ</b>業務データの外部送信がないことを、提供元の仕様説明で確認して稟議に添付します。</div>
+<div class="o"><b>やめられるか</b>解約・削除しても選択肢の表示が元に戻るだけで、フィールドやデータには影響しないことを確認しておきます。</div>
+</div>
+
+<h2>活用イメージとよくある質問</h2>
+
+<h3>現場での活用イメージ</h3>
+<p>選択肢の連動がよく使われる典型的な場面を3つ紹介します（特定の導入企業の事例ではなく、想定される代表的な活用パターンです）。自社の分類に近いものがあれば、試用版で同じ階層を再現してみてください。</p>
+<ul class="plain">
+<li><b>案件管理×業種と商材</b>：業種を選ぶと、その業種向けの商材だけが候補に。営業担当が商材リスト全体を覚えていなくても、正しく入力できます。</li>
+<li><b>問い合わせ管理×カテゴリと詳細分類</b>：「契約」「操作方法」「不具合」の大分類に応じて詳細分類を絞り込み。集計レポートの精度が上がります。</li>
+<li><b>備品・資産管理×大分類と品目</b>：分類→品目の2段で登録ミスを防止。棚卸しのときに「分類違いの迷子」を探す手間がなくなります。</li>
+</ul>
+
+<h3>よくある質問</h3>
+<details class="faq"><summary>何段階まで連動できますか？</summary><p>bstの選択肢絞り込みプラグインは、大分類→中分類→小分類のような3段階以上の多段連動に対応しています。段数の設計は設定画面のGUIで行えます。</p></details><details class="faq"><summary>連動のルールはどうやって設定しますか？</summary><p>設定画面で「親の選択肢ごとに、子に表示する選択肢」をチェックで選ぶだけです。コードや対応表ファイルの作成は不要です。</p></details><details class="faq"><summary>既存のレコードやデータに影響はありませんか？</summary><p>ありません。プラグインが制御するのは入力画面での選択肢の表示だけで、フィールドや保存済みデータの構造には手を加えません。プラグインを外せば元の表示に戻ります。</p></details><details class="faq"><summary>業務データが外部に送信されませんか？</summary><p>送信されません。絞り込みの処理はすべてブラウザ内で完結します。年額プランのライセンス確認で送信されるのは「kintoneドメイン名」のみです。</p></details><details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。</p></details>
+
+<h2>まとめ：正しく選べる仕組みは、正しいデータの入り口になる</h2>
+<ul class="plain">
+<li>kintoneの標準機能に、ドロップダウンを連動させる仕組みはない。選択肢は常に全件表示される</li>
+<li>まずは<b>命名規則やルックアップなど標準の工夫</b>を試す。選択肢が少ないうちはそれで足りる</li>
+<li>JavaScriptでの自作は「選択肢を書き換えられない」制約により、フィールド出し分けの大がかりな作りになる</li>
+<li>分類のある入力が日常にあるなら、<b>フィールドを増やさず多段連動できるプラグイン</b>が総コスト最小</li>
+<li>あわせて<b>大分類7±2件・「その他」の棚卸し・現場の言葉</b>という選択肢設計も見直す</li>
+</ul>
+
+<div class="cta"><b>この課題を最も簡単に解決する方法</b><br>
+bstの<a href="/lp-option-filter.html">選択肢絞り込みプラグイン</a>は、この記事で挙げた選定ポイントを満たすように作られています——GUIだけで親子の対応を設定、3段階以上の多段連動、フィールドは増やさずデータ構造もそのまま、業務データの外部送信なし。30日間・登録不要で試せます。製品ページには実際に選択肢が絞り込まれる様子を操作できるデモがありますので、まずは触ってみてください。<br>
+<a class="b" href="/lp-option-filter.html">選択肢絞り込みプラグインを見る →</a></div>
+
+<p>関連記事: <a href="/blog/kintone-tab-form.html">kintoneフォームをタブで整理する方法3選</a> ／ <a href="/blog/kintone-search-partial-match.html">kintoneで部分一致検索ができない理由と3つの解決方法</a></p>
+
+</div></main>
+<footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="/index.html">ホーム</a><a href="/index.html#tools">プラグイン</a><a href="/blog/index.html">ブログ</a><a href="/icons.html">無料アイコン素材</a><a href="/about.html">bstについて</a><a href="/news.html">お知らせ</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="/tokushoho.html">特定商取引法に基づく表記</a><a href="/privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
+<script>
+(function(){
+  var MAP={'パソコン':['ノートPC','デスクトップPC','タブレット'],
+           '周辺機器':['モニタ','キーボード','ドッキングステーション'],
+           'オフィス家具':['デスク','チェア','キャビネット']};
+  var BIGS=Object.keys(MAP), mode='std';
+  var big=document.getElementById('odBig'), small=document.getElementById('odSmall');
+  var cnt=document.getElementById('odCnt'), cap=document.getElementById('odCap');
+  big.innerHTML=BIGS.map(function(b){return '<option>'+b+'</option>';}).join('');
+  function render(){
+    var opts = mode==='flt' ? MAP[big.value]
+      : BIGS.reduce(function(a,b){return a.concat(MAP[b]);},[]);
+    small.innerHTML=opts.map(function(o){return '<option>'+o+'</option>';}).join('');
+    cnt.textContent='選択肢 '+opts.length+'件';
+    cnt.className='od-cnt '+(mode==='flt'?'few':'many');
+    cap.textContent = mode==='flt'
+      ? '「'+big.value+'」に属する'+opts.length+'件だけが表示されます。探す必要も、間違える余地もありません'
+      : '大分類と無関係に全'+opts.length+'件が並びます。「'+big.value+'」を選んでいても、他分類の選択肢を選べてしまいます';
+  }
+  big.addEventListener('change', render);
+  document.getElementById('odMode').addEventListener('click', function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on'); mode=b.getAttribute('data-v'); render();
+  });
+  render();
+})();
+</script>
+</body>
+</html>

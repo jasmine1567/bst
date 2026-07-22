@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FBFBF8">
+<title>kintoneのカレンダー表示を見やすくする方法3選｜bstブログ</title>
+<meta name="description" content="kintoneのカレンダー形式は月表示のみで、色分けも期間の表示もできません。週表示にしたい・予定を色分けしたいときの標準機能の工夫、JavaScriptで実現する方法、カレンダープラグインの3つの解決策を費用・工数・注意点まで比較して解説します。">
+<link rel="canonical" href="https://bst-plugins.com/blog/kintone-calendar-view.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="kintoneのカレンダー表示を見やすくする方法3選｜bstブログ">
+<meta property="og:description" content="kintoneのカレンダー形式は月表示のみで、色分けも期間の表示もできません。週表示にしたい・予定を色分けしたいときの標準機能の工夫、JavaScriptで実現する方法、カレンダープラグインの3つの解決策を費用・工数・注意点まで比較して解説します。">
+<meta property="og:image" content="https://bst-plugins.com/og-home.png">
+<meta property="og:url" content="https://bst-plugins.com/blog/kintone-calendar-view.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V964JH879G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-V964JH879G');
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href*="/trials/"]');
+    if(a){
+      var f = a.getAttribute('href');
+      var pm = f.match(/bst_([a-z0-9-]+)_v/i);
+      gtag('event', 'trial_download', { file: f, plugin: pm ? pm[1] : 'unknown' });
+    }
+  });
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"kintoneのカレンダー表示を見やすくする方法3選","description":"kintoneのカレンダー形式は月表示のみで、色分けも期間の表示もできません。週表示にしたい・予定を色分けしたいときの標準機能の工夫、JavaScriptで実現する方法、カレンダープラグインの3つの解決策を費用・工数・注意点まで比較して解説します。","datePublished":"2026-07-22","dateModified":"2026-07-22","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst"},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-calendar-view.html"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"標準のカレンダー形式と何が違いますか？","acceptedAnswer":{"@type":"Answer","text":"標準は月表示のみですが、bstのカレンダービュープラグインは月・週・日・リストの4つのビューを切り替えられます。カテゴリによる色分け、開始〜終了の期間表示、予定の詳細ポップオーバー、画面を離れずのその場追加・編集にも対応します。"}},{"@type":"Question","name":"予定をドラッグで動かせますか？","acceptedAnswer":{"@type":"Answer","text":"現バージョンでは非対応です（今後のバージョンで検討中）。日程の変更は、予定をクリックして開く編集画面から行います。できないことを含めて、製品ページに正直に記載しています。"}},{"@type":"Question","name":"スマートフォンでも使えますか？","acceptedAnswer":{"@type":"Answer","text":"使えます。カレンダービューはモバイル表示に対応しており、外出先から今日の予定を確認する用途にも使えます。"}},{"@type":"Question","name":"Googleカレンダーなど外部のカレンダーと連携できますか？","acceptedAnswer":{"@type":"Answer","text":"できません。業務データを外部に出さない「完全ローカル」方針のため、外部カレンダー連携や複数アプリの予定合成には対応していません。kintoneの中の予定を見やすくすることに特化しています。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。"}}]}
+</script>
+<style>
+:root{--ink:#252525;--paper:#FBFBF8;--paper2:#F3F2EC;--line:#E4E3DB;--amber:#FFB800;--amber-d:#B57E00;--mut:#6E6E68;--ok:#18794E;--blue:#2563EB;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--paper);color:var(--ink);line-height:1.95;}
+.wrap{max-width:820px;margin:0 auto;padding:0 24px;}
+main{padding:44px 0 64px;}
+.kick{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--amber-d);}
+h1{font-size:clamp(23px,3.8vw,32px);font-weight:900;letter-spacing:-.01em;line-height:1.55;margin:6px 0 10px;}
+.meta{font-size:12.5px;color:var(--mut);margin-bottom:24px;}
+h2{font-size:clamp(18px,2.8vw,23px);font-weight:900;margin:40px 0 14px;padding:10px 0 0;border-top:1px solid var(--line);}
+h3{font-size:16.5px;font-weight:900;margin:26px 0 10px;padding-left:10px;border-left:4px solid var(--amber);}
+p{font-size:14.5px;margin:0 0 15px;}
+.lead{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px 18px;margin:0 0 22px;}
+.lead b{display:block;font-size:13px;color:var(--amber-d);margin-bottom:6px;}
+.lead ul{margin:0 0 0 20px;font-size:13.5px;}
+.lead li{margin-bottom:4px;}
+.point{border:2px solid var(--amber);border-radius:12px;background:#fffdf5;padding:13px 17px;margin:0 0 20px;font-size:14.5px;line-height:1.9;}
+.note{border:1.5px solid #bcd9ee;border-radius:12px;background:#F5F9FF;padding:12px 16px;font-size:13px;line-height:1.9;margin:18px 0;}
+.cta{border:2px solid var(--amber);border-radius:14px;background:#fffdf5;padding:16px 20px;margin:26px 0;font-size:14px;}
+.cta a.b{display:inline-flex;margin-top:10px;background:var(--amber);color:var(--ink);font-weight:700;font-size:14px;padding:11px 22px;border-radius:999px;text-decoration:none;}
+ul.plain,ol.plain{margin:0 0 16px 22px;font-size:14.5px;}
+ul.plain li,ol.plain li{margin-bottom:7px;}
+a{color:var(--blue);}
+table.tb{border-collapse:collapse;width:100%;font-size:13px;margin:0 0 18px;background:#fff;}
+table.tb th,table.tb td{border:1px solid var(--line);padding:9px 12px;text-align:left;line-height:1.7;vertical-align:top;}
+table.tb th{background:#F7F7F5;white-space:nowrap;}
+details.faq{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 18px;margin-bottom:10px;}
+details.faq summary{font-weight:700;font-size:14px;cursor:pointer;}
+details.faq p{font-size:13.5px;color:#444;margin:8px 0 0;}
+/* ===== ブログ組版強化（読みやすさ・余白・キーメッセージ・ミニデモ） ===== */
+p{margin:0 0 18px;}
+h2{margin-top:48px;}
+h3{margin-top:30px;}
+.key{margin:28px 0;padding:18px 22px;border-left:6px solid var(--amber);background:#fff;border-radius:0 12px 12px 0;font-size:16.5px;font-weight:900;line-height:2.05;letter-spacing:.01em;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.key small{display:block;font-weight:500;font-size:12.5px;color:var(--mut);margin-top:8px;line-height:1.8;}
+.opt3{display:flex;flex-direction:column;gap:10px;margin:14px 0 18px;}
+.opt3 .o{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 15px;font-size:13.5px;line-height:1.85;}
+.opt3 .o b{color:var(--amber-d);margin-right:6px;}
+.adm{border:2px solid var(--amber);border-radius:14px;background:#fff;overflow:hidden;margin:26px 0;box-shadow:0 10px 26px rgba(255,184,0,.10);}
+.adm-hd{background:#F7F7F5;border-bottom:1px solid var(--line);padding:9px 14px;font-size:12px;font-weight:900;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.adm-hd .tag{font-size:10px;color:#fff;background:#3498db;border-radius:999px;padding:2px 9px;flex:none;}
+.adm-bd{padding:14px 16px;}
+.adm-seg{display:inline-flex;border:1px solid #d1d5db;border-radius:8px;overflow:hidden;margin:0 8px 12px 0;flex-wrap:wrap;}
+.adm-seg button{border:none;background:#fff;padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;color:#6b7280;font-family:inherit;border-right:1px solid #e5e7eb;}
+.adm-seg button:last-child{border-right:none;}
+.adm-seg button.on{background:#3498db;color:#fff;}
+.adm-note{font-size:11.5px;color:var(--mut);margin-top:8px;}
+
+.cv-cal{border:1px solid var(--line);border-radius:10px;background:#fff;padding:10px 12px;}
+.cv-week{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:6px;}
+.cv-d{grid-row:1;font-size:10px;font-weight:700;color:#9ca3af;padding:2px 4px;border-top:2px solid #eee;}
+.cv-d.today{color:#B57E00;border-top-color:var(--amber);}
+.cv-ev{font-size:10.5px;font-weight:700;line-height:1.5;padding:2px 7px;border-radius:5px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.cv-ev.g{background:#ECECE7;color:#555;}
+.cv-ev.c1{background:#E3F0FB;color:#1D5A8A;border-left:3px solid #3498db;}
+.cv-ev.c2{background:#E7F6EC;color:#18794E;border-left:3px solid #2ecc71;}
+.cv-ev.c3{background:#FDF0E3;color:#9a5b13;border-left:3px solid #e67e22;}
+.cv-ev.bar{box-shadow:inset 0 0 0 1px rgba(52,152,219,.25);}
+.cv-wk .cv-ev{font-size:12px;padding:6px 9px;margin-bottom:3px;}
+.cv-wk .cv-d{font-size:11px;padding:3px 4px;}
+.cv-cap{font-size:11.5px;color:var(--mut);margin-top:8px;}
+.cv-views{margin-bottom:10px;display:none;}
+/* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
+.bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
+.bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
+.bstnav .bstbrand{display:inline-block;background:#252525;color:#FFB800;padding:3px 13px;border-radius:9px;font-weight:900;font-size:18px;text-decoration:none;letter-spacing:.02em;}
+.bstnav .bstitem{font-size:13.5px;font-weight:500;text-decoration:none;color:#6E6E68;}
+.bstnav .bstitem:hover{color:#252525;}
+.bstnav .bstcta{margin-left:auto;background:#252525;color:#fff;font-size:13px;font-weight:700;padding:9px 18px;border-radius:999px;text-decoration:none;white-space:nowrap;}
+.bstfoot{border-top:1px solid #E4E3DB;padding:28px 0 38px;font-size:12.5px;color:#6E6E68;}
+.bstfoot-in{max-width:1080px;margin:0 auto;padding:0 24px;}
+.bstfoot .row{display:flex;gap:18px;flex-wrap:wrap;}
+.bstfoot a{text-decoration:none;color:#6E6E68;}
+.bstfoot a:hover{color:#252525;}
+/* ===== 日本語の折り返し品質（中途半端な改行の防止） ===== */
+h1,h2,h3{text-wrap:balance;}
+p,li,dd,dt{text-wrap:pretty;}
+@supports (word-break: auto-phrase){h1,h2,h3,p{word-break:auto-phrase;}}
+/* =====================================================================
+   bstm: モバイル最適化（全ページ共通・スタイルの最後に置くこと）
+   ・インラインstyleの2カラムgridは属性セレクタ＋!importantで1カラム化
+   ・カード類のminmaxによる横あふれを防止
+   ===================================================================== */
+img,svg,table{max-width:100%;}
+body{-webkit-text-size-adjust:100%;}
+@media (max-width:860px){
+  [style*="grid-template-columns:1fr 1.2fr"],
+  [style*="grid-template-columns:1fr 1.1fr"],
+  [style*="grid-template-columns:1.1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1.2fr"]{grid-template-columns:1fr !important;}
+  .pricebox{grid-template-columns:1fr;}
+  .viz,.can,.hero-grid,.grid,.demo2{grid-template-columns:1fr !important;}
+}
+@media (max-width:640px){
+  /* ヘッダー: ブランド＋CTAのみ（他の導線はフッターと本文に確保済み） */
+  .bstnav-in{gap:12px;height:56px;padding:0 16px;}
+  .bstnav .bstitem{display:none;}
+  .bstnav .bstcta{margin-left:auto;font-size:12.5px;padding:8px 15px;}
+  .wrap,.bstfoot-in{padding:0 16px;}
+  section{padding:38px 0;}
+  /* カード/グリッドは必ず1カラム（minmaxの最小幅による横あふれを断つ） */
+  .cards3,.bstx-cards,.pgrid2,.steps,.cardrow,.pgrid,.plist{grid-template-columns:1fr !important;}
+  /* 主要ボタンは全幅・タップしやすく */
+  .btns .btn,.dlrow .btn,.pcard-btns .bt{flex:1 1 100%;justify-content:center;}
+  .btn{padding:13px 20px;}
+  /* 価格ボックスの余白 */
+  .pricebox{padding:22px 18px;}
+  .pricebox .big{font-size:36px;}
+  /* 比較表: 横スクロール前提で圧縮（親のoverflow-x:autoで操作可能） */
+  .bstx-cmp,.cmp{min-width:500px;font-size:11.5px;}
+  .bstx-cmp th,.bstx-cmp td,.cmp th,.cmp td{padding:8px 10px;}
+  /* 部分一致検索デモ: 列幅指定を解除して収める */
+  #psrows,#pscnt{font-size:12px;}
+  th[style*="width:150px"],th[style*="width:110px"]{width:auto !important;}
+  /* カレンダーデモ: セルを小さく */
+  #cvBody div[style*="repeat(7"]{gap:2px !important;}
+  #cvBody div[style*="min-height:52px"]{min-height:42px !important;padding:1px 2px !important;}
+  /* タブ表示デモ: タブバーを折り返す */
+  .tbar{flex-wrap:wrap;}
+  /* フッターのリンク間隔 */
+  .bstfoot .row{gap:12px 16px;}
+}
+@media (max-width:400px){
+  .bstnav .bstcta{font-size:12px;padding:7px 12px;}
+  .code{font-size:64px;}
+}
+</style>
+</head>
+<body>
+<header class="bstnav"><div class="bstnav-in"><a class="bstbrand" href="/index.html">bst</a><a class="bstitem" href="/index.html#tools">プラグイン</a><a class="bstitem" href="/index.html#pricing">料金</a><a class="bstitem" href="/blog/index.html">ブログ</a><a class="bstitem" href="/icons.html">無料アイコン</a><a class="bstcta" href="/index.html#tools">30日無料で試す</a></div></header>
+<main><div class="wrap">
+
+<span class="kick">BLOG</span>
+<h1>kintoneのカレンダー表示を見やすくする方法3選</h1>
+<p class="meta">2026-07-22公開 ／ カテゴリ: カレンダー・予定管理 ／ 執筆: bst（kintoneプラグイン開発者）</p>
+
+<p>「kintoneをカレンダー表示にしてみたけれど、月表示しかなくて使いづらい」「出張の3日間が初日にしか出ない」「予定の種類を色で分けたい」——kintoneで予定やスケジュールを管理し始めた現場から、必ず出てくる声です。</p>
+<p>kintoneには標準でカレンダー形式の一覧があります。ただし、その機能はかなり限定的です。筆者はkintoneプラグインの開発者として、この「カレンダーが物足りない」相談を数多く受けてきました。本記事は2026年7月時点の仕様に基づいて、標準の限界と3つの解決方法を整理します。</p>
+
+<div class="key">kintone標準のカレンダーは「月表示のみ」。<br>週表示も、色分けも、期間（開始〜終了）の表示もできません。<small>この記事では、標準でできること → JavaScriptで実現する方法 → プラグインという選択肢、の順で解説します。</small></div>
+
+<div class="lead"><b>この記事で分かること</b>
+<ul>
+<li>kintone標準のカレンダー形式でできること・できないことの正確な境界線</li>
+<li>週表示・色分け・期間表示を実現する3つの方法（標準の工夫・JavaScript自作・プラグイン）</li>
+<li>それぞれの費用・工数・メリット・デメリットと、導入前に確認すべき注意点</li>
+<li>予定管理アプリを後悔しないための、日付フィールド設計のコツ</li>
+<li>現場での活用イメージと、よくある質問への回答</li>
+</ul></div>
+
+<div class="point"><b>先に結論</b>：標準のカレンダー形式は「月のみ・色なし・期間なし」です。もの足りなくなったときの解決方法は、次の3つです。</div>
+<div class="opt3">
+<div class="o"><b>①標準のカレンダー形式＋絞り込みで工夫する</b>無料で今日できます。ただし月表示のみという制約自体は変えられません。</div>
+<div class="o"><b>②JavaScriptでカレンダーを自作する</b>カスタマイズビューとライブラリで本格的なカレンダーを作れますが、開発規模が大きく、保守も自社の負担です。</div>
+<div class="o"><b>③カレンダープラグインを使う</b>有料（年額）ですが、設定3つで月・週・日・リストの4ビュー、色分け、期間表示までそろいます。</div>
+</div>
+<p>予定は「見る回数」が最も多いデータです。毎日チームで見る画面なら、<b>総コストではプラグインが最も安くつくケースが多い</b>——これが本記事の結論です。理由を順に説明します。</p>
+
+<h2>kintoneのカレンダー表示は何ができない？標準機能の境界線</h2>
+
+<h3>標準のカレンダー形式でできること</h3>
+<p>まず、標準機能を正しく評価するところから始めます。kintoneの一覧は表示方法を「カレンダー形式」に切り替えられ、次のことができます。</p>
+<ul class="plain">
+<li><b>日付（または日時）フィールドを基準に、レコードを月のカレンダーに配置する</b></li>
+<li><b>月を前後に移動して予定を確認する</b></li>
+<li><b>予定をクリックしてレコードの詳細を開く</b></li>
+<li><b>絞り込み条件と組み合わせる</b>：「自分が担当の予定だけのカレンダー」のような一覧を保存できます。</li>
+</ul>
+<p>シンプルな「日付の確認」ならこれで十分です。問題は、予定管理が本格化したときに現れます。</p>
+
+<h3>標準のカレンダー形式でできないこと</h3>
+<ul class="plain">
+<li><b>週表示・日表示への切り替え</b>：表示は月のみです。「今週の動き」を大きく見る画面がありません。</li>
+<li><b>期間（開始〜終了）の表示</b>：基準にできる日付は1つなので、3日間の出張は初日にしか現れません。</li>
+<li><b>色分け</b>：会議も出張も納期も、すべて同じ見た目で並びます。</li>
+<li><b>画面を離れない追加・編集</b>：予定の登録や修正のたびに、レコード画面との往復が必要です。</li>
+</ul>
+<p>実際にどう見えるのか、下のデモで標準とプラグインを切り替えて確かめてみてください。</p>
+
+<div class="adm"><div class="adm-hd"><span class="tag">触って確認</span>同じ予定データが、表示方法でこう変わる</div>
+<div class="adm-bd">
+<span class="adm-seg" id="cvMode"><button data-v="std" class="on">kintone標準（月のみ・色なし）</button><button data-v="cal">カレンダービュー</button></span>
+<span class="adm-seg cv-views" id="cvViews"><button data-v="m" class="on">月</button><button data-v="w">週</button></span>
+<div class="cv-cal" id="cvCal"></div>
+<div class="cv-cap" id="cvCap"></div>
+</div></div>
+
+<div class="key">カレンダーは「読む」画面ではなく「見る」画面。<br>色と期間が表示された瞬間に、予定表は説明のいらない道具になります。</div>
+
+<h2>週表示・色分け・期間表示を実現する3つの方法【比較】</h2>
+
+<h3>方法1：標準のカレンダー形式と絞り込みで工夫する（代替方法・無料）</h3>
+<p>月表示のみという制約の中で、見やすさを上げる工夫です。「担当者別」「予定の種類別」の絞り込み一覧を複数保存すれば、色分けの代わりに「切り替えて見る」運用ができます。予定の名前の先頭に【出張】【会議】のような種別を付ける命名運用も、地味ですが効きます。</p>
+<p><b>メリット</b>は費用ゼロ。<b>デメリット</b>は、週表示と期間表示はどうやっても実現できないこと、そして一覧の切り替えや命名の徹底という運用負荷が利用者側に残ることです。</p>
+
+<h3>方法2：JavaScriptでカレンダーを自作する（無料〜外注数十万円）</h3>
+<p>kintoneには「カスタマイズビュー」という、一覧をHTMLで自作できる公式機能があります。ここにカレンダー描画のJavaScriptライブラリを組み合わせれば、週表示や色分けを備えた本格的なカレンダーを作ることは技術的に可能です。</p>
+<p><b>メリット</b>は、ライセンス費用が不要で、自社の要件に完全に合わせられることです。</p>
+<p><b>デメリットと注意点</b>は3つあります。</p>
+<ol class="plain">
+<li><b>開発規模が大きい</b>：表示だけでなく「クリックで編集」「登録の反映」まで作り込むと、数人日では収まらないことも珍しくありません。外注なら数十万円規模になり得ます。</li>
+<li><b>二重の更新追随</b>：kintone本体と、カレンダーライブラリの両方のアップデートに追随し続ける必要があります。</li>
+<li><b>属人化</b>：作った人が異動すると、チームの予定表そのものがブラックボックスになります。毎日使う画面だけに、止まったときの影響も大きくなります。</li>
+</ol>
+
+<h3>方法3：カレンダープラグインを使う（ノーコード・設定3つ）</h3>
+<p>プラグインは、kintoneに機能を追加する公式の仕組みです。bstの<a href="/lp-calendar-view.html">カレンダービュープラグイン</a>の場合、設定は「日時フィールドの指定・表示内容・適用する一覧」の3つを選ぶだけ。開始・終了の2つの日付フィールドを指定すれば、期間の予定はバーとして表示されます。</p>
+<p>できるようになることは3つです。</p>
+<div class="opt3">
+<div class="o"><b>①月・週・日・リストの4ビュー</b>月で俯瞰し、週で運用し、日で当日を追う。キーボードショートカット（←→で期間移動、キー1つでビュー切替）にも対応します。</div>
+<div class="o"><b>②カテゴリ色分けと期間バー</b>予定の種類を色で、長さをバーで表現。読まなくても全体が分かるカレンダーになります。</div>
+<div class="o"><b>③その場で追加・編集・削除</b>予定のクリックで詳細ポップオーバーが開き、画面を離れずに登録・修正まで完結します。モバイル表示にも対応しています。</div>
+</div>
+<p><b>メリット</b>は導入の速さと、保守を提供者に任せられること。<b>デメリット</b>は年額費用（例: ¥19,800/年）がかかることと、ドラッグ＆ドロップでの日程変更など一部の操作が現バージョンでは非対応なことです（編集はモーダルから行います。できないことは製品ページにも明記しています）。表示の処理はブラウザ内で完結し、業務データが外部に送信されることはありません。</p>
+
+<table class="tb">
+<tr><th>比較項目</th><th>①標準＋絞り込み</th><th>②JavaScript自作</th><th>③プラグイン</th></tr>
+<tr><td>週・日表示</td><td>×（月のみ）</td><td>◎（実装次第）</td><td>◎（4ビュー）</td></tr>
+<tr><td>色分け・期間バー</td><td>×</td><td>◎（実装次第）</td><td>◎</td></tr>
+<tr><td>その場で追加・編集</td><td>×（画面往復）</td><td>実装次第（規模大）</td><td>◎</td></tr>
+<tr><td>初期費用</td><td>0円</td><td>0円〜（外注は数十万円規模）</td><td>0円（試用30日）</td></tr>
+<tr><td>継続費用</td><td>運用の徹底</td><td>保守工数（二重の更新追随）</td><td>年額ライセンス</td></tr>
+<tr><td>導入までの時間</td><td>即日</td><td>数週間〜</td><td>約5分</td></tr>
+<tr><td>属人化リスク</td><td>低</td><td><b>高</b></td><td>低</td></tr>
+</table>
+
+<p>導入前の<b>注意点</b>として、カレンダー系プラグインを選ぶ際は次の4点を確認してください。</p>
+<ol class="plain">
+<li><b>ビューの種類</b>：月だけでなく、日々の運用の主戦場になる週表示があるか</li>
+<li><b>編集の完結性</b>：見るだけでなく、その場で追加・編集までできるか（往復が残ると使われなくなります）</li>
+<li><b>データの扱い</b>：外部カレンダーとの連携有無を含め、業務データがどこと通信するのかが明示されているか</li>
+<li><b>できないことの明示</b>：ドラッグ操作や繰り返し予定など、対応外の機能が正直に書かれているか（導入後のがっかりを防ぎます）</li>
+</ol>
+
+<h3>予定管理アプリを後悔しない、日付フィールド設計の3つのコツ（業務改善の視点）</h3>
+<p>どの方法を選ぶにしても、アプリ側の設計が悪いとカレンダーは活きません。コツは3つです。</p>
+<div class="opt3">
+<div class="o"><b>日付は「開始」と「終了」の2フィールドで持つ</b>1つの日付だけで作ると、期間の予定を永遠に表現できません。単日の予定でも開始・終了を同じ日にして運用すれば、後から困りません。</div>
+<div class="o"><b>色分けの軸になる「種別」フィールドを1つ用意する</b>会議・出張・納期・作業のようなカテゴリのドロップダウンが、そのまま色分けの軸になります。種別は7個程度までに絞ります。</div>
+<div class="o"><b>「月は俯瞰、週は運用」と役割を決める</b>月表示は全体の混み具合を見る画面、週表示は毎朝チームで見る画面。既定のビューを週にするだけで、カレンダーの利用率は目に見えて変わります。</div>
+</div>
+
+<h3>社内稟議・情報システム部門への説明ポイント</h3>
+<p>有料プラグインの導入に承認が必要な場合は、次の3点で説明すると通りやすくなります。</p>
+<div class="opt3">
+<div class="o"><b>費用対効果</b>「予定の転記・二重管理」で試算します。kintoneの案件をホワイトボードやExcelの予定表に書き写しているなら、1日10分×人数分の作業がまるごと消えます。</div>
+<div class="o"><b>セキュリティ</b>外部カレンダー連携を持たない完全ローカル設計なら、予定データが社外のサービスに出ない構成をそのまま説明できます。提供元の仕様説明を稟議に添付します。</div>
+<div class="o"><b>やめられるか</b>解約・削除してもカレンダー表示が外れるだけで、レコードや日付データには影響しないことを確認しておきます。</div>
+</div>
+
+<h2>活用イメージとよくある質問</h2>
+
+<h3>現場での活用イメージ</h3>
+<p>カレンダー表示がよく使われる典型的な場面を3つ紹介します（特定の導入企業の事例ではなく、想定される代表的な活用パターンです）。自社の予定管理に近いものがあれば、試用版で同じ形を再現してみてください。</p>
+<ul class="plain">
+<li><b>営業チームの行動予定</b>：訪問・商談・出張を色分けし、週ビューを朝会の画面に。誰がいつ社外にいるかが、説明なしで共有されます。</li>
+<li><b>設備・会議室の予約管理</b>：予約アプリをカレンダー表示にして、空き枠を目で探す。ダブルブッキングの確認が一目で終わります。</li>
+<li><b>納期・締切の管理</b>：案件の納期を月ビューで俯瞰し、混み合う週を早めに検知。期間バーで作業のかたまりも見えます。</li>
+</ul>
+
+<h3>よくある質問</h3>
+<details class="faq"><summary>標準のカレンダー形式と何が違いますか？</summary><p>標準は月表示のみですが、bstのカレンダービュープラグインは月・週・日・リストの4つのビューを切り替えられます。カテゴリによる色分け、開始〜終了の期間表示、予定の詳細ポップオーバー、画面を離れずのその場追加・編集にも対応します。</p></details><details class="faq"><summary>予定をドラッグで動かせますか？</summary><p>現バージョンでは非対応です（今後のバージョンで検討中）。日程の変更は、予定をクリックして開く編集画面から行います。できないことを含めて、製品ページに正直に記載しています。</p></details><details class="faq"><summary>スマートフォンでも使えますか？</summary><p>使えます。カレンダービューはモバイル表示に対応しており、外出先から今日の予定を確認する用途にも使えます。</p></details><details class="faq"><summary>Googleカレンダーなど外部のカレンダーと連携できますか？</summary><p>できません。業務データを外部に出さない「完全ローカル」方針のため、外部カレンダー連携や複数アプリの予定合成には対応していません。kintoneの中の予定を見やすくすることに特化しています。</p></details><details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。</p></details>
+
+<h2>まとめ：予定は「読ませる」のではなく「見せる」</h2>
+<ul class="plain">
+<li>kintone標準のカレンダー形式は月表示のみ。週表示・色分け・期間表示・その場編集はできない</li>
+<li>まずは<b>絞り込み一覧と命名運用</b>で工夫する。単純な日付確認ならそれで足りる</li>
+<li>本格的な予定管理には、<b>内製体制があればカスタマイズビュー＋ライブラリ、なければプラグイン</b>が総コスト最小</li>
+<li>選定時は<b>週表示の有無・その場編集・通信先の明示・できないことの明示</b>の4点を確認する</li>
+<li>アプリ側は<b>開始・終了の2フィールド＋種別フィールド</b>で設計しておくと、どの方法でも後悔しない</li>
+</ul>
+
+<div class="cta"><b>この課題を最も簡単に解決する方法</b><br>
+bstの<a href="/lp-calendar-view.html">カレンダービュープラグイン</a>は、この記事で挙げた選定ポイントを満たすように作られています——月・週・日・リストの4ビュー、カテゴリ色分けと期間表示、その場での追加・編集、モバイル対応。設定は3つ選ぶだけで、業務データの外部送信はありません。30日間・登録不要で試せます。製品ページには表示切替と色分けを実際に操作できるデモがありますので、まずは触ってみてください。<br>
+<a class="b" href="/lp-calendar-view.html">カレンダービュープラグインを見る →</a></div>
+
+<p>関連記事: <a href="/blog/kintone-conditional-format.html">kintoneの一覧を条件で色分けする方法3選</a> ／ <a href="/blog/kintone-tab-form.html">kintoneフォームをタブで整理する方法3選</a></p>
+
+</div></main>
+<footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="/index.html">ホーム</a><a href="/index.html#tools">プラグイン</a><a href="/blog/index.html">ブログ</a><a href="/icons.html">無料アイコン素材</a><a href="/about.html">bstについて</a><a href="/news.html">お知らせ</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="/tokushoho.html">特定商取引法に基づく表記</a><a href="/privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
+<script>
+(function(){
+  var DAYS1=['7/19 日','7/20 月','7/21 火','7/22 水','7/23 木','7/24 金','7/25 土'];
+  var DAYS2=['7/26 日','7/27 月','7/28 火','7/29 水','7/30 木','7/31 金','8/1 土'];
+  // [名称, 週(1|2), 開始列(1-7), 日数, カテゴリ]
+  var EV=[['大阪出張',1,3,3,'c1'],['定例会議',1,4,1,'c2'],['納品立会',1,6,1,'c3'],
+          ['契約更新面談',2,3,1,'c2'],['展示会ブース',2,5,2,'c1']];
+  var mode='std', view='m';
+  var cal=document.getElementById('cvCal'), cap=document.getElementById('cvCap');
+  var views=document.getElementById('cvViews');
+  function week(days, wk, colored, expand){
+    var h='<div class="cv-week'+(expand?' cv-wk':'')+'">';
+    days.forEach(function(d,i){
+      h+='<div class="cv-d'+(d.indexOf('7/22')===0?' today':'')+'" style="grid-column:'+(i+1)+';">'+d+'</div>';
+    });
+    EV.forEach(function(e){
+      if(e[1]!==wk) return;
+      if(colored){
+        h+='<div class="cv-ev '+e[4]+(e[3]>1?' bar':'')+'" style="grid-column:'+e[2]+' / span '+e[3]+';">'+e[0]+(e[3]>1?'（'+e[3]+'日間）':'')+'</div>';
+      }else{
+        h+='<div class="cv-ev g" style="grid-column:'+e[2]+' / span 1;">'+e[0]+'</div>';
+      }
+    });
+    return h+'</div>';
+  }
+  function render(){
+    views.style.display = mode==='cal' ? 'inline-flex' : 'none';
+    if(mode==='std'){
+      cal.innerHTML=week(DAYS1,1,false,false)+week(DAYS2,2,false,false);
+      cap.textContent='3日間の大阪出張が、初日の枠にしか表示されません。色もないため、予定の種類も読まないと分かりません';
+    }else if(view==='m'){
+      cal.innerHTML=week(DAYS1,1,true,false)+week(DAYS2,2,true,false);
+      cap.textContent='期間はバーで、種類は色で。出張の3日間が、読まなくても分かります（青=社外予定・緑=会議・橙=作業）';
+    }else{
+      cal.innerHTML=week(DAYS1,1,true,true);
+      cap.textContent='週ビューは今週だけを大きく表示。日々の運用は、この粒度が主戦場になります';
+    }
+  }
+  document.getElementById('cvMode').addEventListener('click', function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on'); mode=b.getAttribute('data-v'); render();
+  });
+  views.addEventListener('click', function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    views.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on'); view=b.getAttribute('data-v'); render();
+  });
+  render();
+})();
+</script>
+</body>
+</html>
