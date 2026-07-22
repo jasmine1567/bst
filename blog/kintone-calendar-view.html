@@ -217,15 +217,20 @@ body{-webkit-text-size-adjust:100%;}
 <li><b>色分け</b>：会議も出張も納期も、すべて同じ見た目で並びます。</li>
 <li><b>画面を離れない追加・編集</b>：予定の登録や修正のたびに、レコード画面との往復が必要です。</li>
 </ul>
-<p>実際にどう見えるのか、下のデモで標準とプラグインを切り替えて確かめてみてください。</p>
+<p>実際にどう見えるのか、下のデモで標準とプラグインを並べて見比べてみてください。</p>
 
-<div class="adm"><div class="adm-hd"><span class="tag">触って確認</span>同じ予定データが、表示方法でこう変わる</div>
+<div class="adm"><div class="adm-hd"><span class="tag">目で比較</span>同じ週の同じ予定データが、こう変わる</div>
 <div class="adm-bd">
-<span class="adm-seg" id="cvMode"><button data-v="std" class="on">kintone標準（月のみ・色なし）</button><button data-v="cal">カレンダービュー</button></span>
-<span class="adm-seg cv-views" id="cvViews"><button data-v="m" class="on">月</button><button data-v="w">週</button></span>
-<div class="cv-cal" id="cvCal"></div>
-<div class="cv-cap" id="cvCap"></div>
-</div></div>
+<div class="cmp">
+<div class="cmp-p ngp"><div class="cmp-h">✕ kintone標準（月のみ・色なし）</div><div class="cmp-b">
+<div class="cv-cal" id="cvN"></div>
+<div class="cv-warn">⚠ 「大阪出張」は実際は3日間の予定ですが、初日にしか表示されません</div></div>
+<div class="cmp-v">色なし・期間なし・週表示なし。種類も長さも、読まないと分かりません</div></div>
+<div class="cmp-p okp"><div class="cmp-h">○ カレンダービュープラグイン</div><div class="cmp-b">
+<div class="cv-cal" id="cvP"></div>
+<div class="cv-leg"><span class="lg c1">■ 社外予定</span><span class="lg c2">■ 会議</span><span class="lg c3">■ 作業</span></div></div>
+<div class="cmp-v">種類は色で、長さはバーで。読む前に分かります（週・日・リスト表示にも切替可）</div></div>
+</div></div></div>
 
 <div class="key">カレンダーは「読む」画面ではなく「見る」画面。<br>色と期間が表示された瞬間に、予定表は説明のいらない道具になります。</div>
 
@@ -322,53 +327,24 @@ bstの<a href="/lp-calendar-view.html">カレンダービュープラグイン</
 <footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="/index.html">ホーム</a><a href="/index.html#tools">プラグイン</a><a href="/blog/index.html">ブログ</a><a href="/icons.html">無料アイコン素材</a><a href="/about.html">bstについて</a><a href="/news.html">お知らせ</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="/tokushoho.html">特定商取引法に基づく表記</a><a href="/privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
 <script>
 (function(){
-  var DAYS1=['7/19 日','7/20 月','7/21 火','7/22 水','7/23 木','7/24 金','7/25 土'];
-  var DAYS2=['7/26 日','7/27 月','7/28 火','7/29 水','7/30 木','7/31 金','8/1 土'];
-  // [名称, 週(1|2), 開始列(1-7), 日数, カテゴリ]
-  var EV=[['大阪出張',1,3,3,'c1'],['定例会議',1,4,1,'c2'],['納品立会',1,6,1,'c3'],
-          ['契約更新面談',2,3,1,'c2'],['展示会ブース',2,5,2,'c1']];
-  var mode='std', view='m';
-  var cal=document.getElementById('cvCal'), cap=document.getElementById('cvCap');
-  var views=document.getElementById('cvViews');
-  function week(days, wk, colored, expand){
-    var h='<div class="cv-week'+(expand?' cv-wk':'')+'">';
-    days.forEach(function(d,i){
+  var DAYS=['7/20 月','7/21 火','7/22 水','7/23 木','7/24 金'];
+  var EV=[['大阪出張',2,3,'c1'],['定例会議',3,1,'c2'],['納品立会',5,1,'c3']];
+  function week(colored){
+    var h='<div class="cv-week" style="grid-template-columns:repeat(5,1fr);">';
+    DAYS.forEach(function(d,i){
       h+='<div class="cv-d'+(d.indexOf('7/22')===0?' today':'')+'" style="grid-column:'+(i+1)+';">'+d+'</div>';
     });
     EV.forEach(function(e){
-      if(e[1]!==wk) return;
       if(colored){
-        h+='<div class="cv-ev '+e[4]+(e[3]>1?' bar':'')+'" style="grid-column:'+e[2]+' / span '+e[3]+';">'+e[0]+(e[3]>1?'（'+e[3]+'日間）':'')+'</div>';
+        h+='<div class="cv-ev '+e[3]+(e[2]>1?' bar':'')+'" style="grid-column:'+e[1]+' / span '+e[2]+';">'+e[0]+(e[2]>1?'（'+e[2]+'日間）':'')+'</div>';
       }else{
-        h+='<div class="cv-ev g" style="grid-column:'+e[2]+' / span 1;">'+e[0]+'</div>';
+        h+='<div class="cv-ev g" style="grid-column:'+e[1]+' / span 1;">'+e[0]+'</div>';
       }
     });
     return h+'</div>';
   }
-  function render(){
-    views.style.display = mode==='cal' ? 'inline-flex' : 'none';
-    if(mode==='std'){
-      cal.innerHTML=week(DAYS1,1,false,false)+week(DAYS2,2,false,false);
-      cap.textContent='3日間の大阪出張が、初日の枠にしか表示されません。色もないため、予定の種類も読まないと分かりません';
-    }else if(view==='m'){
-      cal.innerHTML=week(DAYS1,1,true,false)+week(DAYS2,2,true,false);
-      cap.textContent='期間はバーで、種類は色で。出張の3日間が、読まなくても分かります（青=社外予定・緑=会議・橙=作業）';
-    }else{
-      cal.innerHTML=week(DAYS1,1,true,true);
-      cap.textContent='週ビューは今週だけを大きく表示。日々の運用は、この粒度が主戦場になります';
-    }
-  }
-  document.getElementById('cvMode').addEventListener('click', function(e){
-    var b=e.target.closest('button'); if(!b) return;
-    this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
-    b.classList.add('on'); mode=b.getAttribute('data-v'); render();
-  });
-  views.addEventListener('click', function(e){
-    var b=e.target.closest('button'); if(!b) return;
-    views.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
-    b.classList.add('on'); view=b.getAttribute('data-v'); render();
-  });
-  render();
+  document.getElementById('cvN').innerHTML=week(false);
+  document.getElementById('cvP').innerHTML=week(true);
 })();
 </script>
 </body>

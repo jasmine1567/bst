@@ -237,12 +237,14 @@ body{-webkit-text-size-adjust:100%;}
 <h3>方法3：タブ表示プラグインを使う（ノーコード・5分）</h3>
 <p>プラグインは、kintoneに機能を追加するための公式の仕組みです。ZIPファイルをkintoneに読み込み、アプリに追加して、設定画面で「どのタブに、どのフィールドを入れるか」を選ぶだけ——<b>コードを1行も書かずに、タブ化が完了します</b>。</p>
 
-<div class="adm"><div class="adm-hd"><span class="tag">触って確認</span>同じ12項目のフォームが、タブでこう変わる</div>
+<div class="adm"><div class="adm-hd"><span class="tag">触って比較</span>同じ12項目のフォームが、こう変わる（右のタブは切り替えられます）</div>
 <div class="adm-bd">
-<span class="adm-seg" id="tdMode"><button data-v="long" class="on">タブなし（現状）</button><button data-v="tab">タブ表示</button></span>
-<div class="td-form" id="tdForm"></div>
-<div class="td-cap" id="tdCap"></div>
-</div></div>
+<div class="cmp">
+<div class="cmp-p ngp"><div class="cmp-h">✕ kintone標準（1枚の縦長フォーム）</div><div class="cmp-b"><div class="td-form"><div class="td-scroll" id="tdStd"></div></div></div>
+<div class="cmp-v">12項目をスクロールして探すことに（実務では50項目超も珍しくありません）</div></div>
+<div class="cmp-p okp"><div class="cmp-h">○ タブ表示プラグイン</div><div class="cmp-b"><div class="td-form" id="tdCtl"></div></div>
+<div class="cmp-v">役割ごとに1タブ。未入力の必須がある場所はバッジで分かります</div></div>
+</div></div></div>
 
 <p>導入手順は次の5ステップです。</p>
 <ol class="plain">
@@ -327,34 +329,23 @@ bstの<a href="/lp-tab-view.html">タブ表示プラグイン</a>は、この記
   var FIELDS=[['会社名','基本情報',1],['担当者','基本情報',0],['電話番号','基本情報',0],['住所','基本情報',0],
     ['商談メモ','営業メモ',0],['次回アクション','営業メモ',1],['確度','営業メモ',0],['競合状況','営業メモ',0],
     ['請求先','請求・入金',0],['支払条件','請求・入金',0],['入金予定日','請求・入金',0],['入金ステータス','請求・入金',0]];
-  var TABS=['基本情報','営業メモ','請求・入金'];
-  var mode='long', cur=0;
-  var form=document.getElementById('tdForm'), cap=document.getElementById('tdCap');
+  var TABS=['基本情報','営業メモ','請求・入金'], cur=0;
   function frow(f){
     return '<div class="td-f"><span class="lb">'+f[0]+(f[2]?' <span class="req">＊</span>':'')+'</span><span class="bx"></span></div>';
   }
+  document.getElementById('tdStd').innerHTML = FIELDS.map(frow).join('');
+  var ctl=document.getElementById('tdCtl');
   function render(){
-    if(mode==='long'){
-      form.innerHTML='<div class="td-scroll">'+FIELDS.map(frow).join('')+'</div>';
-      cap.textContent='12項目が1枚に並び、スクロールして探すことになります（実際のアプリでは50項目以上も珍しくありません）';
-      return;
-    }
     var tabs=TABS.map(function(t,i){
       var badge = (t==='営業メモ') ? '<span class="td-badge">必須</span>' : '';
       return '<button type="button" class="td-tab'+(i===cur?' on':'')+'" data-i="'+i+'">'+t+badge+'</button>';
     }).join('');
     var rows=FIELDS.filter(function(f){return f[1]===TABS[cur];}).map(frow).join('');
-    form.innerHTML='<div class="td-tabs">'+tabs+'</div><div class="td-body">'+rows+'</div>';
-    cap.textContent='役割ごとに1タブ。「営業メモ」タブのバッジは、未入力の必須項目があることを知らせています';
+    ctl.innerHTML='<div class="td-tabs">'+tabs+'</div><div class="td-body">'+rows+'</div>';
   }
-  form.addEventListener('click', function(e){
+  ctl.addEventListener('click', function(e){
     var b=e.target.closest('.td-tab'); if(!b) return;
     cur=+b.getAttribute('data-i'); render();
-  });
-  document.getElementById('tdMode').addEventListener('click', function(e){
-    var b=e.target.closest('button'); if(!b) return;
-    this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
-    b.classList.add('on'); mode=b.getAttribute('data-v'); cur=0; render();
   });
   render();
 })();

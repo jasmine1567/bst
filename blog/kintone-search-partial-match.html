@@ -198,13 +198,20 @@ body{-webkit-text-size-adjust:100%;}
 <p>たとえば「EST-2026-0142」という見積番号なら、「EST」や「2026」のように区切りの直後から始まる文字では見つかります。しかし「142」のような単語の途中の文字は、検索の起点にならないためヒットしません。</p>
 <p>覚えている断片が、ちょうど区切り位置から始まっているとは限らない——ここが実務でつまずく理由です。実際に下のデモで確かめてみてください。</p>
 
-<div class="adm"><div class="adm-hd"><span class="tag">触って確認</span>「EST-2026-0142」を探せるか？（検索方式と検索語を切り替え）</div>
+<div class="adm"><div class="adm-hd"><span class="tag">触って比較</span>同じ検索語で、結果はここまで変わる</div>
 <div class="adm-bd">
-<span class="adm-seg" id="sdMode"><button data-v="std" class="on">kintone標準（前方一致）</button><button data-v="part">部分一致検索</button></span>
-<span class="adm-seg" id="sdQ"><button data-v="EST" class="on">「EST」</button><button data-v="2026">「2026」</button><button data-v="142">「142」</button></span>
-<div class="sd-rec" id="sdRec"><b>EST-2026-0142</b><span class="st" id="sdSt"></span></div>
-<div class="sd-sum" id="sdSum"></div>
-<div class="adm-note">※標準の検索は「区切り（ハイフン等）の直後」からは一致しますが、単語の途中からは一致しません。</div>
+<div class="cmp-ctl">検索語:<span class="adm-seg" style="margin-bottom:0;"><span id="sdQ" style="display:contents;"><button data-v="142" class="on">「142」</button><button data-v="2026">「2026」</button><button data-v="EST">「EST」</button></span></span><span style="font-weight:500;color:var(--mut);">探しているレコード: EST-2026-0142</span></div>
+<div class="cmp">
+<div class="cmp-p ngp"><div class="cmp-h">✕ kintone標準の絞り込み（前方一致）</div><div class="cmp-b">
+<div class="sd-rec" id="sdRecN"><b>EST-2026-0142</b><span class="st" id="sdStN"></span></div>
+<div class="sd-res" id="sdResN"></div></div>
+<div class="cmp-v" id="sdVN"></div></div>
+<div class="cmp-p okp"><div class="cmp-h">○ 部分一致検索プラグイン</div><div class="cmp-b">
+<div class="sd-rec" id="sdRecP"><b>EST-2026-0142</b><span class="st" id="sdStP"></span></div>
+<div class="sd-res" id="sdResP"></div></div>
+<div class="cmp-v" id="sdVP"></div></div>
+</div>
+<div class="adm-note">※標準の検索は「区切り（ハイフン等）の直後」からは一致しますが、「142」のような単語の途中からは一致しません。</div>
 </div></div>
 
 <p>これはkintoneが検索を高速に返すための索引（インデックス）の作り方に由来する挙動で、ユーザー側の設定で変えることはできません。「あるはずなのに出ない」と感じたら、まず前方一致を疑ってください。</p>
@@ -311,28 +318,27 @@ bstの<a href="/lp-partial-search.html">部分一致検索プラグイン</a>は
 <footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="/index.html">ホーム</a><a href="/index.html#tools">プラグイン</a><a href="/blog/index.html">ブログ</a><a href="/icons.html">無料アイコン素材</a><a href="/about.html">bstについて</a><a href="/news.html">お知らせ</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="/tokushoho.html">特定商取引法に基づく表記</a><a href="/privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
 <script>
 (function(){
-  var mode='std', q='EST';
-  var TOKENS=['EST','2026','0142'], VALUE='EST-2026-0142';
-  function seg(id, cb){
-    var el=document.getElementById(id);
-    el.addEventListener('click', function(e){
-      var b=e.target.closest('button'); if(!b) return;
-      el.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
-      b.classList.add('on'); cb(b.getAttribute('data-v'));
-    });
+  var q='142', TOKENS=['EST','2026','0142'], VALUE='EST-2026-0142';
+  function panel(hit, rec, st, res, v, msgs){
+    document.getElementById(rec).className='sd-rec '+(hit?'sd-hit':'sd-miss');
+    document.getElementById(st).textContent = hit?'✔ ヒット':'✕';
+    var r=document.getElementById(res);
+    r.textContent = hit?'検索結果：1件':'検索結果：0件';
+    r.className='sd-res '+(hit?'okc':'ngc');
+    document.getElementById(v).textContent = msgs;
   }
   function render(){
-    var hit = mode==='part' ? VALUE.indexOf(q)>=0
-      : TOKENS.some(function(t){ return t.indexOf(q)===0; });
-    var rec=document.getElementById('sdRec');
-    rec.className='sd-rec '+(hit?'sd-hit':'sd-miss');
-    document.getElementById('sdSt').textContent = hit?'✔ ヒット':'✕ 0件';
-    document.getElementById('sdSum').textContent = hit
-      ? '「'+q+'」で見つかりました（'+(mode==='part'?'含む文字で一致':'区切り直後から一致')+'）'
-      : '「'+q+'」では見つかりません — 単語の途中の文字は検索の起点にならないためです';
+    var stdHit = TOKENS.some(function(t){ return t.indexOf(q)===0; });
+    panel(stdHit,'sdRecN','sdStN','sdResN','sdVN',
+      stdHit ? '「'+q+'」は区切り直後から始まる語なのでヒットしました'
+             : 'データは存在するのに、「'+q+'」では見つかりません');
+    panel(true,'sdRecP','sdStP','sdResP','sdVP','「'+q+'」を含むのでヒット。どの断片でも見つかります');
   }
-  seg('sdMode', function(v){mode=v;render();});
-  seg('sdQ', function(v){q=v;render();});
+  document.getElementById('sdQ').addEventListener('click', function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on'); q=b.getAttribute('data-v'); render();
+  });
   render();
 })();
 </script>
