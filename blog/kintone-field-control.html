@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FBFBF8">
+<title>kintoneでフィールドを条件で表示・非表示にする方法3選｜bstブログ</title>
+<meta name="description" content="kintoneで「区分が法人のときだけ会社名を表示したい」「条件によって必須にしたい」は標準機能ではできません。アクセス権との違い、JavaScriptで実現する方法、条件付きフィールド制御プラグインの3つの解決策を費用・工数・注意点まで比較して解説します。">
+<link rel="canonical" href="https://bst-plugins.com/blog/kintone-field-control.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="kintoneでフィールドを条件で表示・非表示にする方法3選｜bstブログ">
+<meta property="og:description" content="kintoneで「区分が法人のときだけ会社名を表示したい」「条件によって必須にしたい」は標準機能ではできません。アクセス権との違い、JavaScriptで実現する方法、条件付きフィールド制御プラグインの3つの解決策を費用・工数・注意点まで比較して解説します。">
+<meta property="og:image" content="https://bst-plugins.com/og-home.png">
+<meta property="og:url" content="https://bst-plugins.com/blog/kintone-field-control.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V964JH879G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-V964JH879G');
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href*="/trials/"]');
+    if(a){
+      var f = a.getAttribute('href');
+      var pm = f.match(/bst_([a-z0-9-]+)_v/i);
+      gtag('event', 'trial_download', { file: f, plugin: pm ? pm[1] : 'unknown' });
+    }
+  });
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"kintoneでフィールドを条件で表示・非表示にする方法3選","description":"kintoneで「区分が法人のときだけ会社名を表示したい」「条件によって必須にしたい」は標準機能ではできません。アクセス権との違い、JavaScriptで実現する方法、条件付きフィールド制御プラグインの3つの解決策を費用・工数・注意点まで比較して解説します。","datePublished":"2026-07-22","dateModified":"2026-07-22","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst"},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-field-control.html"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"表示・非表示のほかに、どんな制御ができますか？","acceptedAnswer":{"@type":"Answer","text":"bstの条件付きフィールド制御プラグインでは、フィールドの値に応じて「表示／非表示」「必須／任意」「読取専用（編集不可）」の3種類の効果を切り替えられます。効果は複数のフィールドにまとめて適用できます。"}},{"@type":"Question","name":"複数の条件を組み合わせられますか？","acceptedAnswer":{"@type":"Answer","text":"できます。「ステータスが受注 かつ 金額が100万円以上」のようなAND条件に対応しており、ルールは何本でも作成できます。設定画面では保存前に効果を確認できます。"}},{"@type":"Question","name":"設定にコードは必要ですか？","acceptedAnswer":{"@type":"Answer","text":"不要です。設定は「条件を選ぶ → 効果を選ぶ」の2ステップをGUIで行うだけです。JavaScriptの知識がなくても、その日から運用を調整できます。"}},{"@type":"Question","name":"既存のレコードやデータに影響はありませんか？","acceptedAnswer":{"@type":"Answer","text":"ありません。プラグインが制御するのは追加・編集画面での見え方と入力ルールだけで、フィールドや保存済みデータの構造には手を加えません。プラグインを外せば元の動作に戻ります。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。"}}]}
+</script>
+<style>
+:root{--ink:#252525;--paper:#FBFBF8;--paper2:#F3F2EC;--line:#E4E3DB;--amber:#FFB800;--amber-d:#B57E00;--mut:#6E6E68;--ok:#18794E;--blue:#2563EB;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--paper);color:var(--ink);line-height:1.95;}
+.wrap{max-width:820px;margin:0 auto;padding:0 24px;}
+main{padding:44px 0 64px;}
+.kick{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--amber-d);}
+h1{font-size:clamp(23px,3.8vw,32px);font-weight:900;letter-spacing:-.01em;line-height:1.55;margin:6px 0 10px;}
+.meta{font-size:12.5px;color:var(--mut);margin-bottom:24px;}
+h2{font-size:clamp(18px,2.8vw,23px);font-weight:900;margin:40px 0 14px;padding:10px 0 0;border-top:1px solid var(--line);}
+h3{font-size:16.5px;font-weight:900;margin:26px 0 10px;padding-left:10px;border-left:4px solid var(--amber);}
+p{font-size:14.5px;margin:0 0 15px;}
+.lead{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px 18px;margin:0 0 22px;}
+.lead b{display:block;font-size:13px;color:var(--amber-d);margin-bottom:6px;}
+.lead ul{margin:0 0 0 20px;font-size:13.5px;}
+.lead li{margin-bottom:4px;}
+.point{border:2px solid var(--amber);border-radius:12px;background:#fffdf5;padding:13px 17px;margin:0 0 20px;font-size:14.5px;line-height:1.9;}
+.note{border:1.5px solid #bcd9ee;border-radius:12px;background:#F5F9FF;padding:12px 16px;font-size:13px;line-height:1.9;margin:18px 0;}
+.cta{border:2px solid var(--amber);border-radius:14px;background:#fffdf5;padding:16px 20px;margin:26px 0;font-size:14px;}
+.cta a.b{display:inline-flex;margin-top:10px;background:var(--amber);color:var(--ink);font-weight:700;font-size:14px;padding:11px 22px;border-radius:999px;text-decoration:none;}
+ul.plain,ol.plain{margin:0 0 16px 22px;font-size:14.5px;}
+ul.plain li,ol.plain li{margin-bottom:7px;}
+a{color:var(--blue);}
+table.tb{border-collapse:collapse;width:100%;font-size:13px;margin:0 0 18px;background:#fff;}
+table.tb th,table.tb td{border:1px solid var(--line);padding:9px 12px;text-align:left;line-height:1.7;vertical-align:top;}
+table.tb th{background:#F7F7F5;white-space:nowrap;}
+details.faq{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 18px;margin-bottom:10px;}
+details.faq summary{font-weight:700;font-size:14px;cursor:pointer;}
+details.faq p{font-size:13.5px;color:#444;margin:8px 0 0;}
+/* ===== ブログ組版強化（読みやすさ・余白・キーメッセージ・ミニデモ） ===== */
+p{margin:0 0 18px;}
+h2{margin-top:48px;}
+h3{margin-top:30px;}
+.key{margin:28px 0;padding:18px 22px;border-left:6px solid var(--amber);background:#fff;border-radius:0 12px 12px 0;font-size:16.5px;font-weight:900;line-height:2.05;letter-spacing:.01em;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.key small{display:block;font-weight:500;font-size:12.5px;color:var(--mut);margin-top:8px;line-height:1.8;}
+.opt3{display:flex;flex-direction:column;gap:10px;margin:14px 0 18px;}
+.opt3 .o{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 15px;font-size:13.5px;line-height:1.85;}
+.opt3 .o b{color:var(--amber-d);margin-right:6px;}
+.adm{border:2px solid var(--amber);border-radius:14px;background:#fff;overflow:hidden;margin:26px 0;box-shadow:0 10px 26px rgba(255,184,0,.10);}
+.adm-hd{background:#F7F7F5;border-bottom:1px solid var(--line);padding:9px 14px;font-size:12px;font-weight:900;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.adm-hd .tag{font-size:10px;color:#fff;background:#3498db;border-radius:999px;padding:2px 9px;flex:none;}
+.adm-bd{padding:14px 16px;}
+.adm-seg{display:inline-flex;border:1px solid #d1d5db;border-radius:8px;overflow:hidden;margin:0 8px 12px 0;flex-wrap:wrap;}
+.adm-seg button{border:none;background:#fff;padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;color:#6b7280;font-family:inherit;border-right:1px solid #e5e7eb;}
+.adm-seg button:last-child{border-right:none;}
+.adm-seg button.on{background:#3498db;color:#fff;}
+.adm-note{font-size:11.5px;color:var(--mut);margin-top:8px;}
+
+.fc-form{border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px 14px;}
+.fc-f{display:flex;gap:10px;align-items:center;padding:5px 0;border-bottom:1px dashed #eee;font-size:12.5px;}
+.fc-f:last-child{border-bottom:none;}
+.fc-f .lb{width:120px;font-weight:700;color:#374151;flex:none;}
+.fc-f .req{color:#c0392b;font-size:10px;font-weight:900;background:#fff1f2;border:1px solid #fecaca;border-radius:4px;padding:0 5px;margin-left:4px;}
+.fc-f .bx{flex:1;height:22px;border:1px solid #d5dee3;border-radius:6px;background:#fafafa;min-width:120px;}
+.fc-f select{flex:1;height:28px;padding:0 8px;font-size:12.5px;font-family:inherit;border:1px solid #d5dee3;border-radius:6px;background:#fff;min-width:120px;}
+.fc-f.ghost{opacity:.45;}
+.fc-f.ghost .lb::after{content:"（この条件では不要）";font-weight:500;font-size:10px;color:#9ca3af;}
+.fc-cap{font-size:11.5px;color:var(--mut);margin-top:8px;}
+/* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
+.bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
+.bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
+.bstnav .bstbrand{display:inline-block;background:#252525;color:#FFB800;padding:3px 13px;border-radius:9px;font-weight:900;font-size:18px;text-decoration:none;letter-spacing:.02em;}
+.bstnav .bstitem{font-size:13.5px;font-weight:500;text-decoration:none;color:#6E6E68;}
+.bstnav .bstitem:hover{color:#252525;}
+.bstnav .bstcta{margin-left:auto;background:#252525;color:#fff;font-size:13px;font-weight:700;padding:9px 18px;border-radius:999px;text-decoration:none;white-space:nowrap;}
+.bstfoot{border-top:1px solid #E4E3DB;padding:28px 0 38px;font-size:12.5px;color:#6E6E68;}
+.bstfoot-in{max-width:1080px;margin:0 auto;padding:0 24px;}
+.bstfoot .row{display:flex;gap:18px;flex-wrap:wrap;}
+.bstfoot a{text-decoration:none;color:#6E6E68;}
+.bstfoot a:hover{color:#252525;}
+/* ===== 日本語の折り返し品質（中途半端な改行の防止） ===== */
+h1,h2,h3{text-wrap:balance;}
+p,li,dd,dt{text-wrap:pretty;}
+@supports (word-break: auto-phrase){h1,h2,h3,p{word-break:auto-phrase;}}
+/* =====================================================================
+   bstm: モバイル最適化（全ページ共通・スタイルの最後に置くこと）
+   ・インラインstyleの2カラムgridは属性セレクタ＋!importantで1カラム化
+   ・カード類のminmaxによる横あふれを防止
+   ===================================================================== */
+img,svg,table{max-width:100%;}
+body{-webkit-text-size-adjust:100%;}
+@media (max-width:860px){
+  [style*="grid-template-columns:1fr 1.2fr"],
+  [style*="grid-template-columns:1fr 1.1fr"],
+  [style*="grid-template-columns:1.1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1.2fr"]{grid-template-columns:1fr !important;}
+  .pricebox{grid-template-columns:1fr;}
+  .viz,.can,.hero-grid,.grid,.demo2{grid-template-columns:1fr !important;}
+}
+@media (max-width:640px){
+  /* ヘッダー: ブランド＋CTAのみ（他の導線はフッターと本文に確保済み） */
+  .bstnav-in{gap:12px;height:56px;padding:0 16px;}
+  .bstnav .bstitem{display:none;}
+  .bstnav .bstcta{margin-left:auto;font-size:12.5px;padding:8px 15px;}
+  .wrap,.bstfoot-in{padding:0 16px;}
+  section{padding:38px 0;}
+  /* カード/グリッドは必ず1カラム（minmaxの最小幅による横あふれを断つ） */
+  .cards3,.bstx-cards,.pgrid2,.steps,.cardrow,.pgrid,.plist{grid-template-columns:1fr !important;}
+  /* 主要ボタンは全幅・タップしやすく */
+  .btns .btn,.dlrow .btn,.pcard-btns .bt{flex:1 1 100%;justify-content:center;}
+  .btn{padding:13px 20px;}
+  /* 価格ボックスの余白 */
+  .pricebox{padding:22px 18px;}
+  .pricebox .big{font-size:36px;}
+  /* 比較表: 横スクロール前提で圧縮（親のoverflow-x:autoで操作可能） */
+  .bstx-cmp,.cmp{min-width:500px;font-size:11.5px;}
+  .bstx-cmp th,.bstx-cmp td,.cmp th,.cmp td{padding:8px 10px;}
+  /* 部分一致検索デモ: 列幅指定を解除して収める */
+  #psrows,#pscnt{font-size:12px;}
+  th[style*="width:150px"],th[style*="width:110px"]{width:auto !important;}
+  /* カレンダーデモ: セルを小さく */
+  #cvBody div[style*="repeat(7"]{gap:2px !important;}
+  #cvBody div[style*="min-height:52px"]{min-height:42px !important;padding:1px 2px !important;}
+  /* タブ表示デモ: タブバーを折り返す */
+  .tbar{flex-wrap:wrap;}
+  /* フッターのリンク間隔 */
+  .bstfoot .row{gap:12px 16px;}
+}
+@media (max-width:400px){
+  .bstnav .bstcta{font-size:12px;padding:7px 12px;}
+  .code{font-size:64px;}
+}
+</style>
+</head>
+<body>
+<header class="bstnav"><div class="bstnav-in"><a class="bstbrand" href="/index.html">bst</a><a class="bstitem" href="/index.html#tools">プラグイン</a><a class="bstitem" href="/index.html#pricing">料金</a><a class="bstitem" href="/blog/index.html">ブログ</a><a class="bstitem" href="/icons.html">無料アイコン</a><a class="bstcta" href="/index.html#tools">30日無料で試す</a></div></header>
+<main><div class="wrap">
+
+<span class="kick">BLOG</span>
+<h1>kintoneでフィールドを条件で表示・非表示にする方法3選</h1>
+<p class="meta">2026-07-22公開 ／ カテゴリ: 入力支援・フォーム制御 ／ 執筆: bst（kintoneプラグイン開発者）</p>
+
+<p>「区分が『法人』のときだけ、会社名の欄を出したい」「受注になったら、受注日を必須にしたい」「確定した金額は、もう書き換えられないようにしたい」——kintoneのフォームを作り込むと、必ず行き着くのがこの「条件による入力制御」です。</p>
+<p>そして設定画面を探し回った結果、それができないことに気づきます。筆者はkintoneプラグインの開発者として、この「条件で変えたい」相談を数多く受けてきました。本記事は2026年7月時点の仕様に基づいて、できない理由と3つの解決方法を整理します。</p>
+
+<div class="key">kintoneの標準機能に、「入力された値」を条件にフィールドを制御する仕組みはありません。<br>アクセス権が見ているのは「誰か」であって、「何が入力されたか」ではないのです。<small>この記事では、アクセス権との違いの整理 → JavaScriptで実現する方法 → プラグインという選択肢、の順で解説します。</small></div>
+
+<div class="lead"><b>この記事で分かること</b>
+<ul>
+<li>フィールドの表示・非表示が標準でできない理由と、アクセス権との違い</li>
+<li>標準機能でできる入力制御と、できないことの境界線</li>
+<li>条件制御を実現する3つの方法（運用の工夫・JavaScript自作・プラグイン）の費用と工数の比較</li>
+<li>表示・必須・読取専用それぞれのメリット・デメリットと導入時の注意点</li>
+<li>入力ミスを仕組みで防ぐルール設計のコツと、よくある質問への回答</li>
+</ul></div>
+
+<div class="point"><b>先に結論</b>：値を条件にした表示・非表示、必須の切り替え、編集の禁止は標準機能ではできません。解決方法は、次の3つです。</div>
+<div class="opt3">
+<div class="o"><b>①フォーム設計と運用で工夫する</b>グループフィールドや注意書きラベルで「入力しないでほしい」を伝える方法。無料ですが、強制力はありません。</div>
+<div class="o"><b>②JavaScriptで制御を自作する</b>表示切替は公式APIで実現できます。ただし必須や読取専用まで作り込むと分岐が膨らみ、保守が自社の負担になります。</div>
+<div class="o"><b>③条件付きフィールド制御プラグインを使う</b>有料（年額）ですが、「条件→効果」をGUIで選ぶだけ。表示・必須・読取専用の3つを自動で切り替えられます。</div>
+</div>
+<p>入力ミスの後始末は、気づく→確認する→差し戻す→直すという長い往復です。ミスの発生源が入力画面にあるなら、<b>総コストではプラグインが最も安くつくケースが多い</b>——これが本記事の結論です。理由を順に説明します。</p>
+
+<h2>kintoneでフィールドの条件制御ができない理由｜標準機能でできること・できないこと</h2>
+
+<h3>原因：標準の制御は「誰か」で決まり、「値」では変わらない</h3>
+<p>kintoneには入力を制御する標準機能がいくつもあります。ただし、それらの条件はすべて「ユーザーが誰か」「レコードがどの状態か」であって、<b>「いま何が入力されているか」でフォームの見た目やルールを変えることはできません</b>。</p>
+<p>「個人のお客様に会社名は不要」「請求書払いのときだけ請求先住所が要る」——現場のルールは値に紐づいているのに、標準機能はそこに手が届かない。このずれが、入力ミスと「入力しない運用ルール」の氾濫を生みます。下のデモで違いを体感してみてください。</p>
+
+<div class="adm"><div class="adm-hd"><span class="tag">触って確認</span>「区分」と「支払方法」を切り替えると、フォームはどうなる？</div>
+<div class="adm-bd">
+<span class="adm-seg" id="fcMode"><button data-v="std" class="on">kintone標準（常に全項目）</button><button data-v="ctl">条件付きフィールド制御</button></span>
+<div class="fc-form" id="fcForm"></div>
+<div class="fc-cap" id="fcCap"></div>
+</div></div>
+
+<h3>標準機能でできること（まずは正しく使い切る）</h3>
+<ul class="plain">
+<li><b>フィールドのアクセス権</b>：ユーザー・組織・ロールを条件に、フィールドの閲覧・編集を制限できます。「経理以外は金額を編集できない」はこれで実現できます。</li>
+<li><b>レコードの条件アクセス権</b>：レコードの値を条件に、レコード単位の閲覧・編集を制限できます（フィールド単位の表示切替はできません）。</li>
+<li><b>プロセス管理</b>：ステータスごとに作業者を決め、それ以外の人の編集を止められます。</li>
+<li><b>グループフィールド・ラベル</b>：「法人の方のみ入力」の注意書きや、折りたたみでの整理はできます。</li>
+</ul>
+
+<h3>標準機能ではできないこと</h3>
+<ul class="plain">
+<li><b>値を条件にした表示・非表示</b>：「区分＝法人のときだけ会社名を表示」はできません。</li>
+<li><b>値を条件にした必須切替</b>：「ステータス＝受注なら受注日を必須」はできません（必須は常に必須です）。</li>
+<li><b>値を条件にした編集禁止</b>：「承認済みになったら金額を読取専用に」はできません。</li>
+</ul>
+
+<div class="key">入力ミスは、注意力の問題ではなく画面の問題。<br>不要な項目が見えている限り、誤入力はなくなりません。</div>
+
+<h2>フィールドの条件制御を実現する3つの方法【比較】</h2>
+
+<h3>方法1：フォーム設計と運用で工夫する（代替方法・無料）</h3>
+<p>制御そのものは諦め、迷いにくいフォームで誤入力を減らす方向です。グループフィールドで「法人のお客様のみ」の項目群をまとめ、ラベルで注意書きを添え、入力マニュアルを整備します。</p>
+<p><b>メリット</b>は費用ゼロで今日できること。<b>デメリット</b>は、強制力がないことに尽きます。注意書きは読まれない前提で設計すべきで、「個人なのに会社名が入っている」「必須のはずの受注日が空」というデータは残り続けます。データが汚れてからの掃除は、防止よりずっと高くつきます。</p>
+
+<h3>方法2：JavaScriptで制御を自作する（無料〜外注10万円台）</h3>
+<p>kintoneはJavaScriptカスタマイズを公式にサポートしており、条件制御も実装できます。表示・非表示は変更イベント（app.record.edit.change）と表示切替API（kintone.app.record.setFieldShown）の組み合わせで、比較的素直に作れます。</p>
+<p>一方、<b>必須の切り替えには専用のAPIがありません</b>。保存イベント（submit）で値を自前チェックしてエラーを返す実装になり、読取専用はフィールドのdisabled制御で行います。効果の種類ごとに実装方法が異なるのが、この道の実態です。</p>
+<p><b>メリット</b>はライセンス費用が不要なこと。<b>デメリットと注意点</b>は3つあります。</p>
+<ol class="plain">
+<li><b>分岐の爆発</b>：条件が2つ、3つと増えるたびにコードの分岐が増え、「受注かつ100万円以上」のような複合条件で一気に複雑化します。</li>
+<li><b>画面種別ごとの対応</b>：追加画面・編集画面・一覧上の編集・モバイルと、同じ制御を複数の画面に実装する必要があります。</li>
+<li><b>属人化</b>：「この条件も足したい」という現場の要望のたびにコード修正が必要で、作った人が異動すると入力ルールそのものが凍結します。</li>
+</ol>
+
+<h3>方法3：条件付きフィールド制御プラグインを使う（ノーコード・GUI設定）</h3>
+<p>プラグインは、kintoneに機能を追加する公式の仕組みです。bstの<a href="/lp-conditional-field.html">条件付きフィールド制御プラグイン</a>の場合、設定は「<b>条件を選ぶ → 効果を選ぶ</b>」の2ステップだけ。できるようになることは3つです。</p>
+<div class="opt3">
+<div class="o"><b>①表示／非表示の自動切替</b>「区分＝法人 → 会社名を表示」。不要な項目が視界から消え、フォームは常に最小限になります。</div>
+<div class="o"><b>②必須／任意の自動切替</b>「ステータス＝受注 → 受注日を必須」。条件付きの必須で、空欄のまま保存される事故を仕組みで止めます。</div>
+<div class="o"><b>③読取専用の自動切替</b>「承認済み → 金額を編集不可」。確定後の書き換えを防ぎ、データの信頼性を守ります。</div>
+</div>
+<p>条件は「受注 かつ 100万円以上」のようなAND条件に対応し、ルールは何本でも作成できます。効果は複数フィールドにまとめて適用でき、設定画面では保存前に動きを確認できます。<b>メリット</b>は導入の速さと、ルール変更を現場で完結できること。<b>デメリット</b>は年額費用（例: ¥19,800/年）がかかることです。制御の処理はブラウザ内で完結し、業務データが外部に送信されることはありません。</p>
+
+<table class="tb">
+<tr><th>比較項目</th><th>①設計と運用の工夫</th><th>②JavaScript自作</th><th>③プラグイン</th></tr>
+<tr><td>表示・非表示の切替</td><td>×（注意書きのみ）</td><td>◎（実装可能）</td><td>◎</td></tr>
+<tr><td>条件付きの必須</td><td>×</td><td>△（自前チェック実装）</td><td>◎</td></tr>
+<tr><td>条件付きの読取専用</td><td>×</td><td>△（実装次第）</td><td>◎</td></tr>
+<tr><td>初期費用</td><td>0円</td><td>0円〜（外注10万円台〜）</td><td>0円（試用30日）</td></tr>
+<tr><td>ルール変更の速さ</td><td>即日（文言修正）</td><td>コード修正が必要</td><td>GUIでその場</td></tr>
+<tr><td>強制力</td><td><b>なし</b></td><td>あり</td><td>あり</td></tr>
+<tr><td>属人化リスク</td><td>低</td><td><b>高</b></td><td>低</td></tr>
+</table>
+
+<p>導入前の<b>注意点</b>として、入力制御系プラグインを選ぶ際は次の4点を確認してください。</p>
+<ol class="plain">
+<li><b>効果の種類</b>：表示切替だけでなく、必須と読取専用まで制御できるか（入力ミスの型は1つではありません）</li>
+<li><b>条件の表現力</b>：AND条件などの組み合わせに対応し、ルールを本数の制限なく足せるか</li>
+<li><b>データの扱い</b>：制御は画面上だけで、フィールドや保存済みデータに手を加えない設計か</li>
+<li><b>外部通信の有無</b>：業務データが外部サーバーへ送られない設計か（情報システム部門の審査ポイントです）</li>
+</ol>
+
+<h3>入力ミスを仕組みで防ぐ、ルール設計の3つのコツ（業務改善の視点）</h3>
+<p>制御の手段を手に入れても、ルールの設計が悪いと逆に混乱します。コツは3つです。</p>
+<div class="opt3">
+<div class="o"><b>まず「隠す」から始める</b>使わない項目が見えないだけで、入力の迷いと誤記入の大半は消えます。必須や読取専用は、その次の一手です。</div>
+<div class="o"><b>必須は「条件付き」でこそ活きる</b>全項目を常時必須にすると、現場は「とりあえずハイフン」を入れ始めます。必要な条件のときだけ必須にするから、必須が守られます。</div>
+<div class="o"><b>読取専用は「確定の瞬間」に合わせる</b>承認済み・請求済みなど、業務上の確定タイミングでロックする。誰かの善意の修正が、確定済みデータを壊す事故を防ぎます。</div>
+</div>
+
+<h3>社内稟議・情報システム部門への説明ポイント</h3>
+<p>有料プラグインの導入に承認が必要な場合は、次の3点で説明すると通りやすくなります。</p>
+<div class="opt3">
+<div class="o"><b>費用対効果</b>「入力ミス1件の後始末（気づく→確認→差し戻し→修正）を15分」として、発生頻度×人数で試算します。週5件なら月に約5時間分。集計のやり直しや請求ミスまで含めれば、損失はさらに大きくなります。</div>
+<div class="o"><b>セキュリティ</b>業務データの外部送信がないことを、提供元の仕様説明で確認して稟議に添付します。</div>
+<div class="o"><b>やめられるか</b>解約・削除しても画面の動きが元に戻るだけで、フィールドやデータには影響しないことを確認しておきます。</div>
+</div>
+
+<h2>活用イメージとよくある質問</h2>
+
+<h3>現場での活用イメージ</h3>
+<p>条件付きフィールド制御がよく使われる典型的な場面を3つ紹介します（特定の導入企業の事例ではなく、想定される代表的な活用パターンです）。自社のフォームに近いものがあれば、試用版で同じルールを再現してみてください。</p>
+<ul class="plain">
+<li><b>顧客・申込管理×区分</b>：法人なら会社名・部署を表示して必須に、個人なら非表示に。冒頭のデモそのままの、最も基本的で効果の大きい使い方です。</li>
+<li><b>案件管理×ステータス</b>：受注になったら受注日と受注金額を必須に、失注なら失注理由を必須に。「あとで入れます」が残らない仕組みです。</li>
+<li><b>申請・承認×確定ロック</b>：承認済みになったら金額と条件面を読取専用に。承認後の改変を防ぎ、監査にも説明できる状態を保ちます。</li>
+</ul>
+
+<h3>よくある質問</h3>
+<details class="faq"><summary>表示・非表示のほかに、どんな制御ができますか？</summary><p>bstの条件付きフィールド制御プラグインでは、フィールドの値に応じて「表示／非表示」「必須／任意」「読取専用（編集不可）」の3種類の効果を切り替えられます。効果は複数のフィールドにまとめて適用できます。</p></details><details class="faq"><summary>複数の条件を組み合わせられますか？</summary><p>できます。「ステータスが受注 かつ 金額が100万円以上」のようなAND条件に対応しており、ルールは何本でも作成できます。設定画面では保存前に効果を確認できます。</p></details><details class="faq"><summary>設定にコードは必要ですか？</summary><p>不要です。設定は「条件を選ぶ → 効果を選ぶ」の2ステップをGUIで行うだけです。JavaScriptの知識がなくても、その日から運用を調整できます。</p></details><details class="faq"><summary>既存のレコードやデータに影響はありませんか？</summary><p>ありません。プラグインが制御するのは追加・編集画面での見え方と入力ルールだけで、フィールドや保存済みデータの構造には手を加えません。プラグインを外せば元の動作に戻ります。</p></details><details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。</p></details>
+
+<h2>まとめ：良いフォームは、正しい入力しかできないフォーム</h2>
+<ul class="plain">
+<li>kintoneの標準制御は「誰か」を条件にするもので、「入力された値」ではフォームを変えられない</li>
+<li>まずは<b>アクセス権とプロセス管理という標準の強制力</b>を使い切る。人単位の制御はそれで足りる</li>
+<li>値を条件にした制御が必要なら、<b>内製体制があればJavaScript、なければプラグイン</b>が総コスト最小</li>
+<li>選定時は<b>効果の種類（表示・必須・読取専用）・条件の表現力・データ不変・外部通信なし</b>の4点を確認する</li>
+<li>ルール設計は<b>まず隠す・必須は条件付きで・ロックは確定の瞬間に</b>。仕組みが注意力を代替する</li>
+</ul>
+
+<div class="cta"><b>この課題を最も簡単に解決する方法</b><br>
+bstの<a href="/lp-conditional-field.html">条件付きフィールド制御プラグイン</a>は、この記事で挙げた選定ポイントを満たすように作られています——表示・必須・読取専用の3効果、AND条件対応でルールは無制限、設定は「条件→効果」を選ぶだけ、業務データの外部送信なし。30日間・登録不要で試せます。製品ページには値に応じてフォームが変わる様子を実際に操作できるデモがありますので、まずは触ってみてください。<br>
+<a class="b" href="/lp-conditional-field.html">条件付きフィールド制御プラグインを見る →</a></div>
+
+<p>関連記事: <a href="/blog/kintone-dropdown-filter.html">kintoneのドロップダウンを連動させる方法3選</a> ／ <a href="/blog/kintone-tab-form.html">kintoneフォームをタブで整理する方法3選</a></p>
+
+</div></main>
+<footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="/index.html">ホーム</a><a href="/index.html#tools">プラグイン</a><a href="/blog/index.html">ブログ</a><a href="/icons.html">無料アイコン素材</a><a href="/about.html">bstについて</a><a href="/news.html">お知らせ</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="/tokushoho.html">特定商取引法に基づく表記</a><a href="/privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
+<script>
+(function(){
+  var mode='std', kubun='個人', pay='クレジットカード';
+  var form=document.getElementById('fcForm'), cap=document.getElementById('fcCap');
+  function sel(id, cur, opts){
+    return '<select id="'+id+'">'+opts.map(function(o){
+      return '<option'+(o===cur?' selected':'')+'>'+o+'</option>';}).join('')+'</select>';
+  }
+  function row(label, inner, opt){
+    opt = opt || {};
+    return '<div class="fc-f'+(opt.ghost?' ghost':'')+'"><span class="lb">'+label+
+      (opt.req?'<span class="req">必須</span>':'')+'</span>'+inner+'</div>';
+  }
+  function render(){
+    var h = row('氏名', '<span class="bx"></span>', {req:true});
+    h += row('区分', sel('fcKubun', kubun, ['個人','法人']));
+    var isCorp = kubun==='法人', isInv = pay==='請求書払い';
+    if(mode==='std'){
+      h += row('会社名', '<span class="bx"></span>', {ghost:!isCorp});
+      h += row('部署名', '<span class="bx"></span>', {ghost:!isCorp});
+    }else if(isCorp){
+      h += row('会社名', '<span class="bx"></span>', {req:true});
+      h += row('部署名', '<span class="bx"></span>');
+    }
+    h += row('支払方法', sel('fcPay', pay, ['クレジットカード','請求書払い']));
+    if(mode==='std'){
+      h += row('請求先住所', '<span class="bx"></span>', {ghost:!isInv});
+    }else if(isInv){
+      h += row('請求先住所', '<span class="bx"></span>', {req:true});
+    }
+    form.innerHTML = h;
+    document.getElementById('fcKubun').addEventListener('change', function(){kubun=this.value;render();});
+    document.getElementById('fcPay').addEventListener('change', function(){pay=this.value;render();});
+    var shown = form.querySelectorAll('.fc-f:not(.ghost)').length;
+    cap.textContent = mode==='std'
+      ? '条件に関係なく全6項目が常に表示されます。「個人」なのに会社名へ入力できてしまい、逆に法人の会社名を空のまま保存もできてしまいます'
+      : '表示は'+shown+'項目だけ。条件に合わせて項目が現れ、必要なものには必須が付きます。迷う余地も、間違える余地もありません';
+  }
+  document.getElementById('fcMode').addEventListener('click', function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on'); mode=b.getAttribute('data-v'); render();
+  });
+  render();
+})();
+</script>
+</body>
+</html>
