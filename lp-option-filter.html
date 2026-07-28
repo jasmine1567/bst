@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#FBFBF8">
-<title>選択肢絞り込みプラグイン（kintone）｜3段以上の連動ドロップダウン — bst</title>
+<title>kintoneの連動ドロップダウン｜選択肢絞り込み - bst</title>
 <meta name="description" content="kintoneのドロップダウンを親子で連動。大分類→中分類→小分類の3段以上に対応し、親を変えたときの子の扱いも3択から選択。選べない選択肢は非表示またはグレーアウト。対応表はクリックで作成、保存前にシミュレータで試せます。年額¥19,800（税込）・30日無料試用。">
 <link rel="canonical" href="https://bst-plugins.com/lp-option-filter.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta property="og:title" content="選択肢絞り込みプラグイン（kintone）｜3段以上の連動ドロップダウン — bst">
+<meta property="og:title" content="kintoneの連動ドロップダウン｜選択肢絞り込み - bst">
 <meta property="og:description" content="大分類→中分類→小分類、3段以上の連動に対応。選べない選択肢は非表示 or グレーアウト。対応表はクリックで作成、保存前にシミュレータで試せる。年額¥19,800（税込）・30日無料試用。">
 <meta property="og:image" content="https://bst-plugins.com/og-option.png">
 <meta property="og:image:width" content="1200">
@@ -157,6 +157,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;col
 .cm-sim{border:2px solid var(--amber);border-radius:12px;background:#fffdf5;padding:10px 14px;margin-top:10px;font-size:12px;}
 .cm-sim b{color:var(--amber-d);}
 
+.lpcamp{display:inline-block;font-size:11px;font-weight:900;color:#7A5A00;background:#FFF4D6;border:1px solid #F0D28A;border-radius:999px;padding:1px 9px;margin-left:6px;line-height:1.8;}
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -374,7 +375,7 @@ body{-webkit-text-size-adjust:100%;}
       <div class="sub">単品・1ドメイン（アプリ数・ユーザー数は無制限）</div>
       <a class="btn btn--amber" href="https://buy.stripe.com/cNi5kC0Tzg5cdnd9YfdfG0b" target="_blank" rel="noopener" style="width:100%;justify-content:center;">年額プランを購入 ↗</a><!-- STRIPE_LINK:year -->
       <div class="alt">
-        <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --><span class="mut">　公開中の基本プラグインすべて＋今後の新作も込み</span></div>
+        <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --><span class="mut">　公開中の基本プラグインすべて＋今後の新作も込み<span class="lpcamp">9/30まで先行価格・2026年10月1日より¥59,800/年</span></span></div>
         <div><a href="https://buy.stripe.com/bJecN41XDbOWdnd7Q7dfG0c" target="_blank" rel="noopener">永久ライセンス ¥98,000 ↗</a><!-- STRIPE_LINK:perp --><span class="mut">　通信が一切ない完全オフライン版・買い切り</span></div>
         <div class="mut">解約後もお支払い済み期間の満了までは動作し、kintone上のデータ・設定は消えません。<a href="index.html#faq">詳細FAQ →</a></div>
       </div>
@@ -441,6 +442,12 @@ body{-webkit-text-size-adjust:100%;}
   });
   // 初期状態: 非表示モード
   menu.querySelectorAll('.mi.off').forEach(function(mi){ mi.classList.add('off-hide'); });
+})();
+</script>
+<script>
+(function(){
+  var end=new Date("2026-09-30T23:59:59+09:00");
+  if(new Date()>end){ document.querySelectorAll('.lpcamp').forEach(function(x){x.style.display='none';}); }
 })();
 </script>
 </body>

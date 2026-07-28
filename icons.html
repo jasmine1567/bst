@@ -171,6 +171,25 @@ table.cmpx td.y{color:var(--ok);font-weight:900;}
 .mk-icb svg{width:100%;height:auto;border-radius:8px;}
 .mk-icb.on{border-color:var(--ink);}
 
+
+/* ===== メーカー開閉ボタン ===== */
+.mkopen{width:100%;display:flex;gap:14px;align-items:center;text-align:left;background:#fff;border:2px dashed var(--amber);border-radius:16px;padding:16px 20px;cursor:pointer;font-family:inherit;color:var(--ink);transition:background .15s,border-color .15s;}
+.mkopen:hover{background:#fffdf5;border-color:var(--amber-d);}
+.mkopen[aria-expanded="true"]{border-style:solid;background:#fffdf5;border-radius:16px 16px 0 0;}
+.mko-ic{font-size:26px;flex:none;line-height:1;}
+.mko-tx{flex:1;}
+.mko-tx b{display:block;font-size:15px;font-weight:900;line-height:1.6;}
+.mko-tx small{display:block;font-size:12px;color:var(--mut);font-weight:500;line-height:1.7;margin-top:2px;}
+.mko-cv{flex:none;font-size:13px;font-weight:900;color:var(--ink);background:var(--amber);border-radius:999px;padding:9px 18px;white-space:nowrap;}
+@media (max-width:640px){
+  .mkopen{flex-wrap:wrap;padding:14px;gap:10px;}
+  .mko-tx{flex:1 1 auto;min-width:0;}
+  .mko-cv{width:100%;text-align:center;}
+}
+#mkBox[hidden]{display:none;}
+#mkBox .mk{border-top:none;border-radius:0 0 16px 16px;margin-top:0;}
+.mklink{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:13px;font-weight:700;color:var(--amber-d);background:none;border:none;cursor:pointer;font-family:inherit;text-decoration:underline;padding:0;}
+
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -253,10 +272,61 @@ body{-webkit-text-size-adjust:100%;}
     <a class="btn btn--amber" href="icons/bst-kintone-icons-png.zip" download>PNG一括ダウンロード ↓</a>
     <a class="btn btn--ghost" href="icons/bst-kintone-icons-svg.zip" download>SVG一括ダウンロード ↓</a>
   </div>
-  <p class="note">一括ZIPは標準色・フラットスタイル収録。カスタマイズしたい場合は、下のアイコンをクリック。</p>
+  <p class="note">一括ZIPは標準色・フラットスタイル収録。色や形を変えたい場合は、下のアイコンをクリック。</p>
+  <button class="mklink" id="mkJump" type="button">✏️ 文字や画像からオリジナルを作る（無料）→</button>
 </div></section>
 
+
+
 <section><div class="wrap">
+  <div class="tools">
+    <input class="search" id="q" type="text" placeholder="アイコンを検索（例：顧客、請求、日報…）">
+    <button class="tab on" data-cat="all">すべて</button>
+    <button class="tab" data-cat="__pop">人気</button>
+    <button class="tab" data-cat="人・顧客">人・顧客</button>
+    <button class="tab" data-cat="業務・書類">業務・書類</button>
+    <button class="tab" data-cat="経理・データ">経理・データ</button>
+    <button class="tab" data-cat="時間・予定">時間・予定</button>
+    <button class="tab" data-cat="連絡・共有">連絡・共有</button>
+    <button class="tab" data-cat="場所・移動">場所・移動</button>
+    <button class="tab" data-cat="IT・デバイス">IT・デバイス</button>
+    <button class="tab" data-cat="状態・記号">状態・記号</button>
+    <button class="tab" data-cat="メディア">メディア</button>
+    <button class="tab" data-cat="汎用">汎用</button>
+  </div>
+  <div class="count" id="count"></div>
+  <div class="grid" id="grid"></div>
+  <div id="more" style="height:40px;"></div>
+  <p class="note" style="text-align:left;margin-top:14px;">💡 「こんなアイコンが欲しい」のリクエストは <a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20アイコンのリクエスト" style="color:var(--amber-d);font-weight:700;">こちら</a> からどうぞ。随時追加していきます。</p>
+</div></section>
+
+<section class="howto"><div class="wrap">
+  <h2>kintoneアプリのアイコンを変える方法（30秒）</h2>
+  <div class="steps">
+    <div class="step"><b>1. アイコンをダウンロード</b><p>使いたいアイコンをクリックし、色やスタイルを選んでPNGをダウンロードします。</p></div>
+    <div class="step"><b>2. アプリの設定を開く</b><p>kintoneアプリの「設定」→ 左上のアプリアイコンをクリック。</p></div>
+    <div class="step"><b>3. 画像をアップロード</b><p>「ファイルを選択」でダウンロードしたPNGを選んで保存。ポータルの一覧が一気に分かりやすくなります。</p></div>
+  </div>
+</div></section>
+
+<section class="license"><div class="wrap">
+  <h2>利用条件（かんたん・ゆるめです）</h2>
+  <ul>
+    <li>kintoneのアプリアイコン、社内資料、Webサイトなどで商用利用OK（無料）</li>
+    <li>クレジット表記・利用報告は不要です</li>
+    <li>色や形のカスタマイズ・加工も自由です</li>
+    <li>素材そのものの再配布・販売はご遠慮ください（加工後も同様）</li>
+    <li style="color:var(--mut);">一部グリフは <a href="https://fonts.google.com/icons" target="_blank" rel="noopener" style="color:var(--amber-d);">Google Material Symbols</a>（Apache License 2.0）を改変利用しています。ZIPにライセンス全文を同梱。</li>
+  </ul>
+</div></section>
+
+<section id="maker"><div class="wrap">
+  <button class="mkopen" id="mkOpen" type="button" aria-expanded="false" aria-controls="mkBox">
+    <span class="mko-ic">✏️</span>
+    <span class="mko-tx"><b>ぴったりのアイコンが無いときは、自分で作れます</b><small>アプリ名の文字や、お手持ちの画像からオリジナルアイコンを作成（無料・登録不要）</small></span>
+    <span class="mko-cv" id="mkOpenLabel">作成画面をひらく ＋</span>
+  </button>
+  <div id="mkBox" hidden>
 <div class="mk">
   <div class="mk-hd"><b>オリジナルアイコンメーカー</b><span class="free">無料・登録不要</span></div>
   <div class="mk-pats" id="mkPat">
@@ -303,48 +373,8 @@ body{-webkit-text-size-adjust:100%;}
   </div>
 </div>
 <p class="note">作成したアイコンは配布アイコンと同じ<b>ゆるい利用条件</b>（商用可・クレジット不要）で自由にお使いいただけます。</p>
-</div></section>
 
-<section><div class="wrap">
-  <div class="tools">
-    <input class="search" id="q" type="text" placeholder="アイコンを検索（例：顧客、請求、日報…）">
-    <button class="tab on" data-cat="all">すべて</button>
-    <button class="tab" data-cat="__pop">人気</button>
-    <button class="tab" data-cat="人・顧客">人・顧客</button>
-    <button class="tab" data-cat="業務・書類">業務・書類</button>
-    <button class="tab" data-cat="経理・データ">経理・データ</button>
-    <button class="tab" data-cat="時間・予定">時間・予定</button>
-    <button class="tab" data-cat="連絡・共有">連絡・共有</button>
-    <button class="tab" data-cat="場所・移動">場所・移動</button>
-    <button class="tab" data-cat="IT・デバイス">IT・デバイス</button>
-    <button class="tab" data-cat="状態・記号">状態・記号</button>
-    <button class="tab" data-cat="メディア">メディア</button>
-    <button class="tab" data-cat="汎用">汎用</button>
   </div>
-  <div class="count" id="count"></div>
-  <div class="grid" id="grid"></div>
-  <div id="more" style="height:40px;"></div>
-  <p class="note" style="text-align:left;margin-top:14px;">💡 「こんなアイコンが欲しい」のリクエストは <a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20アイコンのリクエスト" style="color:var(--amber-d);font-weight:700;">こちら</a> からどうぞ。随時追加していきます。</p>
-</div></section>
-
-<section class="howto"><div class="wrap">
-  <h2>kintoneアプリのアイコンを変える方法（30秒）</h2>
-  <div class="steps">
-    <div class="step"><b>1. アイコンをダウンロード</b><p>使いたいアイコンをクリックし、色やスタイルを選んでPNGをダウンロードします。</p></div>
-    <div class="step"><b>2. アプリの設定を開く</b><p>kintoneアプリの「設定」→ 左上のアプリアイコンをクリック。</p></div>
-    <div class="step"><b>3. 画像をアップロード</b><p>「ファイルを選択」でダウンロードしたPNGを選んで保存。ポータルの一覧が一気に分かりやすくなります。</p></div>
-  </div>
-</div></section>
-
-<section class="license"><div class="wrap">
-  <h2>利用条件（かんたん・ゆるめです）</h2>
-  <ul>
-    <li>kintoneのアプリアイコン、社内資料、Webサイトなどで商用利用OK（無料）</li>
-    <li>クレジット表記・利用報告は不要です</li>
-    <li>色や形のカスタマイズ・加工も自由です</li>
-    <li>素材そのものの再配布・販売はご遠慮ください（加工後も同様）</li>
-    <li style="color:var(--mut);">一部グリフは <a href="https://fonts.google.com/icons" target="_blank" rel="noopener" style="color:var(--amber-d);">Google Material Symbols</a>（Apache License 2.0）を改変利用しています。ZIPにライセンス全文を同梱。</li>
-  </ul>
 </div></section>
 
 <section><div class="wrap">
@@ -426,7 +456,7 @@ body{-webkit-text-size-adjust:100%;}
   </div>
 </div></div>
 
-<script src="icons/data.js"></script>
+<script src="icons/data-core.js"></script>
 <script>
 const PALETTE = window.BST_ICONS.palette;
 const ICONS = window.BST_ICONS.icons;
@@ -521,6 +551,12 @@ function render(){
   count.textContent=flist.length+'件のアイコン（クリックでカスタマイズ）';
   if(cat==='__pop'&&flist.length===0){count.textContent='人気ランキングは集計中です。ダウンロード数をもとに、まもなく公開されます';}
 }
+
+window.bstOnIconsReady=function(){
+  document.getElementById('total').textContent = ICONS.length;
+  render();
+  if(typeof window.bstRenderPicker==='function') window.bstRenderPicker();
+};
 new IntersectionObserver(es=>{ if(es[0].isIntersecting && shown<flist.length) renderChunk(); },{rootMargin:'600px'}).observe(document.getElementById('more'));
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on')); t.classList.add('on');
@@ -718,6 +754,7 @@ render();
         +'</svg></button>';
     }).join('');
   }
+  window.bstRenderPicker=renderIG;
   document.getElementById('mkIQ').addEventListener('input', renderIG);
   document.getElementById('mkIGrid').addEventListener('click',function(e){
     var b=e.target.closest('.mk-icb'); if(!b) return;
@@ -782,6 +819,7 @@ render();
       if(window.gtag) gtag('event','icon_maker_download',{mode:pattern});
     }catch(e){}
   });
+  window.bstMakerRefresh=function(){ renderIG(); draw(); };
   if(document.fonts && document.fonts.ready){ document.fonts.ready.then(draw); }
   renderIG(); draw();
 })();
@@ -793,6 +831,37 @@ document.addEventListener('click',function(e){
   var a=e.target.closest&&e.target.closest('a[href*="bst-kintone-icons-"]');
   if(a) window.bstHit(a.getAttribute('href').indexOf('png')>=0?'bundle-png':'bundle-svg');
 });
+</script>
+<script>
+(function(){
+  function load(){
+    var sc=document.createElement('script');
+    sc.src='icons/data-rest.js'; sc.async=true;
+    document.body.appendChild(sc);
+  }
+  if('requestIdleCallback' in window){ requestIdleCallback(load,{timeout:1200}); }
+  else { window.addEventListener('load', function(){ setTimeout(load, 200); }); }
+})();
+</script>
+<script>
+(function(){
+  var btn=document.getElementById('mkOpen'), box=document.getElementById('mkBox'),
+      lb=document.getElementById('mkOpenLabel'), jump=document.getElementById('mkJump');
+  function open(scroll){
+    box.hidden=false; btn.setAttribute('aria-expanded','true');
+    lb.textContent='作成画面をとじる −';
+    if(typeof window.bstMakerRefresh==='function') window.bstMakerRefresh();
+    if(scroll){ document.getElementById('maker').scrollIntoView({behavior:'smooth',block:'start'}); }
+    if(window.gtag) gtag('event','icon_maker_open');
+  }
+  function close(){
+    box.hidden=true; btn.setAttribute('aria-expanded','false');
+    lb.textContent='作成画面をひらく ＋';
+  }
+  btn.addEventListener('click',function(){ box.hidden ? open(false) : close(); });
+  if(jump) jump.addEventListener('click',function(){ open(true); });
+  if(location.hash==='#maker') open(true);
+})();
 </script>
 </body>
 </html>
