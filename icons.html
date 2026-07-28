@@ -159,6 +159,18 @@ table.cmpx th,table.cmpx td{border:1px solid var(--line);padding:9px 12px;text-a
 table.cmpx th{background:#F7F7F5;white-space:nowrap;}
 table.cmpx td.y{color:var(--ok);font-weight:900;}
 
+
+.mk-pats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px 18px 0;}
+@media (max-width:640px){.mk-pats{grid-template-columns:repeat(2,1fr);}}
+.mk-pat{border:2px solid var(--line);background:#fff;border-radius:12px;padding:10px 6px 8px;font-size:12px;font-weight:900;cursor:pointer;font-family:inherit;color:#6b7280;display:flex;flex-direction:column;align-items:center;gap:5px;}
+.mk-pat .pi{width:38px;height:38px;border-radius:10px;background:#EEF1F4;color:#7b8794;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;letter-spacing:-.03em;}
+.mk-pat.on{border-color:var(--amber);color:var(--ink);background:#fffdf5;}
+.mk-pat.on .pi{background:var(--amber);color:#3d2e00;}
+.mk-ig{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px;margin-top:8px;max-height:150px;overflow:auto;padding:2px;}
+.mk-icb{border:2px solid transparent;background:none;border-radius:10px;padding:2px;cursor:pointer;line-height:0;}
+.mk-icb svg{width:100%;height:auto;border-radius:8px;}
+.mk-icb.on{border-color:var(--ink);}
+
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -246,8 +258,12 @@ body{-webkit-text-size-adjust:100%;}
 
 <section><div class="wrap">
 <div class="mk">
-  <div class="mk-hd"><b>オリジナルアイコンメーカー</b><span class="free">無料・登録不要</span>
-    <div class="mk-tabs"><button class="mk-tab on" id="mkTabT" type="button">文字から作る</button><button class="mk-tab" id="mkTabI" type="button">画像から作る</button></div>
+  <div class="mk-hd"><b>オリジナルアイコンメーカー</b><span class="free">無料・登録不要</span></div>
+  <div class="mk-pats" id="mkPat">
+    <button class="mk-pat on" data-p="text" type="button"><span class="pi">あ</span>文字だけ</button>
+    <button class="mk-pat" data-p="icon" type="button"><span class="pi">◉</span>アイコンだけ</button>
+    <button class="mk-pat" data-p="both" type="button"><span class="pi">◉あ</span>アイコン＋文字</button>
+    <button class="mk-pat" data-p="image" type="button"><span class="pi">写</span>画像から</button>
   </div>
   <div class="mk-bd">
     <div class="mk-l">
@@ -256,12 +272,21 @@ body{-webkit-text-size-adjust:100%;}
         <input class="mk-txt" id="mkText" type="text" value="案件管理" maxlength="12">
         <div class="mk-chips" id="mkChips"></div>
       </div>
+      <div id="mkPaneIc" style="display:none;">
+        <label>アイコンを選ぶ（クリックで選択・検索できます）</label>
+        <input class="mk-txt" id="mkIQ" type="text" placeholder="アイコンを検索（例：顧客、車、契約…）">
+        <div class="mk-ig" id="mkIGrid"></div>
+      </div>
       <div id="mkPaneI" style="display:none;">
         <label>画像ファイルを選ぶ（PNG / JPG など）</label>
         <input class="mk-file" id="mkFile" type="file" accept="image/*">
         <div class="mk-local">✓ 画像がブラウザの外へ送信されることはありません（すべて端末内で処理）</div>
         <label>切り抜き方</label>
         <span class="mk-seg" id="mkFit"><button data-v="cover" class="on" type="button">全面に敷き詰め</button><button data-v="contain" type="button">全体を収める</button></span>
+      </div>
+      <div id="mkStyleRow">
+      <label>スタイル</label>
+      <span class="mk-seg" id="mkStyle"><button data-v="flat" class="on" type="button">フラット</button><button data-v="grad" type="button">グラデーション</button><button data-v="gloss" type="button">光沢</button><button data-v="shadow" type="button">陰影</button></span>
       </div>
       <label>背景色</label>
       <div class="mk-cols" id="mkCols"></div>
@@ -284,6 +309,7 @@ body{-webkit-text-size-adjust:100%;}
   <div class="tools">
     <input class="search" id="q" type="text" placeholder="アイコンを検索（例：顧客、請求、日報…）">
     <button class="tab on" data-cat="all">すべて</button>
+    <button class="tab" data-cat="__pop">人気</button>
     <button class="tab" data-cat="人・顧客">人・顧客</button>
     <button class="tab" data-cat="業務・書類">業務・書類</button>
     <button class="tab" data-cat="経理・データ">経理・データ</button>
@@ -326,7 +352,7 @@ body{-webkit-text-size-adjust:100%;}
   <table class="cmpx">
     <tr><th>比較項目</th><th>一般的な配布サイト</th><th>bst アイコン</th></tr>
     <tr><td>収録数</td><td>数十〜数百種</td><td class="y">1,000種（日本語で検索可）</td></tr>
-    <tr><td>文字アイコンの作成</td><td>対応サイトもある</td><td class="y">対応（kintone実寸プレビュー付き）</td></tr>
+    <tr><td>文字アイコンの作成</td><td>対応サイトもある</td><td class="y">対応（文字だけ・アイコンだけ・組み合わせの3パターン＋グラデ・光沢等のスタイル／実寸プレビュー付き）</td></tr>
     <tr><td>画像からの作成</td><td>サーバーへアップロード形式が多い</td><td class="y">端末内で完結（画像を外部送信しない）</td></tr>
     <tr><td>色・形のカスタマイズ</td><td>固定が多い</td><td class="y">8色×形×光沢・陰影を選べる</td></tr>
     <tr><td>ファイル形式</td><td>PNGのみが多い</td><td class="y">PNG＋SVG（一括ZIPあり）</td></tr>
@@ -334,7 +360,7 @@ body{-webkit-text-size-adjust:100%;}
   </table>
   <h2>よくある質問</h2>
   <details class="faqx"><summary>商用利用できますか？クレジット表記は必要ですか？</summary><p>商用利用できます。クレジット表記も、利用報告も不要です。配布アイコン・メーカーで作成したアイコンのどちらも同じ条件です（再配布・素材としての再販売はご遠慮ください）。</p></details>
-  <details class="faqx"><summary>文字アイコンはどう作ればいいですか？</summary><p>ページ上部の「オリジナルアイコンメーカー」にアプリ名などの文字を入力し、背景色と形を選んでPNGをダウンロードするだけです。スペースか改行を入れると2行になります。「kintoneでの見え方」プレビューで、実際のアプリ一覧での見え方を確認できます。</p></details>
+  <details class="faqx"><summary>文字アイコンはどう作ればいいですか？</summary><p>ページ上部の「オリジナルアイコンメーカー」にアプリ名などの文字を入力し、背景色と形を選んでPNGをダウンロードするだけです。スペースか改行を入れると2行になります。「文字だけ」「アイコンだけ」「アイコン＋文字」の3パターンと、グラデーション・光沢・陰影のスタイルを選べ、「kintoneでの見え方」プレビューで実際のアプリ一覧での見え方を確認できます。</p></details>
   <details class="faqx"><summary>アップロードした画像はどこかに送信されますか？</summary><p>送信されません。画像からのアイコン作成は、すべてお使いのブラウザの中だけで処理されます。社内資料やロゴなど、外部に出せない画像でも安心してお使いいただけます。</p></details>
   <details class="faqx"><summary>ファイル形式とサイズを教えてください。</summary><p>配布アイコンはPNGとSVGの両形式、メーカーで作成するアイコンは320×320pxのPNGです。kintoneのアプリアイコンにそのまま設定できます。</p></details>
   <details class="faqx"><summary>会員登録やメールアドレスは必要ですか？</summary><p>不要です。検索・カスタマイズ・作成・ダウンロードのすべてが、登録なしでご利用いただけます。</p></details>
@@ -380,6 +406,9 @@ body{-webkit-text-size-adjust:100%;}
         <button class="seg" id="m-grad">グラデーション</button>
         <button class="seg" id="m-gloss">光沢</button>
         <button class="seg" id="m-shadow">陰影</button>
+        <button class="seg" id="m-border">白フチ</button>
+        <button class="seg" id="m-longsh">ロングシャドウ</button>
+        <button class="seg" id="m-twotone">ツートン</button>
       </div>
     </div>
     <div class="opt" id="opt-sw"><div class="lb">線の太さ</div>
@@ -435,6 +464,21 @@ function svgOf(colorHex, ic, o){
     defs += '<clipPath id="'+id+'cp">'+bgRect+'</clipPath>';
     extra += '<rect x="0.75" y="0.75" width="22.5" height="10.6" fill="#fff" opacity="0.16" clip-path="url(#'+id+'cp)"/>';
   }
+  if(o.twotone){
+    defs += '<clipPath id="'+id+'tt">'+bgRect+'</clipPath>';
+    extra += '<path d="M0.75 23.25 L23.25 0.75 L23.25 23.25 Z" fill="'+darken(colorHex,20)+'" opacity="0.30" clip-path="url(#'+id+'tt)"/>';
+  }
+  let longshEl='';
+  if(o.longsh){
+    defs += '<clipPath id="'+id+'ls">'+bgRect+'</clipPath>';
+    let lsg='';
+    for(let dd=0.5; dd<=7.5; dd+=0.5){ lsg+='<g transform="translate('+dd+','+dd+')">'+glyphOf(ic, sw, '#000')+'</g>'; }
+    longshEl='<g opacity="0.09" clip-path="url(#'+id+'ls)">'+lsg+'</g>';
+  }
+  let borderEl='';
+  if(o.border){
+    borderEl='<rect x="1.75" y="1.75" width="20.5" height="20.5" rx="'+Math.max(0.4,(rx-0.9))+'" fill="none" stroke="#fff" stroke-width="1.0" opacity="0.92"/>';
+  }
   let shadowBg='', shadowGlyph='';
   if(o.shadow){
     shadowBg = '<rect x="0.75" y="1.7" width="22.5" height="22.5" rx="'+rx+'" fill="'+darken(colorHex,46)+'" opacity="0.55"/>';
@@ -444,8 +488,8 @@ function svgOf(colorHex, ic, o){
     +(defs?('<defs>'+defs+'</defs>'):'')
     + shadowBg
     +'<rect x="0.75" y="0.75" width="22.5" height="22.5" rx="'+rx+'" fill="'+bgFill+'"/>'
-    + extra + shadowGlyph
-    + glyphOf(ic, sw, '#fff')
+    + extra + shadowGlyph + longshEl
+    + glyphOf(ic, sw, '#fff') + borderEl
     +'</svg>';
 }
 const grid=document.getElementById('grid'), q=document.getElementById('q'), count=document.getElementById('count');
@@ -465,10 +509,17 @@ function renderChunk(){
 }
 function render(){
   const kw=q.value.trim().toLowerCase();
-  flist=ICONS.filter(i=>(cat==='all'||i.cat===cat)&&(kw===''||i.ja.toLowerCase().includes(kw)||i.en.includes(kw)||i.key.includes(kw)));
+  if(cat==='__pop'){
+    const rk=(window.__bstRank||[]);
+    flist=rk.map(k=>ICONS.find(i=>i.key===k)).filter(Boolean);
+    if(kw!=='') flist=flist.filter(i=>i.ja.toLowerCase().includes(kw)||i.en.includes(kw)||i.key.includes(kw));
+  }else{
+    flist=ICONS.filter(i=>(cat==='all'||i.cat===cat)&&(kw===''||i.ja.toLowerCase().includes(kw)||i.en.includes(kw)||i.key.includes(kw)));
+  }
   grid.innerHTML=''; shown=0;
   renderChunk();
   count.textContent=flist.length+'件のアイコン（クリックでカスタマイズ）';
+  if(cat==='__pop'&&flist.length===0){count.textContent='人気ランキングは集計中です。ダウンロード数をもとに、まもなく公開されます';}
 }
 new IntersectionObserver(es=>{ if(es[0].isIntersecting && shown<flist.length) renderChunk(); },{rootMargin:'600px'}).observe(document.getElementById('more'));
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
@@ -480,7 +531,7 @@ q.addEventListener('input',render);
 // ===== カスタマイザ =====
 const ov=document.getElementById('ov');
 let cur=null;
-let opt={colorHex:'#4A90D9', shape:'round', grad:false, gloss:false, shadow:false, sw:1.7};
+let opt={colorHex:'#4A90D9', shape:'round', grad:false, gloss:false, shadow:false, border:false, longsh:false, twotone:false, sw:1.7};
 function paintPal(){
   document.getElementById('m-pal').innerHTML =
     Object.entries(PALETTE).map(([k,v])=>'<div class="sw'+(v===opt.colorHex?' on':'')+'" data-c="'+v+'" style="background:'+v+'"></div>').join('')
@@ -494,12 +545,16 @@ function update(){
   document.getElementById('m-grad').classList.toggle('on',opt.grad);
   document.getElementById('m-gloss').classList.toggle('on',opt.gloss);
   document.getElementById('m-shadow').classList.toggle('on',opt.shadow);
+  document.getElementById('m-border').classList.toggle('on',opt.border);
+  document.getElementById('m-longsh').classList.toggle('on',opt.longsh);
+  document.getElementById('m-twotone').classList.toggle('on',opt.twotone);
   document.querySelectorAll('#m-shape .seg').forEach(s=>s.classList.toggle('on',s.dataset.v===opt.shape));
   document.querySelectorAll('#m-sw .seg').forEach(s=>s.classList.toggle('on',parseFloat(s.dataset.v)===opt.sw));
 }
 grid.addEventListener('click',e=>{
   const c=e.target.closest('.card'); if(!c)return;
   cur=ICONS.find(i=>i.key===c.dataset.key);
+  window.__bstCurKey=cur.key;
   opt.colorHex=PALETTE[cur.color];
   document.getElementById('m-name').textContent=cur.ja;
   document.getElementById('m-cat').textContent=cur.cat;
@@ -520,12 +575,17 @@ document.getElementById('m-gloss').addEventListener('click',()=>{opt.gloss=!opt.
 document.getElementById('m-shadow').addEventListener('click',()=>{opt.shadow=!opt.shadow;update();});
 document.getElementById('m-close').addEventListener('click',()=>ov.classList.remove('show'));
 ov.addEventListener('click',e=>{ if(e.target===ov) ov.classList.remove('show'); });
+['border','longsh','twotone'].forEach(k=>{
+  document.getElementById('m-'+k).addEventListener('click',()=>{opt[k]=!opt[k];update();});
+});
 function dl(href,name){ const a=document.createElement('a'); a.href=href; a.download=name; document.body.appendChild(a); a.click(); a.remove(); }
 document.getElementById('dl-svg').addEventListener('click',()=>{
+  window.bstHit&&window.bstHit(cur.key);
   const blob=new Blob([svgOf(opt.colorHex,cur,opt)],{type:'image/svg+xml'});
   dl(URL.createObjectURL(blob),'kintone-icon_'+cur.key+'.svg');
 });
 document.getElementById('dl-png').addEventListener('click',()=>{
+  window.bstHit&&window.bstHit(cur.key);
   const size=parseInt(document.getElementById('m-size').value,10);
   const o=Object.assign({},opt,{size:size});
   const blob=new Blob([svgOf(opt.colorHex,cur,o)],{type:'image/svg+xml'});
@@ -543,52 +603,133 @@ render();
 </script>
 <script>
 (function(){
-  var P = (window.BST_ICONS && window.BST_ICONS.palette) || {blue:'#4A90D9',orange:'#E8683A',green:'#3BA272',amber:'#E6A23C',purple:'#9B59B6',red:'#E05A6D',teal:'#16A2B8',navy:'#5C6BC0'};
-  var mode='text', bg=P.blue, shape='round', img=null, fit='cover';
+  var D = window.BST_ICONS, P = D.palette, ICONS = D.icons;
+  var pattern='text', style='flat', bg=P.blue, shape='round', fit='cover';
+  var icon = ICONS.find(function(x){return x.key==='customer';}) || ICONS[0];
+  var img=null, glyphCache={};
   var cv=document.getElementById('mkCv'), ctx=cv.getContext('2d');
   var txtEl=document.getElementById('mkText');
   var PRESETS=['案件管理','日報','経費精算','問い合わせ','見積書','勤怠管理','在庫','議事録'];
-  function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
-  function radius(){return shape==='circle'?160:(shape==='square'?18:56);}
-  function contrastText(hex){
-    var n=parseInt(hex.slice(1),16), r=n>>16, g=(n>>8)&255, b=n&255;
-    return (0.299*r+0.587*g+0.114*b)/255 > 0.62 ? '#1f2937' : '#ffffff';
+  function li(hex,a){var n=parseInt(hex.slice(1),16);var r=Math.min(255,(n>>16)+a),g=Math.min(255,((n>>8)&255)+a),b=Math.min(255,(n&255)+a);return '#'+((r<<16)|(g<<8)|b).toString(16).padStart(6,'0');}
+  function dk(hex,a){var n=parseInt(hex.slice(1),16);var r=Math.max(0,(n>>16)-a),g=Math.max(0,((n>>8)&255)-a),b=Math.max(0,(n&255)-a);return '#'+((r<<16)|(g<<8)|b).toString(16).padStart(6,'0');}
+  function contrastText(hex){var n=parseInt(hex.slice(1),16),r=n>>16,g=(n>>8)&255,b=n&255;return (0.299*r+0.587*g+0.114*b)/255>0.62?'#1f2937':'#ffffff';}
+  function glyphSvg(ic, col){
+    var body = ic.t==='f'
+      ? '<g fill="'+col+'" transform="translate(2.64,21.36) scale(0.0195)">'+ic.inner+'</g>'
+      : '<g stroke="'+col+'" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+ic.inner+'</g>';
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">'+body+'</svg>';
   }
+  function glyphImg(ic, cb){
+    if(glyphCache[ic.key]){ cb(glyphCache[ic.key]); return; }
+    var im=new Image();
+    im.onload=function(){ glyphCache[ic.key]=im; cb(im); };
+    im.onerror=function(){};
+    im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(glyphSvg(ic,'#ffffff'));
+  }
+  function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
   function lines(){
     var t=(txtEl.value||'アイコン').trim().replace(/\s+/g,' ');
+    if(pattern==='both') return [t.replace(/ /g,'')];
     if(t.indexOf(' ')>=0){var i=t.indexOf(' ');return [t.slice(0,i),t.slice(i+1)];}
     if(t.length>=5) return [t.slice(0,Math.ceil(t.length/2)), t.slice(Math.ceil(t.length/2))];
     return [t];
   }
   function draw(){
     ctx.clearRect(0,0,320,320);
-    ctx.save(); rr(ctx,0,0,320,320,radius()); ctx.clip();
-    ctx.fillStyle=bg; ctx.fillRect(0,0,320,320);
-    if(mode==='image' && img){
-      var s = fit==='cover' ? Math.max(320/img.width,320/img.height) : Math.min(320/img.width,320/img.height);
-      var w=img.width*s, h=img.height*s;
-      ctx.drawImage(img,(320-w)/2,(320-h)/2,w,h);
-    }else if(mode==='text'){
-      var ls=lines(), fill=contrastText(bg);
+    var R = style==='shadow' ? {x:10,y:6,w:300,h:300} : {x:0,y:0,w:320,h:320};
+    var rad = shape==='circle' ? R.w/2 : (shape==='square' ? R.w*0.056 : R.w*0.175);
+    ctx.save();
+    if(style==='shadow'){ ctx.shadowColor='rgba(0,0,0,0.35)'; ctx.shadowBlur=14; ctx.shadowOffsetY=9; }
+    rr(ctx,R.x,R.y,R.w,R.h,rad);
+    if(style==='grad'||style==='gloss'){
+      var g=ctx.createLinearGradient(0,R.y,0,R.y+R.h);
+      g.addColorStop(0,li(bg,34)); g.addColorStop(1,dk(bg,12));
+      ctx.fillStyle=g;
+    }else{ ctx.fillStyle=bg; }
+    ctx.fill();
+    ctx.restore();
+    ctx.save();
+    rr(ctx,R.x,R.y,R.w,R.h,rad); ctx.clip();
+    if(style==='gloss'){ ctx.fillStyle='rgba(255,255,255,0.17)'; ctx.fillRect(R.x,R.y,R.w,R.h*0.345); }
+    var fill=contrastText(bg);
+    if(pattern==='image' && img){
+      var sc = fit==='cover' ? Math.max(R.w/img.width,R.h/img.height) : Math.min(R.w/img.width,R.h/img.height);
+      var w=img.width*sc, h=img.height*sc;
+      ctx.drawImage(img,R.x+(R.w-w)/2,R.y+(R.h-h)/2,w,h);
+    }else if(pattern==='icon'){
+      glyphImg(icon,function(im){
+        var sz=R.w*0.72;
+        try{ ctx.drawImage(im,R.x+(R.w-sz)/2,R.y+(R.h-sz)/2,sz,sz); refresh(); }catch(e){}
+      });
+    }else if(pattern==='both'){
+      var t=lines()[0];
+      var fs=Math.min(R.w*0.86/Math.max(t.length,2)*0.98, R.w*0.17);
       ctx.fillStyle=fill; ctx.textAlign='center'; ctx.textBaseline='middle';
-      var fs = ls.length===1 ? 300/Math.max(ls[0].length,2)*0.98 : 250/Math.max(ls[0].length,ls[1].length,2)*0.98;
-      fs = Math.min(fs, ls.length===1?150:110);
       ctx.font='900 '+fs+'px "Noto Sans JP",sans-serif';
-      if(ls.length===1){ ctx.fillText(ls[0],160,168); }
-      else { ctx.fillText(ls[0],160,168-fs*0.62); ctx.fillText(ls[1],160,168+fs*0.62); }
+      ctx.fillText(t, R.x+R.w/2, R.y+R.h*0.845);
+      glyphImg(icon,function(im){
+        var sz=R.w*0.52;
+        try{ ctx.drawImage(im,R.x+(R.w-sz)/2,R.y+R.h*0.09,sz,sz); refresh(); }catch(e){}
+      });
+    }else{
+      var ls=lines();
+      ctx.fillStyle=fill; ctx.textAlign='center'; ctx.textBaseline='middle';
+      var fs = ls.length===1 ? R.w*0.94/Math.max(ls[0].length,2)*0.98 : R.w*0.78/Math.max(ls[0].length,ls[1]?ls[1].length:2,2)*0.98;
+      fs = Math.min(fs, ls.length===1?R.w*0.47:R.w*0.34);
+      ctx.font='900 '+fs+'px "Noto Sans JP",sans-serif';
+      var cy=R.y+R.h*0.525;
+      if(ls.length===1){ ctx.fillText(ls[0],R.x+R.w/2,cy); }
+      else{ ctx.fillText(ls[0],R.x+R.w/2,cy-fs*0.62); ctx.fillText(ls[1],R.x+R.w/2,cy+fs*0.62); }
     }
     ctx.restore();
-    try{
-      var u=cv.toDataURL('image/png');
-      document.getElementById('mkPrev').src=u;
-    }catch(e){}
-    document.getElementById('mkPrevName').textContent = mode==='text' ? lines().join('') : 'マイアプリ';
+    refresh();
   }
-  // 背景色パレット
+  function refresh(){
+    try{ document.getElementById('mkPrev').src=cv.toDataURL('image/png'); }catch(e){}
+    var nm = pattern==='icon' ? icon.ja : (pattern==='image' ? 'マイアプリ' : lines().join(''));
+    document.getElementById('mkPrevName').textContent = nm || 'アプリ';
+  }
+  // パターン切替
+  document.getElementById('mkPat').addEventListener('click',function(e){
+    var b=e.target.closest('.mk-pat'); if(!b) return;
+    this.querySelectorAll('.mk-pat').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on'); pattern=b.getAttribute('data-p');
+    document.getElementById('mkPaneT').style.display = (pattern==='text'||pattern==='both')?'':'none';
+    document.getElementById('mkPaneIc').style.display = (pattern==='icon'||pattern==='both')?'':'none';
+    document.getElementById('mkPaneI').style.display = pattern==='image'?'':'none';
+    document.getElementById('mkStyleRow').style.display = pattern==='image'?'none':'';
+    draw();
+  });
+  // スタイル
+  document.getElementById('mkStyle').addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on'); style=b.getAttribute('data-v'); draw();
+  });
+  // アイコンピッカー
+  function renderIG(){
+    var kw=(document.getElementById('mkIQ').value||'').trim().toLowerCase();
+    var list=ICONS.filter(function(i){return kw===''||i.ja.toLowerCase().indexOf(kw)>=0||i.en.indexOf(kw)>=0||i.key.indexOf(kw)>=0;}).slice(0,24);
+    document.getElementById('mkIGrid').innerHTML=list.map(function(i){
+      return '<button type="button" class="mk-icb'+(i.key===icon.key?' on':'')+'" data-k="'+i.key+'" title="'+i.ja+'">'
+        +'<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="0.75" y="0.75" width="22.5" height="22.5" rx="5.2" fill="'+P[i.color]+'"/>'
+        +(i.t==='f' ? '<g fill="#fff" transform="translate(2.64,21.36) scale(0.0195)">'+i.inner+'</g>'
+                    : '<g stroke="#fff" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+i.inner+'</g>')
+        +'</svg></button>';
+    }).join('');
+  }
+  document.getElementById('mkIQ').addEventListener('input', renderIG);
+  document.getElementById('mkIGrid').addEventListener('click',function(e){
+    var b=e.target.closest('.mk-icb'); if(!b) return;
+    icon=ICONS.find(function(i){return i.key===b.getAttribute('data-k');});
+    this.querySelectorAll('.mk-icb').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on'); draw();
+  });
+  // 背景色
   var cols=document.getElementById('mkCols');
-  Object.keys(P).forEach(function(k,i){
+  Object.keys(P).forEach(function(k,idx){
     var b=document.createElement('button');
-    b.type='button'; b.className='mk-col'+(i===0?' on':''); b.style.background=P[k];
+    b.type='button'; b.className='mk-col'+(idx===0?' on':''); b.style.background=P[k];
     b.setAttribute('data-c',P[k]); b.setAttribute('aria-label','背景色 '+k);
     cols.appendChild(b);
   });
@@ -603,7 +744,7 @@ render();
     cols.querySelectorAll('.mk-col').forEach(function(x){x.classList.remove('on');});
     bg=this.value; draw();
   });
-  // プリセットチップ
+  // 文字
   var chips=document.getElementById('mkChips');
   PRESETS.forEach(function(p){
     var b=document.createElement('button'); b.type='button'; b.className='mk-chip'; b.textContent=p;
@@ -617,17 +758,6 @@ render();
     this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
     b.classList.add('on'); shape=b.getAttribute('data-v'); draw();
   });
-  // タブ
-  function setMode(m){
-    mode=m;
-    document.getElementById('mkTabT').classList.toggle('on', m==='text');
-    document.getElementById('mkTabI').classList.toggle('on', m==='image');
-    document.getElementById('mkPaneT').style.display = m==='text'?'':'none';
-    document.getElementById('mkPaneI').style.display = m==='image'?'':'none';
-    draw();
-  }
-  document.getElementById('mkTabT').addEventListener('click',function(){setMode('text');});
-  document.getElementById('mkTabI').addEventListener('click',function(){setMode('image');});
   // 画像
   document.getElementById('mkFile').addEventListener('change',function(){
     var f=this.files && this.files[0]; if(!f) return;
@@ -643,16 +773,26 @@ render();
   // ダウンロード
   document.getElementById('mkDl').addEventListener('click',function(){
     try{
+      window.bstHit&&window.bstHit('maker-'+pattern);
+      if((pattern==='icon'||pattern==='both')&&icon) window.bstHit&&window.bstHit(icon.key);
       var a=document.createElement('a');
       a.href=cv.toDataURL('image/png');
-      a.download='bst-icon-'+(mode==='text'?lines().join(''):'image')+'.png';
+      a.download='bst-icon-'+(pattern==='image'?'image':(pattern==='icon'?icon.key:lines().join('')))+'.png';
       document.body.appendChild(a); a.click(); a.remove();
-      if(window.gtag) gtag('event','icon_maker_download',{mode:mode});
+      if(window.gtag) gtag('event','icon_maker_download',{mode:pattern});
     }catch(e){}
   });
   if(document.fonts && document.fonts.ready){ document.fonts.ready.then(draw); }
-  draw();
+  renderIG(); draw();
 })();
+</script>
+<script>
+window.bstHit=function(k){try{fetch('https://lic.bst-plugins.com/icon-hit.php?k='+encodeURIComponent(k),{mode:'no-cors',keepalive:true}).catch(function(){});}catch(e){}};
+try{fetch('https://lic.bst-plugins.com/icon-rank.php').then(function(r){return r.json();}).then(function(j){if(j&&j.keys&&j.keys.length)window.__bstRank=j.keys;}).catch(function(){});}catch(e){}
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a[href*="bst-kintone-icons-"]');
+  if(a) window.bstHit(a.getAttribute('href').indexOf('png')>=0?'bundle-png':'bundle-svg');
+});
 </script>
 </body>
 </html>
