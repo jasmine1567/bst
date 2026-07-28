@@ -109,15 +109,6 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:12.5px;col
 
 .h1sub{font-size:14px;color:var(--mut);font-weight:700;margin:2px 0 14px;line-height:1.8;}
 
-/* ===== 先行価格キャンペーン ===== */
-.camp{position:relative;}
-.wasline{font-size:12px;color:var(--mut);font-weight:700;margin:2px 0 -2px;}
-.wasline b{color:#B3261E;font-size:13px;}
-.campbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;background:#FFF4D6;border:1px solid #F0D28A;border-radius:10px;padding:7px 10px;margin:8px 0 10px;}
-.cb-t{font-size:11.5px;font-weight:900;color:#7A5A00;line-height:1.5;}
-.cb-d{font-size:11.5px;font-weight:900;color:#fff;background:#B3261E;border-radius:999px;padding:2px 10px;white-space:nowrap;}
-.campnote{max-width:760px;margin:0 auto 22px;font-size:13px;line-height:1.9;color:var(--ink);background:#fffdf5;border:1.5px solid var(--amber);border-radius:12px;padding:12px 16px;text-align:left;}
-.lpcamp{display:inline-block;font-size:11.5px;font-weight:900;color:#7A5A00;background:#FFF4D6;border:1px solid #F0D28A;border-radius:999px;padding:2px 10px;margin-left:6px;}
 
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
@@ -286,7 +277,6 @@ body{-webkit-text-size-adjust:100%;}
 <section class="pricing" id="pricing"><div class="wrap">
   <div class="sec-kick">PRICING</div>
   <h2 class="sec">シンプルな3プラン</h2>
-  <p class="campnote" data-deadline="2026-09-30">📢 製品追加にともない、2026年10月1日より基本パックを ¥59,800/年 に改定します。<b>2026年9月30日までにご契約いただいた方は、継続いただく限り現在の ¥39,800/年 を維持します。</b></p>
   <div class="plans">
     <div class="plan">
       <h3>単品プラン</h3>
@@ -300,20 +290,14 @@ body{-webkit-text-size-adjust:100%;}
       </ul>
       <a class="bt bt-ghost" href="#tools">製品を選ぶ →</a>
     </div>
-    <div class="plan hot camp">
-      <span class="tag">先行価格・9/30まで</span>
+    <div class="plan hot">
+      <span class="tag">おすすめ・一番人気</span>
       <h3>基本パック</h3>
-      <div class="wasline">2026年10月1日より <b>¥59,800/年</b> に改定予定</div>
       <div class="pr">¥39,800<small>/年（税込）</small></div>
-      <div class="campbar" data-deadline="2026-09-30">
-        <span class="cb-t">先行価格でのお申し込みは2026年9月30日まで</span>
-        <span class="cb-d" id="campLeft"></span>
-      </div>
       <div class="per">公開中の基本プラグインすべて＋今後の新作・1ドメイン</div>
       <ul>
         <li>公開中の基本プラグインがすべて使い放題</li>
         <li><b>今後追加される基本プラグインも自動で含まれる</b></li>
-        <li><b>改定前にご契約いただくと、継続中はずっと¥39,800/年</b></li>
         <li>期間中のアップデート込み</li>
         <li>優先メールサポート</li>
       </ul>
@@ -358,21 +342,5 @@ body{-webkit-text-size-adjust:100%;}
 </div></section>
 
 <footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="/index.html">ホーム</a><a href="/index.html#tools">プラグイン</a><a href="/blog/index.html">ブログ</a><a href="/icons.html">無料アイコン素材</a><a href="/about.html">bstについて</a><a href="/news.html">お知らせ</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="/tokushoho.html">特定商取引法に基づく表記</a><a href="/privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
-<script>
-(function(){
-  var el=document.querySelector('[data-deadline]');
-  if(!el) return;
-  var end=new Date(el.getAttribute('data-deadline')+'T23:59:59+09:00');
-  var left=Math.ceil((end-new Date())/86400000);
-  var d=document.getElementById('campLeft');
-  if(left>0){
-    if(d) d.textContent = left<=14 ? ('残り'+left+'日') : ('あと'+left+'日');
-  }else{
-    // 期限後は表示を自動で通常価格モードに戻す（誤表示を防ぐ）
-    document.querySelectorAll('.campbar,.wasline,.campnote,.lpcamp').forEach(function(x){x.style.display='none';});
-    document.querySelectorAll('.camp .tag').forEach(function(x){x.textContent='おすすめ・一番人気';});
-  }
-})();
-</script>
 </body>
 </html>

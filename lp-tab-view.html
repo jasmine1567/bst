@@ -179,7 +179,6 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;col
 .cmp td:first-child{font-weight:900;white-space:nowrap;background:#FCFCFA;}
 .sw{width:22px;height:22px;border-radius:50%;box-shadow:0 0 0 1px var(--line);}
 
-.lpcamp{display:inline-block;font-size:11px;font-weight:900;color:#7A5A00;background:#FFF4D6;border:1px solid #F0D28A;border-radius:999px;padding:1px 9px;margin-left:6px;line-height:1.8;}
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -401,7 +400,7 @@ body{-webkit-text-size-adjust:100%;}
       <div class="sub">単品・1ドメイン（アプリ数・ユーザー数は無制限）</div>
       <a class="btn btn--amber" href="https://buy.stripe.com/fZu28qcCh1ai96X5HZdfG09" target="_blank" rel="noopener" style="width:100%;justify-content:center;">年額プランを購入 ↗</a><!-- STRIPE_LINK:year -->
       <div class="alt">
-        <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --><span class="mut">　公開中の基本プラグインすべて＋今後の新作も込み<span class="lpcamp">9/30まで先行価格・2026年10月1日より¥59,800/年</span></span></div>
+        <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --><span class="mut">　公開中の基本プラグインすべて＋今後の新作も込み</span></div>
         <div><a href="https://buy.stripe.com/5kQbJ0fOt1aigzpdardfG0a" target="_blank" rel="noopener">永久ライセンス ¥98,000 ↗</a><!-- STRIPE_LINK:perp --><span class="mut">　通信が一切ない完全オフライン版・買い切り</span></div>
         <div class="mut">解約後もお支払い済み期間の満了までは動作し、kintone上のデータ・設定は消えません。<a href="index.html#faq">詳細FAQ →</a></div>
       </div>
@@ -444,12 +443,6 @@ body{-webkit-text-size-adjust:100%;}
   });
   function tick(){ go((cur + 1) % tabs.length); }
   timer = setInterval(tick, 3600);
-})();
-</script>
-<script>
-(function(){
-  var end=new Date("2026-09-30T23:59:59+09:00");
-  if(new Date()>end){ document.querySelectorAll('.lpcamp').forEach(function(x){x.style.display='none';}); }
 })();
 </script>
 </body>

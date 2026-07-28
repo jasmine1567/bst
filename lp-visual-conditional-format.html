@@ -149,7 +149,6 @@
 .bstx-sw{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;cursor:pointer;user-select:none;padding:5px 11px;border:1.5px solid #d1d5db;border-radius:999px;background:#fff;color:#9ca3af;}
 .bstx-sw.on{border-color:#16a34a;background:#f0fdf4;color:#15803d;}
 
-.lpcamp{display:inline-block;font-size:11px;font-weight:900;color:#7A5A00;background:#FFF4D6;border:1px solid #F0D28A;border-radius:999px;padding:1px 9px;margin-left:6px;line-height:1.8;}
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -561,7 +560,7 @@ body{-webkit-text-size-adjust:100%;}
         <div style="color:var(--mut);font-size:13px;margin-bottom:16px;">税込・単品年額（基本パック¥39,800/年・永久¥98,000も下記に）</div>
         <a class="btn btn--amber" href="https://buy.stripe.com/5kQdR87hX6uCfvlc6ndfG01" target="_blank" rel="noopener" style="width:100%;justify-content:center;">年額プランを購入 ↗</a><!-- STRIPE_LINK:year -->
           <div style="margin-top:12px;font-size:12.5px;line-height:2;text-align:left;">
-            <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener" style="color:#B57E00;font-weight:700;">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --> 公開中の基本プラグインすべて＋今後の新作も込み<span class="lpcamp">9/30まで先行価格・2026年10月1日より¥59,800/年</span></div>
+            <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener" style="color:#B57E00;font-weight:700;">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --> 公開中の基本プラグインすべて＋今後の新作も込み</div>
             <div><a href="https://buy.stripe.com/3cIbJ0gSx2emdnddardfG06" target="_blank" rel="noopener">永久ライセンス ¥98,000 ↗</a><!-- STRIPE_LINK:perp --> 完全オフライン版・買い切り</div>
             <div style="color:var(--mut);">解約後も支払い済み期間は動作。データ・設定は消えません。<a href="index.html#faq">FAQ →</a></div>
           </div>
@@ -644,12 +643,6 @@ body{-webkit-text-size-adjust:100%;}
     });
   });
   render();
-})();
-</script>
-<script>
-(function(){
-  var end=new Date("2026-09-30T23:59:59+09:00");
-  if(new Date()>end){ document.querySelectorAll('.lpcamp').forEach(function(x){x.style.display='none';}); }
 })();
 </script>
 </body>
