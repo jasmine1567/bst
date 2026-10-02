@@ -110,6 +110,29 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:12.5px;col
 .h1sub{font-size:14px;color:var(--mut);font-weight:700;margin:2px 0 14px;line-height:1.8;}
 
 
+/* ===== 目玉商品（一覧印刷）フィーチャー ===== */
+.feat{padding:8px 0 24px;}
+.feat-box{background:var(--ink);color:#fff;border-radius:26px;padding:40px 38px;position:relative;box-shadow:0 18px 44px rgba(37,37,37,.18);}
+.feat-badge{display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:var(--ink);font-weight:900;font-size:13.5px;border-radius:999px;padding:7px 18px;}
+.feat h2{font-size:clamp(23px,3.2vw,31px);font-weight:900;line-height:1.4;letter-spacing:-.01em;}
+.feat h2 em{font-style:normal;color:var(--amber);}
+.feat-name{font-size:13px;font-weight:700;color:var(--amber);letter-spacing:.06em;margin-bottom:6px;}
+.feat-lead{color:#cfcec6;font-size:14.5px;margin:12px 0 20px;}
+.feat-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.feat-btns .bt-ghost{background:transparent;color:#fff;border-color:#5a5a55;}
+.feat-sub{font-size:12px;color:#a9a8a0;margin-top:12px;}
+.feat-head{max-width:760px;margin-top:18px;}
+.feat-shot{margin:28px 0 0;}
+.feat-shot img{display:block;width:100%;height:auto;border-radius:14px;border:3px solid var(--amber);background:#fff;}
+.feat-shot figcaption{font-size:12px;color:#cfcec6;text-align:center;margin-top:10px;}
+.feat-pts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px;}
+.feat-pt{background:#323230;border:1px solid #47474a;border-radius:16px;padding:16px 18px;}
+.feat-pt b{display:block;font-size:14.5px;color:#fff;margin-bottom:4px;}
+.feat-pt b span{color:var(--amber);margin-right:6px;}
+.feat-pt p{font-size:12.5px;color:#cfcec6;line-height:1.7;}
+.feat-note{font-size:11px;color:#8f8e87;margin-top:16px;}
+@media (max-width:640px){.feat-box{padding:28px 18px;border-radius:20px;}.feat-pts{grid-template-columns:1fr;}.feat-btns .bt{flex:1 1 100%;justify-content:center;}}
+
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -194,6 +217,32 @@ body{-webkit-text-size-adjust:100%;}
     <div class="tr"><div class="em">🎁</div><div><b>30日、まるごと無料</b><span>登録・メール不要。ダウンロードして読み込むだけで全機能。</span></div></div>
     <div class="tr"><div class="em">🤝</div><div><b>解約しても、人質なし</b><span>解約後もお支払い済み期間は動作。データと設定は消えません。</span></div></div>
     <div class="tr"><div class="em">⚡</div><div><b>導入5分・ノーコード</b><span>フィールドを選ぶだけ。JavaScriptの知識は不要です。</span></div></div>
+  </div>
+</div></section>
+
+<section class="feat" id="featured"><div class="wrap">
+  <div class="feat-box">
+    <span class="feat-badge">👑 当サイト販売実績 No.1</span>
+    <div class="feat-head">
+      <div class="feat-name">一覧印刷プラグイン</div>
+      <h2>kintoneの一覧を、<em>ワンクリックで思いどおりに印刷。</em></h2>
+      <p class="feat-lead">列を絞る、チェック欄を足す、用紙や文字サイズを変える——すべてボタンを押すだけ。右側の実寸プレビューで仕上がりを見ながら、その場で自由に整えて印刷できます。</p>
+      <div class="feat-btns">
+        <a class="bt bt-amber" href="trials/bst_list-print_v1.1.0_trial.zip" download>30日無料で試す ↓</a>
+        <a class="bt bt-ghost" href="lp-list-print.html">デモを触ってみる →</a>
+      </div>
+      <p class="feat-sub">登録・メール不要／年額 ¥19,800（税込）・1ドメイン</p>
+    </div>
+    <figure class="feat-shot">
+      <img src="assets/list-print-dialog.png" width="1240" height="832" loading="lazy" alt="一覧印刷プラグインの印刷ダイアログ。左側で用紙・向き・余白・文字サイズ・印刷範囲・列を選ぶと、右側の実寸プレビューにすぐ反映される">
+      <figcaption>実際の画面：左で選ぶと、右の実寸プレビューにすぐ反映されます</figcaption>
+    </figure>
+    <div class="feat-pts">
+      <div class="feat-pt"><b><span>01</span>必要な列だけ、チェックで選ぶ</b><p>印刷したい項目にチェックを入れるだけ。不要な列を外して、用途に合った一覧にワンクリックで絞り込めます。</p></div>
+      <div class="feat-pt"><b><span>02</span>項番・チェック欄・備考欄を追加</b><p>項番列、棚卸し用のチェック列、手書き用の備考欄もワンクリック。点検表や配布リストがそのまま作れます。</p></div>
+      <div class="feat-pt"><b><span>03</span>用紙もレイアウトもボタンひとつ</b><p>用紙サイズ（A4・B5・A3）、縦横の向き、余白、文字サイズ、印刷範囲まで、ボタンを選ぶだけで切り替え。</p></div>
+    </div>
+    <p class="feat-note">※ 当サイトで販売中のプラグインにおける販売実績（2026年10月時点・自社集計）</p>
   </div>
 </div></section>
 
