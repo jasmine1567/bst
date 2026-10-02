@@ -122,9 +122,61 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:12.5px;col
 .feat-btns .bt-ghost{background:transparent;color:#fff;border-color:#5a5a55;}
 .feat-sub{font-size:12px;color:#a9a8a0;margin-top:12px;}
 .feat-head{max-width:760px;margin-top:18px;}
-.feat-shot{margin:28px 0 0;}
-.feat-shot img{display:block;width:100%;height:auto;border-radius:14px;border:3px solid var(--amber);background:#fff;}
-.feat-shot figcaption{font-size:12px;color:#cfcec6;text-align:center;margin-top:10px;}
+.feat-try{font-size:13.5px;font-weight:700;color:var(--amber);margin:26px 0 -14px;}
+.feat .demo{color:var(--ink);--kb:#3498db;}
+.feat .demo-cta .bt{font-size:13.5px;padding:10px 20px;}
+/* =====================================================================
+   触れるデモ: 製品版ダイアログと同じ項目構成
+   ===================================================================== */
+.demo{margin-top:26px;background:#fff;border:2px solid var(--amber);border-radius:18px;box-shadow:0 16px 40px rgba(255,184,0,.15);overflow:hidden;}
+.demo-hd{background:#F7F7F5;border-bottom:1px solid var(--line);padding:11px 18px;font-size:13px;font-weight:900;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.demo-hd .tag{font-size:10.5px;font-weight:900;color:#fff;background:var(--kb);border-radius:999px;padding:2px 10px;}
+.demo-hd .mut{color:var(--mut);font-weight:700;font-size:11px;margin-left:auto;}
+/* プリセットバー（製品と同じ位置＝ヘッダー） */
+.dpreset{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.dpreset select,.dpreset input{height:29px;padding:0 8px;font-size:12px;font-family:inherit;border:1px solid #d1d5db;border-radius:8px;background:#fff;}
+.dpreset input{width:150px;border-color:var(--kb);display:none;}
+.dpreset button{height:29px;padding:0 11px;font-size:11.5px;font-family:inherit;border:1px solid #d1d5db;border-radius:8px;background:#fff;cursor:pointer;color:#374151;font-weight:700;}
+.dpreset button:hover{background:#f3f4f6;}
+.dpreset button.pok{background:var(--kb);border-color:var(--kb);color:#fff;display:none;}
+.demo-bd{display:grid;grid-template-columns:262px 1fr;min-height:430px;}
+@media(max-width:820px){.demo-bd{grid-template-columns:1fr;}}
+.dside{background:#fff;border-right:1px solid #eceff1;padding:13px 15px;overflow-y:auto;max-height:520px;}
+@media(max-width:820px){.dside{border-right:none;border-bottom:1px solid #eceff1;max-height:none;}}
+.dg{margin-bottom:12px;}
+.dg>label{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;font-weight:900;color:#374151;margin-bottom:5px;}
+.dg .mini{font-size:10.5px;font-weight:700;color:var(--kb);cursor:pointer;}
+.dseg{display:flex;border:1px solid #d1d5db;border-radius:8px;overflow:hidden;}
+.dseg button{flex:1;border:none;background:#fff;padding:6px 2px;font-size:11.5px;cursor:pointer;color:#6b7280;font-family:inherit;border-right:1px solid #e5e7eb;white-space:nowrap;}
+.dseg button:last-child{border-right:none;}
+.dseg button.on{background:var(--kb);color:#fff;font-weight:700;}
+.dcols,.dchecks{border:1px solid #e5e7eb;border-radius:8px;padding:6px 9px;background:#fcfcfc;}
+.dcols label,.dchecks label{display:flex;align-items:center;gap:6px;font-size:11.5px;padding:2.5px 0;cursor:pointer;color:#1f2937;}
+.dcols input,.dchecks input{accent-color:var(--kb);}
+.dchecks{display:grid;grid-template-columns:1fr 1fr;gap:0 8px;}
+/* プレビュー */
+.dmain{display:flex;flex-direction:column;min-width:0;}
+.dbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-size:11.5px;color:#4b5563;background:#fff;border-bottom:1px solid #eceff1;flex-wrap:wrap;}
+.dbar b{color:var(--ok);}
+.dpage{display:inline-flex;align-items:center;gap:7px;}
+.dpage button{width:24px;height:24px;border-radius:6px;border:1px solid #d1d5db;background:#fff;cursor:pointer;font-size:12px;color:#374151;line-height:1;}
+.dpage button:disabled{opacity:.35;cursor:default;}
+.sheetwrap{flex:1;background:#6b7280;background-image:linear-gradient(45deg,rgba(0,0,0,.06) 25%,transparent 25%),linear-gradient(-45deg,rgba(0,0,0,.06) 25%,transparent 25%);background-size:16px 16px;padding:18px;display:flex;align-items:flex-start;justify-content:center;overflow:auto;}
+.sheet{background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.28);display:flex;flex-direction:column;color:#111;flex:none;}
+.sheet table{width:100%;border-collapse:collapse;table-layout:fixed;}
+.sheet .sh-ttl{font-weight:900;}
+.sheet .sh-meta{display:flex;justify-content:space-between;color:#555;border-bottom:1px solid #333;margin-bottom:3px;}
+.sheet th,.sheet td{padding:1.5px 3px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;text-align:left;}
+.sheet thead th{background:#EFEFEA;border-bottom:1px solid #333;font-weight:700;}
+.sheet .num{text-align:right;}
+.sheet .no{text-align:right;color:#666;}
+.sheet .chk{text-align:center;}
+.sheet .bx{display:inline-block;border:.6px solid #333;border-radius:1px;}
+.sheet tr.sum td{font-weight:900;background:#FFF6DD;border-top:1px solid #333;}
+.sheet .sh-ft{margin-top:auto;text-align:right;color:#555;}
+/* デモ直下CTA */
+.demo-cta{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;background:var(--ink);color:#fff;padding:13px 18px;font-size:13px;font-weight:700;}
+.demo-cta .btn{padding:10px 20px;font-size:13.5px;}
 .feat-pts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px;}
 .feat-pt{background:#323230;border:1px solid #47474a;border-radius:16px;padding:16px 18px;}
 .feat-pt b{display:block;font-size:14.5px;color:#fff;margin-bottom:4px;}
@@ -226,17 +278,60 @@ body{-webkit-text-size-adjust:100%;}
     <div class="feat-head">
       <div class="feat-name">一覧印刷プラグイン</div>
       <h2>kintoneの一覧を、<em>ワンクリックで思いどおりに印刷。</em></h2>
-      <p class="feat-lead">列を絞る、チェック欄を足す、用紙や文字サイズを変える——すべてボタンを押すだけ。右側の実寸プレビューで仕上がりを見ながら、その場で自由に整えて印刷できます。</p>
+      <p class="feat-lead">列を絞る、チェック欄を足す、用紙や文字サイズを変える——すべてボタンを押すだけ。プレビューで仕上がりを見ながら、その場で自由に整えて印刷できます。</p>
       <div class="feat-btns">
         <a class="bt bt-amber" href="trials/bst_list-print_v1.1.0_trial.zip" download>30日無料で試す ↓</a>
-        <a class="bt bt-ghost" href="lp-list-print.html">デモを触ってみる →</a>
+        <a class="bt bt-ghost" href="lp-list-print.html">製品の詳細を見る →</a>
       </div>
       <p class="feat-sub">登録・メール不要／年額 ¥19,800（税込）・1ドメイン</p>
     </div>
-    <figure class="feat-shot">
-      <img src="assets/list-print-dialog.png" width="1240" height="832" loading="lazy" alt="一覧印刷プラグインの印刷ダイアログ。左側で用紙・向き・余白・文字サイズ・印刷範囲・列を選ぶと、右側の実寸プレビューにすぐ反映される">
-      <figcaption>実際の画面：左で選ぶと、右の実寸プレビューにすぐ反映されます</figcaption>
-    </figure>
+    <p class="feat-try">👇 実際に触れます。列のチェックを外したり、用紙やチェック欄を切り替えてみてください</p>
+  <div class="demo" id="demo">
+    <div class="demo-hd">
+      <span class="tag">触れるデモ</span>印刷
+      <span class="dpreset">
+        <select id="dpSel"><option value="">保存した設定…</option></select>
+        <button type="button" id="dpSave">この設定を保存</button>
+        <input type="text" id="dpName" maxlength="16" placeholder="設定の名前">
+        <button type="button" class="pok" id="dpOk">保存</button>
+        <button type="button" id="dpDel" disabled>削除</button>
+      </span>
+      <span class="mut">備品一覧（53件のサンプル）</span>
+    </div>
+    <div class="demo-bd">
+      <div class="dside">
+        <div class="dg"><label>用紙</label><div class="dseg" id="cPaper"><button data-v="A4" class="on">A4</button><button data-v="B5">B5</button><button data-v="A3">A3</button></div></div>
+        <div class="dg"><label>向き</label><div class="dseg" id="cOrient"><button data-v="landscape" class="on">横</button><button data-v="portrait">縦</button></div></div>
+        <div class="dg"><label>余白</label><div class="dseg" id="cMargin"><button data-v="narrow">狭い</button><button data-v="normal" class="on">標準</button><button data-v="wide">広い</button></div></div>
+        <div class="dg"><label>文字サイズ</label><div class="dseg" id="cFont"><button data-v="s">小</button><button data-v="m" class="on">標準</button><button data-v="l">大</button></div></div>
+        <div class="dg"><label>列（6）<span class="mini" id="cColAll">すべて / 解除</span></label>
+          <div class="dcols" id="cCols"></div></div>
+        <div class="dg"><label>レイアウト</label>
+          <div class="dchecks">
+            <label><input type="checkbox" id="cTitle" checked> タイトル</label>
+            <label><input type="checkbox" id="cDate" checked> 印刷日時</label>
+            <label><input type="checkbox" id="cCount" checked> 件数</label>
+            <label><input type="checkbox" id="cPageNo" checked> ページ番号</label>
+            <label><input type="checkbox" id="cZebra" checked> 1行おきに色</label>
+            <label><input type="checkbox" id="cRowNo"> 連番を付ける</label>
+            <label><input type="checkbox" id="cSum"> 数量の合計行</label>
+          </div></div>
+        <div class="dg"><label>罫線</label><div class="dseg" id="cBorder"><button data-v="all" class="on">格子</button><button data-v="h">横線のみ</button><button data-v="none">なし</button></div></div>
+        <div class="dg"><label>チェック欄（右端）</label><div class="dseg" id="cChk"><button data-v="0" class="on">なし</button><button data-v="1">□ 1列</button><button data-v="2">□ 2列</button><button data-v="w">記入欄</button></div></div>
+      </div>
+      <div class="dmain">
+        <div class="dbar">
+          <span id="cStat"></span>
+          <span class="dpage"><button type="button" id="pgPrev">‹</button><span id="pgNo">1 / 1</span><button type="button" id="pgNext">›</button></span>
+        </div>
+        <div class="sheetwrap"><div class="sheet" id="sheet"></div></div>
+      </div>
+    </div>
+    <div class="demo-cta">
+      いま触った操作が、そのまま製品です。実物はさらに<b>実寸プレビュー</b>と<b>プリセット12件保存</b>。
+      <a class="bt bt-amber" href="trials/bst_list-print_v1.1.0_trial.zip" download>試用版を無料ダウンロード ↓</a>
+    </div>
+  </div>
     <div class="feat-pts">
       <div class="feat-pt"><b><span>01</span>必要な列だけ、チェックで選ぶ</b><p>印刷したい項目にチェックを入れるだけ。不要な列を外して、用途に合った一覧にワンクリックで絞り込めます。</p></div>
       <div class="feat-pt"><b><span>02</span>項番・チェック欄・備考欄を追加</b><p>項番列、棚卸し用のチェック列、手書き用の備考欄もワンクリック。点検表や配布リストがそのまま作れます。</p></div>
@@ -391,5 +486,207 @@ body{-webkit-text-size-adjust:100%;}
 </div></section>
 
 <footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="/index.html">ホーム</a><a href="/index.html#tools">プラグイン</a><a href="/blog/index.html">ブログ</a><a href="/icons.html">無料アイコン素材</a><a href="/about.html">bstについて</a><a href="/news.html">お知らせ</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="/tokushoho.html">特定商取引法に基づく表記</a><a href="/privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
+<script>
+(function(){
+  // =====================================================================
+  // 触れるデモ: 製品版と同じ設定項目でページ割り付けまで再現
+  // =====================================================================
+  var PAPERS = { A4:[210,297], B5:[182,257], A3:[297,420] };
+  var COLS = [
+    { code:'no',  label:'管理番号', w:14 },
+    { code:'name',label:'品名', w:0 },
+    { code:'cat', label:'カテゴリ', w:13 },
+    { code:'loc', label:'保管場所', w:13 },
+    { code:'who', label:'担当者', w:12 },
+    { code:'qty', label:'数量', w:9, num:true }
+  ];
+  var NAMES=['ノートPC 14型','ノートPC 16型','モニタ 24型','モニタ 27型','キーボード','マウス','ドッキングステーション','HDMIケーブル','LANケーブル','タブレット','プリンタ','ラベルライター','Webカメラ','ヘッドセット'];
+  var CATS=['PC','PC','周辺機器','周辺機器','入力機器','入力機器','周辺機器','ケーブル','ケーブル','PC','事務機','事務機','会議','会議'];
+  var LOCS=['倉庫A','倉庫A','倉庫B','倉庫B','倉庫A','倉庫A','倉庫C','倉庫C','倉庫C','金庫室','倉庫B','倉庫B','倉庫A','倉庫A'];
+  var WHOS=['田中','田中','佐藤','佐藤','鈴木','鈴木','田中','高橋','高橋','佐藤','鈴木','田中','高橋','佐藤'];
+  var ROWS = [];
+  for (var i=0;i<53;i++){
+    var j=i%14;
+    ROWS.push({ no:'BH-'+String(1001+i), name:NAMES[j], cat:CATS[j], loc:LOCS[j], who:WHOS[j], qty:(i*7)%48+1 });
+  }
+  var st = { paper:'A4', orient:'landscape', margin:'normal', font:'m',
+             cols:{no:true,name:true,cat:true,loc:true,who:true,qty:true},
+             title:true, date:true, count:true, pageNo:true, zebra:true, rowNo:false, sum:false,
+             border:'all', chk:'0' };
+  var page = 0;
+  var presets = [
+    { id:'p1', name:'棚卸し用', st:{ paper:'A4', orient:'portrait', margin:'normal', font:'m',
+        cols:{no:true,name:true,cat:false,loc:true,who:false,qty:true},
+        title:true, date:true, count:true, pageNo:true, zebra:false, rowNo:true, sum:false, border:'all', chk:'1' } },
+    { id:'p2', name:'会議配布用', st:{ paper:'A4', orient:'landscape', margin:'wide', font:'l',
+        cols:{no:false,name:true,cat:true,loc:true,who:true,qty:true},
+        title:true, date:true, count:true, pageNo:true, zebra:true, rowNo:false, sum:true, border:'h', chk:'0' } }
+  ];
+  var $ = function(id){ return document.getElementById(id); };
+
+  // 列チェックの生成
+  COLS.forEach(function(c){
+    var l=document.createElement('label');
+    l.innerHTML='<input type="checkbox" data-c="'+c.code+'" checked> '+c.label;
+    $('cCols').appendChild(l);
+  });
+
+  function seg(id, key, map){
+    var el=$(id);
+    el.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){
+        el.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+        b.classList.add('on');
+        st[key]= map ? map(b.getAttribute('data-v')) : b.getAttribute('data-v');
+        page=0; render();
+      });
+    });
+  }
+  seg('cPaper','paper'); seg('cOrient','orient'); seg('cMargin','margin'); seg('cFont','font');
+  seg('cBorder','border'); seg('cChk','chk');
+  [['cTitle','title'],['cDate','date'],['cCount','count'],['cPageNo','pageNo'],['cZebra','zebra'],['cRowNo','rowNo'],['cSum','sum']]
+    .forEach(function(p){
+      $(p[0]).addEventListener('change', function(){ st[p[1]]=this.checked; page=0; render(); });
+    });
+  $('cCols').addEventListener('change', function(e){
+    var cb=e.target.closest('input[data-c]'); if(!cb) return;
+    st.cols[cb.getAttribute('data-c')]=cb.checked; page=0; render();
+  });
+  $('cColAll').addEventListener('click', function(){
+    var anyOff=COLS.some(function(c){return !st.cols[c.code];});
+    COLS.forEach(function(c){ st.cols[c.code]=anyOff; });
+    syncUI(); page=0; render();
+  });
+  $('pgPrev').addEventListener('click', function(){ if(page>0){page--; render();} });
+  $('pgNext').addEventListener('click', function(){ page++; render(); });
+
+  function setSeg(id,v){ $(id).querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-v')===String(v)); }); }
+  function syncUI(){
+    setSeg('cPaper',st.paper); setSeg('cOrient',st.orient); setSeg('cMargin',st.margin);
+    setSeg('cFont',st.font); setSeg('cBorder',st.border); setSeg('cChk',st.chk);
+    $('cTitle').checked=st.title; $('cDate').checked=st.date; $('cCount').checked=st.count;
+    $('cPageNo').checked=st.pageNo; $('cZebra').checked=st.zebra; $('cRowNo').checked=st.rowNo; $('cSum').checked=st.sum;
+    $('cCols').querySelectorAll('input[data-c]').forEach(function(cb){ cb.checked=!!st.cols[cb.getAttribute('data-c')]; });
+  }
+
+  // ---- プリセット（デモではページ内メモリに保存。実物はブラウザに保存されます） ----
+  function renderPresets(sel){
+    var s=$('dpSel');
+    s.innerHTML='<option value="">保存した設定…</option>'+presets.map(function(p){return '<option value="'+p.id+'">'+p.name+'</option>';}).join('');
+    s.value=sel||''; $('dpDel').disabled=!s.value;
+  }
+  renderPresets('');
+  $('dpSel').addEventListener('change', function(){
+    $('dpDel').disabled=!this.value;
+    var p=presets.filter(function(x){return x.id===this.value;}.bind(this))[0];
+    if(!p) return;
+    st=JSON.parse(JSON.stringify(p.st)); syncUI(); page=0; render();
+  });
+  function naming(show){
+    $('dpName').style.display=show?'':'none';
+    $('dpOk').style.display=show?'':'none';
+    $('dpSave').style.display=show?'none':'';
+    if(show){$('dpName').value=''; $('dpName').focus();}
+  }
+  naming(false);
+  $('dpSave').addEventListener('click', function(){ naming(true); });
+  $('dpName').addEventListener('keydown', function(e){ if(e.key==='Enter') $('dpOk').click(); });
+  $('dpOk').addEventListener('click', function(){
+    var name=($('dpName').value||'').trim()||'マイ設定';
+    var ex=presets.filter(function(x){return x.name===name;})[0];
+    if(ex){ ex.st=JSON.parse(JSON.stringify(st)); }
+    else { ex={id:'p'+Date.now(), name:name, st:JSON.parse(JSON.stringify(st))}; presets.push(ex); }
+    naming(false); renderPresets(ex.id);
+  });
+  $('dpDel').addEventListener('click', function(){
+    var id=$('dpSel').value;
+    presets=presets.filter(function(x){return x.id!==id;});
+    renderPresets('');
+  });
+
+  // ---- 描画（割り付け・ページ番号まで再現） ----
+  function activeCols(){
+    var out=[];
+    if(st.rowNo) out.push({code:'_no',label:'No.',w:7,cls:'no'});
+    COLS.forEach(function(c){ if(st.cols[c.code]) out.push({code:c.code,label:c.label,w:c.w,cls:c.num?'num':''}); });
+    var n = st.chk==='1'?1 : st.chk==='2'?2 : 0;
+    for(var i=0;i<n;i++) out.push({code:'_chk',label:i===0?'確認':'数量',w:8,cls:'chk',box:true});
+    if(st.chk==='w') out.push({code:'_chk',label:'記入欄',w:18,cls:'chk',box:false});
+    return out;
+  }
+  function render(){
+    var p=PAPERS[st.paper], w=p[0], h=p[1];
+    if(st.orient==='landscape'){ var t=w; w=h; h=t; }
+    var host=$('sheet').parentElement;
+    var maxW=Math.min(520,(host.clientWidth||520)-36);
+    var scale=Math.min(maxW/w, 420/h);
+    var W=Math.round(w*scale), H=Math.round(h*scale);
+    var mMM={narrow:8,normal:12,wide:18}[st.margin];
+    var pad=Math.max(4,Math.round(mMM*scale));
+    var fs={s:{A4:6,B5:5.5,A3:7.5},m:{A4:7,B5:6.5,A3:9},l:{A4:8.5,B5:8,A3:11}}[st.font][st.paper]*scale/ (st.paper==='A3'?1.4:1);
+    fs=Math.max(4.5,Math.round(fs*10)/10);
+    var sheet=$('sheet');
+    sheet.style.width=W+'px'; sheet.style.height=H+'px'; sheet.style.padding=pad+'px';
+    sheet.style.fontSize=fs+'px'; sheet.style.lineHeight='1.5';
+    var cols=activeCols();
+    var dataCols=cols.filter(function(c){return c.code!=='_chk'&&c.code!=='_no';});
+    if(!dataCols.length){
+      sheet.innerHTML='<div style="margin:auto;color:#999;font-size:'+Math.max(8,fs+2)+'px;">列を1つ以上選んでください</div>';
+      $('cStat').textContent='列が選ばれていません'; $('pgNo').textContent='- / -';
+      $('pgPrev').disabled=$('pgNext').disabled=true;
+      return;
+    }
+    // 行の割り付け（行高からページ当たり件数を計算）
+    var rowH=fs*1.5+3;
+    var headH=(st.title?fs*1.9:0)+((st.date||st.count||!st.title)?fs*1.6:0)+4;
+    var footH=st.pageNo?fs*1.8:0;
+    var avail=H-pad*2-headH-(fs*1.6+3)-footH;
+    var per=Math.max(2,Math.floor(avail/rowH));
+    var totalRows=ROWS.length;
+    var pages=Math.max(1,Math.ceil(totalRows/per));
+    if(st.sum && totalRows-(pages-1)*per >= per) pages++; // 合計行が入らない場合の追いページ（簡易）
+    if(page>pages-1) page=pages-1;
+    var slice=ROWS.slice(page*per,(page+1)*per);
+    // 幅の按分
+    var fixed=cols.reduce(function(a,c){return a+(c.w||0);},0);
+    var widths=cols.map(function(c){ return c.w||Math.max(10,100-fixed); });
+    var bAll=st.border==='all', bNone=st.border==='none';
+    var cellB=bNone?'border:none;':(bAll?'border:.6px solid #999;':'border:none;border-bottom:.6px solid #ccc;');
+    var thB=bNone?'border:none;border-bottom:1px solid #333;':(bAll?'border:.6px solid #999;border-bottom:1px solid #333;':'border:none;border-bottom:1px solid #333;');
+    var bxs=Math.max(4,Math.round(fs*0.9));
+    function td(c,r,ri){
+      if(c.code==='_chk') return '<td class="chk" style="'+cellB+'">'+(c.box?'<span class="bx" style="width:'+bxs+'px;height:'+bxs+'px;"></span>':'')+'</td>';
+      if(c.code==='_no') return '<td class="no" style="'+cellB+'">'+(page*per+ri+1)+'</td>';
+      var v=r[c.code];
+      return '<td class="'+c.cls+'" style="'+cellB+'">'+v+'</td>';
+    }
+    var thead='<tr>'+cols.map(function(c,i){return '<th class="'+c.cls+'" style="width:'+widths[i]+'%;'+thB+'">'+c.label+'</th>';}).join('')+'</tr>';
+    var body=slice.map(function(r,ri){
+      return '<tr'+(st.zebra&&ri%2?' style="background:#F6F6F3;"':'')+'>'+cols.map(function(c){return td(c,r,ri);}).join('')+'</tr>';
+    }).join('');
+    if(st.sum && page===pages-1){
+      var total=ROWS.reduce(function(a,r){return a+r.qty;},0);
+      body+='<tr class="sum">'+cols.map(function(c,i){
+        if(i===0) return '<td style="'+cellB+'">合計</td>';
+        if(c.code==='qty') return '<td class="num" style="'+cellB+'">'+total.toLocaleString()+'</td>';
+        return '<td class="'+(c.cls==='chk'?'chk':c.cls)+'" style="'+cellB+'"></td>';
+      }).join('')+'</tr>';
+    }
+    var meta=[];
+    if(st.date) meta.push('2026/07/17 10:00');
+    if(st.count) meta.push('全 '+totalRows+' 件');
+    sheet.innerHTML=
+      (st.title?'<div class="sh-ttl" style="font-size:'+(fs*1.35)+'px;">備品一覧（棚卸し）</div>':'')+
+      ((meta.length||!st.title)?'<div class="sh-meta" style="font-size:'+(fs*0.9)+'px;padding-bottom:2px;"><span>'+(st.title?'':'備品一覧（棚卸し）')+'</span><span>'+meta.join('　/　')+'</span></div>':'')+
+      '<table><thead>'+thead+'</thead><tbody>'+body+'</tbody></table>'+
+      (st.pageNo?'<div class="sh-ft" style="font-size:'+(fs*0.9)+'px;">'+(page+1)+' / '+pages+'</div>':'');
+    $('cStat').innerHTML='<b>'+totalRows+'件 / '+pages+'ページ</b>（'+st.paper+' '+(st.orient==='landscape'?'横':'縦')+'・'+cols.filter(function(c){return c.code!=='_chk';}).length+'列'+(st.chk!=='0'?'・チェック欄':'')+'）';
+    $('pgNo').textContent=(page+1)+' / '+pages;
+    $('pgPrev').disabled=page<=0; $('pgNext').disabled=page>=pages-1;
+  }
+  render();
+  window.addEventListener('resize', render);
+})();
+</script>
 </body>
 </html>
