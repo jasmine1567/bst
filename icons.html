@@ -700,7 +700,7 @@ render();
     ctx.restore();
     ctx.save();
     rr(ctx,R.x,R.y,R.w,R.h,rad); ctx.clip();
-    if(style==='gloss'){ ctx.fillStyle='rgba(255,255,255,0.17)'; ctx.fillRect(R.x,R.y,R.w,R.h*0.345); }
+    if(style==='gloss'){ ctx.fillStyle='rgba(255,255,255,0.17)'; ctx.fillRect(R.x,R.y,R.w,R.h*0.471); }
     var fill=contrastText(bg);
     if(pattern==='image' && img){
       var sc = fit==='cover' ? Math.max(R.w/img.width,R.h/img.height) : Math.min(R.w/img.width,R.h/img.height);
