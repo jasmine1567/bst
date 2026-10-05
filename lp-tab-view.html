@@ -179,6 +179,101 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;col
 .cmp td:first-child{font-weight:900;white-space:nowrap;background:#FCFCFA;}
 .sw{width:22px;height:22px;border-radius:50%;box-shadow:0 0 0 1px var(--line);}
 
+/* ===== bstd: 共通デザインレイヤー（2026-10・全ページ同一）=====
+   方針: 箱と影を減らして罫線で組む／絵文字ではなく Material Symbols（インラインSVG）／
+         bst の黒×アンバーは「ロゴ色のラベル・見出しのバー・アイコン・黒帯のセクション」で効かせる */
+.mi{width:1em;height:1em;fill:currentColor;flex:none;vertical-align:-.15em;}
+.nb{white-space:nowrap;}
+/* 角丸と影を抑える */
+.card,.bstx-card,.bstx-democard,.bstx-cfg,.pricebox,.screen,.pcard,.plan,.panel,.vizcard,.nitem,.bcard,.bfeat,.cta,.cta-card,.box,.adm,.fdemo,.tdemo,.dcard,.modecard,.cfgmock,.demo,.tr,.feat,.can>div,.mk,.license,.howto .step{border-radius:8px;box-shadow:none;}
+.feat-box,.iconbn{border-radius:10px;box-shadow:none;}
+.pcard:hover{transform:none;box-shadow:none;border-color:var(--ink);}
+.bstx-democard{border:1px solid var(--line);}
+/* ボタン */
+.btn,.bt,.b,a.b,.cta .b,.bstnav .bstcta{border-radius:6px !important;}
+.btn,.bt{border-width:1px;}
+.btn .mi,.bt .mi,.b .mi{font-size:18px;}
+.btn--ghost,.bt-ghost{border-color:#cfcec6;background:transparent;color:var(--ink);}
+.btn--ghost:hover,.bt-ghost:hover{background:#fff;border-color:var(--ink);}
+/* ロゴ色のラベル（黒地にアンバー） */
+.eyebrow,.hero .kick,.feat-badge,.tag-bst{display:inline-block;background:var(--ink);color:var(--amber);border:none;border-radius:4px;padding:5px 11px;font-size:12px;font-weight:700;letter-spacing:.02em;}
+/* 見出し: アンバーのバー */
+section h2::before{content:"";display:block;width:40px;height:5px;background:var(--amber);margin-bottom:16px;}
+.demo2 h2::before,.kd-shell h2::before,.bstx-democard h2::before,.feat-box h2::before,.iconbn h2::before,.inkband h2::before,.band-in h2::before{display:none;}
+section{padding:64px 0;}
+.band{border:none;}
+h1 em{background:none !important;}
+h2.sec,.bstx-h2{margin:0 0 28px;}
+.lead{color:#4a4a45;}
+.sec-lead{font-size:15px;color:#4a4a45;max-width:44em;margin:-12px 0 28px;}
+/* トップの安心ポイント */
+.tr{border:none;border-top:2px solid var(--ink);border-radius:0;background:none;padding:16px 0 0;}
+.tr .em{font-size:20px;line-height:1;box-sizing:content-box;padding:8px;background:var(--ink);color:var(--amber);border-radius:8px;display:flex;}
+/* 罫線で区切る項目リスト */
+.fx{display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;}
+.fx-i{border-top:2px solid var(--ink);padding:20px 0 30px;}
+.fx-i>.mi{font-size:22px;box-sizing:content-box;padding:9px;background:var(--ink);color:var(--amber);border-radius:8px;display:block;margin-bottom:12px;}
+.fx-i b,.fx-i h3{display:block;font-size:16px;font-weight:700;line-height:1.5;margin:0 0 6px;}
+.fx-i p{font-size:14px;line-height:1.85;color:#4a4a45;}
+.fx.is-quiet .fx-i{border-top:1px solid #cfcec6;}
+.fx.is-quiet .fx-i>.mi{background:none;color:var(--ink);padding:0;font-size:26px;border-radius:0;}
+.fx.is-2{grid-template-columns:repeat(2,1fr);}
+.fx-no{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:var(--ink);color:var(--amber);border-radius:8px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:18px;margin-bottom:12px;}
+/* 黒帯のセクション（試用への導線など） */
+.inkband{background:var(--ink);color:#fff;border:none;}
+.inkband h2{color:#fff;}
+.inkband h2::after{content:"";display:block;width:40px;height:5px;background:var(--amber);margin-top:16px;}
+.inkband p,.inkband .step p,.inkband .sec-lead{color:#d6d5cd;}
+.inkband .step{border-top-color:#5a5a55;background:none;}
+.inkband .step .no{color:var(--amber);}
+.inkband .step b{color:#fff;}
+.inkband .btn--ghost{color:#fff;border-color:#77776f;}
+.inkband .btn--ghost:hover{background:#3a3a37;border-color:#fff;}
+/* 導入前／導入後 */
+.bfaf{display:grid;grid-template-columns:1fr 1fr;margin-top:36px;border-top:2px solid var(--ink);border-bottom:1px solid var(--line);}
+.bfaf-c{padding:18px 28px 20px 0;}
+.bfaf-c.is-after{padding:18px 0 20px 28px;border-left:1px solid var(--line);}
+.bfaf-lb{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.08em;color:var(--mut);margin-bottom:6px;}
+.bfaf-c.is-after .bfaf-lb{color:var(--ink);background:var(--amber);padding:1px 8px;border-radius:3px;}
+.bfaf-c p{font-size:14px;line-height:1.9;color:var(--mut);}
+.bfaf-c.is-after p{color:var(--ink);font-weight:500;}
+/* 設定画面のイメージ */
+.bstx-cfg{max-width:none;}
+.bstx-no{background:var(--ink);color:var(--amber);border-radius:4px;width:20px;height:20px;}
+.bstx-chip{border-radius:4px;border-width:1px;}
+.bstx-sim{border:none;border-left:4px solid var(--amber);border-radius:0;background:none;padding:2px 0 2px 12px;}
+.bstx-sim .mi{font-size:16px;margin-right:4px;}
+.cfg-note{font-size:13px;color:#4a4a45;line-height:1.85;margin-top:8px;}
+.cfg-2col{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start;}
+.cfg-pts{list-style:none;}
+.cfg-pts li{border-top:1px solid #cfcec6;padding:14px 0 16px;}
+.cfg-pts li:first-child{border-top:2px solid var(--ink);}
+.cfg-pts b{display:block;font-size:15px;margin-bottom:3px;}
+.cfg-pts li>span{font-size:13.5px;color:#4a4a45;line-height:1.8;display:block;}
+/* 比較表 */
+.bstx-cmp,.cmp{border-radius:0;box-shadow:none;}
+.bstx-cmp th,.bstx-cmp td{border:none;border-bottom:1px solid var(--line);padding:12px 14px;}
+.bstx-cmp thead th{background:none;border-bottom:2px solid var(--ink);}
+.bstx-cmp thead th.me,.cmp thead th.me{background:var(--ink);color:var(--amber);}
+.bstx-cmp td:first-child{background:none;}
+/* 手順 */
+.steps{display:grid;gap:0 40px;grid-template-columns:repeat(3,1fr);}
+.step{background:none;border:none;border-top:2px solid var(--ink);border-radius:0;padding:16px 0 8px;}
+.step .no{background:none;color:var(--ink);width:auto;height:auto;border-radius:0;font-family:"JetBrains Mono",monospace;font-size:22px;margin-bottom:4px;}
+.step .no{display:block;font-weight:700;}
+.step b{display:block;font-size:15.5px;margin-bottom:3px;}
+.step p{font-size:13.5px;color:#4a4a45;line-height:1.8;}
+/* 料金・FAQ */
+.pricebox{padding:32px;gap:40px;}
+.spec dd{color:#4a4a45;line-height:1.8;}
+.faq details{background:none;border:none;border-top:1px solid var(--line);border-radius:0;padding:16px 0;margin:0;}
+.faq details:last-child{border-bottom:1px solid var(--line);}
+.faq summary{font-size:15px;}
+.faq p{font-size:14px;color:#4a4a45;line-height:1.9;max-width:46em;}
+@media(max-width:820px){.fx,.fx.is-2,.steps{grid-template-columns:1fr;}.fx-i{padding-bottom:20px;}.cfg-2col{grid-template-columns:1fr;gap:24px;}.bfaf{grid-template-columns:1fr;}.bfaf-c,.bfaf-c.is-after{padding:16px 0;}.bfaf-c.is-after{border-left:none;border-top:1px solid var(--line);}}
+@media(max-width:640px){table.tb{display:block;overflow-x:auto;max-width:100%;}}
+/* ===== /bstd ===== */
+
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -195,6 +290,14 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;col
 h1,h2,h3{text-wrap:balance;}
 p,li,dd,dt{text-wrap:pretty;}
 @supports (word-break: auto-phrase){h1,h2,h3,p{word-break:auto-phrase;}}
+
+/* ===== bstw: 折り返し方針（全ページ同一）=====
+   すべて文節の切れ目で折り返す（語の途中では切らない）。
+   見出し・リード・短い説明文は行の長さを揃える（balance）、長い文章は最終行の孤立だけ避ける（pretty） */
+p,li,dd,dt,td,th,summary{line-break:strict;text-wrap:pretty;}
+h1,h2,h3,.lead,.sec-lead,.h1sub,.fx-i b,.fx-i h3,.fx-i p,.cfg-pts b,.cfg-pts li>span,.cfg-note,.step b,.step p,.bfaf-c p,.nores,summary,.pcard p,.tr span,.plan p,.feat-lead,.feat-pt p,.bcard p,.bcard b,.nitem b{text-wrap:balance;}
+@supports (word-break: auto-phrase){p,li,dd,dt,summary{word-break:auto-phrase;}}
+/* ===== /bstw ===== */
 
 /* =====================================================================
    bstm: モバイル最適化（全ページ共通・スタイルの最後に置くこと）
@@ -255,8 +358,8 @@ body{-webkit-text-size-adjust:100%;}
   <p class="lead">項目が増えて縦スクロールだらけになったkintoneのフォームを、タブで整理。<b>8種のデザインプリセット</b>から選ぶだけで、アプリの見た目が一気に締まります。必須の入れ忘れはタブ上の<b>赤バッジ</b>が教え、印刷時は<b>全タブ自動展開</b>。見た目と実務、どちらも妥協しないタブです。</p>
   <div class="price-row"><span class="disp">¥19,800</span><small>/年 税込・1ドメイン（アプリ数・ユーザー数無制限）</small></div>
   <div class="btns">
-    <a class="btn btn--amber" href="trials/bst_tab-view_v1.3.0_trial.zip" download>30日無料で試す ↓</a>
-    <a class="btn btn--ghost" href="#demo">動きを見る →</a>
+    <a class="btn btn--amber" href="trials/bst_tab-view_v1.3.0_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>30日無料で試す</a>
+    <a class="btn btn--ghost" href="#demo">動きを見る</a>
   </div>
 
   <div class="tdemo" id="demo">
@@ -287,30 +390,27 @@ body{-webkit-text-size-adjust:100%;}
 </div></section>
 
 <section class="band"><div class="wrap">
-  <div class="sec-kick">PROBLEM</div>
   <h2 class="sec">項目を増やすほど、アプリは使いにくくなっていく。</h2>
-  <div class="cards3">
-    <div class="card"><span class="em">📜</span><b>スクロールだけで時間が溶ける</b><p>100項目超えのフォームで、目当ての欄を探して延々スクロール。「どこに何があるか」を人が覚えてカバーしている状態です。</p></div>
-    <div class="card"><span class="em">🙈</span><b>下の方の必須項目を入れ忘れる</b><p>画面の遥か下にある必須欄は存在ごと忘れられます。保存エラーが出ても、どこが原因か探すところから。</p></div>
-    <div class="card"><span class="em">🎨</span><b>整理しても「見た目」が野暮ったい</b><p>グループ機能で畳んでも開閉の手間が増えるだけ。せっかく作ったアプリなのに、現場に「使いたい」と思わせる画面にならない。</p></div>
+  <div class="fx is-quiet">
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-120 300-300l44-44 136 136 136-136 44 44-180 180ZM344-612l-44-44 180-180 180 180-44 44-136-136-136 136Z"/></svg><b>スクロールだけで時間が溶ける</b><p>100項目超えのフォームで、目当ての欄を探して延々スクロール。「どこに何があるか」を人が覚えてカバーしている状態です。</p></div>
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="m629-419-44-44q26-71-27-118t-115-24l-44-44q17-11 38-16t43-5q71 0 120.5 49.5T650-500q0 22-5.5 43.5T629-419Zm129 129-40-40q49-36 85.5-80.5T857-500q-50-111-150-175.5T490-740q-42 0-86 8t-69 19l-46-47q35-16 89.5-28T485-800q143 0 261.5 81.5T920-500q-26 64-67 117t-95 93Zm58 226L648-229q-35 14-79 21.5t-89 7.5q-146 0-265-81.5T40-500q20-52 55.5-101.5T182-696L56-822l42-43 757 757-39 44ZM223-654q-37 27-71.5 71T102-500q51 111 153.5 175.5T488-260q33 0 65-4t48-12l-64-64q-11 5-27 7.5t-30 2.5q-70 0-120-49t-50-121q0-15 2.5-30t7.5-27l-97-97Zm305 142Zm-116 58Z"/></svg><b>下の方の必須項目を入れ忘れる</b><p>画面の遥か下にある必須欄は存在ごと忘れられます。保存エラーが出ても、どこが原因か探すところから。</p></div>
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-85 32-158t87.5-127q55.5-54 130-84.5T489-880q79 0 150 26.5T763.5-780q53.5 47 85 111.5T880-527q0 108-63 170.5T650-294h-75q-18 0-31 14t-13 31q0 27 14.5 46t14.5 44q0 38-21 58.5T480-80Zm0-400Zm-198 11q15-15 15-35t-15-35q-15-15-35-15t-35 15q-15 15-15 35t15 35q15 15 35 15t35-15Zm126-170q15-15 15-35t-15-35q-15-15-35-15t-35 15q-15 15-15 35t15 35q15 15 35 15t35-15Zm214 0q15-15 15-35t-15-35q-15-15-35-15t-35 15q-15 15-15 35t15 35q15 15 35 15t35-15Zm131 170q15-15 15-35t-15-35q-15-15-35-15t-35 15q-15 15-15 35t15 35q15 15 35 15t35-15ZM480-140q11 0 15.5-4.5T500-159q0-14-14.5-26T471-238q0-46 30-81t76-35h73q76 0 123-44.5T820-527q0-132-100-212.5T489-820q-146 0-247.5 98.5T140-480q0 141 99.5 240.5T480-140Z"/></svg><b>整理しても「見た目」が野暮ったい</b><p>グループ機能で畳んでも開閉の手間が増えるだけ。せっかく作ったアプリなのに、現場に「使いたい」と思わせる画面にならない。</p></div>
   </div>
 </div></section>
 
 <section><div class="wrap">
-  <div class="sec-kick">SOLUTION</div>
   <h2 class="sec">整理して、防いで、美しく。1本で全部やるタブ。</h2>
-  <div class="cards3">
-    <div class="card"><span class="em">🗂</span><b>クリック3回の簡単設定</b><p>タブを作り、項目をクリックで振り分けるだけ。フォームの並び順どおりに項目が出るので迷いません。ラベル（見出し）ごとタブに入れられます。</p></div>
-    <div class="card"><span class="em">🔴</span><b>必須の入れ忘れをバッジで防止</b><p>未入力の必須件数をタブに赤バッジ表示。隠れたタブに未入力があれば、保存時に自動でそのタブへ切り替えてエラーを見せます。</p></div>
-    <div class="card"><span class="em">🖨</span><b>印刷は全タブ自動展開</b><p>タブUI最大の不満「印刷すると他のタブが欠ける」を解消。ブラウザ印刷もレコード印刷画面も、常に全項目が印刷されます。</p></div>
-    <div class="card"><span class="em">📍</span><b>フォームの途中にも置ける</b><p>ページ上部だけでなく、スペースを置いた位置にタブを表示。上に共通項目、下にタブ切替という「ヘッダー＋タブ」構成が作れます。</p></div>
-    <div class="card"><span class="em">🤝</span><b>他プラグインと共存する設計</b><p>条件付きフィールド制御などが項目を隠しても表示が壊れない「表示合成レイヤー」を搭載。タブの中身が空になればタブごと隠せます。</p></div>
-    <div class="card"><span class="em">🔒</span><b>データは外に出ない</b><p>表示制御はkintone公式APIのみ・DOM組み替えなしで、kintoneのアップデートに強い設計。業務データの外部送信は一切ありません。</p></div>
+  <div class="fx">
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M140-220h680v-347H524v-173H140v520Zm0 60q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h680q24 0 42 18t18 42v520q0 24-18 42t-42 18H140Zm0-60v-520 520Z"/></svg><b>クリック3回の簡単設定</b><p>タブを作り、項目をクリックで振り分けるだけ。フォームの並び順どおりに項目が出るので迷いません。ラベル（見出し）ごとタブに入れられます。</p></div>
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M479.91-120q-28.91 0-49.41-20.59-20.5-20.59-20.5-49.5t20.59-49.41q20.59-20.5 49.5-20.5t49.41 20.59q20.5 20.59 20.5 49.5t-20.59 49.41q-20.59 20.5-49.5 20.5ZM410-360v-480h140v480H410Z"/></svg><b>必須の入れ忘れをバッジで防止</b><p>未入力の必須件数をタブに赤バッジ表示。隠れたタブに未入力があれば、保存時に自動でそのタブへ切り替えてエラーを見せます。</p></div>
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M658-648v-132H302v132h-60v-192h476v192h-60Zm-518 60h680-680Zm599 95q12 0 21-9t9-21q0-12-9-21t-21-9q-12 0-21 9t-9 21q0 12 9 21t21 9Zm-81 313v-192H302v192h356Zm60 60H242v-176H80v-246q0-45.05 30.5-75.53Q141-648 186-648h588q45.05 0 75.53 30.47Q880-587.05 880-542v246H718v176Zm102-236v-186.21Q820-562 806.78-575q-13.23-13-32.78-13H186q-19.55 0-32.77 13.22Q140-561.55 140-542v186h102v-76h476v76h102Z"/></svg><b>印刷は全タブ自動展開</b><p>タブUI最大の不満「印刷すると他のタブが欠ける」を解消。ブラウザ印刷もレコード印刷画面も、常に全項目が印刷されます。</p></div>
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-276q109-83 164.5-169.5T700-600q0-97-61.5-158.5T480-820q-97 0-158.5 61.5T260-600q0 67 55.5 153.5T480-276Zm0 76Q338-303 269-406t-69-194q0-123 78.5-201.5T480-880q123 0 201.5 78.5T760-600q0 91-69 194T480-200Zm-1-320q34 0 57.5-23.5T560-600q0-33-23.5-56.5T479-680q-33 0-56 23.5T400-600q0 33 23 56.5t56 23.5ZM200-80v-60h560v60H200Zm280-520Z"/></svg><b>フォームの途中にも置ける</b><p>ページ上部だけでなく、スペースを置いた位置にタブを表示。上に共通項目、下にタブ切替という「ヘッダー＋タブ」構成が作れます。</p></div>
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M475-140q5 0 11.5-2.5T497-149l337-338q13-13 19.5-29.67Q860-533.33 860-550q0-17-6.5-34T834-614L654-794q-13-13-30-19.5t-34-6.5q-16.67 0-33.33 6.5Q540-807 527-794l-18 18 81 82q13 14 23 32.5t10 40.5q0 38-29.5 67T526-525q-25 0-41.5-7.5t-30.19-21.34L381-627 200-446q-5 5-7 10.53-2 5.52-2 11.84 0 12.63 8.5 21.13 8.5 8.5 21.17 8.5 6.33 0 11.83-3t9.5-7l138-138 42 42-137 137q-5 5-7 11t-2 12q0 12 9 21t21 9q6 0 11.5-2.5t9.5-6.5l138-138 42 42-137 137q-4 4-6.5 10.33-2.5 6.34-2.5 12.67 0 12 9 21t21 9q6 0 11-2t10-7l138-138 42 42-138 138q-5 5-7 11t-2 11q0 14 8 22t22 8Zm.06 60Q442-80 416-104.5t-31-60.62Q351-170 328-193t-28-57q-34-5-56.5-28.5T216-335q-37-5-61-30t-24-60q0-17 6.72-34.05Q144.45-476.1 157-489l224-224 110 110q8 8 17.33 12.5 9.34 4.5 18.67 4.5 13 0 24.5-11.5t11.5-24.65q0-5.85-3.5-13.35T548-651L405-794q-13-13-30-19.5t-34-6.5q-16.67 0-33.33 6.5-16.67 6.5-29.61 19.36L126-642q-14 14-19.5 29.5t-6.5 35q-1 19.5 7.5 38T128-506l-43 43q-20-22-32.5-53T40-579q0-30 11.5-57.5T84-685l151-151q22-22 49.79-32.5 27.8-10.5 57-10.5 29.21 0 56.71 10.5T448-836l18 18 18-18q22-22 49.79-32.5 27.8-10.5 57-10.5 29.21 0 56.71 10.5T697-836l179 179q22 22 33 50.03 11 28.04 11 57 0 28.97-11 56.47T876-444L539-107q-13 13-29.53 20t-34.41 7ZM377-626Z"/></svg><b>他プラグインと共存する設計</b><p>条件付きフィールド制御などが項目を隠しても表示が壊れない「表示合成レイヤー」を搭載。タブの中身が空になればタブごと隠せます。</p></div>
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M220-80q-24.75 0-42.37-17.63Q160-115.25 160-140v-434q0-24.75 17.63-42.38Q195.25-634 220-634h70v-96q0-78.85 55.61-134.42Q401.21-920 480.11-920q78.89 0 134.39 55.58Q670-808.85 670-730v96h70q24.75 0 42.38 17.62Q800-598.75 800-574v434q0 24.75-17.62 42.37Q764.75-80 740-80H220Zm0-60h520v-434H220v434Zm314.5-162.03Q557-324.06 557-355q0-30-22.67-54.5t-54.5-24.5q-31.83 0-54.33 24.5t-22.5 55q0 30.5 22.67 52.5t54.5 22q31.83 0 54.33-22.03ZM350-634h260v-96q0-54.17-37.88-92.08-37.88-37.92-92-37.92T388-822.08q-38 37.91-38 92.08v96ZM220-140v-434 434Z"/></svg><b>データは外に出ない</b><p>表示制御はkintone公式APIのみ・DOM組み替えなしで、kintoneのアップデートに強い設計。業務データの外部送信は一切ありません。</p></div>
   </div>
 </div></section>
 
 <section class="band"><div class="wrap">
-  <div class="sec-kick">DESIGN</div>
   <h2 class="sec">プリセット8種＋こだわり設定。アプリの「顔」が変わる。</h2>
   <p style="font-size:13.5px;color:var(--mut);max-width:680px;margin-bottom:20px;">簡単設定はプリセットを選んでアクセントカラーを決めるだけ。こだわり設定では形状・色・丸み・間隔・サイズ・影・アニメーションなど約20項目を、ライブプレビューを見ながら調整できます。<b>タブごとの個別色</b>にも対応。</p>
   <div class="pgrid2">
@@ -330,7 +430,6 @@ body{-webkit-text-size-adjust:100%;}
 </div></section>
 
 <section><div class="wrap">
-  <div class="sec-kick">CONFIG</div>
   <h2 class="sec">設定画面まで、デザインした。</h2>
   <p style="font-size:13.5px;color:var(--mut);max-width:680px;margin-bottom:20px;">プラグインは「入れた後」より「設定するとき」に挫折します。だから設定画面そのものを製品として磨きました。<b>3ステップ・クリックだけ・常にプレビュー</b>。マニュアルを読まずに完成します。</p>
 
@@ -350,15 +449,14 @@ body{-webkit-text-size-adjust:100%;}
     </div>
   </div>
 
-  <div class="cards3" style="margin-top:18px;">
-    <div class="card"><span class="em">🖱</span><b>クリックだけで振り分け</b><p>フォームの並び順どおりに項目チップが並び、クリックでタブへ。検索と種類フィルタ（入力項目／ラベル／テーブル）で100項目超でも迷いません。</p></div>
-    <div class="card"><span class="em">👀</span><b>常に見えるライブプレビュー</b><p>プリセットも、こだわり設定の1項目も、変えた瞬間に実物の見た目で確認。保存してから「思ってたのと違う」がありません。</p></div>
-    <div class="card"><span class="em">🩺</span><b>レイアウト診断</b><p>タブと項目の配置が不自然になる設定を自動で検知して、具体的な直し方を提示。設定ミスを設定画面の中で潰します。</p></div>
+  <div class="fx">
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-80q-118 0-199-81t-81-199v-260q0-118 81-199t199-81q118 0 199 81t81 199v260q0 118-81 199T480-80Zm30-540h190q0-81-53-144t-137-74v218Zm-250 0h190v-218q-84 11-137 74t-53 144Zm219.79 480q91.21 0 155.71-64.35Q700-268.7 700-360v-200H260v200q0 91.3 64.29 155.65Q388.58-140 479.79-140Zm.21-420Zm30-60Zm-60 0Zm30 60Z"/></svg><b>クリックだけで振り分け</b><p>フォームの並び順どおりに項目チップが並び、クリックでタブへ。検索と種類フィルタ（入力項目／ラベル／テーブル）で100項目超でも迷いません。</p></div>
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24.75 0-42.37-17.63Q120-155.25 120-180v-600q0-24.75 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v600q0 24.75-17.62 42.37Q804.75-120 780-120H180Zm0-60h600v-520H180v520Zm157-148.15q-63-43.15-92-112Q274-509 336.96-552q62.96-43 143-43Q560-595 623-551.85q63 43.15 92 112Q686-371 623.04-328q-62.96 43-143 43Q400-285 337-328.15Zm247.95-34.68Q632.9-390.65 660-440q-27.1-49.35-75.05-77.17Q537-545 480-545t-104.95 27.83Q327.1-489.35 300-440q27.1 49.35 75.05 77.17Q423-335 480-335t104.95-27.83ZM480-440Zm35.5 35.38q14.5-14.62 14.5-35.5 0-20.88-14.62-35.38-14.62-14.5-35.5-14.5-20.88 0-35.38 14.62-14.5 14.62-14.5 35.5 0 20.88 14.62 35.38 14.62 14.5 35.5 14.5 20.88 0 35.38-14.62Z"/></svg><b>常に見えるライブプレビュー</b><p>プリセットも、こだわり設定の1項目も、変えた瞬間に実物の見た目で確認。保存してから「思ってたのと違う」がありません。</p></div>
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M838-120 627-331q-40 32-91.5 51.5T430-260q-81 0-149-38.5T171-400h76q35 37 82 58.5T430-320q104 0 177-73.5T680-570q0-104-73-177t-177-73q-101 0-173.5 70T180-580h-60q4-125 93.5-212.5T430-880q129 0 219.5 90.5T740-570q0 54-19.5 105.5T669-373l211 211-42 42ZM397-400l-63-208-52 148H80v-60h160l66-190h60l61 204 43-134h60l60 120h30v60h-67l-47-94-50 154h-59Z"/></svg><b>レイアウト診断</b><p>タブと項目の配置が不自然になる設定を自動で検知して、具体的な直し方を提示。設定ミスを設定画面の中で潰します。</p></div>
   </div>
 </div></section>
 
 <section class="band"><div class="wrap">
-  <div class="sec-kick">WHY BST</div>
   <h2 class="sec">タブUIの「あるある不満」を、全部設計で潰しました。</h2>
   <div style="overflow-x:auto;">
   <table class="cmp">
@@ -377,8 +475,7 @@ body{-webkit-text-size-adjust:100%;}
   <p style="font-size:11.5px;color:var(--mut);margin-top:8px;">※「一般的なタブ系プラグイン」は特定製品ではなく、タブ表示系プラグインで見られる一般的な仕様・制約を指します。</p>
 </div></section>
 
-<section id="trial"><div class="wrap">
-  <div class="sec-kick">FREE TRIAL</div>
+<section id="trial" class="inkband"><div class="wrap">
   <h2 class="sec">まず30日、無料で確かめてください。</h2>
   <div class="steps">
     <div class="step"><span class="no">1</span><b>ダウンロード</b><p>登録・メールアドレス不要。下のボタンからZIPを保存します。</p></div>
@@ -386,30 +483,29 @@ body{-webkit-text-size-adjust:100%;}
     <div class="step"><span class="no">3</span><b>全機能を30日</b><p>試用開始は設定を保存した日から。製品版は上書きするだけで、設定はそのまま引き継がれます。</p></div>
   </div>
   <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;">
-    <a class="btn btn--amber" href="trials/bst_tab-view_v1.3.0_trial.zip" download>試用版をダウンロード ↓</a>
-    <a class="btn btn--ghost" href="https://youtu.be/8DJ7G7xgVoc" target="_blank" rel="noopener">プラグインの追加方法（動画1分）↗</a>
+    <a class="btn btn--amber" href="trials/bst_tab-view_v1.3.0_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>試用版をダウンロード</a>
+    <a class="btn btn--ghost" href="https://youtu.be/8DJ7G7xgVoc" target="_blank" rel="noopener">プラグインの追加方法（動画1分）<svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"/></svg></a>
   </div>
 </div></section>
 
 <section class="band" id="price"><div class="wrap">
-  <div class="sec-kick">PRICING</div>
   <h2 class="sec">シンプルな料金。</h2>
   <div class="pricebox">
     <div>
       <div class="big">¥19,800<span>/年（税込）</span></div>
       <div class="sub">単品・1ドメイン（アプリ数・ユーザー数は無制限）</div>
-      <a class="btn btn--amber" href="https://buy.stripe.com/fZu28qcCh1ai96X5HZdfG09" target="_blank" rel="noopener" style="width:100%;justify-content:center;">年額プランを購入 ↗</a><!-- STRIPE_LINK:year -->
+      <a class="btn btn--amber" href="https://buy.stripe.com/fZu28qcCh1ai96X5HZdfG09" target="_blank" rel="noopener" style="width:100%;justify-content:center;">年額プランを購入<svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"/></svg></a><!-- STRIPE_LINK:year -->
       <div class="alt">
-        <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --><span class="mut">　公開中の基本プラグインすべて＋今後の新作も込み</span></div>
-        <div><a href="https://buy.stripe.com/5kQbJ0fOt1aigzpdardfG0a" target="_blank" rel="noopener">永久ライセンス ¥98,000 ↗</a><!-- STRIPE_LINK:perp --><span class="mut">　通信が一切ない完全オフライン版・買い切り</span></div>
-        <div class="mut">解約後もお支払い済み期間の満了までは動作し、kintone上のデータ・設定は消えません。<a href="index.html#faq">詳細FAQ →</a></div>
+        <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener">基本パック ¥39,800/年<svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"/></svg></a><!-- STRIPE_LINK:basic-year --><span class="mut">　公開中の基本プラグインすべて＋今後の新作も込み</span></div>
+        <div><a href="https://buy.stripe.com/5kQbJ0fOt1aigzpdardfG0a" target="_blank" rel="noopener">永久ライセンス ¥98,000<svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"/></svg></a><!-- STRIPE_LINK:perp --><span class="mut">　通信が一切ない完全オフライン版・買い切り</span></div>
+        <div class="mut">解約後もお支払い済み期間の満了までは動作し、kintone上のデータ・設定は消えません。<a href="index.html#faq">詳細FAQ</a></div>
       </div>
     </div>
     <dl class="spec"><dt>主な機能</dt><dd>タブ表示（追加・編集・詳細）／8プリセット＋こだわり設定＋タブ個別色／必須未入力バッジ／保存時の自動タブ切替／印刷時の全タブ展開／「すべて」タブ・タブ記憶・初期表示タブ／ラベルのタブ割り当て／フォーム途中への設置（スペース）</dd><dt>対応範囲</dt><dd>PC・モバイル（モバイルは横スクロール型）。ラベル・グループ・テーブルは親単位で制御。一覧インライン編集は対象外</dd><dt>設定</dt><dd>ノーコード。3ステップ＋ライブプレビュー。レイアウト診断つき</dd><dt>動作環境</dt><dd>kintoneスタンダードコース以上／Chrome・Edge 最新安定版</dd><dt>ライセンス</dt><dd>1ドメイン（同一kintoneドメイン内のアプリ数・ユーザー数は無制限）</dd></dl>
   </div>
 </div></section>
 
-<section class="faq"><div class="wrap"><div class="sec-kick">FAQ</div><h2 class="sec">よくある質問</h2>
+<section class="faq"><div class="wrap"><h2 class="sec">よくある質問</h2>
 <details><summary>タブに入れなかった項目はどうなりますか？</summary><p>既定では「常に表示」され、どのタブでも見えます。タイトルや顧客名など共通項目に向いています。設定後にアプリへ追加した新しい項目が勝手に隠れることもありません。</p></details>
 <details><summary>印刷するとき、他のタブの項目は欠けませんか？</summary><p>欠けません。ブラウザの印刷・レコード印刷画面のどちらでも、全項目が自動で展開されて印刷されます。タブバー自体は印刷されません。設定は不要です。</p></details>
 <details><summary>別のタブにある必須項目を入れ忘れたまま保存したら？</summary><p>保存時に未入力の必須項目があるタブへ自動で切り替わり、kintone標準のエラーが見える位置に表示されます。入力中もタブ上の赤バッジで未入力の必須件数がわかります。</p></details>

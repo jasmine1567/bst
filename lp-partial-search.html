@@ -308,6 +308,101 @@ h2.sec,.bstx-h2{margin:0 0 28px;}
 .bfaf{margin-top:36px;}
 @media(max-width:820px){.fx,.steps{grid-template-columns:1fr;}.fx-i{padding-bottom:20px;}.cfg-2col{grid-template-columns:1fr;gap:24px;}.dpanel+.dpanel,.dpanel.win{border-left:none;border-top:1px solid var(--line);}}
 
+/* ===== bstd: 共通デザインレイヤー（2026-10・全ページ同一）=====
+   方針: 箱と影を減らして罫線で組む／絵文字ではなく Material Symbols（インラインSVG）／
+         bst の黒×アンバーは「ロゴ色のラベル・見出しのバー・アイコン・黒帯のセクション」で効かせる */
+.mi{width:1em;height:1em;fill:currentColor;flex:none;vertical-align:-.15em;}
+.nb{white-space:nowrap;}
+/* 角丸と影を抑える */
+.card,.bstx-card,.bstx-democard,.bstx-cfg,.pricebox,.screen,.pcard,.plan,.panel,.vizcard,.nitem,.bcard,.bfeat,.cta,.cta-card,.box,.adm,.fdemo,.tdemo,.dcard,.modecard,.cfgmock,.demo,.tr,.feat,.can>div,.mk,.license,.howto .step{border-radius:8px;box-shadow:none;}
+.feat-box,.iconbn{border-radius:10px;box-shadow:none;}
+.pcard:hover{transform:none;box-shadow:none;border-color:var(--ink);}
+.bstx-democard{border:1px solid var(--line);}
+/* ボタン */
+.btn,.bt,.b,a.b,.cta .b,.bstnav .bstcta{border-radius:6px !important;}
+.btn,.bt{border-width:1px;}
+.btn .mi,.bt .mi,.b .mi{font-size:18px;}
+.btn--ghost,.bt-ghost{border-color:#cfcec6;background:transparent;color:var(--ink);}
+.btn--ghost:hover,.bt-ghost:hover{background:#fff;border-color:var(--ink);}
+/* ロゴ色のラベル（黒地にアンバー） */
+.eyebrow,.hero .kick,.feat-badge,.tag-bst{display:inline-block;background:var(--ink);color:var(--amber);border:none;border-radius:4px;padding:5px 11px;font-size:12px;font-weight:700;letter-spacing:.02em;}
+/* 見出し: アンバーのバー */
+section h2::before{content:"";display:block;width:40px;height:5px;background:var(--amber);margin-bottom:16px;}
+.demo2 h2::before,.kd-shell h2::before,.bstx-democard h2::before,.feat-box h2::before,.iconbn h2::before,.inkband h2::before,.band-in h2::before{display:none;}
+section{padding:64px 0;}
+.band{border:none;}
+h1 em{background:none !important;}
+h2.sec,.bstx-h2{margin:0 0 28px;}
+.lead{color:#4a4a45;}
+.sec-lead{font-size:15px;color:#4a4a45;max-width:44em;margin:-12px 0 28px;}
+/* トップの安心ポイント */
+.tr{border:none;border-top:2px solid var(--ink);border-radius:0;background:none;padding:16px 0 0;}
+.tr .em{font-size:20px;line-height:1;box-sizing:content-box;padding:8px;background:var(--ink);color:var(--amber);border-radius:8px;display:flex;}
+/* 罫線で区切る項目リスト */
+.fx{display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;}
+.fx-i{border-top:2px solid var(--ink);padding:20px 0 30px;}
+.fx-i>.mi{font-size:22px;box-sizing:content-box;padding:9px;background:var(--ink);color:var(--amber);border-radius:8px;display:block;margin-bottom:12px;}
+.fx-i b,.fx-i h3{display:block;font-size:16px;font-weight:700;line-height:1.5;margin:0 0 6px;}
+.fx-i p{font-size:14px;line-height:1.85;color:#4a4a45;}
+.fx.is-quiet .fx-i{border-top:1px solid #cfcec6;}
+.fx.is-quiet .fx-i>.mi{background:none;color:var(--ink);padding:0;font-size:26px;border-radius:0;}
+.fx.is-2{grid-template-columns:repeat(2,1fr);}
+.fx-no{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:var(--ink);color:var(--amber);border-radius:8px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:18px;margin-bottom:12px;}
+/* 黒帯のセクション（試用への導線など） */
+.inkband{background:var(--ink);color:#fff;border:none;}
+.inkband h2{color:#fff;}
+.inkband h2::after{content:"";display:block;width:40px;height:5px;background:var(--amber);margin-top:16px;}
+.inkband p,.inkband .step p,.inkband .sec-lead{color:#d6d5cd;}
+.inkband .step{border-top-color:#5a5a55;background:none;}
+.inkband .step .no{color:var(--amber);}
+.inkband .step b{color:#fff;}
+.inkband .btn--ghost{color:#fff;border-color:#77776f;}
+.inkband .btn--ghost:hover{background:#3a3a37;border-color:#fff;}
+/* 導入前／導入後 */
+.bfaf{display:grid;grid-template-columns:1fr 1fr;margin-top:36px;border-top:2px solid var(--ink);border-bottom:1px solid var(--line);}
+.bfaf-c{padding:18px 28px 20px 0;}
+.bfaf-c.is-after{padding:18px 0 20px 28px;border-left:1px solid var(--line);}
+.bfaf-lb{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.08em;color:var(--mut);margin-bottom:6px;}
+.bfaf-c.is-after .bfaf-lb{color:var(--ink);background:var(--amber);padding:1px 8px;border-radius:3px;}
+.bfaf-c p{font-size:14px;line-height:1.9;color:var(--mut);}
+.bfaf-c.is-after p{color:var(--ink);font-weight:500;}
+/* 設定画面のイメージ */
+.bstx-cfg{max-width:none;}
+.bstx-no{background:var(--ink);color:var(--amber);border-radius:4px;width:20px;height:20px;}
+.bstx-chip{border-radius:4px;border-width:1px;}
+.bstx-sim{border:none;border-left:4px solid var(--amber);border-radius:0;background:none;padding:2px 0 2px 12px;}
+.bstx-sim .mi{font-size:16px;margin-right:4px;}
+.cfg-note{font-size:13px;color:#4a4a45;line-height:1.85;margin-top:8px;}
+.cfg-2col{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start;}
+.cfg-pts{list-style:none;}
+.cfg-pts li{border-top:1px solid #cfcec6;padding:14px 0 16px;}
+.cfg-pts li:first-child{border-top:2px solid var(--ink);}
+.cfg-pts b{display:block;font-size:15px;margin-bottom:3px;}
+.cfg-pts li>span{font-size:13.5px;color:#4a4a45;line-height:1.8;display:block;}
+/* 比較表 */
+.bstx-cmp,.cmp{border-radius:0;box-shadow:none;}
+.bstx-cmp th,.bstx-cmp td{border:none;border-bottom:1px solid var(--line);padding:12px 14px;}
+.bstx-cmp thead th{background:none;border-bottom:2px solid var(--ink);}
+.bstx-cmp thead th.me,.cmp thead th.me{background:var(--ink);color:var(--amber);}
+.bstx-cmp td:first-child{background:none;}
+/* 手順 */
+.steps{display:grid;gap:0 40px;grid-template-columns:repeat(3,1fr);}
+.step{background:none;border:none;border-top:2px solid var(--ink);border-radius:0;padding:16px 0 8px;}
+.step .no{background:none;color:var(--ink);width:auto;height:auto;border-radius:0;font-family:"JetBrains Mono",monospace;font-size:22px;margin-bottom:4px;}
+.step .no{display:block;font-weight:700;}
+.step b{display:block;font-size:15.5px;margin-bottom:3px;}
+.step p{font-size:13.5px;color:#4a4a45;line-height:1.8;}
+/* 料金・FAQ */
+.pricebox{padding:32px;gap:40px;}
+.spec dd{color:#4a4a45;line-height:1.8;}
+.faq details{background:none;border:none;border-top:1px solid var(--line);border-radius:0;padding:16px 0;margin:0;}
+.faq details:last-child{border-bottom:1px solid var(--line);}
+.faq summary{font-size:15px;}
+.faq p{font-size:14px;color:#4a4a45;line-height:1.9;max-width:46em;}
+@media(max-width:820px){.fx,.fx.is-2,.steps{grid-template-columns:1fr;}.fx-i{padding-bottom:20px;}.cfg-2col{grid-template-columns:1fr;gap:24px;}.bfaf{grid-template-columns:1fr;}.bfaf-c,.bfaf-c.is-after{padding:16px 0;}.bfaf-c.is-after{border-left:none;border-top:1px solid var(--line);}}
+@media(max-width:640px){table.tb{display:block;overflow-x:auto;max-width:100%;}}
+/* ===== /bstd ===== */
+
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -325,14 +420,13 @@ h1,h2,h3{text-wrap:balance;}
 p,li,dd,dt{text-wrap:pretty;}
 @supports (word-break: auto-phrase){h1,h2,h3,p{word-break:auto-phrase;}}
 
-/* ===== このページの折り返し方針 =====
+/* ===== bstw: 折り返し方針（全ページ同一）=====
    すべて文節の切れ目で折り返す（語の途中では切らない）。
-   見出し・リード・3段組の短い説明文: 行の長さを揃える（balance）ので、行末の不揃いが目立たない
-   長めの文章（FAQ・表）: 行末まで詰め、最終行の孤立だけ避ける（pretty） */
-.nb{white-space:nowrap;}
+   見出し・リード・短い説明文は行の長さを揃える（balance）、長い文章は最終行の孤立だけ避ける（pretty） */
 p,li,dd,dt,td,th,summary{line-break:strict;text-wrap:pretty;}
-h1,h2,h3,.lead,.sec-lead,.fx-i b,.fx-i p,.cfg-pts b,.cfg-pts span,.cfg-note,.step b,.step p,.bfaf-c p,.nores,summary{text-wrap:balance;}
-@supports (word-break: auto-phrase){p,li,dd,dt,td,th,summary,.fx-i b,.cfg-pts b,.cfg-pts span,.step b{word-break:auto-phrase;}}
+h1,h2,h3,.lead,.sec-lead,.h1sub,.fx-i b,.fx-i h3,.fx-i p,.cfg-pts b,.cfg-pts li>span,.cfg-note,.step b,.step p,.bfaf-c p,.nores,summary,.pcard p,.tr span,.plan p,.feat-lead,.feat-pt p,.bcard p,.bcard b,.nitem b{text-wrap:balance;}
+@supports (word-break: auto-phrase){p,li,dd,dt,summary{word-break:auto-phrase;}}
+/* ===== /bstw ===== */
 
 /* =====================================================================
    bstm: モバイル最適化（全ページ共通・スタイルの最後に置くこと）
@@ -393,7 +487,7 @@ body{-webkit-text-size-adjust:100%;}
   <p class="lead">kintoneの一覧の検索は、原則「前方一致」です。そのため<span class="nb">「EST-2026-0142」</span>は「142」では出てきません。このプラグインは一覧に検索バーを追加し、番号の一部でも「含む」で見つけます。項目ごとに、その項目に合った入力欄で絞り込めます。</p>
   <div class="price-row"><span class="disp">¥19,800</span><small>/年 税込・1ドメイン</small></div>
   <div class="btns">
-    <a class="btn btn--amber" href="trials/bst_partial-search_v2.5.0_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>30日無料で試す</a>
+    <a class="btn btn--amber" href="trials/bst_partial-search_v2.5.0_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>30日無料で試す</a>
     <a class="btn btn--ghost" href="#try">デモを触ってみる</a>
   </div>
 
@@ -544,7 +638,7 @@ body{-webkit-text-size-adjust:100%;}
   <p class="bstx-note">※「一般的な検索プラグイン」は特定の製品ではなく、検索系プラグインで見られる一般的な仕様・制約を指します。</p>
 </div></section>
 
-<section id="trial" class="band"><div class="wrap">
+<section id="trial" class="inkband"><div class="wrap">
   <h2 class="sec">まず30日、無料で確かめてください。</h2>
   <div class="steps">
     <div class="step"><span class="no">1</span><b>ダウンロード</b><p>登録もメールアドレスも不要です。下のボタンからZIPを保存します。</p></div>
@@ -552,7 +646,7 @@ body{-webkit-text-size-adjust:100%;}
     <div class="step"><span class="no">3</span><b>全機能を30日間</b><p>試用は設定を保存した日から始まります。製品版は上書きするだけで、設定はそのまま引き継がれます。</p></div>
   </div>
   <div class="btns" style="margin-top:28px;">
-    <a class="btn btn--amber" href="trials/bst_partial-search_v2.5.0_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>試用版をダウンロード</a>
+    <a class="btn btn--amber" href="trials/bst_partial-search_v2.5.0_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>試用版をダウンロード</a>
     <a class="btn btn--ghost" href="https://youtu.be/8DJ7G7xgVoc" target="_blank" rel="noopener">プラグインの追加方法（動画1分）<svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"/></svg></a>
   </div>
 </div></section>

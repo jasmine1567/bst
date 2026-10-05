@@ -156,6 +156,101 @@
 .bstx-sw{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;cursor:pointer;user-select:none;padding:5px 11px;border:1.5px solid #d1d5db;border-radius:999px;background:#fff;color:#9ca3af;}
 .bstx-sw.on{border-color:#16a34a;background:#f0fdf4;color:#15803d;}
 
+/* ===== bstd: 共通デザインレイヤー（2026-10・全ページ同一）=====
+   方針: 箱と影を減らして罫線で組む／絵文字ではなく Material Symbols（インラインSVG）／
+         bst の黒×アンバーは「ロゴ色のラベル・見出しのバー・アイコン・黒帯のセクション」で効かせる */
+.mi{width:1em;height:1em;fill:currentColor;flex:none;vertical-align:-.15em;}
+.nb{white-space:nowrap;}
+/* 角丸と影を抑える */
+.card,.bstx-card,.bstx-democard,.bstx-cfg,.pricebox,.screen,.pcard,.plan,.panel,.vizcard,.nitem,.bcard,.bfeat,.cta,.cta-card,.box,.adm,.fdemo,.tdemo,.dcard,.modecard,.cfgmock,.demo,.tr,.feat,.can>div,.mk,.license,.howto .step{border-radius:8px;box-shadow:none;}
+.feat-box,.iconbn{border-radius:10px;box-shadow:none;}
+.pcard:hover{transform:none;box-shadow:none;border-color:var(--ink);}
+.bstx-democard{border:1px solid var(--line);}
+/* ボタン */
+.btn,.bt,.b,a.b,.cta .b,.bstnav .bstcta{border-radius:6px !important;}
+.btn,.bt{border-width:1px;}
+.btn .mi,.bt .mi,.b .mi{font-size:18px;}
+.btn--ghost,.bt-ghost{border-color:#cfcec6;background:transparent;color:var(--ink);}
+.btn--ghost:hover,.bt-ghost:hover{background:#fff;border-color:var(--ink);}
+/* ロゴ色のラベル（黒地にアンバー） */
+.eyebrow,.hero .kick,.feat-badge,.tag-bst{display:inline-block;background:var(--ink);color:var(--amber);border:none;border-radius:4px;padding:5px 11px;font-size:12px;font-weight:700;letter-spacing:.02em;}
+/* 見出し: アンバーのバー */
+section h2::before{content:"";display:block;width:40px;height:5px;background:var(--amber);margin-bottom:16px;}
+.demo2 h2::before,.kd-shell h2::before,.bstx-democard h2::before,.feat-box h2::before,.iconbn h2::before,.inkband h2::before,.band-in h2::before{display:none;}
+section{padding:64px 0;}
+.band{border:none;}
+h1 em{background:none !important;}
+h2.sec,.bstx-h2{margin:0 0 28px;}
+.lead{color:#4a4a45;}
+.sec-lead{font-size:15px;color:#4a4a45;max-width:44em;margin:-12px 0 28px;}
+/* トップの安心ポイント */
+.tr{border:none;border-top:2px solid var(--ink);border-radius:0;background:none;padding:16px 0 0;}
+.tr .em{font-size:20px;line-height:1;box-sizing:content-box;padding:8px;background:var(--ink);color:var(--amber);border-radius:8px;display:flex;}
+/* 罫線で区切る項目リスト */
+.fx{display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;}
+.fx-i{border-top:2px solid var(--ink);padding:20px 0 30px;}
+.fx-i>.mi{font-size:22px;box-sizing:content-box;padding:9px;background:var(--ink);color:var(--amber);border-radius:8px;display:block;margin-bottom:12px;}
+.fx-i b,.fx-i h3{display:block;font-size:16px;font-weight:700;line-height:1.5;margin:0 0 6px;}
+.fx-i p{font-size:14px;line-height:1.85;color:#4a4a45;}
+.fx.is-quiet .fx-i{border-top:1px solid #cfcec6;}
+.fx.is-quiet .fx-i>.mi{background:none;color:var(--ink);padding:0;font-size:26px;border-radius:0;}
+.fx.is-2{grid-template-columns:repeat(2,1fr);}
+.fx-no{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:var(--ink);color:var(--amber);border-radius:8px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:18px;margin-bottom:12px;}
+/* 黒帯のセクション（試用への導線など） */
+.inkband{background:var(--ink);color:#fff;border:none;}
+.inkband h2{color:#fff;}
+.inkband h2::after{content:"";display:block;width:40px;height:5px;background:var(--amber);margin-top:16px;}
+.inkband p,.inkband .step p,.inkband .sec-lead{color:#d6d5cd;}
+.inkband .step{border-top-color:#5a5a55;background:none;}
+.inkband .step .no{color:var(--amber);}
+.inkband .step b{color:#fff;}
+.inkband .btn--ghost{color:#fff;border-color:#77776f;}
+.inkband .btn--ghost:hover{background:#3a3a37;border-color:#fff;}
+/* 導入前／導入後 */
+.bfaf{display:grid;grid-template-columns:1fr 1fr;margin-top:36px;border-top:2px solid var(--ink);border-bottom:1px solid var(--line);}
+.bfaf-c{padding:18px 28px 20px 0;}
+.bfaf-c.is-after{padding:18px 0 20px 28px;border-left:1px solid var(--line);}
+.bfaf-lb{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.08em;color:var(--mut);margin-bottom:6px;}
+.bfaf-c.is-after .bfaf-lb{color:var(--ink);background:var(--amber);padding:1px 8px;border-radius:3px;}
+.bfaf-c p{font-size:14px;line-height:1.9;color:var(--mut);}
+.bfaf-c.is-after p{color:var(--ink);font-weight:500;}
+/* 設定画面のイメージ */
+.bstx-cfg{max-width:none;}
+.bstx-no{background:var(--ink);color:var(--amber);border-radius:4px;width:20px;height:20px;}
+.bstx-chip{border-radius:4px;border-width:1px;}
+.bstx-sim{border:none;border-left:4px solid var(--amber);border-radius:0;background:none;padding:2px 0 2px 12px;}
+.bstx-sim .mi{font-size:16px;margin-right:4px;}
+.cfg-note{font-size:13px;color:#4a4a45;line-height:1.85;margin-top:8px;}
+.cfg-2col{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start;}
+.cfg-pts{list-style:none;}
+.cfg-pts li{border-top:1px solid #cfcec6;padding:14px 0 16px;}
+.cfg-pts li:first-child{border-top:2px solid var(--ink);}
+.cfg-pts b{display:block;font-size:15px;margin-bottom:3px;}
+.cfg-pts li>span{font-size:13.5px;color:#4a4a45;line-height:1.8;display:block;}
+/* 比較表 */
+.bstx-cmp,.cmp{border-radius:0;box-shadow:none;}
+.bstx-cmp th,.bstx-cmp td{border:none;border-bottom:1px solid var(--line);padding:12px 14px;}
+.bstx-cmp thead th{background:none;border-bottom:2px solid var(--ink);}
+.bstx-cmp thead th.me,.cmp thead th.me{background:var(--ink);color:var(--amber);}
+.bstx-cmp td:first-child{background:none;}
+/* 手順 */
+.steps{display:grid;gap:0 40px;grid-template-columns:repeat(3,1fr);}
+.step{background:none;border:none;border-top:2px solid var(--ink);border-radius:0;padding:16px 0 8px;}
+.step .no{background:none;color:var(--ink);width:auto;height:auto;border-radius:0;font-family:"JetBrains Mono",monospace;font-size:22px;margin-bottom:4px;}
+.step .no{display:block;font-weight:700;}
+.step b{display:block;font-size:15.5px;margin-bottom:3px;}
+.step p{font-size:13.5px;color:#4a4a45;line-height:1.8;}
+/* 料金・FAQ */
+.pricebox{padding:32px;gap:40px;}
+.spec dd{color:#4a4a45;line-height:1.8;}
+.faq details{background:none;border:none;border-top:1px solid var(--line);border-radius:0;padding:16px 0;margin:0;}
+.faq details:last-child{border-bottom:1px solid var(--line);}
+.faq summary{font-size:15px;}
+.faq p{font-size:14px;color:#4a4a45;line-height:1.9;max-width:46em;}
+@media(max-width:820px){.fx,.fx.is-2,.steps{grid-template-columns:1fr;}.fx-i{padding-bottom:20px;}.cfg-2col{grid-template-columns:1fr;gap:24px;}.bfaf{grid-template-columns:1fr;}.bfaf-c,.bfaf-c.is-after{padding:16px 0;}.bfaf-c.is-after{border-left:none;border-top:1px solid var(--line);}}
+@media(max-width:640px){table.tb{display:block;overflow-x:auto;max-width:100%;}}
+/* ===== /bstd ===== */
+
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -172,6 +267,14 @@
 h1,h2,h3{text-wrap:balance;}
 p,li,dd,dt{text-wrap:pretty;}
 @supports (word-break: auto-phrase){h1,h2,h3,p{word-break:auto-phrase;}}
+
+/* ===== bstw: 折り返し方針（全ページ同一）=====
+   すべて文節の切れ目で折り返す（語の途中では切らない）。
+   見出し・リード・短い説明文は行の長さを揃える（balance）、長い文章は最終行の孤立だけ避ける（pretty） */
+p,li,dd,dt,td,th,summary{line-break:strict;text-wrap:pretty;}
+h1,h2,h3,.lead,.sec-lead,.h1sub,.fx-i b,.fx-i h3,.fx-i p,.cfg-pts b,.cfg-pts li>span,.cfg-note,.step b,.step p,.bfaf-c p,.nores,summary,.pcard p,.tr span,.plan p,.feat-lead,.feat-pt p,.bcard p,.bcard b,.nitem b{text-wrap:balance;}
+@supports (word-break: auto-phrase){p,li,dd,dt,summary{word-break:auto-phrase;}}
+/* ===== /bstw ===== */
 
 /* =====================================================================
    bstm: モバイル最適化（全ページ共通・スタイルの最後に置くこと）
@@ -252,8 +355,8 @@ body{-webkit-text-size-adjust:100%;}
       <p class="lead">案件・予約・シフト・訪問予定。日付を持つレコードを<strong>月・週・日・リスト</strong>のカレンダーで表示し、<strong>その場で追加・編集・削除</strong>。カテゴリごとの色分けで、チームの動きがひと目で分かります。設定はGUIだけ、外部通信なしの完全ローカル動作です。</p>
       <div class="price-row"><span class="price disp">¥19,800</span><small>/年 税込・1ドメイン</small></div>
       <div class="cta-row">
-          <a class="btn btn--amber" href="trials/bst_calendar-view_v4_trial.zip" download title="登録・メール不要。ダウンロードして読み込むだけで30日間試せます">30日無料試用版をダウンロード ↓</a>
-        <a class="btn" style="background:#252525;border-color:#252525;color:#fff;" href="https://buy.stripe.com/00wbJ06dT8CKbf55HZdfG03" target="_blank" rel="noopener">年額プランを購入 ↗<!-- STRIPE_LINK:year --></a>
+          <a class="btn btn--amber" href="trials/bst_calendar-view_v4_trial.zip" download title="登録・メール不要。ダウンロードして読み込むだけで30日間試せます"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>30日無料試用版をダウンロード</a>
+        <a class="btn" style="background:#252525;border-color:#252525;color:#fff;" href="https://buy.stripe.com/00wbJ06dT8CKbf55HZdfG03" target="_blank" rel="noopener">年額プランを購入<svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"/></svg><!-- STRIPE_LINK:year --></a>
         <a class="btn btn--ghost" href="#features">機能を見る</a>
       </div>
       <p class="note">外部通信なしの完全ローカル動作。kintoneスタンダードコース以上・PC（Chrome／Edge）とモバイルに対応。</p>
@@ -265,7 +368,6 @@ body{-webkit-text-size-adjust:100%;}
 <!-- ===== bstx: 触れるデモ ===== -->
 <section style="padding:56px 0;">
   <div class="wrap" style="max-width:860px;">
-    <div class="bstx-kick">TRY — 触って試せるカレンダーデモ</div>
     <h2 class="bstx-h2">表示切替と色分けを、触ってみてください。</h2>
     <div class="bstx-democard" style="max-width:860px;">
       <div class="fh">
@@ -287,7 +389,6 @@ body{-webkit-text-size-adjust:100%;}
 <!-- ===== 追加: サンプル画面 ===== -->
 <section style="padding:56px 0;background:#fff;">
   <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
-    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#B57E00;">SAMPLE SCREEN</div>
     <h2 style="font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:6px 0 6px;">触ってみてください。導入後は、この画面になります。</h2>
     <p style="font-size:15px;color:#6E6E68;margin:0 0 20px;">下のカレンダーは<b>動くデモ</b>です。月・週・日・リストのタブ切替と、予定クリックの詳細表示を実際にお試しいただけます。</p>
     <div id="bstcal" style="background:#fff;border:1px solid #E4E3DB;border-radius:14px;box-shadow:0 18px 44px rgba(37,37,37,.12);overflow:hidden;">
@@ -305,7 +406,7 @@ body{-webkit-text-size-adjust:100%;}
       </div>
       <div id="bc-toast" style="display:none;background:#252525;color:#FFB800;font-size:12.5px;font-weight:700;text-align:center;padding:8px 12px;"></div>
       <div id="bc-body" style="padding:14px;min-height:480px;"></div>
-      <div id="bc-detail" style="border-top:1px solid #E4E3DB;background:#FBFBF8;padding:12px 18px;font-size:13px;color:#6E6E68;min-height:52px;">💡 予定をクリックすると、ここに詳細が表示されます（実物ではポップオーバー表示）。ビュー切替タブは実際に動きます。</div>
+      <div id="bc-detail" style="border-top:1px solid #E4E3DB;background:#FBFBF8;padding:12px 18px;font-size:13px;color:#6E6E68;min-height:52px;">予定をクリックすると、ここに詳細が表示されます（実物ではポップオーバー表示）。ビュー切替タブは実際に動きます。</div>
     </div>
     <p style="font-size:12.5px;color:#6E6E68;margin-top:10px;">※ 本デモは表示イメージです。予定の追加・編集・「今日」以外の月への移動などの操作は、<a href="trials/bst_calendar-view_v4_trial.zip" download style="color:#B57E00;font-weight:700;">30日無料試用版</a>で実データと一緒にお試しください。</p>
     <script>
@@ -407,7 +508,6 @@ body{-webkit-text-size-adjust:100%;}
 <!-- ===== bstx: CONFIG / WHY BST ===== -->
 <section style="padding:56px 0;">
   <div class="wrap" style="max-width:860px;">
-    <div class="bstx-kick">CONFIG</div>
     <h2 class="bstx-h2">設定は、3つ選ぶだけ。</h2>
     <div class="bstx-cfg">
       <div class="ch">カレンダービュープラグイン 設定<span>実際の設定画面のイメージ</span></div>
@@ -415,20 +515,19 @@ body{-webkit-text-size-adjust:100%;}
         <div class="bstx-step"><span class="bstx-no">1</span>タイトルにするフィールド　<span style="font-weight:400;color:#6E6E68;">例:</span><span class="bstx-chip on">案件名</span></div>
         <div class="bstx-step"><span class="bstx-no">2</span>日付（開始・終了）のフィールド　<span style="font-weight:400;color:#6E6E68;">例:</span><span class="bstx-chip on">訪問日</span><span class="bstx-chip on">終了日時（任意）</span></div>
         <div class="bstx-step"><span class="bstx-no">3</span>色分けの基準　<span style="font-weight:400;color:#6E6E68;">例:</span><span class="bstx-chip on">種別</span><span class="bstx-chip">担当者</span><span class="bstx-chip">ステータス</span></div>
-        <div class="bstx-sim">⏱ <b>導入からここまで約3分。</b>色は選択肢ごとに自動割り当て（手動調整も可）。</div>
+        <div class="bstx-sim"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="m627-287 45-45-159-160v-201h-60v225l174 181ZM480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-82 31.5-155t86-127.5Q252-817 325-848.5T480-880q82 0 155 31.5t127.5 86Q817-708 848.5-635T880-480q0 82-31.5 155t-86 127.5Q708-143 635-111.5T480-80Zm0-400Zm0 340q140 0 240-100t100-240q0-140-100-240T480-820q-140 0-240 100T140-480q0 140 100 240t240 100Z"/></svg><b>導入からここまで約3分。</b>色は選択肢ごとに自動割り当て（手動調整も可）。</div>
       </div>
     </div>
-    <div class="bstx-cards">
-      <div class="bstx-card"><span class="em">🖱</span><b>GUIで選ぶだけ</b><p>フィールドをドロップダウンから選ぶだけ。コードも数式も不要で、誰が設定しても同じ品質になります。</p></div>
-      <div class="bstx-card"><span class="em">🎨</span><b>色は自動、調整も自由</b><p>選択肢ごとに見分けやすい色を自動割り当て。ブランドカラーに合わせた手動指定もできます。</p></div>
-      <div class="bstx-card"><span class="em">🔀</span><b>一覧の絞り込みがそのまま効く</b><p>「自分の担当だけ」「今月の予約だけ」——kintoneの一覧絞り込みと組み合わせて自在に使えます。</p></div>
+    <div class="fx is-quiet">
+      <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-80q-118 0-199-81t-81-199v-260q0-118 81-199t199-81q118 0 199 81t81 199v260q0 118-81 199T480-80Zm30-540h190q0-81-53-144t-137-74v218Zm-250 0h190v-218q-84 11-137 74t-53 144Zm219.79 480q91.21 0 155.71-64.35Q700-268.7 700-360v-200H260v200q0 91.3 64.29 155.65Q388.58-140 479.79-140Zm.21-420Zm30-60Zm-60 0Zm30 60Z"/></svg><b>GUIで選ぶだけ</b><p>フィールドをドロップダウンから選ぶだけ。コードも数式も不要で、誰が設定しても同じ品質になります。</p></div>
+      <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-85 32-158t87.5-127q55.5-54 130-84.5T489-880q79 0 150 26.5T763.5-780q53.5 47 85 111.5T880-527q0 108-63 170.5T650-294h-75q-18 0-31 14t-13 31q0 27 14.5 46t14.5 44q0 38-21 58.5T480-80Zm0-400Zm-198 11q15-15 15-35t-15-35q-15-15-35-15t-35 15q-15 15-15 35t15 35q15 15 35 15t35-15Zm126-170q15-15 15-35t-15-35q-15-15-35-15t-35 15q-15 15-15 35t15 35q15 15 35 15t35-15Zm214 0q15-15 15-35t-15-35q-15-15-35-15t-35 15q-15 15-15 35t15 35q15 15 35 15t35-15Zm131 170q15-15 15-35t-15-35q-15-15-35-15t-35 15q-15 15-15 35t15 35q15 15 35 15t35-15ZM480-140q11 0 15.5-4.5T500-159q0-14-14.5-26T471-238q0-46 30-81t76-35h73q76 0 123-44.5T820-527q0-132-100-212.5T489-820q-146 0-247.5 98.5T140-480q0 141 99.5 240.5T480-140Z"/></svg><b>色は自動、調整も自由</b><p>選択肢ごとに見分けやすい色を自動割り当て。ブランドカラーに合わせた手動指定もできます。</p></div>
+      <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M440-160q-17 0-28.5-11.5T400-200v-240L161-745q-14-17-4-36t31-19h584q21 0 31 19t-4 36L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-276 240-304H240l240 304Zm0 0Z"/></svg><b>一覧の絞り込みがそのまま効く</b><p>「自分の担当だけ」「今月の予約だけ」——kintoneの一覧絞り込みと組み合わせて自在に使えます。</p></div>
     </div>
   </div>
 </section>
 
 <section style="padding:56px 0;background:#F3F2EC;border-top:1px solid #E4E3DB;border-bottom:1px solid #E4E3DB;">
   <div class="wrap" style="max-width:860px;">
-    <div class="bstx-kick">WHY BST</div>
     <h2 class="bstx-h2">他のカレンダープラグインとの違い。</h2>
     <div style="overflow-x:auto;">
     <table class="bstx-cmp">
@@ -450,7 +549,6 @@ body{-webkit-text-size-adjust:100%;}
 <!-- ===== 追加: 標準機能との比較 ===== -->
 <section style="padding:56px 0;background:#F3F2EC;border-top:1px solid #E4E3DB;border-bottom:1px solid #E4E3DB;">
   <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
-    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#B57E00;">VS kintone標準</div>
     <h2 style="font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:6px 0 18px;">標準機能と、何が変わるのか。</h2>
     <div style="overflow-x:auto;">
     <table style="width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid #E4E3DB;border-radius:14px;overflow:hidden;min-width:640px;">
@@ -490,26 +588,22 @@ body{-webkit-text-size-adjust:100%;}
   </div>
 </section>
 <!-- ===== 追加: 30日無料試用（3ステップ） ===== -->
-<section id="trial" style="padding:56px 0;background:#252525;color:#fff;">
-  <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
-    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#FFB800;">FREE TRIAL</div>
-    <h2 style="font-size:clamp(22px,3.4vw,32px);font-weight:900;letter-spacing:-.01em;margin:6px 0 8px;color:#fff;">その便利さ、まず30日間ゼロ円で。</h2>
-    <p style="color:#cfcec6;font-size:15px;margin:0 0 26px;">登録・メールアドレス・支払い情報、すべて不要。ダウンロードして読み込むだけで、製品版と同じ機能を実データで試せます。</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:28px;">
-      <div style="background:#303030;border-radius:14px;padding:20px;"><div style="width:40px;height:40px;border-radius:50%;background:#FFB800;color:#252525;font-weight:900;font-size:20px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;">1</div><b style="font-size:15px;">ダウンロード</b><p style="margin:6px 0 0;font-size:13px;color:#cfcec6;">下のボタンからZIPを保存（約30KB・登録不要）。</p></div>
-      <div style="background:#303030;border-radius:14px;padding:20px;"><div style="width:40px;height:40px;border-radius:50%;background:#FFB800;color:#252525;font-weight:900;font-size:20px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;">2</div><b style="font-size:15px;">kintoneに読み込む</b><p style="margin:6px 0 0;font-size:13px;color:#cfcec6;">システム管理 → プラグイン → 読み込む。アプリに追加して設定を保存。</p></div>
-      <div style="background:#303030;border-radius:14px;padding:20px;"><div style="width:40px;height:40px;border-radius:50%;background:#FFB800;color:#252525;font-weight:900;font-size:20px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;">3</div><b style="font-size:15px;">設定した日から30日</b><p style="margin:6px 0 0;font-size:13px;color:#cfcec6;">試用開始は設定を保存した日。気に入ったら製品版を上書きするだけ、<b style="color:#FFB800;">設定はそのまま引き継ぎ</b>。</p></div>
+<section id="trial" class="inkband"><div class="wrap">
+    <h2 class="sec">その便利さ、まず30日間ゼロ円で。</h2>
+    <p class="sec-lead">登録・メールアドレス・支払い情報、すべて不要。ダウンロードして読み込むだけで、製品版と同じ機能を実データで試せます。</p>
+    <div class="steps">
+      <div class="step"><span class="no">1</span><b>ダウンロード</b><p>下のボタンからZIPを保存（約30KB・登録不要）。</p></div>
+      <div class="step"><span class="no">2</span><b>kintoneに読み込む</b><p>システム管理 → プラグイン → 読み込む。アプリに追加して設定を保存。</p></div>
+      <div class="step"><span class="no">3</span><b>設定した日から30日</b><p>試用開始は設定を保存した日。気に入ったら製品版を上書きするだけ、設定はそのまま引き継ぎ。</p></div>
     </div>
-    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
-      <a href="trials/bst_calendar-view_v4_trial.zip" download style="display:inline-flex;align-items:center;gap:8px;border-radius:999px;font-weight:700;font-size:16px;padding:16px 30px;background:#FFB800;color:#252525;text-decoration:none;">30日無料試用版をダウンロード ↓</a>
-      <span style="font-size:12.5px;color:#9a998f;">外部通信なし・試用版も完全ローカル動作／社内検証・稟議用の事前確認にどうぞ</span>
+    <div class="btns" style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+      <a class="btn btn--amber" href="trials/bst_calendar-view_v4_trial.zip" download>30日無料試用版をダウンロード</a>
+      <span style="font-size:12.5px;color:#b9b8af;">外部通信なし・試用版も完全ローカル動作／社内検証・稟議用の事前確認にどうぞ</span>
     </div>
-  </div>
-</section>
+  </div></section>
 
 <section id="views" style="background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
   <div class="wrap">
-    <span class="sec-eyebrow">4つのビュー</span>
     <h2>見たい粒度で、切り替える。</h2>
     <p class="lead" style="margin-bottom:26px;">kintone標準のカレンダーは月表示のみ。本プラグインは4つのビューをワンクリック（またはキー1つ）で切り替えられます。</p>
     <div class="viz">
@@ -523,34 +617,31 @@ body{-webkit-text-size-adjust:100%;}
 
 <section id="features">
   <div class="wrap">
-    <span class="sec-eyebrow">主な機能</span>
     <h2>見るだけでなく、その場で動かせる。</h2>
-    <div class="grid" style="margin-top:18px;">
-      <div class="feat"><div class="ic">🎨</div><h3>カテゴリ色分け</h3><p>ドロップダウン等の選択肢フィールドをカテゴリとして色を割り当て。凡例からのフィルター表示にも対応。</p></div>
-      <div class="feat"><div class="ic">🔍</div><h3>詳細ポップオーバー</h3><p>予定をクリックすると、タイトル・時間・場所・メモをその場で確認。レコード詳細への移動も1クリック。</p></div>
-      <div class="feat"><div class="ic">✍️</div><h3>その場で追加・編集・削除</h3><p>日付をクリックして新規予定を追加、既存予定はモーダルで編集・削除。許可する操作は設定でON/OFFできます。</p></div>
-      <div class="feat"><div class="ic">📱</div><h3>モバイル対応</h3><p>kintoneモバイルでもカレンダー表示。外出先から今日の予定を確認できます。</p></div>
+    <div class="fx" style="margin-top:18px;">
+      <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-85 32-158t87.5-127q55.5-54 130-84.5T489-880q79 0 150 26.5T763.5-780q53.5 47 85 111.5T880-527q0 108-63 170.5T650-294h-75q-18 0-31 14t-13 31q0 27 14.5 46t14.5 44q0 38-21 58.5T480-80Zm0-400Zm-198 11q15-15 15-35t-15-35q-15-15-35-15t-35 15q-15 15-15 35t15 35q15 15 35 15t35-15Zm126-170q15-15 15-35t-15-35q-15-15-35-15t-35 15q-15 15-15 35t15 35q15 15 35 15t35-15Zm214 0q15-15 15-35t-15-35q-15-15-35-15t-35 15q-15 15-15 35t15 35q15 15 35 15t35-15Zm131 170q15-15 15-35t-15-35q-15-15-35-15t-35 15q-15 15-15 35t15 35q15 15 35 15t35-15ZM480-140q11 0 15.5-4.5T500-159q0-14-14.5-26T471-238q0-46 30-81t76-35h73q76 0 123-44.5T820-527q0-132-100-212.5T489-820q-146 0-247.5 98.5T140-480q0 141 99.5 240.5T480-140Z"/></svg><h3>カテゴリ色分け</h3><p>ドロップダウン等の選択肢フィールドをカテゴリとして色を割り当て。凡例からのフィルター表示にも対応。</p></div>
+      <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M796-121 533-384q-30 26-70 40.5T378-329q-108 0-183-75t-75-181q0-106 75-181t182-75q106 0 180.5 75T632-585q0 43-14 83t-42 75l264 262-44 44ZM377-389q81 0 138-57.5T572-585q0-81-57-138.5T377-781q-82 0-139.5 57.5T180-585q0 81 57.5 138.5T377-389Z"/></svg><h3>詳細ポップオーバー</h3><p>予定をクリックすると、タイトル・時間・場所・メモをその場で確認。レコード詳細への移動も1クリック。</p></div>
+      <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z"/></svg><h3>その場で追加・編集・削除</h3><p>日付をクリックして新規予定を追加、既存予定はモーダルで編集・削除。許可する操作は設定でON/OFFできます。</p></div>
+      <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M501-540ZM80-160v-60h421v60H80Zm100-120q-24 0-42-18t-18-42v-400q0-24 18-42t42-18h600q24 0 42 18t18 42H180v400h321v60H180Zm640 60v-400H621v400h199Zm-214 60q-18 0-31.5-13.5T561-205v-430q0-18 13.5-31.5T606-680h229q18 0 31.5 13.5T880-635v430q0 18-13.5 31.5T835-160H606Zm115-360q12 0 21-9t9-21q0-12-9-21t-21.48-9Q709-580 700-571t-9 21.48q0 11.52 9 20.52t21 9Zm0 100Z"/></svg><h3>モバイル対応</h3><p>kintoneモバイルでもカレンダー表示。外出先から今日の予定を確認できます。</p></div>
       <div class="feat"><div class="ic">⌨️</div><h3>キーボードショートカット</h3><p><kbd>←</kbd><kbd>→</kbd>で期間移動、キー1つでビュー切替。マウスに持ち替えず操作できます。</p></div>
-      <div class="feat"><div class="ic">🌗</div><h3>ライト／ダーク＋アクセント</h3><p>テーマとアクセントカラーを選択可能。チームの好みや既存カスタマイズの配色に合わせられます。</p></div>
+      <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5ZM500-140q137-10 228.5-106T820-480q0-138-91.5-234T500-820v680Z"/></svg><h3>ライト／ダーク＋アクセント</h3><p>テーマとアクセントカラーを選択可能。チームの好みや既存カスタマイズの配色に合わせられます。</p></div>
     </div>
   </div>
 </section>
 
 <section style="background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
   <div class="wrap">
-    <span class="sec-eyebrow">導入のかんたんさ</span>
     <h2>フィールドを選ぶだけ。5分で予定表に。</h2>
-    <div class="grid" style="margin-top:18px;">
-      <div class="feat"><div class="ic">1️⃣</div><h3>日時フィールドを指定</h3><p>開始日時（必須）と、終了日時・終日フラグ（任意）を既存フィールドから選ぶだけ。アプリの作り替えは不要です。</p></div>
-      <div class="feat"><div class="ic">2️⃣</div><h3>表示内容を選ぶ</h3><p>タイトル・場所・メモに使うフィールドと、色分けに使うカテゴリを指定。既定のビュー（月／週／日／リスト）も選べます。</p></div>
-      <div class="feat"><div class="ic">3️⃣</div><h3>適用する一覧を選ぶ</h3><p>カレンダー化する一覧（ビュー）を指定。普段の表形式一覧はそのまま残せるので、使い分けができます。</p></div>
+    <div class="fx" style="margin-top:18px;">
+      <div class="fx-i"><span class="fx-no">1</span><h3>日時フィールドを指定</h3><p>開始日時（必須）と、終了日時・終日フラグ（任意）を既存フィールドから選ぶだけ。アプリの作り替えは不要です。</p></div>
+      <div class="fx-i"><span class="fx-no">2</span><h3>表示内容を選ぶ</h3><p>タイトル・場所・メモに使うフィールドと、色分けに使うカテゴリを指定。既定のビュー（月／週／日／リスト）も選べます。</p></div>
+      <div class="fx-i"><span class="fx-no">3</span><h3>適用する一覧を選ぶ</h3><p>カレンダー化する一覧（ビュー）を指定。普段の表形式一覧はそのまま残せるので、使い分けができます。</p></div>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <span class="sec-eyebrow">正直に</span>
     <h2>できること・できないこと。</h2>
     <div class="can" style="margin-top:18px;">
       <div class="panel">
@@ -580,20 +671,19 @@ body{-webkit-text-size-adjust:100%;}
 
 <section id="price" style="background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
   <div class="wrap">
-    <span class="sec-eyebrow">価格・ライセンス・動作環境</span>
     <h2>シンプルな料金。</h2>
     <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:start;margin-top:18px;">
       <div class="panel" style="text-align:center;">
         <div class="price disp" style="font-size:46px;">¥19,800<span style="font-size:16px;font-weight:500;">/年</span></div>
         <div style="color:var(--mut);font-size:13px;margin-bottom:16px;">税込・単品年額（基本パック¥39,800/年・永久ライセンス¥98,000も下記に）</div>
-          <a class="btn btn--amber" href="https://buy.stripe.com/00wbJ06dT8CKbf55HZdfG03" target="_blank" rel="noopener" style="width:100%;justify-content:center;">年額プランを購入 ↗</a><!-- STRIPE_LINK:year -->
+          <a class="btn btn--amber" href="https://buy.stripe.com/00wbJ06dT8CKbf55HZdfG03" target="_blank" rel="noopener" style="width:100%;justify-content:center;">年額プランを購入<svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"/></svg></a><!-- STRIPE_LINK:year -->
           <div style="margin-top:12px;font-size:12.5px;line-height:2;text-align:left;">
-            <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener" style="color:#B57E00;font-weight:700;">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --> 公開中の基本プラグインすべて＋今後の新作も込み</div>
-            <div><a href="https://buy.stripe.com/eVq7sKbyd4mu0ArgmDdfG02" target="_blank" rel="noopener">永久ライセンス ¥98,000 ↗</a><!-- STRIPE_LINK:perp --> 完全オフライン版・買い切り</div>
-            <div style="color:var(--mut);">解約後も支払い済み期間は動作。データ・設定は消えません。<a href="index.html#faq">FAQ →</a></div>
+            <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener" style="color:#B57E00;font-weight:700;">基本パック ¥39,800/年<svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"/></svg></a><!-- STRIPE_LINK:basic-year --> 公開中の基本プラグインすべて＋今後の新作も込み</div>
+            <div><a href="https://buy.stripe.com/eVq7sKbyd4mu0ArgmDdfG02" target="_blank" rel="noopener">永久ライセンス ¥98,000<svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"/></svg></a><!-- STRIPE_LINK:perp --> 完全オフライン版・買い切り</div>
+            <div style="color:var(--mut);">解約後も支払い済み期間は動作。データ・設定は消えません。<a href="index.html#faq">FAQ</a></div>
           </div>
         <div style="margin-top:10px;">
-          <a class="btn btn--ghost" style="width:100%;justify-content:center;border-color:#FFB800;color:#B57E00;" href="trials/bst_calendar-view_v4_trial.zip" download title="ダウンロード後、kintoneシステム管理 → プラグイン → 読み込む だけで試せます（登録・メール不要／30日間・外部通信なし）">30日無料試用版をダウンロード ↓</a>
+          <a class="btn btn--ghost" style="width:100%;justify-content:center;border-color:#FFB800;color:#B57E00;" href="trials/bst_calendar-view_v4_trial.zip" download title="ダウンロード後、kintoneシステム管理 → プラグイン → 読み込む だけで試せます（登録・メール不要／30日間・外部通信なし）">30日無料試用版をダウンロード</a>
         </div>
         <p class="note">決済はStripeで安全に。購入後すぐにダウンロード案内をお送りします（メールサポート付き）。</p>
       </div>
@@ -617,8 +707,8 @@ body{-webkit-text-size-adjust:100%;}
       <p>開始日時のフィールドを選んで保存するだけ。いつもの一覧が、5分でチームの予定表になります。</p>
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap;">
-      <a class="btn btn--amber" href="https://buy.stripe.com/00wbJ06dT8CKbf55HZdfG03" target="_blank" rel="noopener">年額プランを購入 ↗<!-- STRIPE_LINK:year --></a>
-      <a class="btn btn--ghost" style="border-color:#FFB800;color:#FFB800;" href="trials/bst_calendar-view_v4_trial.zip" download title="ダウンロード後、kintoneシステム管理 → プラグイン → 読み込む だけで試せます（登録・メール不要／30日間・外部通信なし）">30日無料試用版をダウンロード ↓</a>
+      <a class="btn btn--amber" href="https://buy.stripe.com/00wbJ06dT8CKbf55HZdfG03" target="_blank" rel="noopener">年額プランを購入<svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"/></svg><!-- STRIPE_LINK:year --></a>
+      <a class="btn btn--ghost" style="border-color:#FFB800;color:#FFB800;" href="trials/bst_calendar-view_v4_trial.zip" download title="ダウンロード後、kintoneシステム管理 → プラグイン → 読み込む だけで試せます（登録・メール不要／30日間・外部通信なし）">30日無料試用版をダウンロード</a>
       <a class="btn btn--ghost" style="border-color:#54534e;color:#fff;" href="index.html">他のツールを見る</a>
     </div>
   </div>

@@ -157,6 +157,101 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;col
 .bstx-sw{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;cursor:pointer;user-select:none;padding:5px 11px;border:1.5px solid #d1d5db;border-radius:999px;background:#fff;color:#9ca3af;}
 .bstx-sw.on{border-color:#16a34a;background:#f0fdf4;color:#15803d;}
 
+/* ===== bstd: 共通デザインレイヤー（2026-10・全ページ同一）=====
+   方針: 箱と影を減らして罫線で組む／絵文字ではなく Material Symbols（インラインSVG）／
+         bst の黒×アンバーは「ロゴ色のラベル・見出しのバー・アイコン・黒帯のセクション」で効かせる */
+.mi{width:1em;height:1em;fill:currentColor;flex:none;vertical-align:-.15em;}
+.nb{white-space:nowrap;}
+/* 角丸と影を抑える */
+.card,.bstx-card,.bstx-democard,.bstx-cfg,.pricebox,.screen,.pcard,.plan,.panel,.vizcard,.nitem,.bcard,.bfeat,.cta,.cta-card,.box,.adm,.fdemo,.tdemo,.dcard,.modecard,.cfgmock,.demo,.tr,.feat,.can>div,.mk,.license,.howto .step{border-radius:8px;box-shadow:none;}
+.feat-box,.iconbn{border-radius:10px;box-shadow:none;}
+.pcard:hover{transform:none;box-shadow:none;border-color:var(--ink);}
+.bstx-democard{border:1px solid var(--line);}
+/* ボタン */
+.btn,.bt,.b,a.b,.cta .b,.bstnav .bstcta{border-radius:6px !important;}
+.btn,.bt{border-width:1px;}
+.btn .mi,.bt .mi,.b .mi{font-size:18px;}
+.btn--ghost,.bt-ghost{border-color:#cfcec6;background:transparent;color:var(--ink);}
+.btn--ghost:hover,.bt-ghost:hover{background:#fff;border-color:var(--ink);}
+/* ロゴ色のラベル（黒地にアンバー） */
+.eyebrow,.hero .kick,.feat-badge,.tag-bst{display:inline-block;background:var(--ink);color:var(--amber);border:none;border-radius:4px;padding:5px 11px;font-size:12px;font-weight:700;letter-spacing:.02em;}
+/* 見出し: アンバーのバー */
+section h2::before{content:"";display:block;width:40px;height:5px;background:var(--amber);margin-bottom:16px;}
+.demo2 h2::before,.kd-shell h2::before,.bstx-democard h2::before,.feat-box h2::before,.iconbn h2::before,.inkband h2::before,.band-in h2::before{display:none;}
+section{padding:64px 0;}
+.band{border:none;}
+h1 em{background:none !important;}
+h2.sec,.bstx-h2{margin:0 0 28px;}
+.lead{color:#4a4a45;}
+.sec-lead{font-size:15px;color:#4a4a45;max-width:44em;margin:-12px 0 28px;}
+/* トップの安心ポイント */
+.tr{border:none;border-top:2px solid var(--ink);border-radius:0;background:none;padding:16px 0 0;}
+.tr .em{font-size:20px;line-height:1;box-sizing:content-box;padding:8px;background:var(--ink);color:var(--amber);border-radius:8px;display:flex;}
+/* 罫線で区切る項目リスト */
+.fx{display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;}
+.fx-i{border-top:2px solid var(--ink);padding:20px 0 30px;}
+.fx-i>.mi{font-size:22px;box-sizing:content-box;padding:9px;background:var(--ink);color:var(--amber);border-radius:8px;display:block;margin-bottom:12px;}
+.fx-i b,.fx-i h3{display:block;font-size:16px;font-weight:700;line-height:1.5;margin:0 0 6px;}
+.fx-i p{font-size:14px;line-height:1.85;color:#4a4a45;}
+.fx.is-quiet .fx-i{border-top:1px solid #cfcec6;}
+.fx.is-quiet .fx-i>.mi{background:none;color:var(--ink);padding:0;font-size:26px;border-radius:0;}
+.fx.is-2{grid-template-columns:repeat(2,1fr);}
+.fx-no{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:var(--ink);color:var(--amber);border-radius:8px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:18px;margin-bottom:12px;}
+/* 黒帯のセクション（試用への導線など） */
+.inkband{background:var(--ink);color:#fff;border:none;}
+.inkband h2{color:#fff;}
+.inkband h2::after{content:"";display:block;width:40px;height:5px;background:var(--amber);margin-top:16px;}
+.inkband p,.inkband .step p,.inkband .sec-lead{color:#d6d5cd;}
+.inkband .step{border-top-color:#5a5a55;background:none;}
+.inkband .step .no{color:var(--amber);}
+.inkband .step b{color:#fff;}
+.inkband .btn--ghost{color:#fff;border-color:#77776f;}
+.inkband .btn--ghost:hover{background:#3a3a37;border-color:#fff;}
+/* 導入前／導入後 */
+.bfaf{display:grid;grid-template-columns:1fr 1fr;margin-top:36px;border-top:2px solid var(--ink);border-bottom:1px solid var(--line);}
+.bfaf-c{padding:18px 28px 20px 0;}
+.bfaf-c.is-after{padding:18px 0 20px 28px;border-left:1px solid var(--line);}
+.bfaf-lb{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.08em;color:var(--mut);margin-bottom:6px;}
+.bfaf-c.is-after .bfaf-lb{color:var(--ink);background:var(--amber);padding:1px 8px;border-radius:3px;}
+.bfaf-c p{font-size:14px;line-height:1.9;color:var(--mut);}
+.bfaf-c.is-after p{color:var(--ink);font-weight:500;}
+/* 設定画面のイメージ */
+.bstx-cfg{max-width:none;}
+.bstx-no{background:var(--ink);color:var(--amber);border-radius:4px;width:20px;height:20px;}
+.bstx-chip{border-radius:4px;border-width:1px;}
+.bstx-sim{border:none;border-left:4px solid var(--amber);border-radius:0;background:none;padding:2px 0 2px 12px;}
+.bstx-sim .mi{font-size:16px;margin-right:4px;}
+.cfg-note{font-size:13px;color:#4a4a45;line-height:1.85;margin-top:8px;}
+.cfg-2col{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start;}
+.cfg-pts{list-style:none;}
+.cfg-pts li{border-top:1px solid #cfcec6;padding:14px 0 16px;}
+.cfg-pts li:first-child{border-top:2px solid var(--ink);}
+.cfg-pts b{display:block;font-size:15px;margin-bottom:3px;}
+.cfg-pts li>span{font-size:13.5px;color:#4a4a45;line-height:1.8;display:block;}
+/* 比較表 */
+.bstx-cmp,.cmp{border-radius:0;box-shadow:none;}
+.bstx-cmp th,.bstx-cmp td{border:none;border-bottom:1px solid var(--line);padding:12px 14px;}
+.bstx-cmp thead th{background:none;border-bottom:2px solid var(--ink);}
+.bstx-cmp thead th.me,.cmp thead th.me{background:var(--ink);color:var(--amber);}
+.bstx-cmp td:first-child{background:none;}
+/* 手順 */
+.steps{display:grid;gap:0 40px;grid-template-columns:repeat(3,1fr);}
+.step{background:none;border:none;border-top:2px solid var(--ink);border-radius:0;padding:16px 0 8px;}
+.step .no{background:none;color:var(--ink);width:auto;height:auto;border-radius:0;font-family:"JetBrains Mono",monospace;font-size:22px;margin-bottom:4px;}
+.step .no{display:block;font-weight:700;}
+.step b{display:block;font-size:15.5px;margin-bottom:3px;}
+.step p{font-size:13.5px;color:#4a4a45;line-height:1.8;}
+/* 料金・FAQ */
+.pricebox{padding:32px;gap:40px;}
+.spec dd{color:#4a4a45;line-height:1.8;}
+.faq details{background:none;border:none;border-top:1px solid var(--line);border-radius:0;padding:16px 0;margin:0;}
+.faq details:last-child{border-bottom:1px solid var(--line);}
+.faq summary{font-size:15px;}
+.faq p{font-size:14px;color:#4a4a45;line-height:1.9;max-width:46em;}
+@media(max-width:820px){.fx,.fx.is-2,.steps{grid-template-columns:1fr;}.fx-i{padding-bottom:20px;}.cfg-2col{grid-template-columns:1fr;gap:24px;}.bfaf{grid-template-columns:1fr;}.bfaf-c,.bfaf-c.is-after{padding:16px 0;}.bfaf-c.is-after{border-left:none;border-top:1px solid var(--line);}}
+@media(max-width:640px){table.tb{display:block;overflow-x:auto;max-width:100%;}}
+/* ===== /bstd ===== */
+
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -173,6 +268,14 @@ footer{border-top:1px solid var(--line);padding:28px 0 38px;font-size:12.5px;col
 h1,h2,h3{text-wrap:balance;}
 p,li,dd,dt{text-wrap:pretty;}
 @supports (word-break: auto-phrase){h1,h2,h3,p{word-break:auto-phrase;}}
+
+/* ===== bstw: 折り返し方針（全ページ同一）=====
+   すべて文節の切れ目で折り返す（語の途中では切らない）。
+   見出し・リード・短い説明文は行の長さを揃える（balance）、長い文章は最終行の孤立だけ避ける（pretty） */
+p,li,dd,dt,td,th,summary{line-break:strict;text-wrap:pretty;}
+h1,h2,h3,.lead,.sec-lead,.h1sub,.fx-i b,.fx-i h3,.fx-i p,.cfg-pts b,.cfg-pts li>span,.cfg-note,.step b,.step p,.bfaf-c p,.nores,summary,.pcard p,.tr span,.plan p,.feat-lead,.feat-pt p,.bcard p,.bcard b,.nitem b{text-wrap:balance;}
+@supports (word-break: auto-phrase){p,li,dd,dt,summary{word-break:auto-phrase;}}
+/* ===== /bstw ===== */
 
 /* =====================================================================
    bstm: モバイル最適化（全ページ共通・スタイルの最後に置くこと）
@@ -233,8 +336,8 @@ body{-webkit-text-size-adjust:100%;}
   <p class="lead">「受注になったら受注日を必須に」「確定したら金額をロック」。フィールドの値に応じて、他の項目の<b>表示／非表示・必須・読取専用</b>を自動で切り替えます。人に「気をつけて」と頼むのをやめて、フォーム自体に仕事をさせるプラグインです。</p>
   <div class="price-row"><span class="disp">¥19,800</span><small>/年 税込・1ドメイン</small></div>
   <div class="btns">
-    <a class="btn btn--amber" href="trials/bst_conditional-field_v1.0.1_trial.zip" download>30日無料で試す ↓</a>
-    <a class="btn btn--ghost" href="#demo">動きを見る →</a>
+    <a class="btn btn--amber" href="trials/bst_conditional-field_v1.0.1_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>30日無料で試す</a>
+    <a class="btn btn--ghost" href="#demo">動きを見る</a>
   </div>
 
   <div class="fdemo" id="demo">
@@ -249,22 +352,20 @@ body{-webkit-text-size-adjust:100%;}
 </div></section>
 
 <section class="band"><div class="wrap">
-  <div class="sec-kick">PROBLEM</div>
   <h2 class="sec">その入力ミス、人の注意力で防いでいませんか。</h2>
-  <div class="cards3">
+  <div class="fx is-quiet">
     <div class="card"><span class="em">↩️</span><b>入れ忘れ → 差し戻し</b><p>「受注なのに受注日が空」。気づくのは集計のとき。担当を追いかけて連絡する時間が毎週発生します。</p></div>
-    <div class="card"><span class="em">📜</span><b>縦に長すぎるフォーム</b><p>使わない項目まで全部表示され、どこに何を入れるのか迷う。スクロールだけで時間が溶けます。</p></div>
-    <div class="card"><span class="em">💥</span><b>確定した数字が変わる事故</b><p>完了案件の金額を誰かがうっかり編集。経理との突き合わせで発覚し、気まずい確認作業に。</p></div>
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-120 300-300l44-44 136 136 136-136 44 44-180 180ZM344-612l-44-44 180-180 180 180-44 44-136-136-136 136Z"/></svg><b>縦に長すぎるフォーム</b><p>使わない項目まで全部表示され、どこに何を入れるのか迷う。スクロールだけで時間が溶けます。</p></div>
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-281q14 0 24.5-10.5T515-316q0-14-10.5-24.5T480-351q-14 0-24.5 10.5T445-316q0 14 10.5 24.5T480-281Zm-30-144h60v-263h-60v263ZM330-120 120-330v-300l210-210h300l210 210v300L630-120H330Zm25-60h250l175-175v-250L605-780H355L180-605v250l175 175Zm125-300Z"/></svg><b>確定した数字が変わる事故</b><p>完了案件の金額を誰かがうっかり編集。経理との突き合わせで発覚し、気まずい確認作業に。</p></div>
   </div>
 </div></section>
 
 <section><div class="wrap">
-  <div class="sec-kick">SOLUTION</div>
   <h2 class="sec">値に応じて、フォームが自分で変わる。</h2>
-  <div class="cards3" style="margin-bottom:26px;">
-    <div class="card"><span class="em">👁</span><b>表示／非表示</b><p>いま関係ない項目は出さない。フォームが短くなり、迷わない・間違えない。</p></div>
-    <div class="card"><span class="em">✱</span><b>条件付き必須</b><p>「受注のときだけ受注日を必須」。保存時にブロックするので、抜け漏れがゼロに。</p></div>
-    <div class="card"><span class="em">🔒</span><b>読取専用ロック</b><p>確定した金額や承認済みの項目を自動ロック。うっかり編集の事故を防ぎます。</p></div>
+  <div class="fx">
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M600.5-379.5Q650-429 650-500t-49.5-120.5Q551-670 480-670t-120.5 49.5Q310-571 310-500t49.5 120.5Q409-330 480-330t120.5-49.5Zm-200-41Q368-453 368-500t32.5-79.5Q433-612 480-612t79.5 32.5Q592-547 592-500t-32.5 79.5Q527-388 480-388t-79.5-32.5ZM216-283Q98-366 40-500q58-134 176-217t264-83q146 0 264 83t176 217q-58 134-176 217t-264 83q-146 0-264-83Zm264-217Zm222.5 174.5Q804-391 857-500q-53-109-154.5-174.5T480-740q-121 0-222.5 65.5T102-500q54 109 155.5 174.5T480-260q121 0 222.5-65.5Z"/></svg><b>表示／非表示</b><p>いま関係ない項目は出さない。フォームが短くなり、迷わない・間違えない。</p></div>
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M426-136v-250L210-261l-55-93 217-126-216-125 54-93 216 125v-251h108v251l216-125 54 93-216 125 217 126-55 93-216-125v250H426Z"/></svg><b>条件付き必須</b><p>「受注のときだけ受注日を必須」。保存時にブロックするので、抜け漏れがゼロに。</p></div>
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M220-80q-24.75 0-42.37-17.63Q160-115.25 160-140v-434q0-24.75 17.63-42.38Q195.25-634 220-634h70v-96q0-78.85 55.61-134.42Q401.21-920 480.11-920q78.89 0 134.39 55.58Q670-808.85 670-730v96h70q24.75 0 42.38 17.62Q800-598.75 800-574v434q0 24.75-17.62 42.37Q764.75-80 740-80H220Zm0-60h520v-434H220v434Zm314.5-162.03Q557-324.06 557-355q0-30-22.67-54.5t-54.5-24.5q-31.83 0-54.33 24.5t-22.5 55q0 30.5 22.67 52.5t54.5 22q31.83 0 54.33-22.03ZM350-634h260v-96q0-54.17-37.88-92.08-37.88-37.92-92-37.92T388-822.08q-38 37.91-38 92.08v96ZM220-140v-434 434Z"/></svg><b>読取専用ロック</b><p>確定した金額や承認済みの項目を自動ロック。うっかり編集の事故を防ぎます。</p></div>
   </div>
   <div class="samples">
     <div style="background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;"><div style="background:#F7F7F5;padding:11px 16px;font-weight:900;font-size:14px;border-bottom:1px solid var(--line);">ステータス＝<span class="st a">商談中</span> のとき</div><div style="padding:18px;"><div style="margin-bottom:16px;"><div style="font-size:12.5px;font-weight:700;color:var(--mut);margin-bottom:5px;">ステータス</div><div style="border:2px solid #E0E0E0;border-radius:9px;padding:10px 14px;font-size:14px;background:#fff;">商談中　▾</div></div><div style="margin-bottom:16px;"><div style="font-size:12.5px;font-weight:700;color:var(--mut);margin-bottom:5px;">受注日</div><div style="border:2px dashed var(--line);border-radius:9px;padding:10px 14px;font-size:13px;color:#b8b7ae;background:#FAFAF8;">（非表示 — 画面に出ません）</div></div><div style="margin-bottom:16px;"><div style="font-size:12.5px;font-weight:700;color:var(--mut);margin-bottom:5px;">請求額</div><div style="border:2px solid #E0E0E0;border-radius:9px;padding:10px 14px;font-size:14px;background:#fff;">¥1,280,000</div></div></div></div>
@@ -276,7 +377,6 @@ body{-webkit-text-size-adjust:100%;}
 
 
 <section class="band"><div class="wrap">
-  <div class="bstx-kick">CONFIG</div>
   <h2 class="bstx-h2">ルールは「条件 → 効果」を選ぶだけ。</h2>
   <div class="bstx-cfg">
     <div class="ch">条件付きフィールド制御プラグイン 設定<span>実際の設定画面のイメージ</span></div>
@@ -285,18 +385,17 @@ body{-webkit-text-size-adjust:100%;}
       <div style="font-size:12.5px;"><span class="bstx-chip on">ステータス</span> が <span class="bstx-chip on">受注</span> のとき</div>
       <div class="bstx-step" style="margin-top:12px;"><span class="bstx-no">2</span>効果を選ぶ（複数フィールドにまとめて）</div>
       <div style="font-size:12.5px;"><span class="bstx-chip on">受注日 → 表示＋必須</span><span class="bstx-chip on">請求額 → 読取専用</span><span class="bstx-chip">失注理由 → 非表示</span></div>
-      <div class="bstx-sim">👁 <b>ルールは何本でも。</b>AND条件（「受注 かつ 100万円以上」）にも対応。保存前にこの画面で効果を確認できます。</div>
+      <div class="bstx-sim"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M600.5-379.5Q650-429 650-500t-49.5-120.5Q551-670 480-670t-120.5 49.5Q310-571 310-500t49.5 120.5Q409-330 480-330t120.5-49.5Zm-200-41Q368-453 368-500t32.5-79.5Q433-612 480-612t79.5 32.5Q592-547 592-500t-32.5 79.5Q527-388 480-388t-79.5-32.5ZM216-283Q98-366 40-500q58-134 176-217t264-83q146 0 264 83t176 217q-58 134-176 217t-264 83q-146 0-264-83Zm264-217Zm222.5 174.5Q804-391 857-500q-53-109-154.5-174.5T480-740q-121 0-222.5 65.5T102-500q54 109 155.5 174.5T480-260q121 0 222.5-65.5Z"/></svg><b>ルールは何本でも。</b>AND条件（「受注 かつ 100万円以上」）にも対応。保存前にこの画面で効果を確認できます。</div>
     </div>
   </div>
-  <div class="bstx-cards">
-    <div class="bstx-card"><span class="em">🖱</span><b>コード不要・選ぶだけ</b><p>条件のフィールド・値、効果のフィールド・種類をドロップダウンで選ぶだけ。JavaScriptの知識は一切不要です。</p></div>
-    <div class="bstx-card"><span class="em">📚</span><b>複数ルール・AND条件</b><p>「受注のとき」「受注かつ高額のとき」など、ルールを重ねて現場の業務ルールをそのまま表現できます。</p></div>
-    <div class="bstx-card"><span class="em">🧩</span><b>フィールド追加にも強い</b><p>フォームにフィールドを足したら、設定画面を開いて選ぶだけ。ルールの書き直しは不要です。</p></div>
+  <div class="fx is-quiet">
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-80q-118 0-199-81t-81-199v-260q0-118 81-199t199-81q118 0 199 81t81 199v260q0 118-81 199T480-80Zm30-540h190q0-81-53-144t-137-74v218Zm-250 0h190v-218q-84 11-137 74t-53 144Zm219.79 480q91.21 0 155.71-64.35Q700-268.7 700-360v-200H260v200q0 91.3 64.29 155.65Q388.58-140 479.79-140Zm.21-420Zm30-60Zm-60 0Zm30 60Z"/></svg><b>コード不要・選ぶだけ</b><p>条件のフィールド・値、効果のフィールド・種類をドロップダウンで選ぶだけ。JavaScriptの知識は一切不要です。</p></div>
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-130 120-410l50-37 310 241 310-241 50 37-360 280Zm0-152L120-562l360-280 360 280-360 280Zm0-301Zm0 225 262-204-262-204-262 204 262 204Z"/></svg><b>複数ルール・AND条件</b><p>「受注のとき」「受注かつ高額のとき」など、ルールを重ねて現場の業務ルールをそのまま表現できます。</p></div>
+    <div class="fx-i"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-180h560v-192l41-19q19-8 30.5-27t11.5-40q0-21.43-11.5-39.72Q800-516 781-525l-41-19v-196H539l-9-51q-5-27-24.67-45.5-19.68-18.5-45.91-18.5Q432-855 412-836.5T387-791l-9 51H181v110q55 20 89 66.78t34 105.5q0 59.72-34 107.22T180-287v107Zm11 60q-29 0-50-21t-21-51v-139q52-3 88-39t36-88q0-52-36-88.5t-87-38.4V-729q0-30 20.5-50.5T192-800h136q6.63-48.88 43.58-81.94Q408.53-915 458.74-915q49.26 0 86.45 33.06Q582.37-848.88 590-800h139q30 0 50.5 20.5T800-729v147q38 18 60.5 49.5T883-458q0 43-22.5 75T800-334v142q0 30-20.5 51T729-120H191Zm311-338Z"/></svg><b>フィールド追加にも強い</b><p>フォームにフィールドを足したら、設定画面を開いて選ぶだけ。ルールの書き直しは不要です。</p></div>
   </div>
 </div></section>
 
 <section><div class="wrap">
-  <div class="bstx-kick">WHY BST</div>
   <h2 class="bstx-h2">入力制御系プラグインとの違い。</h2>
   <div style="overflow-x:auto;">
   <table class="bstx-cmp">
@@ -314,8 +413,7 @@ body{-webkit-text-size-adjust:100%;}
   <p class="bstx-note">※「一般的な入力制御プラグイン」は特定製品ではなく、入力制御系プラグインで見られる一般的な仕様・制約を指します。</p>
 </div></section>
 
-<section id="trial"><div class="wrap">
-  <div class="sec-kick">FREE TRIAL</div>
+<section id="trial" class="inkband"><div class="wrap">
   <h2 class="sec">まず30日、無料で確かめてください。</h2>
   <div class="steps">
     <div class="step"><span class="no">1</span><b>ダウンロード</b><p>登録・メールアドレス不要。下のボタンからZIPを保存します。</p></div>
@@ -323,29 +421,28 @@ body{-webkit-text-size-adjust:100%;}
     <div class="step"><span class="no">3</span><b>全機能を30日</b><p>試用開始は設定を保存した日から。製品版は上書きするだけで、設定はそのまま引き継がれます。</p></div>
   </div>
   <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;">
-    <a class="btn btn--amber" href="trials/bst_conditional-field_v1.0.1_trial.zip" download>試用版をダウンロード ↓</a>
-    <a class="btn btn--ghost" href="https://youtu.be/8DJ7G7xgVoc" target="_blank" rel="noopener">プラグインの追加方法（動画1分）↗</a>
+    <a class="btn btn--amber" href="trials/bst_conditional-field_v1.0.1_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>試用版をダウンロード</a>
+    <a class="btn btn--ghost" href="https://youtu.be/8DJ7G7xgVoc" target="_blank" rel="noopener">プラグインの追加方法（動画1分）<svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"/></svg></a>
   </div>
 </div></section>
 
 <section class="band" id="price"><div class="wrap">
-  <div class="sec-kick">PRICING</div>
   <h2 class="sec">シンプルな料金。</h2>
   <div class="pricebox">
     <div>
       <div class="big">¥19,800<span>/年（税込）</span></div>
       <div class="sub">単品・1ドメイン（アプリ数・ユーザー数は無制限）</div>
-      <a class="btn btn--amber" href="https://buy.stripe.com/8x24gy59PbOW6YP9YfdfG04" target="_blank" rel="noopener" style="width:100%;justify-content:center;">年額プランを購入 ↗</a><!-- STRIPE_LINK:year -->
+      <a class="btn btn--amber" href="https://buy.stripe.com/8x24gy59PbOW6YP9YfdfG04" target="_blank" rel="noopener" style="width:100%;justify-content:center;">年額プランを購入<svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"/></svg></a><!-- STRIPE_LINK:year -->
       <div class="alt">
-        <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener">基本パック ¥39,800/年 ↗</a><!-- STRIPE_LINK:basic-year --><span class="mut">　公開中の基本プラグインすべて＋今後の新作も込み</span></div>
-        <div><a href="https://buy.stripe.com/3cIcN431HdX41Ev4DVdfG08" target="_blank" rel="noopener">永久ライセンス ¥98,000 ↗</a><!-- STRIPE_LINK:perp --><span class="mut">　通信が一切ない完全オフライン版・買い切り</span></div>
-        <div class="mut">解約後もお支払い済み期間の満了までは動作し、kintone上のデータ・設定は消えません。<a href="index.html#faq">詳細FAQ →</a></div>
+        <div><a href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener">基本パック ¥39,800/年<svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"/></svg></a><!-- STRIPE_LINK:basic-year --><span class="mut">　公開中の基本プラグインすべて＋今後の新作も込み</span></div>
+        <div><a href="https://buy.stripe.com/3cIcN431HdX41Ev4DVdfG08" target="_blank" rel="noopener">永久ライセンス ¥98,000<svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"/></svg></a><!-- STRIPE_LINK:perp --><span class="mut">　通信が一切ない完全オフライン版・買い切り</span></div>
+        <div class="mut">解約後もお支払い済み期間の満了までは動作し、kintone上のデータ・設定は消えません。<a href="index.html#faq">詳細FAQ</a></div>
       </div>
     </div>
     <dl class="spec"><dt>制御できる効果</dt><dd>表示／非表示・必須・読取専用（複数ルールの併用可）</dd><dt>条件に使えるフィールド</dt><dd>ドロップダウン・ラジオ・チェックボックス・数値・文字列・日付など</dd><dt>設定</dt><dd>ノーコード。GUIで「条件 → 効果」を選ぶだけ。kintone標準の必須フィールドは設定画面で警告</dd><dt>動作環境</dt><dd>kintoneスタンダードコース以上／Chrome・Edge 最新安定版</dd><dt>ライセンス</dt><dd>1ドメイン（同一kintoneドメイン内のアプリ数・ユーザー数は無制限）</dd></dl>
   </div>
 </div></section>
-<section class="faq"><div class="wrap"><div class="sec-kick">FAQ</div><h2 class="sec">よくある質問</h2><details><summary>どんな条件が設定できますか？</summary><p>「ステータスが受注のとき」「金額が100万円以上のとき」「チェックボックスがONのとき」など、フィールドの値を条件に、他フィールドの表示／非表示・必須・読取専用を切り替えられます。条件と効果はGUIで選ぶだけです。</p></details><details><summary>年額プランを解約するとどうなりますか？</summary><p>解約しても即停止にはなりません。お支払い済み期間の満了までは全機能が動作し、期限後もkintone上のデータ・プラグインの設定は消えません。再契約すればそのまま続きから使えます。</p></details><details><summary>プラグインは外部と通信しますか？</summary><p>業務データの外部送信は一切ありません。年額プランのみ、ライセンス確認のために「kintoneドメイン名」を1日1回送信します（レコード内容は送りません）。通信不可の環境には完全オフラインの永久ライセンス版をご用意しています。</p></details><details><summary>試用版はどこまで使えますか？</summary><p>製品版と同じ全機能を30日間使えます。登録不要で、購入後は製品版を上書きするだけ。試用中の設定はそのまま引き継がれます。</p></details><details><summary>kintone標準の必須設定とは何が違いますか？</summary><p>標準の必須は「常に必須」。本プラグインは「受注のときだけ必須」のように条件付きにできます。不要なときは項目ごと隠せるので、フォームが短くなり入力も速くなります。</p></details></div></section>
+<section class="faq"><div class="wrap"><h2 class="sec">よくある質問</h2><details><summary>どんな条件が設定できますか？</summary><p>「ステータスが受注のとき」「金額が100万円以上のとき」「チェックボックスがONのとき」など、フィールドの値を条件に、他フィールドの表示／非表示・必須・読取専用を切り替えられます。条件と効果はGUIで選ぶだけです。</p></details><details><summary>年額プランを解約するとどうなりますか？</summary><p>解約しても即停止にはなりません。お支払い済み期間の満了までは全機能が動作し、期限後もkintone上のデータ・プラグインの設定は消えません。再契約すればそのまま続きから使えます。</p></details><details><summary>プラグインは外部と通信しますか？</summary><p>業務データの外部送信は一切ありません。年額プランのみ、ライセンス確認のために「kintoneドメイン名」を1日1回送信します（レコード内容は送りません）。通信不可の環境には完全オフラインの永久ライセンス版をご用意しています。</p></details><details><summary>試用版はどこまで使えますか？</summary><p>製品版と同じ全機能を30日間使えます。登録不要で、購入後は製品版を上書きするだけ。試用中の設定はそのまま引き継がれます。</p></details><details><summary>kintone標準の必須設定とは何が違いますか？</summary><p>標準の必須は「常に必須」。本プラグインは「受注のときだけ必須」のように条件付きにできます。不要なときは項目ごと隠せるので、フォームが短くなり入力も速くなります。</p></details></div></section>
 <footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="/index.html">ホーム</a><a href="/index.html#tools">プラグイン</a><a href="/blog/index.html">ブログ</a><a href="/icons.html">無料アイコン素材</a><a href="/about.html">bstについて</a><a href="/news.html">お知らせ</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="/tokushoho.html">特定商取引法に基づく表記</a><a href="/privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
 <script>
 (function(){

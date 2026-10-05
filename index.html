@@ -185,6 +185,101 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:12.5px;col
 .feat-note{font-size:11px;color:#8f8e87;margin-top:16px;}
 @media (max-width:640px){.feat-box{padding:28px 18px;border-radius:20px;}.feat-pts{grid-template-columns:1fr;}.feat-btns .bt{flex:1 1 100%;justify-content:center;}}
 
+/* ===== bstd: 共通デザインレイヤー（2026-10・全ページ同一）=====
+   方針: 箱と影を減らして罫線で組む／絵文字ではなく Material Symbols（インラインSVG）／
+         bst の黒×アンバーは「ロゴ色のラベル・見出しのバー・アイコン・黒帯のセクション」で効かせる */
+.mi{width:1em;height:1em;fill:currentColor;flex:none;vertical-align:-.15em;}
+.nb{white-space:nowrap;}
+/* 角丸と影を抑える */
+.card,.bstx-card,.bstx-democard,.bstx-cfg,.pricebox,.screen,.pcard,.plan,.panel,.vizcard,.nitem,.bcard,.bfeat,.cta,.cta-card,.box,.adm,.fdemo,.tdemo,.dcard,.modecard,.cfgmock,.demo,.tr,.feat,.can>div,.mk,.license,.howto .step{border-radius:8px;box-shadow:none;}
+.feat-box,.iconbn{border-radius:10px;box-shadow:none;}
+.pcard:hover{transform:none;box-shadow:none;border-color:var(--ink);}
+.bstx-democard{border:1px solid var(--line);}
+/* ボタン */
+.btn,.bt,.b,a.b,.cta .b,.bstnav .bstcta{border-radius:6px !important;}
+.btn,.bt{border-width:1px;}
+.btn .mi,.bt .mi,.b .mi{font-size:18px;}
+.btn--ghost,.bt-ghost{border-color:#cfcec6;background:transparent;color:var(--ink);}
+.btn--ghost:hover,.bt-ghost:hover{background:#fff;border-color:var(--ink);}
+/* ロゴ色のラベル（黒地にアンバー） */
+.eyebrow,.hero .kick,.feat-badge,.tag-bst{display:inline-block;background:var(--ink);color:var(--amber);border:none;border-radius:4px;padding:5px 11px;font-size:12px;font-weight:700;letter-spacing:.02em;}
+/* 見出し: アンバーのバー */
+section h2::before{content:"";display:block;width:40px;height:5px;background:var(--amber);margin-bottom:16px;}
+.demo2 h2::before,.kd-shell h2::before,.bstx-democard h2::before,.feat-box h2::before,.iconbn h2::before,.inkband h2::before,.band-in h2::before{display:none;}
+section{padding:64px 0;}
+.band{border:none;}
+h1 em{background:none !important;}
+h2.sec,.bstx-h2{margin:0 0 28px;}
+.lead{color:#4a4a45;}
+.sec-lead{font-size:15px;color:#4a4a45;max-width:44em;margin:-12px 0 28px;}
+/* トップの安心ポイント */
+.tr{border:none;border-top:2px solid var(--ink);border-radius:0;background:none;padding:16px 0 0;}
+.tr .em{font-size:20px;line-height:1;box-sizing:content-box;padding:8px;background:var(--ink);color:var(--amber);border-radius:8px;display:flex;}
+/* 罫線で区切る項目リスト */
+.fx{display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;}
+.fx-i{border-top:2px solid var(--ink);padding:20px 0 30px;}
+.fx-i>.mi{font-size:22px;box-sizing:content-box;padding:9px;background:var(--ink);color:var(--amber);border-radius:8px;display:block;margin-bottom:12px;}
+.fx-i b,.fx-i h3{display:block;font-size:16px;font-weight:700;line-height:1.5;margin:0 0 6px;}
+.fx-i p{font-size:14px;line-height:1.85;color:#4a4a45;}
+.fx.is-quiet .fx-i{border-top:1px solid #cfcec6;}
+.fx.is-quiet .fx-i>.mi{background:none;color:var(--ink);padding:0;font-size:26px;border-radius:0;}
+.fx.is-2{grid-template-columns:repeat(2,1fr);}
+.fx-no{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:var(--ink);color:var(--amber);border-radius:8px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:18px;margin-bottom:12px;}
+/* 黒帯のセクション（試用への導線など） */
+.inkband{background:var(--ink);color:#fff;border:none;}
+.inkband h2{color:#fff;}
+.inkband h2::after{content:"";display:block;width:40px;height:5px;background:var(--amber);margin-top:16px;}
+.inkband p,.inkband .step p,.inkband .sec-lead{color:#d6d5cd;}
+.inkband .step{border-top-color:#5a5a55;background:none;}
+.inkband .step .no{color:var(--amber);}
+.inkband .step b{color:#fff;}
+.inkband .btn--ghost{color:#fff;border-color:#77776f;}
+.inkband .btn--ghost:hover{background:#3a3a37;border-color:#fff;}
+/* 導入前／導入後 */
+.bfaf{display:grid;grid-template-columns:1fr 1fr;margin-top:36px;border-top:2px solid var(--ink);border-bottom:1px solid var(--line);}
+.bfaf-c{padding:18px 28px 20px 0;}
+.bfaf-c.is-after{padding:18px 0 20px 28px;border-left:1px solid var(--line);}
+.bfaf-lb{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.08em;color:var(--mut);margin-bottom:6px;}
+.bfaf-c.is-after .bfaf-lb{color:var(--ink);background:var(--amber);padding:1px 8px;border-radius:3px;}
+.bfaf-c p{font-size:14px;line-height:1.9;color:var(--mut);}
+.bfaf-c.is-after p{color:var(--ink);font-weight:500;}
+/* 設定画面のイメージ */
+.bstx-cfg{max-width:none;}
+.bstx-no{background:var(--ink);color:var(--amber);border-radius:4px;width:20px;height:20px;}
+.bstx-chip{border-radius:4px;border-width:1px;}
+.bstx-sim{border:none;border-left:4px solid var(--amber);border-radius:0;background:none;padding:2px 0 2px 12px;}
+.bstx-sim .mi{font-size:16px;margin-right:4px;}
+.cfg-note{font-size:13px;color:#4a4a45;line-height:1.85;margin-top:8px;}
+.cfg-2col{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start;}
+.cfg-pts{list-style:none;}
+.cfg-pts li{border-top:1px solid #cfcec6;padding:14px 0 16px;}
+.cfg-pts li:first-child{border-top:2px solid var(--ink);}
+.cfg-pts b{display:block;font-size:15px;margin-bottom:3px;}
+.cfg-pts li>span{font-size:13.5px;color:#4a4a45;line-height:1.8;display:block;}
+/* 比較表 */
+.bstx-cmp,.cmp{border-radius:0;box-shadow:none;}
+.bstx-cmp th,.bstx-cmp td{border:none;border-bottom:1px solid var(--line);padding:12px 14px;}
+.bstx-cmp thead th{background:none;border-bottom:2px solid var(--ink);}
+.bstx-cmp thead th.me,.cmp thead th.me{background:var(--ink);color:var(--amber);}
+.bstx-cmp td:first-child{background:none;}
+/* 手順 */
+.steps{display:grid;gap:0 40px;grid-template-columns:repeat(3,1fr);}
+.step{background:none;border:none;border-top:2px solid var(--ink);border-radius:0;padding:16px 0 8px;}
+.step .no{background:none;color:var(--ink);width:auto;height:auto;border-radius:0;font-family:"JetBrains Mono",monospace;font-size:22px;margin-bottom:4px;}
+.step .no{display:block;font-weight:700;}
+.step b{display:block;font-size:15.5px;margin-bottom:3px;}
+.step p{font-size:13.5px;color:#4a4a45;line-height:1.8;}
+/* 料金・FAQ */
+.pricebox{padding:32px;gap:40px;}
+.spec dd{color:#4a4a45;line-height:1.8;}
+.faq details{background:none;border:none;border-top:1px solid var(--line);border-radius:0;padding:16px 0;margin:0;}
+.faq details:last-child{border-bottom:1px solid var(--line);}
+.faq summary{font-size:15px;}
+.faq p{font-size:14px;color:#4a4a45;line-height:1.9;max-width:46em;}
+@media(max-width:820px){.fx,.fx.is-2,.steps{grid-template-columns:1fr;}.fx-i{padding-bottom:20px;}.cfg-2col{grid-template-columns:1fr;gap:24px;}.bfaf{grid-template-columns:1fr;}.bfaf-c,.bfaf-c.is-after{padding:16px 0;}.bfaf-c.is-after{border-left:none;border-top:1px solid var(--line);}}
+@media(max-width:640px){table.tb{display:block;overflow-x:auto;max-width:100%;}}
+/* ===== /bstd ===== */
+
 /* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
 .bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
 .bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
@@ -201,6 +296,14 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:12.5px;col
 h1,h2,h3{text-wrap:balance;}
 p,li,dd,dt{text-wrap:pretty;}
 @supports (word-break: auto-phrase){h1,h2,h3,p{word-break:auto-phrase;}}
+
+/* ===== bstw: 折り返し方針（全ページ同一）=====
+   すべて文節の切れ目で折り返す（語の途中では切らない）。
+   見出し・リード・短い説明文は行の長さを揃える（balance）、長い文章は最終行の孤立だけ避ける（pretty） */
+p,li,dd,dt,td,th,summary{line-break:strict;text-wrap:pretty;}
+h1,h2,h3,.lead,.sec-lead,.h1sub,.fx-i b,.fx-i h3,.fx-i p,.cfg-pts b,.cfg-pts li>span,.cfg-note,.step b,.step p,.bfaf-c p,.nores,summary,.pcard p,.tr span,.plan p,.feat-lead,.feat-pt p,.bcard p,.bcard b,.nitem b{text-wrap:balance;}
+@supports (word-break: auto-phrase){p,li,dd,dt,summary{word-break:auto-phrase;}}
+/* ===== /bstw ===== */
 
 /* =====================================================================
    bstm: モバイル最適化（全ページ共通・スタイルの最後に置くこと）
@@ -261,31 +364,31 @@ body{-webkit-text-size-adjust:100%;}
   <p class="h1sub">検索・タブ表示・カレンダー・条件書式・入力制御——現場の1機能を深く解決する単機能プラグイン</p>
   <p>多機能なセットではなく、必要な機能だけをノーコードで追加。年額プランでも、あなたの業務データは外に出ません。</p>
   <div class="btns">
-    <a class="bt bt-amber" href="#tools">プラグインを無料で試す →</a>
-    <a class="bt bt-ghost" href="icons.html">無料アイコン素材をもらう →</a>
+    <a class="bt bt-amber" href="#tools">プラグインを無料で試す</a>
+    <a class="bt bt-ghost" href="icons.html">無料アイコン素材をもらう</a>
   </div>
   <div class="trust">
-    <div class="tr"><div class="em">🔒</div><div><b>データは外に出ない</b><span>業務データの外部送信は一切なし。通信ゼロの永久版も用意。</span></div></div>
-    <div class="tr"><div class="em">🎁</div><div><b>30日、まるごと無料</b><span>登録・メール不要。ダウンロードして読み込むだけで全機能。</span></div></div>
-    <div class="tr"><div class="em">🤝</div><div><b>解約しても、人質なし</b><span>解約後もお支払い済み期間は動作。データと設定は消えません。</span></div></div>
-    <div class="tr"><div class="em">⚡</div><div><b>導入5分・ノーコード</b><span>フィールドを選ぶだけ。JavaScriptの知識は不要です。</span></div></div>
+    <div class="tr"><div class="em"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M220-80q-24.75 0-42.37-17.63Q160-115.25 160-140v-434q0-24.75 17.63-42.38Q195.25-634 220-634h70v-96q0-78.85 55.61-134.42Q401.21-920 480.11-920q78.89 0 134.39 55.58Q670-808.85 670-730v96h70q24.75 0 42.38 17.62Q800-598.75 800-574v434q0 24.75-17.62 42.37Q764.75-80 740-80H220Zm0-60h520v-434H220v434Zm314.5-162.03Q557-324.06 557-355q0-30-22.67-54.5t-54.5-24.5q-31.83 0-54.33 24.5t-22.5 55q0 30.5 22.67 52.5t54.5 22q31.83 0 54.33-22.03ZM350-634h260v-96q0-54.17-37.88-92.08-37.88-37.92-92-37.92T388-822.08q-38 37.91-38 92.08v96ZM220-140v-434 434Z"/></svg></div><div><b>データは外に出ない</b><span>業務データの外部送信は一切なし。通信ゼロの永久版も用意。</span></div></div>
+    <div class="tr"><div class="em"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M140-277v97h680v-97H140Zm0-443h125q-5-9-8-22.5t-3-24.5q0-47 33-80t79-33q31 0 57 15.5t41 39.5l16 26 17-26q16-25 41-40t54-15q48 0 81 32.5t33 80.5q0 11-2.5 22t-7.5 25h124q24 0 42 18t18 42v480q0 24-18 42t-42 18H140q-24 0-42-18t-18-42v-480q0-24 18-42t42-18Zm0 336h680v-276H571l100 139-48 36-143-198-143 198-48-36 100-139H140v276Zm264.5-345.5Q420-745 420-767t-15.5-37.5Q389-820 367-820t-37.5 15.5Q314-789 314-767t15.5 37.5Q345-714 367-714t37.5-15.5ZM592-714q23 0 38.5-15.5T646-767q0-22-15.5-37.5T592-820q-21 0-36.5 15.5T540-767q0 22 15.5 37.5T592-714Z"/></svg></div><div><b>30日、まるごと無料</b><span>登録・メール不要。ダウンロードして読み込むだけで全機能。</span></div></div>
+    <div class="tr"><div class="em"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M475-140q5 0 11.5-2.5T497-149l337-338q13-13 19.5-29.67Q860-533.33 860-550q0-17-6.5-34T834-614L654-794q-13-13-30-19.5t-34-6.5q-16.67 0-33.33 6.5Q540-807 527-794l-18 18 81 82q13 14 23 32.5t10 40.5q0 38-29.5 67T526-525q-25 0-41.5-7.5t-30.19-21.34L381-627 200-446q-5 5-7 10.53-2 5.52-2 11.84 0 12.63 8.5 21.13 8.5 8.5 21.17 8.5 6.33 0 11.83-3t9.5-7l138-138 42 42-137 137q-5 5-7 11t-2 12q0 12 9 21t21 9q6 0 11.5-2.5t9.5-6.5l138-138 42 42-137 137q-4 4-6.5 10.33-2.5 6.34-2.5 12.67 0 12 9 21t21 9q6 0 11-2t10-7l138-138 42 42-138 138q-5 5-7 11t-2 11q0 14 8 22t22 8Zm.06 60Q442-80 416-104.5t-31-60.62Q351-170 328-193t-28-57q-34-5-56.5-28.5T216-335q-37-5-61-30t-24-60q0-17 6.72-34.05Q144.45-476.1 157-489l224-224 110 110q8 8 17.33 12.5 9.34 4.5 18.67 4.5 13 0 24.5-11.5t11.5-24.65q0-5.85-3.5-13.35T548-651L405-794q-13-13-30-19.5t-34-6.5q-16.67 0-33.33 6.5-16.67 6.5-29.61 19.36L126-642q-14 14-19.5 29.5t-6.5 35q-1 19.5 7.5 38T128-506l-43 43q-20-22-32.5-53T40-579q0-30 11.5-57.5T84-685l151-151q22-22 49.79-32.5 27.8-10.5 57-10.5 29.21 0 56.71 10.5T448-836l18 18 18-18q22-22 49.79-32.5 27.8-10.5 57-10.5 29.21 0 56.71 10.5T697-836l179 179q22 22 33 50.03 11 28.04 11 57 0 28.97-11 56.47T876-444L539-107q-13 13-29.53 20t-34.41 7ZM377-626Z"/></svg></div><div><b>解約しても、人質なし</b><span>解約後もお支払い済み期間は動作。データと設定は消えません。</span></div></div>
+    <div class="tr"><div class="em"><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="m393-165 279-335H492l36-286-253 366h154l-36 255Zm-73 85 40-280H160l360-520h80l-40 320h240L400-80h-80Zm154-396Z"/></svg></div><div><b>導入5分・ノーコード</b><span>フィールドを選ぶだけ。JavaScriptの知識は不要です。</span></div></div>
   </div>
 </div></section>
 
 <section class="feat" id="featured"><div class="wrap">
   <div class="feat-box">
-    <span class="feat-badge">👑 当サイト販売実績 No.1</span>
+    <span class="feat-badge">当サイト販売実績 No.1</span>
     <div class="feat-head">
       <div class="feat-name">一覧印刷プラグイン</div>
       <h2>kintoneの一覧を、<em>ワンクリックで思いどおりに印刷。</em></h2>
       <p class="feat-lead">列を絞る、チェック欄を足す、用紙や文字サイズを変える——すべてボタンを押すだけ。プレビューで仕上がりを見ながら、その場で自由に整えて印刷できます。</p>
       <div class="feat-btns">
-        <a class="bt bt-amber" href="trials/bst_list-print_v1.1.0_trial.zip" download>30日無料で試す ↓</a>
-        <a class="bt bt-ghost" href="lp-list-print.html">製品の詳細を見る →</a>
+        <a class="bt bt-amber" href="trials/bst_list-print_v1.1.0_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>30日無料で試す</a>
+        <a class="bt bt-ghost" href="lp-list-print.html">製品の詳細を見る</a>
       </div>
       <p class="feat-sub">登録・メール不要／年額 ¥19,800（税込）・1ドメイン</p>
     </div>
-    <p class="feat-try">👇 実際に触れます。列のチェックを外したり、用紙やチェック欄を切り替えてみてください</p>
+    <p class="feat-try">実際に触れます。列のチェックを外したり、用紙やチェック欄を切り替えてみてください</p>
   <div class="demo" id="demo">
     <div class="demo-hd">
       <span class="tag">触れるデモ</span>印刷
@@ -329,7 +432,7 @@ body{-webkit-text-size-adjust:100%;}
     </div>
     <div class="demo-cta">
       いま触った操作が、そのまま製品です。実物はさらに<b>実寸プレビュー</b>と<b>プリセット12件保存</b>。
-      <a class="bt bt-amber" href="trials/bst_list-print_v1.1.0_trial.zip" download>試用版を無料ダウンロード ↓</a>
+      <a class="bt bt-amber" href="trials/bst_list-print_v1.1.0_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>試用版を無料ダウンロード</a>
     </div>
   </div>
     <div class="feat-pts">
@@ -342,7 +445,6 @@ body{-webkit-text-size-adjust:100%;}
 </div></section>
 
 <section id="tools"><div class="wrap">
-  <div class="sec-kick">PLUGINS</div>
   <h2 class="sec">現場の「惜しい」を解くプラグイン</h2>
   <div class="pgrid">
       <article class="pcard">
@@ -351,8 +453,8 @@ body{-webkit-text-size-adjust:100%;}
         <p>「あるはずのデータが検索に出ない」を解決。番号の一部でもヒットし、項目ごとに最適な入力欄で絞り込めます。</p>
         <div class="pcard-price">¥19,800<span>/年（税込）・1ドメイン</span></div>
         <div class="pcard-btns">
-          <a class="bt bt-amber" href="trials/bst_partial-search_v2.5.0_trial.zip" download>30日無料で試す ↓</a>
-          <a class="bt bt-ghost" href="lp-partial-search.html">詳しく見る →</a>
+          <a class="bt bt-amber" href="trials/bst_partial-search_v2.5.0_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>30日無料で試す</a>
+          <a class="bt bt-ghost" href="lp-partial-search.html">詳しく見る</a>
         </div>
       </article>
       <article class="pcard">
@@ -361,8 +463,8 @@ body{-webkit-text-size-adjust:100%;}
         <p>いつもの一覧が、色分けされたチームの予定表に。月・週・日・リスト切替、その場で追加・編集。</p>
         <div class="pcard-price">¥19,800<span>/年（税込）・1ドメイン</span></div>
         <div class="pcard-btns">
-          <a class="bt bt-amber" href="trials/bst_calendar-view_v4_trial.zip" download>30日無料で試す ↓</a>
-          <a class="bt bt-ghost" href="lp-calendar-view.html">詳しく見る →</a>
+          <a class="bt bt-amber" href="trials/bst_calendar-view_v4_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>30日無料で試す</a>
+          <a class="bt bt-ghost" href="lp-calendar-view.html">詳しく見る</a>
         </div>
       </article>
       <article class="pcard">
@@ -371,8 +473,8 @@ body{-webkit-text-size-adjust:100%;}
         <p>期限超過は赤、完了は緑、金額はデータバー。見るべき行が、一覧を開いた瞬間にわかる。</p>
         <div class="pcard-price">¥19,800<span>/年（税込）・1ドメイン</span></div>
         <div class="pcard-btns">
-          <a class="bt bt-amber" href="trials/bst_visual-conditional-format_v1.1.7_trial.zip" download>30日無料で試す ↓</a>
-          <a class="bt bt-ghost" href="lp-visual-conditional-format.html">詳しく見る →</a>
+          <a class="bt bt-amber" href="trials/bst_visual-conditional-format_v1.1.7_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>30日無料で試す</a>
+          <a class="bt bt-ghost" href="lp-visual-conditional-format.html">詳しく見る</a>
         </div>
       </article>
       <article class="pcard">
@@ -381,8 +483,8 @@ body{-webkit-text-size-adjust:100%;}
         <p>「受注になったら受注日を必須に」——値に応じて表示・必須・読取専用を自動で切替。入力ミスを仕組みで防ぐ。</p>
         <div class="pcard-price">¥19,800<span>/年（税込）・1ドメイン</span></div>
         <div class="pcard-btns">
-          <a class="bt bt-amber" href="trials/bst_conditional-field_v1.0.1_trial.zip" download>30日無料で試す ↓</a>
-          <a class="bt bt-ghost" href="lp-conditional-field.html">詳しく見る →</a>
+          <a class="bt bt-amber" href="trials/bst_conditional-field_v1.0.1_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>30日無料で試す</a>
+          <a class="bt bt-ghost" href="lp-conditional-field.html">詳しく見る</a>
         </div>
       </article>
       <article class="pcard">
@@ -391,8 +493,8 @@ body{-webkit-text-size-adjust:100%;}
         <p>縦に長いフォームをタブで美しく整理。8種のデザインプリセット、必須の入れ忘れバッジ、印刷は全タブ自動展開。</p>
         <div class="pcard-price">¥19,800<span>/年（税込）・1ドメイン</span></div>
         <div class="pcard-btns">
-          <a class="bt bt-amber" href="trials/bst_tab-view_v1.3.0_trial.zip" download>30日無料で試す ↓</a>
-          <a class="bt bt-ghost" href="lp-tab-view.html">詳しく見る →</a>
+          <a class="bt bt-amber" href="trials/bst_tab-view_v1.3.0_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>30日無料で試す</a>
+          <a class="bt bt-ghost" href="lp-tab-view.html">詳しく見る</a>
         </div>
       </article>
       <article class="pcard">
@@ -401,8 +503,8 @@ body{-webkit-text-size-adjust:100%;}
         <p>大分類→中分類→小分類、3段以上の連動ドロップダウン。ありえない組み合わせは選択時と保存時の2重ガードで防止。</p>
         <div class="pcard-price">¥19,800<span>/年（税込）・1ドメイン</span></div>
         <div class="pcard-btns">
-          <a class="bt bt-amber" href="trials/bst_option-filter_v1.0.2_trial.zip" download>30日無料で試す ↓</a>
-          <a class="bt bt-ghost" href="lp-option-filter.html">詳しく見る →</a>
+          <a class="bt bt-amber" href="trials/bst_option-filter_v1.0.2_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>30日無料で試す</a>
+          <a class="bt bt-ghost" href="lp-option-filter.html">詳しく見る</a>
         </div>
       </article>
       <article class="pcard">
@@ -411,15 +513,14 @@ body{-webkit-text-size-adjust:100%;}
         <p>表示中の一覧をA4・B5・A3にきれいに印刷。実寸プレビュー、行を切らないページ分割、棚卸しに使えるチェック欄。</p>
         <div class="pcard-price">¥19,800<span>/年（税込）・1ドメイン</span></div>
         <div class="pcard-btns">
-          <a class="bt bt-amber" href="trials/bst_list-print_v1.1.0_trial.zip" download>30日無料で試す ↓</a>
-          <a class="bt bt-ghost" href="lp-list-print.html">詳しく見る →</a>
+          <a class="bt bt-amber" href="trials/bst_list-print_v1.1.0_trial.zip" download><svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M480-313 287-506l43-43 120 120v-371h60v371l120-120 43 43-193 193ZM220-160q-24 0-42-18t-18-42v-143h60v143h520v-143h60v143q0 24-18 42t-42 18H220Z"/></svg>30日無料で試す</a>
+          <a class="bt bt-ghost" href="lp-list-print.html">詳しく見る</a>
         </div>
       </article>
   </div>
 </div></section>
 
 <section class="pricing" id="pricing"><div class="wrap">
-  <div class="sec-kick">PRICING</div>
   <h2 class="sec">シンプルな3プラン</h2>
   <div class="plans">
     <div class="plan">
@@ -432,7 +533,7 @@ body{-webkit-text-size-adjust:100%;}
         <li>メールサポート</li>
         <li class="no">他の製品・今後の新作</li>
       </ul>
-      <a class="bt bt-ghost" href="#tools">製品を選ぶ →</a>
+      <a class="bt bt-ghost" href="#tools">製品を選ぶ</a>
     </div>
     <div class="plan hot">
       <span class="tag">おすすめ・一番人気</span>
@@ -445,7 +546,7 @@ body{-webkit-text-size-adjust:100%;}
         <li>期間中のアップデート込み</li>
         <li>優先メールサポート</li>
       </ul>
-      <a class="bt bt-amber" href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener">基本パックを購入 ↗</a><!-- STRIPE_LINK:basic-year -->
+      <a class="bt bt-amber" href="https://buy.stripe.com/00w14mbyddX42Izc6ndfG00" target="_blank" rel="noopener">基本パックを購入<svg class="mi" viewBox="0 -960 960 960" aria-hidden="true"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h279v60H180v600h600v-279h60v279q0 24-18 42t-42 18H180Zm202-219-42-43 398-398H519v-60h321v321h-60v-218L382-339Z"/></svg></a><!-- STRIPE_LINK:basic-year -->
     </div>
     <div class="plan">
       <h3>永久ライセンス</h3>
@@ -457,7 +558,7 @@ body{-webkit-text-size-adjust:100%;}
         <li>セキュリティ要件が厳しい環境に</li>
         <li>購入後1年間のアップデート・サポート</li>
       </ul>
-      <a class="bt bt-ghost" href="#faq">詳しくはFAQへ →</a>
+      <a class="bt bt-ghost" href="#faq">詳しくはFAQへ</a>
     </div>
   </div>
   <p class="pnote">※ <b>請求書払い・銀行振込に対応</b>（見積書・適格請求書の発行可。<a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20請求書払いの相談" style="color:var(--amber-d);font-weight:700;">お問い合わせ</a>ください）。／ 年額プランのライセンス確認は「kintoneドメイン名のみ」を送信します。業務データは一切送信しません。／解約後もお支払い済み期間の満了までは全機能が動作し、kintone上のデータ・設定は失われません。</p>
@@ -466,16 +567,14 @@ body{-webkit-text-size-adjust:100%;}
 <section><div class="wrap">
   <div class="iconbn">
     <div>
-      <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--amber);">FREE</div>
       <h2>kintoneアイコン素材、ぜんぶ無料配布中</h2>
       <p>商用OK・クレジット不要・登録不要。色・形・光沢・陰影をカスタマイズして1クリックでダウンロード。ラインナップは随時追加中。</p>
     </div>
-    <a class="bt bt-amber" href="icons.html">アイコンをもらう →</a>
+    <a class="bt bt-amber" href="icons.html">アイコンをもらう</a>
   </div>
 </div></section>
 
 <section class="faq" id="faq"><div class="wrap">
-  <div class="sec-kick">FAQ</div>
   <h2 class="sec">よくある質問</h2>
   <details><summary>試用版はどこまで使えますか？</summary><p>製品版と同じ全機能を30日間ご利用いただけます。登録・メールアドレスは不要で、ダウンロードして読み込むだけ。試用開始日は「プラグイン設定を保存した日」から数えるので、いつダウンロードしても満額30日試せます。購入後は製品版を上書きするだけで、試用中の設定はそのまま引き継がれます。</p></details>
   <details><summary>年額プランを解約するとどうなりますか？</summary><p>解約しても即停止にはなりません。お支払い済み期間の満了までは全機能が動作し、期限後もkintone上のデータ・プラグインの設定は一切消えません。再度ご契約いただくと、そのまま続きからお使いいただけます。データを人質に取らない設計です。</p></details>
