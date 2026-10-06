@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:title" content="kintoneのカレンダー表示を見やすくする方法3選｜bstブログ">
 <meta property="og:description" content="kintoneのカレンダー形式は月表示のみで、色分けも期間の表示もできません。週表示にしたい・予定を色分けしたいときの標準機能の工夫、JavaScriptで実現する方法、カレンダープラグインの3つの解決策を費用・工数・注意点まで比較して解説します。">
-<meta property="og:image" content="https://bst-plugins.com/og-home.png">
+<meta property="og:image" content="https://bst-plugins.com/og-calendar.png">
 <meta property="og:url" content="https://bst-plugins.com/blog/kintone-calendar-view.html">
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary_large_image">
@@ -34,10 +34,13 @@
   });
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"kintoneのカレンダー表示を見やすくする方法3選","description":"kintoneのカレンダー形式は月表示のみで、色分けも期間の表示もできません。週表示にしたい・予定を色分けしたいときの標準機能の工夫、JavaScriptで実現する方法、カレンダープラグインの3つの解決策を費用・工数・注意点まで比較して解説します。","datePublished":"2026-07-22","dateModified":"2026-07-22","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst"},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-calendar-view.html"}
+{"@context":"https://schema.org","@type":"Article","headline":"kintoneのカレンダー表示を見やすくする方法3選","description":"kintoneのカレンダー形式は月表示のみで、色分けも期間の表示もできません。週表示にしたい・予定を色分けしたいときの標準機能の工夫、JavaScriptで実現する方法、カレンダープラグインの3つの解決策を費用・工数・注意点まで比較して解説します。","datePublished":"2026-07-22","dateModified":"2026-10-06","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/","logo":{"@type":"ImageObject","url":"https://bst-plugins.com/logo.png"}},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-calendar-view.html","image":"https://bst-plugins.com/og-calendar.png"}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"標準のカレンダー形式と何が違いますか？","acceptedAnswer":{"@type":"Answer","text":"標準は月表示のみですが、bstのカレンダービュープラグインは月・週・日・リストの4つのビューを切り替えられます。カテゴリによる色分け、開始〜終了の期間表示、予定の詳細ポップオーバー、画面を離れずのその場追加・編集にも対応します。"}},{"@type":"Question","name":"予定をドラッグで動かせますか？","acceptedAnswer":{"@type":"Answer","text":"現バージョンでは非対応です（今後のバージョンで検討中）。日程の変更は、予定をクリックして開く編集画面から行います。できないことを含めて、製品ページに正直に記載しています。"}},{"@type":"Question","name":"スマートフォンでも使えますか？","acceptedAnswer":{"@type":"Answer","text":"使えます。カレンダービューはモバイル表示に対応しており、外出先から今日の予定を確認する用途にも使えます。"}},{"@type":"Question","name":"Googleカレンダーなど外部のカレンダーと連携できますか？","acceptedAnswer":{"@type":"Answer","text":"できません。業務データを外部に出さない「完全ローカル」方針のため、外部カレンダー連携や複数アプリの予定合成には対応していません。kintoneの中の予定を見やすくすることに特化しています。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。"}}]}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"標準のカレンダー形式と何が違いますか？","acceptedAnswer":{"@type":"Answer","text":"標準は月表示のみですが、bstのカレンダービュープラグインは月・週・日・リストの4つのビューを切り替えられます。カテゴリによる色分け、開始〜終了の期間表示、予定の詳細ポップオーバー、画面を離れずのその場追加・編集にも対応します。"}},{"@type":"Question","name":"予定をドラッグで動かせますか？","acceptedAnswer":{"@type":"Answer","text":"現バージョンでは非対応です（今後のバージョンで検討中）。日程の変更は、予定をクリックして開く編集画面から行います。できないことを含めて、製品ページに正直に記載しています。"}},{"@type":"Question","name":"スマートフォンでも使えますか？","acceptedAnswer":{"@type":"Answer","text":"使えます。カレンダービューはモバイル表示に対応しており、外出先から今日の予定を確認する用途にも使えます。"}},{"@type":"Question","name":"Googleカレンダーなど外部のカレンダーと連携できますか？","acceptedAnswer":{"@type":"Answer","text":"できません。業務データを外部に出さない「完全ローカル」方針のため、外部カレンダー連携や複数アプリの予定合成には対応していません。kintoneの中の予定を見やすくすることに特化しています。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。"}},{"@type":"Question","name":"いま使っているアプリを、そのままカレンダー表示にできますか？","acceptedAnswer":{"@type":"Answer","text":"できます。bstのカレンダービュープラグインは、開始日時（必須）と、終了日時・終日フラグ（任意）に使うフィールドを既存のフィールドから選ぶだけです。アプリやデータの作り替えは不要です。"}},{"@type":"Question","name":"色分けの基準には、どのフィールドを使えますか？","acceptedAnswer":{"@type":"Answer","text":"ドロップダウンなどの選択肢フィールドをカテゴリとして指定すると、選択肢ごとに自動で色が割り当てられます。色は手動で調整でき、凡例をクリックして特定のカテゴリだけを表示することもできます。"}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://bst-plugins.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://bst-plugins.com/blog/index.html"},{"@type":"ListItem","position":3,"name":"kintoneのカレンダー表示を見やすくする方法3選","item":"https://bst-plugins.com/blog/kintone-calendar-view.html"}]}
 </script>
 <style>
 :root{--ink:#252525;--paper:#FBFBF8;--paper2:#F3F2EC;--line:#E4E3DB;--amber:#FFB800;--amber-d:#B57E00;--mut:#6E6E68;--ok:#18794E;--blue:#2563EB;}
@@ -124,6 +127,14 @@ h3{margin-top:30px;}
 .dcp-vs{display:none;}
 .dcp-arrow{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;font-size:12.5px;font-weight:900;color:var(--amber-d);padding:1px 0;}
 }
+
+/* 目次 */
+.toc{border:1px solid var(--line);border-left:4px solid var(--amber);background:#fff;padding:14px 18px;margin:22px 0;font-size:14px;}
+.toc b{display:block;font-size:13px;margin-bottom:6px;}
+.toc ol{margin:0;padding-left:1.4em;}
+.toc li{margin:3px 0;line-height:1.7;}
+.toc a{color:inherit;text-decoration:none;border-bottom:1px solid #cfcec6;}
+.toc a:hover{border-bottom-color:var(--ink);}
 
 /* ===== bstd: 共通デザインレイヤー（2026-10・全ページ同一）=====
    方針: 箱と影を減らして罫線で組む／絵文字ではなく Material Symbols（インラインSVG）／
@@ -299,10 +310,10 @@ body{-webkit-text-size-adjust:100%;}
 <main><div class="wrap">
 
 <h1>kintoneのカレンダー表示を見やすくする方法3選</h1>
-<p class="meta">2026-07-22公開 ／ カテゴリ: カレンダー・予定管理 ／ 執筆: bst 開発チーム</p>
+<p class="meta">2026-07-22公開・2026-10-06更新 ／ カテゴリ: カレンダー・予定管理 ／ 執筆: bst 開発チーム</p>
 
 <p>「kintoneをカレンダー表示にしてみたけれど、月表示しかなくて使いづらい」「出張の3日間が初日にしか出ない」「予定の種類を色で分けたい」——kintoneで予定やスケジュールを管理し始めた現場から、必ず出てくる声です。</p>
-<p>kintoneには標準でカレンダー形式の一覧があります。ただし、その機能はかなり限定的です。私たちはkintoneプラグインの開発元として、この「カレンダーが物足りない」相談を数多く受けてきました。本記事は2026年7月時点の仕様に基づいて、標準の限界と3つの解決方法を整理します。</p>
+<p>kintoneには標準でカレンダー形式の一覧があります。ただし、その機能はかなり限定的です。私たちはkintoneプラグインの開発元として、この「カレンダーが物足りない」相談を数多く受けてきました。本記事は2026年10月時点の仕様に基づいて、標準の限界と3つの解決方法を整理します。</p>
 
 <div class="key">kintone標準のカレンダーは「月表示のみ」。<br>週表示も、色分けも、期間（開始〜終了）の表示もできません。<small>この記事では、標準でできること → JavaScriptで実現する方法 → プラグインという選択肢、の順で解説します。</small></div>
 
@@ -313,6 +324,7 @@ body{-webkit-text-size-adjust:100%;}
 <li>それぞれの費用・工数・メリット・デメリットと、導入前に確認すべき注意点</li>
 <li>予定管理アプリを後悔しないための、日付フィールド設計のコツ</li>
 <li>現場での活用イメージと、よくある質問への回答</li>
+<li>月・週・日・リストの使い分け</li>
 </ul></div>
 
 <div class="point"><b>先に結論</b>：標準のカレンダー形式は「月のみ・色なし・期間なし」です。もの足りなくなったときの解決方法は、次の3つです。</div>
@@ -323,7 +335,9 @@ body{-webkit-text-size-adjust:100%;}
 </div>
 <p>予定は「見る回数」が最も多いデータです。毎日チームで見る画面なら、<b>総コストではプラグインが最も安くつくケースが多い</b>——これが本記事の結論です。理由を順に説明します。</p>
 
-<h2>kintoneのカレンダー表示は何ができない？標準機能の境界線</h2>
+<nav class="toc" aria-label="目次"><b>目次</b><ol><li><a href="#s1">kintoneのカレンダー表示は何ができない？標準機能の境界線</a></li><li><a href="#s2">週表示・色分け・期間表示を実現する3つの方法【比較】</a></li><li><a href="#s3">月・週・日・リストの使い分け｜見る人と場面で粒度を変える</a></li><li><a href="#s4">活用イメージとよくある質問</a></li><li><a href="#s5">まとめ：予定は「読ませる」のではなく「見せる」</a></li></ol></nav>
+
+<h2 id="s1">kintoneのカレンダー表示は何ができない？標準機能の境界線</h2>
 
 <h3>標準のカレンダー形式でできること</h3>
 <p>まず、標準機能を正しく評価するところから始めます。kintoneの一覧は表示方法を「カレンダー形式」に切り替えられ、次のことができます。</p>
@@ -360,7 +374,7 @@ body{-webkit-text-size-adjust:100%;}
 
 <div class="key">カレンダーは「読む」画面ではなく「見る」画面。<br>色と期間が表示された瞬間に、予定表は説明のいらない道具になります。</div>
 
-<h2>週表示・色分け・期間表示を実現する3つの方法【比較】</h2>
+<h2 id="s2">週表示・色分け・期間表示を実現する3つの方法【比較】</h2>
 
 <h3>方法1：標準のカレンダー形式と絞り込みで工夫する（代替方法・無料）</h3>
 <p>月表示のみという制約の中で、見やすさを上げる工夫です。「担当者別」「予定の種類別」の絞り込み一覧を複数保存すれば、色分けの代わりに「切り替えて見る」運用ができます。予定の名前の先頭に【出張】【会議】のような種別を付ける命名運用も、地味ですが効きます。</p>
@@ -421,7 +435,25 @@ body{-webkit-text-size-adjust:100%;}
 <div class="o"><b>やめられるか</b>解約・削除してもカレンダー表示が外れるだけで、レコードや日付データには影響しないことを確認しておきます。</div>
 </div>
 
-<h2>活用イメージとよくある質問</h2>
+<h2 id="s3">月・週・日・リストの使い分け｜見る人と場面で粒度を変える</h2>
+<p>カレンダーは、表示の粒度によって分かることが変わります。同じ予定データでも、会議で全体を見るときと、当日の動きを確認するときでは、適した表示が違います。4つの表示の使い分けを整理します。</p>
+<table class="tb">
+<tr><th>表示</th><th>分かること</th><th>向いている場面</th></tr>
+<tr><td>月</td><td>件数の偏り、空いている日、繁忙の山</td><td>月次の計画会議、休暇や出張の調整</td></tr>
+<tr><td>週</td><td>時間帯ごとの重なり、移動の無理</td><td>週次の定例、訪問ルートの確認</td></tr>
+<tr><td>日</td><td>その日の動きの順番</td><td>当日の朝礼、受付や配車の担当者</td></tr>
+<tr><td>リスト</td><td>これからの予定を時系列で一覧</td><td>抜け漏れの確認、翌日の準備</td></tr>
+</table>
+<p>標準のカレンダー形式は月表示のため、「時間帯の重なり」は読み取れません。ダブルブッキングが問題になっている現場では、週表示があるかどうかが方法選びの分かれ目になります。</p>
+<h3>カレンダーにする前に確認したい3つのこと</h3>
+<div class="opt3">
+<div class="o"><b>①開始日時が全レコードに入っているか</b>開始日時が空のレコードは、カレンダーに表示できません。先に一覧で「開始日時が空」を絞り込み、件数を確認しておきます。</div>
+<div class="o"><b>②終了日時（または終日）を持っているか</b>終了日時がないと、複数日にわたる予定が初日にしか出ません。出張や工事のような期間のある予定を扱うなら、終了日時のフィールドを用意します。</div>
+<div class="o"><b>③色分けに使える選択肢があるか</b>種別・担当チーム・ステータスなど、色を分けたい基準がドロップダウンなどの選択肢フィールドになっているかを確認します。自由入力の文字列では、色分けの基準にしにくくなります。</div>
+</div>
+<p>この3つが揃っていれば、既存のアプリを作り替えなくても、フィールドを指定するだけでカレンダーにできます。</p>
+
+<h2 id="s4">活用イメージとよくある質問</h2>
 
 <h3>現場での活用イメージ</h3>
 <p>カレンダー表示がよく使われる典型的な場面を3つ紹介します（特定の導入企業の事例ではなく、想定される代表的な活用パターンです）。自社の予定管理に近いものがあれば、試用版で同じ形を再現してみてください。</p>
@@ -432,9 +464,9 @@ body{-webkit-text-size-adjust:100%;}
 </ul>
 
 <h3>よくある質問</h3>
-<details class="faq"><summary>標準のカレンダー形式と何が違いますか？</summary><p>標準は月表示のみですが、bstのカレンダービュープラグインは月・週・日・リストの4つのビューを切り替えられます。カテゴリによる色分け、開始〜終了の期間表示、予定の詳細ポップオーバー、画面を離れずのその場追加・編集にも対応します。</p></details><details class="faq"><summary>予定をドラッグで動かせますか？</summary><p>現バージョンでは非対応です（今後のバージョンで検討中）。日程の変更は、予定をクリックして開く編集画面から行います。できないことを含めて、製品ページに正直に記載しています。</p></details><details class="faq"><summary>スマートフォンでも使えますか？</summary><p>使えます。カレンダービューはモバイル表示に対応しており、外出先から今日の予定を確認する用途にも使えます。</p></details><details class="faq"><summary>Googleカレンダーなど外部のカレンダーと連携できますか？</summary><p>できません。業務データを外部に出さない「完全ローカル」方針のため、外部カレンダー連携や複数アプリの予定合成には対応していません。kintoneの中の予定を見やすくすることに特化しています。</p></details><details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。</p></details>
+<details class="faq"><summary>標準のカレンダー形式と何が違いますか？</summary><p>標準は月表示のみですが、bstのカレンダービュープラグインは月・週・日・リストの4つのビューを切り替えられます。カテゴリによる色分け、開始〜終了の期間表示、予定の詳細ポップオーバー、画面を離れずのその場追加・編集にも対応します。</p></details><details class="faq"><summary>予定をドラッグで動かせますか？</summary><p>現バージョンでは非対応です（今後のバージョンで検討中）。日程の変更は、予定をクリックして開く編集画面から行います。できないことを含めて、製品ページに正直に記載しています。</p></details><details class="faq"><summary>スマートフォンでも使えますか？</summary><p>使えます。カレンダービューはモバイル表示に対応しており、外出先から今日の予定を確認する用途にも使えます。</p></details><details class="faq"><summary>Googleカレンダーなど外部のカレンダーと連携できますか？</summary><p>できません。業務データを外部に出さない「完全ローカル」方針のため、外部カレンダー連携や複数アプリの予定合成には対応していません。kintoneの中の予定を見やすくすることに特化しています。</p></details><details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。</p></details><details class="faq"><summary>いま使っているアプリを、そのままカレンダー表示にできますか？</summary><p>できます。bstのカレンダービュープラグインは、開始日時（必須）と、終了日時・終日フラグ（任意）に使うフィールドを既存のフィールドから選ぶだけです。アプリやデータの作り替えは不要です。</p></details><details class="faq"><summary>色分けの基準には、どのフィールドを使えますか？</summary><p>ドロップダウンなどの選択肢フィールドをカテゴリとして指定すると、選択肢ごとに自動で色が割り当てられます。色は手動で調整でき、凡例をクリックして特定のカテゴリだけを表示することもできます。</p></details>
 
-<h2>まとめ：予定は「読ませる」のではなく「見せる」</h2>
+<h2 id="s5">まとめ：予定は「読ませる」のではなく「見せる」</h2>
 <ul class="plain">
 <li>kintone標準のカレンダー形式は月表示のみ。週表示・色分け・期間表示・その場編集はできない</li>
 <li>まずは<b>絞り込み一覧と命名運用</b>で工夫する。単純な日付確認ならそれで足りる</li>

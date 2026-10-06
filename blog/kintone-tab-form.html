@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:title" content="【2026年最新】kintoneフォームをタブで整理する方法3選｜bstブログ">
 <meta property="og:description" content="kintoneのフォームが縦に長くて見づらい問題を、タブで整理する3つの方法（標準機能の工夫・JavaScript自作・プラグイン）を比較解説。標準機能でできること・できないこと、費用と工数、タブ設計のコツ、導入時の注意点まで、情シス担当者にも初心者にも分かるようにまとめました。">
-<meta property="og:image" content="https://bst-plugins.com/og-home.png">
+<meta property="og:image" content="https://bst-plugins.com/og-tab.png">
 <meta property="og:url" content="https://bst-plugins.com/blog/kintone-tab-form.html">
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary_large_image">
@@ -34,10 +34,13 @@
   });
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"【2026年最新】kintoneフォームをタブで整理する方法3選","description":"kintoneのフォームが縦に長くて見づらい問題を、タブで整理する3つの方法（標準機能の工夫・JavaScript自作・プラグイン）を比較解説。標準機能でできること・できないこと、費用と工数、タブ設計のコツ、導入時の注意点まで、情シス担当者にも初心者にも分かるようにまとめました。","datePublished":"2026-07-22","dateModified":"2026-07-22","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst"},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-tab-form.html"}
+{"@context":"https://schema.org","@type":"Article","headline":"【2026年最新】kintoneフォームをタブで整理する方法3選","description":"kintoneのフォームが縦に長くて見づらい問題を、タブで整理する3つの方法（標準機能の工夫・JavaScript自作・プラグイン）を比較解説。標準機能でできること・できないこと、費用と工数、タブ設計のコツ、導入時の注意点まで、情シス担当者にも初心者にも分かるようにまとめました。","datePublished":"2026-07-22","dateModified":"2026-10-06","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/","logo":{"@type":"ImageObject","url":"https://bst-plugins.com/logo.png"}},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-tab-form.html","image":"https://bst-plugins.com/og-tab.png"}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"稼働中のkintoneアプリに、後からタブ表示を追加できますか？","acceptedAnswer":{"@type":"Answer","text":"できます。タブ表示プラグインはフォームの見た目を整理するだけで、フィールドやレコードのデータ構造には手を加えません。既存のデータ・一覧・グラフはそのまま使えます。"}},{"@type":"Question","name":"タブで隠れている必須項目の入力漏れが心配です。","acceptedAnswer":{"@type":"Answer","text":"bstのタブ表示プラグインでは、未入力の必須フィールドがあるタブにバッジが表示され、どのタブを確認すべきかひと目で分かります。"}},{"@type":"Question","name":"スマートフォンでも使えますか？","acceptedAnswer":{"@type":"Answer","text":"タブ表示はPCの画面を対象にしています。モバイルアプリでは標準の表示のまま動作し、データの閲覧・入力には影響しません。"}},{"@type":"Question","name":"動作が重くなりませんか？","acceptedAnswer":{"@type":"Answer","text":"表示の切り替えだけを行う軽量な処理のため、体感速度への影響はほとんどありません。処理はすべてブラウザ内で完結し、外部サーバーとの通信もありません。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。"}}]}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"稼働中のアプリに、後からタブ表示を追加できますか？","acceptedAnswer":{"@type":"Answer","text":"できます。タブ表示プラグインはフォームの見た目を整理するだけで、フィールドやレコードのデータ構造には手を加えません。既存のデータ・一覧・グラフはそのまま使えますし、プラグインを外せば元の表示に戻ります。"}},{"@type":"Question","name":"タブで隠れている必須項目の入力漏れが心配です。","acceptedAnswer":{"@type":"Answer","text":"ここはプラグイン選定の最重要ポイントです。bstのタブ表示プラグインでは、未入力の必須フィールドがあるタブにバッジが表示され、どのタブを確認すべきかがひと目で分かります。"}},{"@type":"Question","name":"スマートフォンでも使えますか？","acceptedAnswer":{"@type":"Answer","text":"使えます。bstのタブ表示プラグインはモバイルにも対応しており、スマートフォンでは横にスクロールできるタブとして表示されます。データの閲覧・入力はPCと同じように行えます。"}},{"@type":"Question","name":"動作が重くなりませんか？","acceptedAnswer":{"@type":"Answer","text":"表示の切り替えだけを行う軽量な処理のため、体感速度への影響はほとんどありません。処理はブラウザ内で完結し、業務データが外部サーバーへ送信されることもありません。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。"}},{"@type":"Question","name":"印刷するとき、開いていないタブの項目は欠けませんか？","acceptedAnswer":{"@type":"Answer","text":"bstのタブ表示プラグインでは欠けません。ブラウザの印刷でも、kintoneの「レコードを印刷」でも、すべてのタブの項目が自動で展開されて印刷されます。タブのバー自体は印刷されません。"}},{"@type":"Question","name":"タブの見た目は変えられますか？","acceptedAnswer":{"@type":"Answer","text":"変えられます。bstのタブ表示プラグインには8種類のデザインプリセットがあり、色・形・間隔などを設定画面のプレビューで確認しながら調整できます。タブごとに色を変えることもできます。"}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://bst-plugins.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://bst-plugins.com/blog/index.html"},{"@type":"ListItem","position":3,"name":"【2026年最新】kintoneフォームをタブで整理する方法3選","item":"https://bst-plugins.com/blog/kintone-tab-form.html"}]}
 </script>
 <style>
 :root{--ink:#252525;--paper:#FBFBF8;--paper2:#F3F2EC;--line:#E4E3DB;--amber:#FFB800;--amber-d:#B57E00;--mut:#6E6E68;--ok:#18794E;--blue:#2563EB;}
@@ -123,6 +126,14 @@ h3{margin-top:30px;}
 .dcp-vs{display:none;}
 .dcp-arrow{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;font-size:12.5px;font-weight:900;color:var(--amber-d);padding:1px 0;}
 }
+
+/* 目次 */
+.toc{border:1px solid var(--line);border-left:4px solid var(--amber);background:#fff;padding:14px 18px;margin:22px 0;font-size:14px;}
+.toc b{display:block;font-size:13px;margin-bottom:6px;}
+.toc ol{margin:0;padding-left:1.4em;}
+.toc li{margin:3px 0;line-height:1.7;}
+.toc a{color:inherit;text-decoration:none;border-bottom:1px solid #cfcec6;}
+.toc a:hover{border-bottom-color:var(--ink);}
 
 /* ===== bstd: 共通デザインレイヤー（2026-10・全ページ同一）=====
    方針: 箱と影を減らして罫線で組む／絵文字ではなく Material Symbols（インラインSVG）／
@@ -298,7 +309,7 @@ body{-webkit-text-size-adjust:100%;}
 <main><div class="wrap">
 
 <h1>【2026年最新】kintoneフォームをタブで整理する方法3選</h1>
-<p class="meta">2026-07-22 ／ カテゴリ: フォーム・入力画面 ／ 執筆: bst 開発チーム</p>
+<p class="meta">2026-07-22公開・2026-10-06更新 ／ カテゴリ: フォーム・入力画面 ／ 執筆: bst 開発チーム</p>
 
 <p>「kintoneのフォームが縦に長くなりすぎて、どこに何があるか分からない」「入力のたびに延々スクロールしている」——アプリを育てていくと、ほぼ必ずぶつかる悩みです。フィールドが50個、100個と増えたフォームは、入力する人の負担になるだけでなく、<b>入力漏れや入力ミスの温床</b>にもなります。</p>
 <p>この記事では、kintoneのフォームを<b>タブで整理する3つの方法</b>を、標準機能でできることとできないことの整理から、JavaScriptでの自作、プラグインの利用まで、費用と工数を比較しながら解説します。私たちはkintoneプラグインの開発元として、この課題の相談を数多く受けてきました。その経験も踏まえてまとめます。</p>
@@ -310,6 +321,7 @@ body{-webkit-text-size-adjust:100%;}
 <li>タブ化を実現する3つの方法（運用の工夫・JavaScript・プラグイン）の比較</li>
 <li>それぞれの費用・工数・メリット・デメリット・注意点</li>
 <li>失敗しないタブ設計のコツと、導入前に確認すべきポイント</li>
+<li>タブ分けの具体例</li>
 </ul></div>
 
 <div class="point"><b>先に結論</b>：kintoneの標準機能に「タブ」はありません。グループフィールドなどで整理はできますが、縦長の構造そのものは変えられません。タブ化する方法は、次の3つです。</div>
@@ -320,7 +332,9 @@ body{-webkit-text-size-adjust:100%;}
 </div>
 <p>件数の多い入力業務が毎日あるなら、<b>総コストではプラグインが最も安くつくケースが多い</b>——これが本記事の結論です。理由を順に説明します。</p>
 
-<h2>kintoneのフォームはなぜ縦に長くなる？標準機能でできること・できないこと</h2>
+<nav class="toc" aria-label="目次"><b>目次</b><ol><li><a href="#s1">kintoneのフォームはなぜ縦に長くなる？標準機能でできること・できないこと</a></li><li><a href="#s2">kintoneフォームをタブで整理する3つの方法【比較】</a></li><li><a href="#s3">タブ分けの具体例｜顧客管理・案件管理・申請アプリ</a></li><li><a href="#s4">導入イメージとよくある質問</a></li><li><a href="#s5">まとめ：kintoneのタブ化は「順番」を守れば失敗しない</a></li></ol></nav>
+
+<h2 id="s1">kintoneのフォームはなぜ縦に長くなる？標準機能でできること・できないこと</h2>
 
 <p>まず原因から押さえましょう。kintoneのフォームは、フィールドを上から下へ並べていく<b>1枚の縦長レイアウト</b>が基本構造です。Excelの台帳を移行したアプリや、複数部署で使うアプリでは、「営業が使う項目」「経理が使う項目」「管理用の項目」が同じ1枚に同居します。使う人ごとに必要な項目は一部なのに、全員が全項目をスクロールして探す——これが「縦に長い問題」の正体です。</p>
 
@@ -335,7 +349,7 @@ body{-webkit-text-size-adjust:100%;}
 </ul>
 
 <h3>標準機能ではできないこと（タブ化の壁）</h3>
-<p>一方で、次のことは2026年7月現在の標準機能ではできません。</p>
+<p>一方で、次のことは2026年10月現在の標準機能ではできません。</p>
 <ul class="plain">
 <li><b>フォームをタブで切り替える</b>：「基本情報」「営業メモ」「経理処理」のようなタブ分けはできません。</li>
 <li><b>グループの横並び切り替え</b>：グループフィールドは縦に積まれるため、折りたたんでも縦長の構造は残ります。開閉の手間も利用者側に発生します。</li>
@@ -343,7 +357,7 @@ body{-webkit-text-size-adjust:100%;}
 </ul>
 <div class="key">整理はできる。しかし、構造は変えられない。<br>——それが標準機能の到達点です。<small>グループフィールドで運用が回るなら、それが最善です。回らないときに初めて、タブ化を検討します。</small></div>
 
-<h2>kintoneフォームをタブで整理する3つの方法【比較】</h2>
+<h2 id="s2">kintoneフォームをタブで整理する3つの方法【比較】</h2>
 
 <h3>方法1：フォーム設計と運用の工夫で「縦長」を緩和する（無料）</h3>
 <p>タブ化そのものではありませんが、実務ではまずこれを検討すべきです。具体的には、<b>使用頻度の高い項目をフォーム上部に集める</b>、グループフィールドを「閉じた状態」で並べて目次のように使う、部署ごとに入力用の一覧とプロセスを分ける、といった工夫です。</p>
@@ -416,7 +430,23 @@ body{-webkit-text-size-adjust:100%;}
 <li><b>タブは5枚以内・名前は業務の言葉で</b>：タブが増えすぎると探す対象がフィールドからタブに変わるだけです。名前も「基本情報」「請求処理」のように、現場で通じる言葉を使います。</li>
 </ul>
 
-<h2>導入イメージとよくある質問</h2>
+<h2 id="s3">タブ分けの具体例｜顧客管理・案件管理・申請アプリ</h2>
+<p>タブ化で最も悩むのは、「どの項目をどのタブに入れるか」です。迷ったら、フィールドの種類ではなく<b>使う場面</b>で分けます。よくある3種類のアプリで、分け方の例を示します。</p>
+<table class="tb">
+<tr><th>アプリ</th><th>1枚目（毎回見る）</th><th>2枚目</th><th>3枚目以降</th></tr>
+<tr><td>顧客管理</td><td>基本情報（社名・担当者・電話・住所）</td><td>取引条件（締め日・支払方法・与信）</td><td>対応履歴・社内メモ</td></tr>
+<tr><td>案件管理</td><td>概要（案件名・顧客・金額・ステータス・期日）</td><td>見積・明細（テーブル）</td><td>契約・請求／添付ファイル</td></tr>
+<tr><td>申請・稟議</td><td>申請内容（件名・理由・金額）</td><td>承認に必要な情報（相見積・添付）</td><td>経理処理（勘定科目・支払日）</td></tr>
+</table>
+<p>共通する考え方は3つあります。</p>
+<div class="opt3">
+<div class="o"><b>①1枚目は「8割の用事が済む」内容に</b>電話を受けたとき、会議で開いたときに見る項目を1枚目に集めます。ここで用事が済めば、タブを切り替える手間そのものが発生しません。</div>
+<div class="o"><b>②担当が違う項目はタブを分ける</b>営業が入れる項目と経理が入れる項目は、別のタブにします。自分に関係のないタブを開かずに済むので、入力の迷いが減ります。</div>
+<div class="o"><b>③必須項目は前のタブに寄せる</b>必須項目が後ろのタブに散らばると、入れ忘れの原因になります。どうしても後ろに置く場合は、未入力を知らせる仕組みがある方法を選びます。</div>
+</div>
+<p>タブの数は3〜5枚が目安です。それ以上に増えるなら、アプリ自体を分ける（関連レコードでつなぐ）ほうが、結果的に使いやすくなります。</p>
+
+<h2 id="s4">導入イメージとよくある質問</h2>
 
 <h3>よくある活用パターン（導入イメージ）</h3>
 <p>タブ表示がよく使われる典型的な場面を3つ紹介します（特定の導入企業の事例ではなく、想定される代表的な活用パターンです）。</p>
@@ -429,11 +459,11 @@ body{-webkit-text-size-adjust:100%;}
 <h3>よくある質問</h3>
 <details class="faq"><summary>稼働中のアプリに、後からタブ表示を追加できますか？</summary><p>できます。タブ表示プラグインはフォームの見た目を整理するだけで、フィールドやレコードのデータ構造には手を加えません。既存のデータ・一覧・グラフはそのまま使えますし、プラグインを外せば元の表示に戻ります。</p></details>
 <details class="faq"><summary>タブで隠れている必須項目の入力漏れが心配です。</summary><p>ここはプラグイン選定の最重要ポイントです。bstのタブ表示プラグインでは、未入力の必須フィールドがあるタブに<b>バッジが表示</b>され、どのタブを確認すべきかがひと目で分かります。</p></details>
-<details class="faq"><summary>スマートフォンでも使えますか？</summary><p>タブ表示はPCの画面を対象にしています。モバイルアプリでは標準の表示のまま動作し、データの閲覧・入力には影響しません。</p></details>
+<details class="faq"><summary>スマートフォンでも使えますか？</summary><p>使えます。bstのタブ表示プラグインはモバイルにも対応しており、スマートフォンでは横にスクロールできるタブとして表示されます。データの閲覧・入力はPCと同じように行えます。</p></details>
 <details class="faq"><summary>動作が重くなりませんか？</summary><p>表示の切り替えだけを行う軽量な処理のため、体感速度への影響はほとんどありません。処理はブラウザ内で完結し、業務データが外部サーバーへ送信されることもありません。</p></details>
-<details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。</p></details>
+<details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。</p></details><details class="faq"><summary>印刷するとき、開いていないタブの項目は欠けませんか？</summary><p>bstのタブ表示プラグインでは欠けません。ブラウザの印刷でも、kintoneの「レコードを印刷」でも、すべてのタブの項目が自動で展開されて印刷されます。タブのバー自体は印刷されません。</p></details><details class="faq"><summary>タブの見た目は変えられますか？</summary><p>変えられます。bstのタブ表示プラグインには8種類のデザインプリセットがあり、色・形・間隔などを設定画面のプレビューで確認しながら調整できます。タブごとに色を変えることもできます。</p></details>
 
-<h2>まとめ：kintoneのタブ化は「順番」を守れば失敗しない</h2>
+<h2 id="s5">まとめ：kintoneのタブ化は「順番」を守れば失敗しない</h2>
 <ul class="plain">
 <li>kintoneのフォームが縦に長くなるのは、1枚の縦長レイアウトという構造上の宿命。<b>標準機能に「タブ」はない</b></li>
 <li>まずはグループフィールドなど<b>標準機能の整理術をやり切る</b>。フィールド30個未満ならそれで足りることが多い</li>

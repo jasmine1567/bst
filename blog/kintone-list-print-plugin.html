@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FBFBF8">
+<title>kintoneの一覧印刷プラグインの選び方｜設定なしですぐ使える1本｜bstブログ</title>
+<meta name="description" content="kintoneの一覧をきれいに印刷するプラグインの選び方を解説。帳票プラグインとの違い、選ぶときに確認したい5つのポイント、導入したその日から使えて、用紙も列も思いどおりに選べる一覧印刷プラグインの使い方を紹介します。30日無料で試せます。">
+<link rel="canonical" href="https://bst-plugins.com/blog/kintone-list-print-plugin.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="kintoneの一覧印刷プラグインの選び方｜設定なしですぐ使える1本｜bstブログ">
+<meta property="og:description" content="kintoneの一覧をきれいに印刷するプラグインの選び方を解説。帳票プラグインとの違い、選ぶときに確認したい5つのポイント、導入したその日から使えて、用紙も列も思いどおりに選べる一覧印刷プラグインの使い方を紹介します。30日無料で試せます。">
+<meta property="og:image" content="https://bst-plugins.com/og-print.png">
+<meta property="og:url" content="https://bst-plugins.com/blog/kintone-list-print-plugin.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V964JH879G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-V964JH879G');
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href*="/trials/"]');
+    if(a){
+      var f = a.getAttribute('href');
+      var pm = f.match(/bst_([a-z0-9-]+)_v/i);
+      gtag('event', 'trial_download', { file: f, plugin: pm ? pm[1] : 'unknown' });
+    }
+  });
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"kintoneの一覧印刷プラグインの選び方｜設定なしですぐ使える1本","description":"kintoneの一覧をきれいに印刷するプラグインの選び方を解説。帳票プラグインとの違い、選ぶときに確認したい5つのポイント、導入したその日から使えて、用紙も列も思いどおりに選べる一覧印刷プラグインの使い方を紹介します。30日無料で試せます。","datePublished":"2026-10-06","dateModified":"2026-10-06","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/","logo":{"@type":"ImageObject","url":"https://bst-plugins.com/logo.png"}},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-list-print-plugin.html","image":"https://bst-plugins.com/og-print.png"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"プラグインを入れたあと、設定をしないと使えませんか？","acceptedAnswer":{"@type":"Answer","text":"設定しなくても使えます。アプリに追加して更新すると、一覧画面に「印刷」ボタンが表示されます。初期値（A4横・タイトルと印刷日時とページ番号あり）のままですぐ印刷でき、用紙や列は印刷のたびにダイアログで変えられます。"}},{"@type":"Question","name":"どの一覧でも印刷できますか？","acceptedAnswer":{"@type":"Answer","text":"表形式の一覧に対応しています。いま表示している一覧の列・絞り込み・並び順が、そのまま印刷に反映されます。カレンダー形式とカスタマイズビューは対象外です。"}},{"@type":"Question","name":"何件まで印刷できますか？","acceptedAnswer":{"@type":"Answer","text":"既定で最大1,000件、設定で10,000件まで印刷できます。件数が多い場合は読み込みの進み具合が表示されます。実用上は、絞り込んでから印刷する運用をおすすめします。"}},{"@type":"Question","name":"請求書や見積書のような帳票は作れますか？","acceptedAnswer":{"@type":"Answer","text":"作れません。一覧印刷プラグインは「表示中の一覧を、そのままきれいに印刷する」ことに絞った製品です。1件ごとに自由なレイアウトで出力したい場合は、帳票専用の製品が向いています。"}},{"@type":"Question","name":"保存した印刷設定は、ほかの人も使えますか？","acceptedAnswer":{"@type":"Answer","text":"名前を付けて保存した設定は、保存した人のブラウザに記憶されます。全員に同じ形で使ってほしい場合は、管理者がプラグイン設定で初期値を決めておくと、全員のダイアログがその形で開きます。"}},{"@type":"Question","name":"業務データが外部に送信されませんか？","acceptedAnswer":{"@type":"Answer","text":"送信されません。印刷の処理はすべてブラウザの中で完結します。年額プランのライセンス確認で送信されるのは「kintoneドメイン名」だけで、レコードの内容は送られません。通信が一切できない環境向けに、完全オフラインの永久ライセンス版もあります。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで、製品版と同じ全機能を試せます。"}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://bst-plugins.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://bst-plugins.com/blog/index.html"},{"@type":"ListItem","position":3,"name":"kintoneの一覧印刷プラグインの選び方｜設定なしですぐ使える1本","item":"https://bst-plugins.com/blog/kintone-list-print-plugin.html"}]}
+</script>
+<style>
+:root{--ink:#252525;--paper:#FBFBF8;--paper2:#F3F2EC;--line:#E4E3DB;--amber:#FFB800;--amber-d:#B57E00;--mut:#6E6E68;--ok:#18794E;--blue:#2563EB;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--paper);color:var(--ink);line-height:1.95;}
+.wrap{max-width:820px;margin:0 auto;padding:0 24px;}
+main{padding:44px 0 64px;}
+.kick{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--amber-d);}
+h1{font-size:clamp(23px,3.8vw,32px);font-weight:900;letter-spacing:-.01em;line-height:1.55;margin:6px 0 10px;}
+.meta{font-size:12.5px;color:var(--mut);margin-bottom:24px;}
+h2{font-size:clamp(18px,2.8vw,23px);font-weight:900;margin:40px 0 14px;padding:10px 0 0;border-top:1px solid var(--line);}
+h3{font-size:16.5px;font-weight:900;margin:26px 0 10px;padding-left:10px;border-left:4px solid var(--amber);}
+p{font-size:14.5px;margin:0 0 15px;}
+.lead{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px 18px;margin:0 0 22px;}
+.lead b{display:block;font-size:13px;color:var(--amber-d);margin-bottom:6px;}
+.lead ul{margin:0 0 0 20px;font-size:13.5px;}
+.lead li{margin-bottom:4px;}
+.point{border:2px solid var(--amber);border-radius:12px;background:#fffdf5;padding:13px 17px;margin:0 0 20px;font-size:14.5px;line-height:1.9;}
+.note{border:1.5px solid #bcd9ee;border-radius:12px;background:#F5F9FF;padding:12px 16px;font-size:13px;line-height:1.9;margin:18px 0;}
+.cta{border:2px solid var(--amber);border-radius:14px;background:#fffdf5;padding:16px 20px;margin:26px 0;font-size:14px;}
+.cta a.b{display:inline-flex;margin-top:10px;background:var(--amber);color:var(--ink);font-weight:700;font-size:14px;padding:11px 22px;border-radius:999px;text-decoration:none;}
+ul.plain,ol.plain{margin:0 0 16px 22px;font-size:14.5px;}
+ul.plain li,ol.plain li{margin-bottom:7px;}
+a{color:var(--blue);}
+table.tb{border-collapse:collapse;width:100%;font-size:13px;margin:0 0 18px;background:#fff;}
+table.tb th,table.tb td{border:1px solid var(--line);padding:9px 12px;text-align:left;line-height:1.7;vertical-align:top;}
+table.tb th{background:#F7F7F5;white-space:nowrap;}
+details.faq{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 18px;margin-bottom:10px;}
+details.faq summary{font-weight:700;font-size:14px;cursor:pointer;}
+details.faq p{font-size:13.5px;color:#444;margin:8px 0 0;}
+/* ===== ブログ組版強化（読みやすさ・余白・キーメッセージ・ミニデモ） ===== */
+p{margin:0 0 18px;}
+h2{margin-top:48px;}
+h3{margin-top:30px;}
+.key{margin:28px 0;padding:18px 22px;border-left:6px solid var(--amber);background:#fff;border-radius:0 12px 12px 0;font-size:16.5px;font-weight:900;line-height:2.05;letter-spacing:.01em;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.key small{display:block;font-weight:500;font-size:12.5px;color:var(--mut);margin-top:8px;line-height:1.8;}
+.opt3{display:flex;flex-direction:column;gap:10px;margin:14px 0 18px;}
+.opt3 .o{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 15px;font-size:13.5px;line-height:1.85;}
+.opt3 .o b{color:var(--amber-d);margin-right:6px;}
+.adm{border:2px solid var(--amber);border-radius:14px;background:#fff;overflow:hidden;margin:26px 0;box-shadow:0 10px 26px rgba(255,184,0,.10);}
+.adm-hd{background:#F7F7F5;border-bottom:1px solid var(--line);padding:9px 14px;font-size:12px;font-weight:900;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.adm-hd .tag{font-size:10px;color:#fff;background:#3498db;border-radius:999px;padding:2px 9px;flex:none;}
+.adm-bd{padding:14px 16px;}
+.adm-seg{display:inline-flex;border:1px solid #d1d5db;border-radius:8px;overflow:hidden;margin:0 8px 12px 0;flex-wrap:wrap;}
+.adm-seg button{border:none;background:#fff;padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;color:#6b7280;font-family:inherit;border-right:1px solid #e5e7eb;}
+.adm-seg button:last-child{border-right:none;}
+.adm-seg button.on{background:#3498db;color:#fff;}
+.adm-note{font-size:11.5px;color:var(--mut);margin-top:8px;}
+
+.pd-wrap{display:flex;justify-content:center;background:#6b7280;padding:16px;border-radius:10px;}
+.pd-sheet{background:#fff;width:250px;height:180px;box-shadow:0 4px 14px rgba(0,0,0,.3);padding:10px 12px;font-size:7px;line-height:1.6;color:#111;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.pd-chrome{background:#e5e7eb;margin:-10px -12px 6px;padding:3px 8px;font-size:6px;color:#555;}
+.pd-menu{background:#3498db;color:#fff;padding:2px 6px;margin:0 -12px 4px;font-size:6px;}
+.pd-tb{width:100%;border-collapse:collapse;}
+.pd-tb th,.pd-tb td{border:.5px solid #aaa;padding:1px 3px;text-align:left;}
+.pd-tb th{background:#EFEFEA;}
+.pd-cut{position:absolute;left:0;right:0;bottom:0;height:14px;background:linear-gradient(rgba(255,255,255,0),#fff);}
+.pd-cutrow{height:7px;overflow:hidden;}
+.pd-ttl{font-size:9px;font-weight:900;}
+.pd-meta{display:flex;justify-content:space-between;color:#555;font-size:6px;border-bottom:1px solid #333;margin-bottom:3px;}
+.pd-ft{margin-top:auto;text-align:right;color:#555;font-size:6px;}
+.pd-zeb{background:#F6F6F3;}
+.pd-chk{text-align:center;}
+.pd-bx{display:inline-block;width:5px;height:5px;border:.6px solid #333;border-radius:1px;}
+.pd-cap{font-size:12px;font-weight:900;margin-top:10px;}
+.pd-cap.ng{color:#991b1b;}
+.pd-cap.ok{color:#18794E;}
+/* ===== 並列比較デモ dcp（標準✕ vs プラグイン○） ===== */
+.dcp{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:4px;position:relative;}
+.dcp-p{border:2px solid;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.dcp-p.ngp{border-color:#B3261E;background:#FFF6F5;}
+.dcp-p.okp{border-color:#18794E;background:#F4FBF6;}
+.dcp-h{font-size:12px;font-weight:900;padding:8px 12px;display:flex;gap:7px;align-items:center;color:#fff;letter-spacing:.02em;line-height:1.5;}
+.ngp .dcp-h{background:#B3261E;}
+.okp .dcp-h{background:#18794E;}
+.dcp-tag{margin-left:auto;font-size:9.5px;font-weight:900;background:rgba(255,255,255,.25);border-radius:999px;padding:2px 9px;letter-spacing:.1em;flex:none;}
+.dcp-b{padding:12px;flex:1;}
+.dcp-v{font-size:11.5px;font-weight:900;padding:8px 12px;border-top:1.5px solid;line-height:1.7;}
+.ngp .dcp-v{color:#8a1d16;border-color:#EFC4C4;background:#FDECEA;}
+.okp .dcp-v{color:#135f3e;border-color:#BBDFC9;background:#E7F6EC;}
+.dcp-vs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.28);border:2.5px solid #fff;}
+.dcp-arrow{display:none;}
+.dcp-ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px;font-size:12.5px;font-weight:700;}
+.dcp-ctl select{height:32px;padding:0 10px;font-size:13px;font-family:inherit;border:1px solid #d5dee3;border-radius:8px;background:#fff;}
+@media (max-width:640px){
+.dcp{grid-template-columns:1fr;gap:10px;}
+.dcp-vs{display:none;}
+.dcp-arrow{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;font-size:12.5px;font-weight:900;color:var(--amber-d);padding:1px 0;}
+}
+
+/* 目次 */
+.toc{border:1px solid var(--line);border-left:4px solid var(--amber);background:#fff;padding:14px 18px;margin:22px 0;font-size:14px;}
+.toc b{display:block;font-size:13px;margin-bottom:6px;}
+.toc ol{margin:0;padding-left:1.4em;}
+.toc li{margin:3px 0;line-height:1.7;}
+.toc a{color:inherit;text-decoration:none;border-bottom:1px solid #cfcec6;}
+.toc a:hover{border-bottom-color:var(--ink);}
+
+/* 列を選ぶミニデモ */
+.cd{display:grid;grid-template-columns:220px 1fr;gap:18px;align-items:start;}
+.cd-ctl{font-size:13px;}
+.cd-ctl b{display:block;font-size:12px;color:var(--mut);margin:10px 0 4px;}
+.cd-ctl b:first-child{margin-top:0;}
+.cd-ctl label{display:flex;align-items:center;gap:8px;padding:3px 0;cursor:pointer;}
+.cd-seg{display:inline-flex;border:1px solid #cfcec6;border-radius:6px;overflow:hidden;}
+.cd-seg button{appearance:none;border:none;background:#fff;font-size:12.5px;padding:6px 11px;cursor:pointer;font-family:inherit;color:var(--ink);}
+.cd-seg button+button{border-left:1px solid #cfcec6;}
+.cd-seg button.on{background:var(--ink);color:var(--amber);font-weight:700;}
+.cd-paper{background:#fff;border:1px solid #d8d7cf;box-shadow:0 2px 0 #e9e8e0;padding:16px 18px 12px;min-width:0;overflow-x:auto;}
+.cd-ttl{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-weight:700;font-size:14px;margin-bottom:8px;}
+.cd-ttl small{font-weight:400;font-size:11px;color:var(--mut);white-space:nowrap;}
+table.cd-t{width:100%;border-collapse:collapse;font-size:12px;}
+table.cd-t th,table.cd-t td{border:1px solid #9a998f;padding:4px 7px;text-align:left;white-space:nowrap;}
+table.cd-t th{background:#eeede6;}
+table.cd-t tr:nth-child(even) td{background:#f7f6f0;}
+table.cd-t td.bx{text-align:center;width:34px;}
+table.cd-t td.wr{width:70px;}
+.cd-ft{text-align:right;font-size:11px;color:var(--mut);margin-top:6px;}
+@media(max-width:640px){.cd{grid-template-columns:1fr;}}
+
+/* ===== bstd: 共通デザインレイヤー（2026-10・全ページ同一）=====
+   方針: 箱と影を減らして罫線で組む／絵文字ではなく Material Symbols（インラインSVG）／
+         bst の黒×アンバーは「ロゴ色のラベル・見出しのバー・アイコン・黒帯のセクション」で効かせる */
+.mi{width:1em;height:1em;fill:currentColor;flex:none;vertical-align:-.15em;}
+.nb{white-space:nowrap;}
+/* 角丸と影を抑える */
+.card,.bstx-card,.bstx-democard,.bstx-cfg,.pricebox,.screen,.pcard,.plan,.panel,.vizcard,.nitem,.bcard,.bfeat,.cta,.cta-card,.box,.adm,.fdemo,.tdemo,.dcard,.modecard,.cfgmock,.demo,.tr,.feat,.can>div,.mk,.license,.howto .step{border-radius:8px;box-shadow:none;}
+.feat-box,.iconbn{border-radius:10px;box-shadow:none;}
+.pcard:hover{transform:none;box-shadow:none;border-color:var(--ink);}
+.bstx-democard{border:1px solid var(--line);}
+/* ボタン */
+.btn,.bt,.b,a.b,.cta .b,.bstnav .bstcta{border-radius:6px !important;}
+.btn,.bt{border-width:1px;}
+.btn .mi,.bt .mi,.b .mi{font-size:18px;}
+.btn--ghost,.bt-ghost{border-color:#cfcec6;background:transparent;color:var(--ink);}
+.btn--ghost:hover,.bt-ghost:hover{background:#fff;border-color:var(--ink);}
+/* ロゴ色のラベル（黒地にアンバー） */
+.eyebrow,.hero .kick,.feat-badge,.tag-bst{display:inline-block;background:var(--ink);color:var(--amber);border:none;border-radius:4px;padding:5px 11px;font-size:12px;font-weight:700;letter-spacing:.02em;}
+/* 見出し: アンバーのバー */
+section h2::before{content:"";display:block;width:40px;height:5px;background:var(--amber);margin-bottom:16px;}
+.demo2 h2::before,.kd-shell h2::before,.bstx-democard h2::before,.feat-box h2::before,.iconbn h2::before,.inkband h2::before,.band-in h2::before{display:none;}
+section{padding:64px 0;}
+.band{border:none;}
+h1 em{background:none !important;}
+h2.sec,.bstx-h2{margin:0 0 28px;}
+.lead{color:#4a4a45;}
+.sec-lead{font-size:15px;color:#4a4a45;max-width:44em;margin:-12px 0 28px;}
+/* トップの安心ポイント */
+.tr{border:none;border-top:2px solid var(--ink);border-radius:0;background:none;padding:16px 0 0;}
+.tr .em{font-size:20px;line-height:1;box-sizing:content-box;padding:8px;background:var(--ink);color:var(--amber);border-radius:8px;display:flex;}
+/* 罫線で区切る項目リスト */
+.fx{display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;}
+.fx-i{border-top:2px solid var(--ink);padding:20px 0 30px;}
+.fx-i>.mi{font-size:22px;box-sizing:content-box;padding:9px;background:var(--ink);color:var(--amber);border-radius:8px;display:block;margin-bottom:12px;}
+.fx-i b,.fx-i h3{display:block;font-size:16px;font-weight:700;line-height:1.5;margin:0 0 6px;}
+.fx-i p{font-size:14px;line-height:1.85;color:#4a4a45;}
+.fx.is-quiet .fx-i{border-top:1px solid #cfcec6;}
+.fx.is-quiet .fx-i>.mi{background:none;color:var(--ink);padding:0;font-size:26px;border-radius:0;}
+.fx.is-2{grid-template-columns:repeat(2,1fr);}
+.fx-no{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:var(--ink);color:var(--amber);border-radius:8px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:18px;margin-bottom:12px;}
+/* 黒帯のセクション（試用への導線など） */
+.inkband{background:var(--ink);color:#fff;border:none;}
+.inkband h2{color:#fff;}
+.inkband h2::after{content:"";display:block;width:40px;height:5px;background:var(--amber);margin-top:16px;}
+.inkband p,.inkband .step p,.inkband .sec-lead{color:#d6d5cd;}
+.inkband .step{border-top-color:#5a5a55;background:none;}
+.inkband .step .no{color:var(--amber);}
+.inkband .step b{color:#fff;}
+.inkband .btn--ghost{color:#fff;border-color:#77776f;}
+.inkband .btn--ghost:hover{background:#3a3a37;border-color:#fff;}
+/* 導入前／導入後 */
+.bfaf{display:grid;grid-template-columns:1fr 1fr;margin-top:36px;border-top:2px solid var(--ink);border-bottom:1px solid var(--line);}
+.bfaf-c{padding:18px 28px 20px 0;}
+.bfaf-c.is-after{padding:18px 0 20px 28px;border-left:1px solid var(--line);}
+.bfaf-lb{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.08em;color:var(--mut);margin-bottom:6px;}
+.bfaf-c.is-after .bfaf-lb{color:var(--ink);background:var(--amber);padding:1px 8px;border-radius:3px;}
+.bfaf-c p{font-size:14px;line-height:1.9;color:var(--mut);}
+.bfaf-c.is-after p{color:var(--ink);font-weight:500;}
+/* 設定画面のイメージ */
+.bstx-cfg{max-width:none;}
+.bstx-no{background:var(--ink);color:var(--amber);border-radius:4px;width:20px;height:20px;}
+.bstx-chip{border-radius:4px;border-width:1px;}
+.bstx-sim{border:none;border-left:4px solid var(--amber);border-radius:0;background:none;padding:2px 0 2px 12px;}
+.bstx-sim .mi{font-size:16px;margin-right:4px;}
+.cfg-note{font-size:13px;color:#4a4a45;line-height:1.85;margin-top:8px;}
+.cfg-2col{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start;}
+.cfg-pts{list-style:none;}
+.cfg-pts li{border-top:1px solid #cfcec6;padding:14px 0 16px;}
+.cfg-pts li:first-child{border-top:2px solid var(--ink);}
+.cfg-pts b{display:block;font-size:15px;margin-bottom:3px;}
+.cfg-pts li>span{font-size:13.5px;color:#4a4a45;line-height:1.8;display:block;}
+/* 比較表 */
+.bstx-cmp,.cmp{border-radius:0;box-shadow:none;}
+.bstx-cmp th,.bstx-cmp td{border:none;border-bottom:1px solid var(--line);padding:12px 14px;}
+.bstx-cmp thead th{background:none;border-bottom:2px solid var(--ink);}
+.bstx-cmp thead th.me,.cmp thead th.me{background:var(--ink);color:var(--amber);}
+.bstx-cmp td:first-child{background:none;}
+/* 手順 */
+.steps{display:grid;gap:0 40px;grid-template-columns:repeat(3,1fr);}
+.step{background:none;border:none;border-top:2px solid var(--ink);border-radius:0;padding:16px 0 8px;}
+.step .no{background:none;color:var(--ink);width:auto;height:auto;border-radius:0;font-family:"JetBrains Mono",monospace;font-size:22px;margin-bottom:4px;}
+.step .no{display:block;font-weight:700;}
+.step b{display:block;font-size:15.5px;margin-bottom:3px;}
+.step p{font-size:13.5px;color:#4a4a45;line-height:1.8;}
+/* 料金・FAQ */
+.pricebox{padding:32px;gap:40px;}
+.spec dd{color:#4a4a45;line-height:1.8;}
+.faq details{background:none;border:none;border-top:1px solid var(--line);border-radius:0;padding:16px 0;margin:0;}
+.faq details:last-child{border-bottom:1px solid var(--line);}
+.faq summary{font-size:15px;}
+.faq p{font-size:14px;color:#4a4a45;line-height:1.9;max-width:46em;}
+@media(max-width:820px){.fx,.fx.is-2,.steps{grid-template-columns:1fr;}.fx-i{padding-bottom:20px;}.cfg-2col{grid-template-columns:1fr;gap:24px;}.bfaf{grid-template-columns:1fr;}.bfaf-c,.bfaf-c.is-after{padding:16px 0;}.bfaf-c.is-after{border-left:none;border-top:1px solid var(--line);}}
+@media(max-width:640px){table.tb{display:block;overflow-x:auto;max-width:100%;}}
+/* ===== /bstd ===== */
+
+/* ===== bst 共通ヘッダー/フッター（正準・全ページ同一） ===== */
+.bstnav{position:sticky;top:0;background:rgba(251,251,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E3DB;z-index:100;}
+.bstnav-in{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;height:60px;}
+.bstnav .bstbrand{display:inline-block;background:#252525;color:#FFB800;padding:3px 13px;border-radius:9px;font-weight:900;font-size:18px;text-decoration:none;letter-spacing:.02em;}
+.bstnav .bstitem{font-size:13.5px;font-weight:500;text-decoration:none;color:#6E6E68;}
+.bstnav .bstitem:hover{color:#252525;}
+.bstnav .bstcta{margin-left:auto;background:#252525;color:#fff;font-size:13px;font-weight:700;padding:9px 18px;border-radius:999px;text-decoration:none;white-space:nowrap;}
+.bstfoot{border-top:1px solid #E4E3DB;padding:28px 0 38px;font-size:12.5px;color:#6E6E68;}
+.bstfoot-in{max-width:1080px;margin:0 auto;padding:0 24px;}
+.bstfoot .row{display:flex;gap:18px;flex-wrap:wrap;}
+.bstfoot a{text-decoration:none;color:#6E6E68;}
+.bstfoot a:hover{color:#252525;}
+/* ===== 日本語の折り返し品質（中途半端な改行の防止） ===== */
+h1,h2,h3{text-wrap:balance;}
+p,li,dd,dt{text-wrap:pretty;}
+@supports (word-break: auto-phrase){h1,h2,h3,p{word-break:auto-phrase;}}
+/* ===== bstw: 折り返し方針（全ページ同一）=====
+   すべて文節の切れ目で折り返す（語の途中では切らない）。
+   見出し・リード・短い説明文は行の長さを揃える（balance）、長い文章は最終行の孤立だけ避ける（pretty） */
+p,li,dd,dt,td,th,summary{line-break:strict;text-wrap:pretty;}
+h1,h2,h3,.lead,.sec-lead,.h1sub,.fx-i b,.fx-i h3,.fx-i p,.cfg-pts b,.cfg-pts li>span,.cfg-note,.step b,.step p,.bfaf-c p,.nores,summary,.pcard p,.tr span,.plan p,.feat-lead,.feat-pt p,.bcard p,.bcard b,.nitem b{text-wrap:balance;}
+@supports (word-break: auto-phrase){p,li,dd,dt,summary{word-break:auto-phrase;}}
+/* ===== /bstw ===== */
+
+/* =====================================================================
+   bstm: モバイル最適化（全ページ共通・スタイルの最後に置くこと）
+   ・インラインstyleの2カラムgridは属性セレクタ＋!importantで1カラム化
+   ・カード類のminmaxによる横あふれを防止
+   ===================================================================== */
+img,svg,table{max-width:100%;}
+body{-webkit-text-size-adjust:100%;}
+@media (max-width:860px){
+  [style*="grid-template-columns:1fr 1.2fr"],
+  [style*="grid-template-columns:1fr 1.1fr"],
+  [style*="grid-template-columns:1.1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1.2fr"]{grid-template-columns:1fr !important;}
+  .pricebox{grid-template-columns:1fr;}
+  .viz,.can,.hero-grid,.grid,.demo2{grid-template-columns:1fr !important;}
+}
+@media (max-width:640px){
+  /* ヘッダー: ブランド＋CTAのみ（他の導線はフッターと本文に確保済み） */
+  .bstnav-in{gap:12px;height:56px;padding:0 16px;}
+  .bstnav .bstitem{display:none;}
+  .bstnav .bstcta{margin-left:auto;font-size:12.5px;padding:8px 15px;}
+  .wrap,.bstfoot-in{padding:0 16px;}
+  section{padding:38px 0;}
+  /* カード/グリッドは必ず1カラム（minmaxの最小幅による横あふれを断つ） */
+  .cards3,.bstx-cards,.pgrid2,.steps,.cardrow,.pgrid,.plist{grid-template-columns:1fr !important;}
+  /* 主要ボタンは全幅・タップしやすく */
+  .btns .btn,.dlrow .btn,.pcard-btns .bt{flex:1 1 100%;justify-content:center;}
+  .btn{padding:13px 20px;}
+  /* 価格ボックスの余白 */
+  .pricebox{padding:22px 18px;}
+  .pricebox .big{font-size:36px;}
+  /* 比較表: 横スクロール前提で圧縮（親のoverflow-x:autoで操作可能） */
+  .bstx-cmp,.cmp{min-width:500px;font-size:11.5px;}
+  .bstx-cmp th,.bstx-cmp td,.cmp th,.cmp td{padding:8px 10px;}
+  /* 部分一致検索デモ: 列幅指定を解除して収める */
+  #psrows,#pscnt{font-size:12px;}
+  th[style*="width:150px"],th[style*="width:110px"]{width:auto !important;}
+  /* カレンダーデモ: セルを小さく */
+  #cvBody div[style*="repeat(7"]{gap:2px !important;}
+  #cvBody div[style*="min-height:52px"]{min-height:42px !important;padding:1px 2px !important;}
+  /* タブ表示デモ: タブバーを折り返す */
+  .tbar{flex-wrap:wrap;}
+  /* フッターのリンク間隔 */
+  .bstfoot .row{gap:12px 16px;}
+}
+@media (max-width:400px){
+  .bstnav .bstcta{font-size:12px;padding:7px 12px;}
+  .code{font-size:64px;}
+}
+</style>
+</head>
+<body>
+<header class="bstnav"><div class="bstnav-in"><a class="bstbrand" href="/index.html">bst</a><a class="bstitem" href="/index.html#tools">プラグイン</a><a class="bstitem" href="/index.html#pricing">料金</a><a class="bstitem" href="/blog/index.html">ブログ</a><a class="bstitem" href="/icons.html">無料アイコン</a><a class="bstcta" href="/index.html#tools">30日無料で試す</a></div></header>
+<main><div class="wrap">
+
+<h1>kintoneの一覧印刷プラグインの選び方｜設定なしですぐ使える1本</h1>
+<p class="meta">2026-10-06公開 ／ カテゴリ: 印刷・帳票 ／ 執筆: bst 開発チーム</p>
+
+<p>「kintoneの一覧を印刷したいだけなのに、プラグインを調べると帳票ツールばかり出てくる」——一覧印刷の方法を探している方から、よく聞く声です。</p>
+<p>請求書を作りたいわけではない。いま見ている一覧を、そのまま紙にしたいだけ。この目的に、テンプレートを設計する帳票ツールは大がかりすぎます。私たちはkintoneプラグインの開発元として、一覧印刷に特化したプラグインを提供しています。本記事は2026年10月時点の情報に基づいて、一覧印刷プラグインの選び方を整理します。</p>
+
+<div class="key">一覧を印刷したいだけなら、選ぶのは「帳票」ではなく「一覧印刷」のプラグインです。<br>見るべき点は、入れたその日から迷わず使えるかどうか。<small>この記事では、帳票プラグインとの違い → 選ぶときの5つのポイント → 実際の使い方、の順で解説します。</small></div>
+
+<div class="lead"><b>この記事で分かること</b>
+<ul>
+<li>一覧印刷プラグインと帳票プラグインの違い</li>
+<li>一覧印刷プラグインを選ぶときに確認したい5つのポイント</li>
+<li>導入したその日から使える、bstの一覧印刷プラグインの使い方</li>
+<li>棚卸し・会議資料など、現場での使いどころ</li>
+<li>向いていないケースと、料金・無料試用について</li>
+</ul></div>
+
+<div class="point"><b>先に結論</b>：一覧印刷プラグインは、次の3つを満たすものを選ぶと失敗しません。</div>
+<div class="opt3">
+<div class="o"><b>①入れたその日から使える</b>テンプレートの設計や複雑な初期設定が要らないこと。アプリに追加したら、すぐ印刷ボタンが使える製品を選びます。</div>
+<div class="o"><b>②その場で思いどおりに整えられる</b>用紙・向き・載せる列を、印刷のたびに画面で選べること。実寸のプレビューで仕上がりを見ながら決められると、刷り直しがなくなります。</div>
+<div class="o"><b>③紙として破綻しない</b>行が途中で切れない、全ページに列見出しが入る、ページ番号が付く。会議や現場に持っていける紙になるかを確認します。</div>
+</div>
+<p>なお、そもそもなぜブラウザの印刷では崩れるのか、Excelで整形する方法やJavaScriptで自作する方法と比べたい方は、<a href="/blog/kintone-list-print.html">kintoneの一覧を印刷する方法3選</a>で詳しく解説しています。</p>
+
+<nav class="toc" aria-label="目次"><b>目次</b><ol><li><a href="#s1">一覧印刷プラグインとは｜帳票プラグインとの違い</a></li><li><a href="#s2">一覧印刷プラグインを選ぶときの5つのポイント</a></li><li><a href="#s3">導入したその日から使える｜bstの一覧印刷プラグイン</a></li><li><a href="#s4">こんな場面で使われます｜棚卸し・会議・現場</a></li><li><a href="#s5">向いていないケースも、正直にお伝えします</a></li><li><a href="#s6">料金と無料試用</a></li><li><a href="#s7">よくある質問</a></li><li><a href="#s8">まとめ：一覧を印刷したいだけなら、すぐ使える1本を</a></li></ol></nav>
+
+<h2 id="s1">一覧印刷プラグインとは｜帳票プラグインとの違い</h2>
+<p>kintoneの印刷に関するプラグインは、大きく2種類に分かれます。目的が違うので、まずどちらが必要なのかを切り分けます。</p>
+<table class="tb">
+<tr><th></th><th>一覧印刷プラグイン</th><th>帳票プラグイン</th></tr>
+<tr><td>印刷するもの</td><td>一覧（表）をそのまま</td><td>レコード1件ごとの書類（請求書・見積書など）</td></tr>
+<tr><td>レイアウト</td><td>一覧の列をそのまま並べる</td><td>テンプレートを自由に設計する</td></tr>
+<tr><td>導入の手間</td><td>追加してすぐ使える製品が多い</td><td>テンプレートの設計が必要</td></tr>
+<tr><td>向いている用途</td><td>棚卸し表、会議の配布資料、点検リスト</td><td>請求書、見積書、納品書、申請書</td></tr>
+<tr><td>価格の傾向</td><td>単機能のぶん手頃</td><td>高機能のぶん高めの製品が多い</td></tr>
+</table>
+<p>「一覧の内容を紙で配りたい・持ち歩きたい」なら一覧印刷、「1件ずつ決まった様式の書類を出したい」なら帳票、と考えると迷いません。両方が必要な組織では、用途ごとに別の製品を使い分けるのが一般的です。</p>
+<p>一覧を印刷したいだけの場面で帳票プラグインを選ぶと、最初にテンプレートを作る作業が発生し、列を1つ変えるたびにテンプレートを直すことになります。目的に対して道具が大きすぎる状態です。</p>
+
+<h2 id="s2">一覧印刷プラグインを選ぶときの5つのポイント</h2>
+<p>一覧印刷プラグインを比べるときは、機能の多さより「現場の人が説明なしで使えるか」を基準にします。確認したい点は5つです。</p>
+<div class="opt3">
+<div class="o"><b>①初期設定なしで使い始められるか</b>導入の直後、設定画面を開かなくても印刷できるかを確認します。初期設定が多い製品は、設定した人しか使い方が分からない状態になりがちです。</div>
+<div class="o"><b>②列をその場で選べるか</b>「社内メモの列は外したい」「今回は金額を載せない」といった調整を、印刷する人が自分でできるかどうか。管理者に頼まないと列を変えられない製品は、結局Excelに戻ってしまいます。</div>
+<div class="o"><b>③プレビューが実寸か</b>画面のプレビューと実際の紙が一致するかを確認します。プレビューが目安でしかない製品は、試し刷りが必要になります。</div>
+<div class="o"><b>④ページ分割が正しいか</b>行の途中で切れないか、2ページ目以降にも列見出しが入るか、ページ番号が付くか。試用版で、必ず2ページ以上になる一覧を印刷して確かめます。</div>
+<div class="o"><b>⑤データが外に出ないか</b>印刷の処理がブラウザの中で完結するか、外部のサーバーで帳票を作るのか。顧客情報を含む一覧を扱うなら、情報システム部門の確認が必要になる点です。</div>
+</div>
+<p>この5つは、試用版があれば30分ほどで確かめられます。カタログの比較表より、実際の一覧を1回印刷してみるほうが確実です。</p>
+
+<h2 id="s3">導入したその日から使える｜bstの一覧印刷プラグイン</h2>
+<p>ここからは、bstの<a href="/lp-list-print.html">一覧印刷プラグイン</a>を例に、実際の使い方を紹介します。上の5つのポイントを満たすことを前提に設計した製品です。</p>
+
+<h3>導入は3ステップ、面倒な設定は不要</h3>
+<ol class="plain">
+<li>プラグインのZIPファイルをkintoneシステム管理の「プラグイン」から読み込む</li>
+<li>印刷したいアプリの設定でプラグインを追加する</li>
+<li>「アプリを更新」を押す</li>
+</ol>
+<p>これだけで、一覧画面に「印刷」ボタンが表示されます。テンプレートの設計も、フィールドの対応付けも要りません。設定画面を一度も開かなくても、初期値のままで印刷できます。</p>
+<p>設定画面は、「ダイアログを開いたときの初期値を、自社の使い方に合わせておきたい」ときに使うものです。たとえば、いつもA4縦で印刷するなら初期値をA4縦にしておく、といった調整ができます。</p>
+
+<h3>ボタンを押して、選んで、印刷するだけ</h3>
+<p>印刷ボタンを押すと、ダイアログが開きます。左側で用紙や列を選ぶと、右側のプレビューがその場で変わります。操作に迷うところはありません。下のデモで、列の選択とチェック欄の切り替えを試してみてください。</p>
+
+<div class="adm"><div class="adm-hd"><span class="tag">触って確認</span>列とチェック欄を選ぶと、紙がその場で変わる</div>
+<div class="adm-bd">
+<div class="cd">
+  <div class="cd-ctl">
+    <b>載せる列</b>
+    <div id="cdCols"></div>
+    <b>連番</b>
+    <div class="cd-seg" id="cdNo"><button type="button" data-v="0" class="on">なし</button><button type="button" data-v="1">付ける</button></div>
+    <b>チェック欄（右端）</b>
+    <div class="cd-seg" id="cdChk"><button type="button" data-v="none" class="on">なし</button><button type="button" data-v="box">□</button><button type="button" data-v="blank">記入欄</button></div>
+  </div>
+  <div class="cd-paper">
+    <div class="cd-ttl"><span>備品一覧</span><small id="cdMeta"></small></div>
+    <table class="cd-t" id="cdTable"></table>
+    <div class="cd-ft">1 / 3</div>
+  </div>
+</div>
+<div class="adm-note">※表示はイメージです。実際の製品では、用紙（A4・B5・A3）や向き、余白、文字サイズなども同じ画面で選べ、プレビューは実際の用紙と同じ寸法で表示されます。</div>
+</div></div>
+
+<h3>思いどおりのレイアウトにできる項目</h3>
+<p>ダイアログで選べる項目は次のとおりです。どれも選ぶだけで、プレビューにすぐ反映されます。</p>
+<table class="tb">
+<tr><th>選べること</th><th>内容</th></tr>
+<tr><td>用紙と向き</td><td>A4・B5・A3、縦・横</td></tr>
+<tr><td>余白・文字サイズ</td><td>余白3種類、文字サイズ4種類</td></tr>
+<tr><td>載せる列</td><td>一覧の列を、チェックでオン・オフ</td></tr>
+<tr><td>印刷する範囲</td><td>絞り込んだ全件、または表示中のページだけ</td></tr>
+<tr><td>紙に入れる情報</td><td>タイトル、印刷日時、件数、ページ番号</td></tr>
+<tr><td>表の見た目</td><td>罫線3種類、1行おきの色、連番、数値列の合計行</td></tr>
+<tr><td>チェック欄</td><td>右端に最大3列（□、または空白の記入欄）</td></tr>
+</table>
+<p>行が途中で切れないように、ページの区切りはプラグインが行の高さを測って決めます。列見出しは全ページに入り、ページ番号は「1 / 12」の形で印字されます。プレビューで見たとおりに印刷されるので、試し刷りは要りません。</p>
+
+<h3>よく使う形は、名前を付けて保存できる</h3>
+<p>一度整えたレイアウトは、「棚卸し用」「会議配布用」のように名前を付けて保存できます（12件まで）。次からは、保存した設定を選んで印刷するだけです。前回の指定も自動で記憶されるので、毎回同じ形で印刷する人は、ボタンを押してそのまま印刷できます。</p>
+
+<h2 id="s4">こんな場面で使われます｜棚卸し・会議・現場</h2>
+<p>一覧印刷がよく使われる場面を4つ紹介します（特定の導入企業の事例ではなく、想定される代表的な使い方です）。</p>
+<ul class="plain">
+<li><b>棚卸し・現物の照合</b>：備品や在庫の一覧にチェック欄を付けて印刷し、倉庫を歩きながら印を付けます。記入欄にすれば、実際の数量を書き込めます。</li>
+<li><b>会議の配布資料</b>：案件一覧を、文字を大きめ・合計行ありで印刷します。印刷日時が入るので、「いつ時点の数字か」で揉めません。</li>
+<li><b>現場への持ち出し</b>：訪問先や点検箇所のリストを、出発前に印刷します。電波の届かない場所でも、紙は確実に使えます。</li>
+<li><b>社外への提出</b>：社内向けのメモ列を外して、取引先に渡す一覧を作ります。列をチェックで外すだけなので、元の一覧を作り替える必要がありません。</li>
+</ul>
+<p>いずれも、これまではCSVに書き出してExcelで整えていた作業です。1回10〜15分かかっていた作業が、ボタンを押して選ぶだけになります。</p>
+
+<h2 id="s5">向いていないケースも、正直にお伝えします</h2>
+<p>一覧印刷プラグインは単機能の製品です。次のような目的には向いていません。</p>
+<div class="opt3">
+<div class="o"><b>請求書・見積書などの帳票を作りたい</b>1件ごとに決まった様式で出力する書類は、帳票専用の製品の役割です。ロゴの配置や宛名の位置を細かく決めたい場合も同様です。</div>
+<div class="o"><b>カレンダー形式やカスタマイズビューを印刷したい</b>対象は表形式の一覧です。カレンダー形式の一覧や、JavaScriptで作ったカスタマイズビューは印刷できません。</div>
+<div class="o"><b>スマートフォンから印刷したい</b>PCのブラウザ（Chrome・Edge）での利用を前提にしています。印刷はPCから行ってください。</div>
+</div>
+<p>逆に言えば、「表形式の一覧を、PCから、きれいに印刷したい」という目的であれば、過不足なく応えられる製品です。</p>
+
+<h2 id="s6">料金と無料試用</h2>
+<p>料金は年額¥19,800（税込・1ドメイン）です。同じkintoneドメインの中であれば、アプリの数やユーザーの数に制限はありません。通信が一切できない環境向けに、買い切りの永久ライセンス版もあります。</p>
+<p>購入の前に、30日間の無料試用版で全機能を試せます。メールアドレスの登録も不要です。まずは、いつも印刷に苦労している一覧を1つ選んで、実際に印刷してみてください。<a href="/lp-list-print.html">製品ページ</a>では、列の選択や用紙の切り替えを、ブラウザ上のデモで操作できます。</p>
+
+<h2 id="s7">よくある質問</h2>
+<details class="faq"><summary>プラグインを入れたあと、設定をしないと使えませんか？</summary><p>設定しなくても使えます。アプリに追加して更新すると、一覧画面に「印刷」ボタンが表示されます。初期値（A4横・タイトルと印刷日時とページ番号あり）のままですぐ印刷でき、用紙や列は印刷のたびにダイアログで変えられます。</p></details><details class="faq"><summary>どの一覧でも印刷できますか？</summary><p>表形式の一覧に対応しています。いま表示している一覧の列・絞り込み・並び順が、そのまま印刷に反映されます。カレンダー形式とカスタマイズビューは対象外です。</p></details><details class="faq"><summary>何件まで印刷できますか？</summary><p>既定で最大1,000件、設定で10,000件まで印刷できます。件数が多い場合は読み込みの進み具合が表示されます。実用上は、絞り込んでから印刷する運用をおすすめします。</p></details><details class="faq"><summary>請求書や見積書のような帳票は作れますか？</summary><p>作れません。一覧印刷プラグインは「表示中の一覧を、そのままきれいに印刷する」ことに絞った製品です。1件ごとに自由なレイアウトで出力したい場合は、帳票専用の製品が向いています。</p></details><details class="faq"><summary>保存した印刷設定は、ほかの人も使えますか？</summary><p>名前を付けて保存した設定は、保存した人のブラウザに記憶されます。全員に同じ形で使ってほしい場合は、管理者がプラグイン設定で初期値を決めておくと、全員のダイアログがその形で開きます。</p></details><details class="faq"><summary>業務データが外部に送信されませんか？</summary><p>送信されません。印刷の処理はすべてブラウザの中で完結します。年額プランのライセンス確認で送信されるのは「kintoneドメイン名」だけで、レコードの内容は送られません。通信が一切できない環境向けに、完全オフラインの永久ライセンス版もあります。</p></details><details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで、製品版と同じ全機能を試せます。</p></details>
+
+<h2 id="s8">まとめ：一覧を印刷したいだけなら、すぐ使える1本を</h2>
+<ul class="plain">
+<li>一覧をそのまま紙にしたいなら、選ぶのは帳票ではなく<b>一覧印刷</b>のプラグイン</li>
+<li>選ぶ基準は<b>初期設定なしで使える・列をその場で選べる・実寸プレビュー・正しいページ分割・データが外に出ない</b>の5つ</li>
+<li>bstの一覧印刷プラグインは、アプリに追加するだけで印刷ボタンが使え、用紙も列もダイアログで選ぶだけ</li>
+<li>棚卸しのチェック表、会議の配布資料、現場への持ち出しリストが、そのまま作れる</li>
+<li>帳票の作成やカレンダー形式の印刷は対象外。迷ったら30日の試用で、いつもの一覧を印刷して確かめる</li>
+</ul>
+
+<div class="cta"><b>いつもの一覧を、まず1回印刷してみてください</b><br>
+bstの<a href="/lp-list-print.html">一覧印刷プラグイン</a>は、導入したその日から使えます。テンプレートの設計は不要、用紙も列もボタンで選ぶだけ。実寸プレビュー、行を切らないページ分割、棚卸し用のチェック欄まで、30日間・登録不要で試せます。<br>
+<a class="b" href="/lp-list-print.html">一覧印刷プラグインを見る</a></div>
+
+<p>関連記事: <a href="/blog/kintone-list-print.html">kintoneの一覧を印刷する方法3選｜崩れる原因と解決策</a> ／ <a href="/blog/kintone-search-partial-match.html">kintoneで部分一致検索ができない理由と3つの解決方法</a></p>
+
+</div></main>
+<footer class="bstfoot"><div class="bstfoot-in"><div class="row"><a href="/index.html">ホーム</a><a href="/index.html#tools">プラグイン</a><a href="/blog/index.html">ブログ</a><a href="/icons.html">無料アイコン素材</a><a href="/about.html">bstについて</a><a href="/news.html">お知らせ</a><a href="mailto:support@bst-plugins.com?subject=%5Bbst%5D%20お問い合わせ">お問い合わせ</a><a href="/tokushoho.html">特定商取引法に基づく表記</a><a href="/privacy.html">プライバシーポリシー</a></div><div style="margin-top:10px;">© bst — kintoneプラグイン開発｜kintoneはサイボウズ株式会社の登録商標です。当サイトはサイボウズ株式会社とは関係ありません。</div></div></footer>
+<script>
+(function(){
+  var COLS=[['管理番号',1],['品名',1],['カテゴリ',1],['保管場所',1],['担当者',1],['数量',1]];
+  var ROWS=[['BH-1001','ノートPC 14型','PC','倉庫A','田中','1'],['BH-1002','ノートPC 16型','PC','倉庫A','田中','8'],['BH-1003','モニタ 24型','周辺機器','倉庫B','佐藤','15'],['BH-1004','モニタ 27型','周辺機器','倉庫B','佐藤','22'],['BH-1005','キーボード','入力機器','倉庫A','鈴木','29'],['BH-1006','マウス','入力機器','倉庫A','鈴木','36']];
+  var box=document.getElementById('cdCols'),t=document.getElementById('cdTable'),meta=document.getElementById('cdMeta');
+  if(!box||!t)return;
+  var st={no:'0',chk:'none'};
+  COLS.forEach(function(c,i){var l=document.createElement('label');l.innerHTML='<input type="checkbox" data-i="'+i+'" checked>'+c[0];box.appendChild(l);});
+  function esc(x){return String(x).replace(/[&<>]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[m];});}
+  function render(){
+    var on=COLS.map(function(c){return c[1];});
+    var h='<tr>'+(st.no==='1'?'<th>No.</th>':'')+COLS.map(function(c,i){return on[i]?'<th>'+esc(c[0])+'</th>':'';}).join('')+(st.chk!=='none'?'<th>確認</th>':'')+'</tr>';
+    ROWS.forEach(function(r,n){
+      h+='<tr>'+(st.no==='1'?'<td>'+(n+1)+'</td>':'')+r.map(function(v,i){return on[i]?'<td>'+esc(v)+'</td>':'';}).join('')+(st.chk==='box'?'<td class="bx">□</td>':st.chk==='blank'?'<td class="wr"></td>':'')+'</tr>';
+    });
+    t.innerHTML=h;
+    var n=on.filter(Boolean).length;
+    meta.textContent='2026/10/06 10:00 ／ 全53件 ／ '+n+'列';
+  }
+  box.addEventListener('change',function(e){var i=e.target.getAttribute('data-i');if(i===null)return;
+    COLS[i][1]=e.target.checked?1:0;
+    if(!COLS.some(function(c){return c[1];})){COLS[i][1]=1;e.target.checked=true;} // 1列は残す
+    render();});
+  [['cdNo','no'],['cdChk','chk']].forEach(function(p){var w=document.getElementById(p[0]);
+    w.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st[p[1]]=b.getAttribute('data-v');
+      w.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b);});render();});});
+  render();
+})();
+</script>
+</body>
+</html>

@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:title" content="kintoneのドロップダウンを連動させる方法3選｜bstブログ">
 <meta property="og:description" content="kintoneで「大分類を選んだら小分類を絞り込みたい」連動ドロップダウンは標準機能では作れません。選択肢の命名などの代替策、JavaScriptで実現する方法、プラグインの3つを費用・工数・注意点まで比較して解説します。">
-<meta property="og:image" content="https://bst-plugins.com/og-home.png">
+<meta property="og:image" content="https://bst-plugins.com/og-option.png">
 <meta property="og:url" content="https://bst-plugins.com/blog/kintone-dropdown-filter.html">
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary_large_image">
@@ -34,10 +34,13 @@
   });
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"kintoneのドロップダウンを連動させる方法3選","description":"kintoneで「大分類を選んだら小分類を絞り込みたい」連動ドロップダウンは標準機能では作れません。選択肢の命名などの代替策、JavaScriptで実現する方法、プラグインの3つを費用・工数・注意点まで比較して解説します。","datePublished":"2026-07-22","dateModified":"2026-07-22","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst"},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-dropdown-filter.html"}
+{"@context":"https://schema.org","@type":"Article","headline":"kintoneのドロップダウンを連動させる方法3選","description":"kintoneで「大分類を選んだら小分類を絞り込みたい」連動ドロップダウンは標準機能では作れません。選択肢の命名などの代替策、JavaScriptで実現する方法、プラグインの3つを費用・工数・注意点まで比較して解説します。","datePublished":"2026-07-22","dateModified":"2026-10-06","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/","logo":{"@type":"ImageObject","url":"https://bst-plugins.com/logo.png"}},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-dropdown-filter.html","image":"https://bst-plugins.com/og-option.png"}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"何段階まで連動できますか？","acceptedAnswer":{"@type":"Answer","text":"bstの選択肢絞り込みプラグインは、大分類→中分類→小分類のような3段階以上の多段連動に対応しています。段数の設計は設定画面のGUIで行えます。"}},{"@type":"Question","name":"連動のルールはどうやって設定しますか？","acceptedAnswer":{"@type":"Answer","text":"設定画面で「親の選択肢ごとに、子に表示する選択肢」をチェックで選ぶだけです。コードや対応表ファイルの作成は不要です。"}},{"@type":"Question","name":"既存のレコードやデータに影響はありませんか？","acceptedAnswer":{"@type":"Answer","text":"ありません。プラグインが制御するのは入力画面での選択肢の表示だけで、フィールドや保存済みデータの構造には手を加えません。プラグインを外せば元の表示に戻ります。"}},{"@type":"Question","name":"業務データが外部に送信されませんか？","acceptedAnswer":{"@type":"Answer","text":"送信されません。絞り込みの処理はすべてブラウザ内で完結します。年額プランのライセンス確認で送信されるのは「kintoneドメイン名」のみです。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。"}}]}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"何段階まで連動できますか？","acceptedAnswer":{"@type":"Answer","text":"bstの選択肢絞り込みプラグインは、大分類→中分類→小分類のような3段階以上の多段連動に対応しています。段数の設計は設定画面のGUIで行えます。"}},{"@type":"Question","name":"連動のルールはどうやって設定しますか？","acceptedAnswer":{"@type":"Answer","text":"設定画面で「親の選択肢ごとに、子に表示する選択肢」をチェックで選ぶだけです。コードや対応表ファイルの作成は不要です。"}},{"@type":"Question","name":"既存のレコードやデータに影響はありませんか？","acceptedAnswer":{"@type":"Answer","text":"ありません。プラグインが制御するのは入力画面での選択肢の表示だけで、フィールドや保存済みデータの構造には手を加えません。プラグインを外せば元の表示に戻ります。"}},{"@type":"Question","name":"業務データが外部に送信されませんか？","acceptedAnswer":{"@type":"Answer","text":"送信されません。絞り込みの処理はすべてブラウザ内で完結します。年額プランのライセンス確認で送信されるのは「kintoneドメイン名」のみです。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。"}},{"@type":"Question","name":"スマートフォンでも連動しますか？","acceptedAnswer":{"@type":"Answer","text":"bstの選択肢絞り込みプラグインは、モバイルでも値の連動と保存時のチェックが動作します。ただし選べない選択肢の見せ方は端末によって異なり、非表示ではなくグレーアウトに近い表示になる場合があります。"}},{"@type":"Question","name":"ラジオボタンにも使えますか？","acceptedAnswer":{"@type":"Answer","text":"使えます。bstの選択肢絞り込みプラグインは、ドロップダウンとラジオボタンの連動に対応しています。最大5段まで連動でき、1つのアプリの中に連動のまとまりを複数作ることもできます。"}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://bst-plugins.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://bst-plugins.com/blog/index.html"},{"@type":"ListItem","position":3,"name":"kintoneのドロップダウンを連動させる方法3選","item":"https://bst-plugins.com/blog/kintone-dropdown-filter.html"}]}
 </script>
 <style>
 :root{--ink:#252525;--paper:#FBFBF8;--paper2:#F3F2EC;--line:#E4E3DB;--amber:#FFB800;--amber-d:#B57E00;--mut:#6E6E68;--ok:#18794E;--blue:#2563EB;}
@@ -118,6 +121,14 @@ h3{margin-top:30px;}
 .dcp-vs{display:none;}
 .dcp-arrow{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;font-size:12.5px;font-weight:900;color:var(--amber-d);padding:1px 0;}
 }
+
+/* 目次 */
+.toc{border:1px solid var(--line);border-left:4px solid var(--amber);background:#fff;padding:14px 18px;margin:22px 0;font-size:14px;}
+.toc b{display:block;font-size:13px;margin-bottom:6px;}
+.toc ol{margin:0;padding-left:1.4em;}
+.toc li{margin:3px 0;line-height:1.7;}
+.toc a{color:inherit;text-decoration:none;border-bottom:1px solid #cfcec6;}
+.toc a:hover{border-bottom-color:var(--ink);}
 
 /* ===== bstd: 共通デザインレイヤー（2026-10・全ページ同一）=====
    方針: 箱と影を減らして罫線で組む／絵文字ではなく Material Symbols（インラインSVG）／
@@ -293,10 +304,10 @@ body{-webkit-text-size-adjust:100%;}
 <main><div class="wrap">
 
 <h1>kintoneのドロップダウンを連動させる方法3選</h1>
-<p class="meta">2026-07-22公開 ／ カテゴリ: 入力支援・選択肢 ／ 執筆: bst 開発チーム</p>
+<p class="meta">2026-07-22公開・2026-10-06更新 ／ カテゴリ: 入力支援・選択肢 ／ 執筆: bst 開発チーム</p>
 
 <p>「大分類で『パソコン』を選んだら、小分類には『ノートPC』『デスクトップPC』だけを出したい」——kintoneでアプリを作り込むと、必ず一度は欲しくなるのが、この連動ドロップダウン（絞り込み選択）です。</p>
-<p>しかし実際に設定画面を探しても、それらしい項目は見つかりません。私たちはkintoneプラグインの開発元として、この「連動できない」相談を数多く受けてきました。本記事は2026年7月時点の仕様に基づいて、できない理由と3つの解決方法を整理します。</p>
+<p>しかし実際に設定画面を探しても、それらしい項目は見つかりません。私たちはkintoneプラグインの開発元として、この「連動できない」相談を数多く受けてきました。本記事は2026年10月時点の仕様に基づいて、できない理由と3つの解決方法を整理します。</p>
 
 <div class="key">kintoneの標準機能に、ドロップダウン同士を連動させる仕組みはありません。<br>選択肢は、何を選んでも常に全件表示されます。<small>この記事では、標準機能でできる工夫 → JavaScriptで実現する方法 → プラグインという選択肢、の順で解説します。</small></div>
 
@@ -307,6 +318,7 @@ body{-webkit-text-size-adjust:100%;}
 <li>解決方法3つ（選択肢設計の工夫・JavaScript自作・プラグイン）の費用と工数の比較</li>
 <li>それぞれのメリット・デメリットと、導入前に確認すべき注意点</li>
 <li>誤選択を減らす選択肢設計のコツと、よくある質問への回答</li>
+<li>対応表づくりの手順と、親を変えたときの挙動の決め方</li>
 </ul></div>
 
 <div class="point"><b>先に結論</b>：ドロップダウンの選択肢を、別のフィールドの値に応じて絞り込むことは標準機能ではできません。解決方法は、次の3つです。</div>
@@ -317,7 +329,9 @@ body{-webkit-text-size-adjust:100%;}
 </div>
 <p>選択肢が多いアプリほど、誤選択とその手戻りは静かに積み上がります。分類のある入力が日常業務にあるなら、<b>総コストではプラグインが最も安くつくケースが多い</b>——これが本記事の結論です。理由を順に説明します。</p>
 
-<h2>kintoneでドロップダウンが連動できない理由｜標準機能でできること・できないこと</h2>
+<nav class="toc" aria-label="目次"><b>目次</b><ol><li><a href="#s1">kintoneでドロップダウンが連動できない理由｜標準機能でできること・できないこと</a></li><li><a href="#s2">連動ドロップダウンを実現する3つの方法【比較】</a></li><li><a href="#s3">対応表づくりの手順と、親を変えたときの挙動の決め方</a></li><li><a href="#s4">活用イメージとよくある質問</a></li><li><a href="#s5">まとめ：正しく選べる仕組みは、正しいデータの入り口になる</a></li></ol></nav>
+
+<h2 id="s1">kintoneでドロップダウンが連動できない理由｜標準機能でできること・できないこと</h2>
 
 <h3>原因：選択肢は「固定リスト」として定義される</h3>
 <p>kintoneのドロップダウン（選択肢フィールド）は、アプリ設定時に決めた選択肢のリストをそのまま表示する仕組みです。入力画面で他のフィールドが何を選ばれているかは、選択肢の表示に影響しません。</p>
@@ -354,7 +368,7 @@ body{-webkit-text-size-adjust:100%;}
 
 <div class="key">連動とは、便利機能ではなく「選択肢を減らす仕組み」。<br>選ばせない工夫が、誤選択と手戻りを根元から断ちます。</div>
 
-<h2>連動ドロップダウンを実現する3つの方法【比較】</h2>
+<h2 id="s2">連動ドロップダウンを実現する3つの方法【比較】</h2>
 
 <h3>方法1：選択肢の設計と運用で工夫する（代替方法・無料）</h3>
 <p>連動そのものは諦め、誤選択を減らす方向の工夫です。前述の命名規則（「PC/ノート」方式）が代表で、今日から無料でできます。</p>
@@ -422,7 +436,24 @@ body{-webkit-text-size-adjust:100%;}
 <div class="o"><b>やめられるか</b>解約・削除しても選択肢の表示が元に戻るだけで、フィールドやデータには影響しないことを確認しておきます。</div>
 </div>
 
-<h2>活用イメージとよくある質問</h2>
+<h2 id="s3">対応表づくりの手順と、親を変えたときの挙動の決め方</h2>
+<p>連動ドロップダウンの成否は、ツールよりも「対応表」の出来で決まります。対応表とは、「大分類がAのとき、選べる小分類はどれか」を並べた表のことです。次の順番で作ると、手戻りが少なくなります。</p>
+<div class="opt3">
+<div class="o"><b>①いまの選択肢を棚卸しする</b>まず、現在の選択肢を全部書き出します。使われていない選択肢、意味が重なっている選択肢は、連動を作る前に整理します。ここを飛ばすと、対応表が古い分類ごと固定されてしまいます。</div>
+<div class="o"><b>②親から順に決める</b>大分類を先に確定させ、その下に中分類、小分類をぶら下げます。「その他」は各階層に1つずつ用意しておくと、分類に迷うケースの逃げ道になります。</div>
+<div class="o"><b>③実際のレコードで試す</b>過去のレコードを10件ほど選び、新しい分類で入力し直せるかを確かめます。入力できない組み合わせが出たら、対応表のほうを直します。</div>
+</div>
+<h3>親を変えたとき、子の値をどうするか</h3>
+<p>見落とされがちですが、運用で必ず問題になるのが「大分類を選び直したとき、すでに選んである小分類をどうするか」です。考え方は3つあります。</p>
+<table class="tb">
+<tr><th>挙動</th><th>向いている場面</th><th>注意点</th></tr>
+<tr><td>子をクリアする</td><td>ほとんどの場合（迷ったらこれ）</td><td>選び直しの手間は増えるが、矛盾したデータが残らない</td></tr>
+<tr><td>新しい親でも選べる値なら残す</td><td>親が違っても共通の子がある分類</td><td>共通の子が少ないなら、クリアと変わらない</td></tr>
+<tr><td>値は残し、保存時にだけチェックする</td><td>あとからまとめて直す入力スタイル</td><td>保存時にエラーになるので、利用者への説明が必要</td></tr>
+</table>
+<p>JavaScriptで自作する場合、この挙動が決まっていないまま実装されていることが少なくありません。プラグインを選ぶ場合も、この挙動を選べるかどうかを確認しておくと安心です。</p>
+
+<h2 id="s4">活用イメージとよくある質問</h2>
 
 <h3>現場での活用イメージ</h3>
 <p>選択肢の連動がよく使われる典型的な場面を3つ紹介します（特定の導入企業の事例ではなく、想定される代表的な活用パターンです）。自社の分類に近いものがあれば、試用版で同じ階層を再現してみてください。</p>
@@ -433,9 +464,9 @@ body{-webkit-text-size-adjust:100%;}
 </ul>
 
 <h3>よくある質問</h3>
-<details class="faq"><summary>何段階まで連動できますか？</summary><p>bstの選択肢絞り込みプラグインは、大分類→中分類→小分類のような3段階以上の多段連動に対応しています。段数の設計は設定画面のGUIで行えます。</p></details><details class="faq"><summary>連動のルールはどうやって設定しますか？</summary><p>設定画面で「親の選択肢ごとに、子に表示する選択肢」をチェックで選ぶだけです。コードや対応表ファイルの作成は不要です。</p></details><details class="faq"><summary>既存のレコードやデータに影響はありませんか？</summary><p>ありません。プラグインが制御するのは入力画面での選択肢の表示だけで、フィールドや保存済みデータの構造には手を加えません。プラグインを外せば元の表示に戻ります。</p></details><details class="faq"><summary>業務データが外部に送信されませんか？</summary><p>送信されません。絞り込みの処理はすべてブラウザ内で完結します。年額プランのライセンス確認で送信されるのは「kintoneドメイン名」のみです。</p></details><details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。</p></details>
+<details class="faq"><summary>何段階まで連動できますか？</summary><p>bstの選択肢絞り込みプラグインは、大分類→中分類→小分類のような3段階以上の多段連動に対応しています。段数の設計は設定画面のGUIで行えます。</p></details><details class="faq"><summary>連動のルールはどうやって設定しますか？</summary><p>設定画面で「親の選択肢ごとに、子に表示する選択肢」をチェックで選ぶだけです。コードや対応表ファイルの作成は不要です。</p></details><details class="faq"><summary>既存のレコードやデータに影響はありませんか？</summary><p>ありません。プラグインが制御するのは入力画面での選択肢の表示だけで、フィールドや保存済みデータの構造には手を加えません。プラグインを外せば元の表示に戻ります。</p></details><details class="faq"><summary>業務データが外部に送信されませんか？</summary><p>送信されません。絞り込みの処理はすべてブラウザ内で完結します。年額プランのライセンス確認で送信されるのは「kintoneドメイン名」のみです。</p></details><details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。</p></details><details class="faq"><summary>スマートフォンでも連動しますか？</summary><p>bstの選択肢絞り込みプラグインは、モバイルでも値の連動と保存時のチェックが動作します。ただし選べない選択肢の見せ方は端末によって異なり、非表示ではなくグレーアウトに近い表示になる場合があります。</p></details><details class="faq"><summary>ラジオボタンにも使えますか？</summary><p>使えます。bstの選択肢絞り込みプラグインは、ドロップダウンとラジオボタンの連動に対応しています。最大5段まで連動でき、1つのアプリの中に連動のまとまりを複数作ることもできます。</p></details>
 
-<h2>まとめ：正しく選べる仕組みは、正しいデータの入り口になる</h2>
+<h2 id="s5">まとめ：正しく選べる仕組みは、正しいデータの入り口になる</h2>
 <ul class="plain">
 <li>kintoneの標準機能に、ドロップダウンを連動させる仕組みはない。選択肢は常に全件表示される</li>
 <li>まずは<b>命名規則やルックアップなど標準の工夫</b>を試す。選択肢が少ないうちはそれで足りる</li>

@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:title" content="kintoneでフィールドを条件で表示・非表示にする方法3選｜bstブログ">
 <meta property="og:description" content="kintoneで「区分が法人のときだけ会社名を表示したい」「条件によって必須にしたい」は標準機能ではできません。アクセス権との違い、JavaScriptで実現する方法、条件付きフィールド制御プラグインの3つの解決策を費用・工数・注意点まで比較して解説します。">
-<meta property="og:image" content="https://bst-plugins.com/og-home.png">
+<meta property="og:image" content="https://bst-plugins.com/og-conditional.png">
 <meta property="og:url" content="https://bst-plugins.com/blog/kintone-field-control.html">
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary_large_image">
@@ -34,10 +34,13 @@
   });
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"kintoneでフィールドを条件で表示・非表示にする方法3選","description":"kintoneで「区分が法人のときだけ会社名を表示したい」「条件によって必須にしたい」は標準機能ではできません。アクセス権との違い、JavaScriptで実現する方法、条件付きフィールド制御プラグインの3つの解決策を費用・工数・注意点まで比較して解説します。","datePublished":"2026-07-22","dateModified":"2026-07-22","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst"},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-field-control.html"}
+{"@context":"https://schema.org","@type":"Article","headline":"kintoneでフィールドを条件で表示・非表示にする方法3選","description":"kintoneで「区分が法人のときだけ会社名を表示したい」「条件によって必須にしたい」は標準機能ではできません。アクセス権との違い、JavaScriptで実現する方法、条件付きフィールド制御プラグインの3つの解決策を費用・工数・注意点まで比較して解説します。","datePublished":"2026-07-22","dateModified":"2026-10-06","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/","logo":{"@type":"ImageObject","url":"https://bst-plugins.com/logo.png"}},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-field-control.html","image":"https://bst-plugins.com/og-conditional.png"}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"表示・非表示のほかに、どんな制御ができますか？","acceptedAnswer":{"@type":"Answer","text":"bstの条件付きフィールド制御プラグインでは、フィールドの値に応じて「表示／非表示」「必須／任意」「読取専用（編集不可）」の3種類の効果を切り替えられます。効果は複数のフィールドにまとめて適用できます。"}},{"@type":"Question","name":"複数の条件を組み合わせられますか？","acceptedAnswer":{"@type":"Answer","text":"できます。「ステータスが受注 かつ 金額が100万円以上」のようなAND条件に対応しており、ルールは何本でも作成できます。設定画面では保存前に効果を確認できます。"}},{"@type":"Question","name":"設定にコードは必要ですか？","acceptedAnswer":{"@type":"Answer","text":"不要です。設定は「条件を選ぶ → 効果を選ぶ」の2ステップをGUIで行うだけです。JavaScriptの知識がなくても、その日から運用を調整できます。"}},{"@type":"Question","name":"既存のレコードやデータに影響はありませんか？","acceptedAnswer":{"@type":"Answer","text":"ありません。プラグインが制御するのは追加・編集画面での見え方と入力ルールだけで、フィールドや保存済みデータの構造には手を加えません。プラグインを外せば元の動作に戻ります。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。"}}]}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"表示・非表示のほかに、どんな制御ができますか？","acceptedAnswer":{"@type":"Answer","text":"bstの条件付きフィールド制御プラグインでは、フィールドの値に応じて「表示／非表示」「必須／任意」「読取専用（編集不可）」の3種類の効果を切り替えられます。効果は複数のフィールドにまとめて適用できます。"}},{"@type":"Question","name":"複数の条件を組み合わせられますか？","acceptedAnswer":{"@type":"Answer","text":"できます。「ステータスが受注 かつ 金額が100万円以上」のようなAND条件に対応しており、ルールは何本でも作成できます。設定画面では保存前に効果を確認できます。"}},{"@type":"Question","name":"設定にコードは必要ですか？","acceptedAnswer":{"@type":"Answer","text":"不要です。設定は「条件を選ぶ → 効果を選ぶ」の2ステップをGUIで行うだけです。JavaScriptの知識がなくても、その日から運用を調整できます。"}},{"@type":"Question","name":"既存のレコードやデータに影響はありませんか？","acceptedAnswer":{"@type":"Answer","text":"ありません。プラグインが制御するのは追加・編集画面での見え方と入力ルールだけで、フィールドや保存済みデータの構造には手を加えません。プラグインを外せば元の動作に戻ります。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。"}},{"@type":"Question","name":"設定を間違えて、入力できなくなることはありませんか？","acceptedAnswer":{"@type":"Answer","text":"bstの条件付きフィールド制御プラグインは、設定画面でルールの効果を保存前に確認できます。万一、意図しない動きになった場合も、プラグインの設定を直す（または無効にする）だけで元に戻り、レコードのデータには影響しません。"}},{"@type":"Question","name":"タブ表示など、ほかのプラグインと一緒に使えますか？","acceptedAnswer":{"@type":"Answer","text":"bstのタブ表示プラグインは、条件付きフィールド制御で非表示にした項目と矛盾しないように設計されており、併用できます。他社製のプラグインやJavaScriptカスタマイズと組み合わせる場合は、試用版で実際のアプリに入れて動作を確かめることをおすすめします。"}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://bst-plugins.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://bst-plugins.com/blog/index.html"},{"@type":"ListItem","position":3,"name":"kintoneでフィールドを条件で表示・非表示にする方法3選","item":"https://bst-plugins.com/blog/kintone-field-control.html"}]}
 </script>
 <style>
 :root{--ink:#252525;--paper:#FBFBF8;--paper2:#F3F2EC;--line:#E4E3DB;--amber:#FFB800;--amber-d:#B57E00;--mut:#6E6E68;--ok:#18794E;--blue:#2563EB;}
@@ -120,6 +123,14 @@ h3{margin-top:30px;}
 .dcp-vs{display:none;}
 .dcp-arrow{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;font-size:12.5px;font-weight:900;color:var(--amber-d);padding:1px 0;}
 }
+
+/* 目次 */
+.toc{border:1px solid var(--line);border-left:4px solid var(--amber);background:#fff;padding:14px 18px;margin:22px 0;font-size:14px;}
+.toc b{display:block;font-size:13px;margin-bottom:6px;}
+.toc ol{margin:0;padding-left:1.4em;}
+.toc li{margin:3px 0;line-height:1.7;}
+.toc a{color:inherit;text-decoration:none;border-bottom:1px solid #cfcec6;}
+.toc a:hover{border-bottom-color:var(--ink);}
 
 /* ===== bstd: 共通デザインレイヤー（2026-10・全ページ同一）=====
    方針: 箱と影を減らして罫線で組む／絵文字ではなく Material Symbols（インラインSVG）／
@@ -295,10 +306,10 @@ body{-webkit-text-size-adjust:100%;}
 <main><div class="wrap">
 
 <h1>kintoneでフィールドを条件で表示・非表示にする方法3選</h1>
-<p class="meta">2026-07-22公開 ／ カテゴリ: 入力支援・フォーム制御 ／ 執筆: bst 開発チーム</p>
+<p class="meta">2026-07-22公開・2026-10-06更新 ／ カテゴリ: 入力支援・フォーム制御 ／ 執筆: bst 開発チーム</p>
 
 <p>「区分が『法人』のときだけ、会社名の欄を出したい」「受注になったら、受注日を必須にしたい」「確定した金額は、もう書き換えられないようにしたい」——kintoneのフォームを作り込むと、必ず行き着くのがこの「条件による入力制御」です。</p>
-<p>そして設定画面を探し回った結果、それができないことに気づきます。私たちはkintoneプラグインの開発元として、この「条件で変えたい」相談を数多く受けてきました。本記事は2026年7月時点の仕様に基づいて、できない理由と3つの解決方法を整理します。</p>
+<p>そして設定画面を探し回った結果、それができないことに気づきます。私たちはkintoneプラグインの開発元として、この「条件で変えたい」相談を数多く受けてきました。本記事は2026年10月時点の仕様に基づいて、できない理由と3つの解決方法を整理します。</p>
 
 <div class="key">kintoneの標準機能に、「入力された値」を条件にフィールドを制御する仕組みはありません。<br>アクセス権が見ているのは「誰か」であって、「何が入力されたか」ではないのです。<small>この記事では、アクセス権との違いの整理 → JavaScriptで実現する方法 → プラグインという選択肢、の順で解説します。</small></div>
 
@@ -309,6 +320,7 @@ body{-webkit-text-size-adjust:100%;}
 <li>条件制御を実現する3つの方法（運用の工夫・JavaScript自作・プラグイン）の費用と工数の比較</li>
 <li>表示・必須・読取専用それぞれのメリット・デメリットと導入時の注意点</li>
 <li>入力ミスを仕組みで防ぐルール設計のコツと、よくある質問への回答</li>
+<li>ルールを書き出すテンプレート</li>
 </ul></div>
 
 <div class="point"><b>先に結論</b>：値を条件にした表示・非表示、必須の切り替え、編集の禁止は標準機能ではできません。解決方法は、次の3つです。</div>
@@ -319,7 +331,9 @@ body{-webkit-text-size-adjust:100%;}
 </div>
 <p>入力ミスの後始末は、気づく→確認する→差し戻す→直すという長い往復です。ミスの発生源が入力画面にあるなら、<b>総コストではプラグインが最も安くつくケースが多い</b>——これが本記事の結論です。理由を順に説明します。</p>
 
-<h2>kintoneでフィールドの条件制御ができない理由｜標準機能でできること・できないこと</h2>
+<nav class="toc" aria-label="目次"><b>目次</b><ol><li><a href="#s1">kintoneでフィールドの条件制御ができない理由｜標準機能でできること・できないこと</a></li><li><a href="#s2">フィールドの条件制御を実現する3つの方法【比較】</a></li><li><a href="#s3">ルールを書き出すテンプレート｜「もし〜なら、〜を〜する」</a></li><li><a href="#s4">活用イメージとよくある質問</a></li><li><a href="#s5">まとめ：良いフォームは、正しい入力しかできないフォーム</a></li></ol></nav>
+
+<h2 id="s1">kintoneでフィールドの条件制御ができない理由｜標準機能でできること・できないこと</h2>
 
 <h3>原因：標準の制御は「誰か」で決まり、「値」では変わらない</h3>
 <p>kintoneには入力を制御する標準機能がいくつもあります。ただし、それらの条件はすべて「ユーザーが誰か」「レコードがどの状態か」であって、<b>「いま何が入力されているか」でフォームの見た目やルールを変えることはできません</b>。</p>
@@ -353,7 +367,7 @@ body{-webkit-text-size-adjust:100%;}
 
 <div class="key">入力ミスは、注意力の問題ではなく画面の問題。<br>不要な項目が見えている限り、誤入力はなくなりません。</div>
 
-<h2>フィールドの条件制御を実現する3つの方法【比較】</h2>
+<h2 id="s2">フィールドの条件制御を実現する3つの方法【比較】</h2>
 
 <h3>方法1：フォーム設計と運用で工夫する（代替方法・無料）</h3>
 <p>制御そのものは諦め、迷いにくいフォームで誤入力を減らす方向です。グループフィールドで「法人のお客様のみ」の項目群をまとめ、ラベルで注意書きを添え、入力マニュアルを整備します。</p>
@@ -413,7 +427,25 @@ body{-webkit-text-size-adjust:100%;}
 <div class="o"><b>やめられるか</b>解約・削除しても画面の動きが元に戻るだけで、フィールドやデータには影響しないことを確認しておきます。</div>
 </div>
 
-<h2>活用イメージとよくある質問</h2>
+<h2 id="s3">ルールを書き出すテンプレート｜「もし〜なら、〜を〜する」</h2>
+<p>条件による制御は、設定を始める前に「文章で書き出す」と、漏れや矛盾に気づけます。形は1つだけ、<b>「もし（条件）なら、（どの項目）を（どうする）」</b>です。よくあるルールを例に示します。</p>
+<table class="tb">
+<tr><th>もし（条件）</th><th>どの項目を</th><th>どうする</th><th>防げるミス</th></tr>
+<tr><td>ステータスが「受注」</td><td>受注日・受注金額</td><td>必須にする</td><td>受注したのに日付や金額が空</td></tr>
+<tr><td>顧客区分が「個人」</td><td>法人番号・部署名</td><td>非表示にする</td><td>関係ない項目への誤入力、入力の迷い</td></tr>
+<tr><td>ステータスが「確定」</td><td>金額・数量</td><td>読取専用にする</td><td>確定後の数字の書き換え</td></tr>
+<tr><td>支払方法が「その他」</td><td>支払方法の詳細</td><td>表示して必須にする</td><td>「その他」の中身が分からない</td></tr>
+<tr><td>金額が100万円以上</td><td>決裁者・稟議番号</td><td>表示して必須にする</td><td>高額案件の承認情報の漏れ</td></tr>
+</table>
+<p>書き出したら、次の3点を確認します。</p>
+<div class="opt3">
+<div class="o"><b>①同じ項目に、矛盾するルールがないか</b>「Aなら必須」と「Bなら非表示」が同じ項目にかかっていると、AかつBのときにどうなるかが曖昧になります。両方が成り立つ場合の扱いを先に決めます。</div>
+<div class="o"><b>②条件になる項目が、先に入力される位置にあるか</b>条件に使う項目（ステータスや区分）がフォームの下のほうにあると、上の項目を入れたあとで表示が変わり、利用者が混乱します。条件になる項目は上に寄せます。</div>
+<div class="o"><b>③ルールは、まず5本以内に</b>最初から全部を制御しようとすると、設定した本人にも全体が見えなくなります。ミスの件数が多い順に5本まで入れ、様子を見てから足します。</div>
+</div>
+<p>このテンプレートは、JavaScriptで自作する場合の仕様書としても、プラグインの設定メモとしても、そのまま使えます。</p>
+
+<h2 id="s4">活用イメージとよくある質問</h2>
 
 <h3>現場での活用イメージ</h3>
 <p>条件付きフィールド制御がよく使われる典型的な場面を3つ紹介します（特定の導入企業の事例ではなく、想定される代表的な活用パターンです）。自社のフォームに近いものがあれば、試用版で同じルールを再現してみてください。</p>
@@ -424,9 +456,9 @@ body{-webkit-text-size-adjust:100%;}
 </ul>
 
 <h3>よくある質問</h3>
-<details class="faq"><summary>表示・非表示のほかに、どんな制御ができますか？</summary><p>bstの条件付きフィールド制御プラグインでは、フィールドの値に応じて「表示／非表示」「必須／任意」「読取専用（編集不可）」の3種類の効果を切り替えられます。効果は複数のフィールドにまとめて適用できます。</p></details><details class="faq"><summary>複数の条件を組み合わせられますか？</summary><p>できます。「ステータスが受注 かつ 金額が100万円以上」のようなAND条件に対応しており、ルールは何本でも作成できます。設定画面では保存前に効果を確認できます。</p></details><details class="faq"><summary>設定にコードは必要ですか？</summary><p>不要です。設定は「条件を選ぶ → 効果を選ぶ」の2ステップをGUIで行うだけです。JavaScriptの知識がなくても、その日から運用を調整できます。</p></details><details class="faq"><summary>既存のレコードやデータに影響はありませんか？</summary><p>ありません。プラグインが制御するのは追加・編集画面での見え方と入力ルールだけで、フィールドや保存済みデータの構造には手を加えません。プラグインを外せば元の動作に戻ります。</p></details><details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。</p></details>
+<details class="faq"><summary>表示・非表示のほかに、どんな制御ができますか？</summary><p>bstの条件付きフィールド制御プラグインでは、フィールドの値に応じて「表示／非表示」「必須／任意」「読取専用（編集不可）」の3種類の効果を切り替えられます。効果は複数のフィールドにまとめて適用できます。</p></details><details class="faq"><summary>複数の条件を組み合わせられますか？</summary><p>できます。「ステータスが受注 かつ 金額が100万円以上」のようなAND条件に対応しており、ルールは何本でも作成できます。設定画面では保存前に効果を確認できます。</p></details><details class="faq"><summary>設定にコードは必要ですか？</summary><p>不要です。設定は「条件を選ぶ → 効果を選ぶ」の2ステップをGUIで行うだけです。JavaScriptの知識がなくても、その日から運用を調整できます。</p></details><details class="faq"><summary>既存のレコードやデータに影響はありませんか？</summary><p>ありません。プラグインが制御するのは追加・編集画面での見え方と入力ルールだけで、フィールドや保存済みデータの構造には手を加えません。プラグインを外せば元の動作に戻ります。</p></details><details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。</p></details><details class="faq"><summary>設定を間違えて、入力できなくなることはありませんか？</summary><p>bstの条件付きフィールド制御プラグインは、設定画面でルールの効果を保存前に確認できます。万一、意図しない動きになった場合も、プラグインの設定を直す（または無効にする）だけで元に戻り、レコードのデータには影響しません。</p></details><details class="faq"><summary>タブ表示など、ほかのプラグインと一緒に使えますか？</summary><p>bstのタブ表示プラグインは、条件付きフィールド制御で非表示にした項目と矛盾しないように設計されており、併用できます。他社製のプラグインやJavaScriptカスタマイズと組み合わせる場合は、試用版で実際のアプリに入れて動作を確かめることをおすすめします。</p></details>
 
-<h2>まとめ：良いフォームは、正しい入力しかできないフォーム</h2>
+<h2 id="s5">まとめ：良いフォームは、正しい入力しかできないフォーム</h2>
 <ul class="plain">
 <li>kintoneの標準制御は「誰か」を条件にするもので、「入力された値」ではフォームを変えられない</li>
 <li>まずは<b>アクセス権とプロセス管理という標準の強制力</b>を使い切る。人単位の制御はそれで足りる</li>

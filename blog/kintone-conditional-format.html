@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:title" content="kintoneの一覧を条件で色分けする方法3選｜bstブログ">
 <meta property="og:description" content="kintoneの一覧はExcelのような条件付き書式が標準では使えず、期限切れや重要案件が埋もれがちです。標準機能でできる工夫、JavaScriptで実現する方法、条件書式プラグインの3つの解決策を費用・工数・注意点まで比較して解説します。">
-<meta property="og:image" content="https://bst-plugins.com/og-home.png">
+<meta property="og:image" content="https://bst-plugins.com/og-visual.png">
 <meta property="og:url" content="https://bst-plugins.com/blog/kintone-conditional-format.html">
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary_large_image">
@@ -34,10 +34,13 @@
   });
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"kintoneの一覧を条件で色分けする方法3選","description":"kintoneの一覧はExcelのような条件付き書式が標準では使えず、期限切れや重要案件が埋もれがちです。標準機能でできる工夫、JavaScriptで実現する方法、条件書式プラグインの3つの解決策を費用・工数・注意点まで比較して解説します。","datePublished":"2026-07-22","dateModified":"2026-07-22","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst"},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-conditional-format.html"}
+{"@context":"https://schema.org","@type":"Article","headline":"kintoneの一覧を条件で色分けする方法3選","description":"kintoneの一覧はExcelのような条件付き書式が標準では使えず、期限切れや重要案件が埋もれがちです。標準機能でできる工夫、JavaScriptで実現する方法、条件書式プラグインの3つの解決策を費用・工数・注意点まで比較して解説します。","datePublished":"2026-07-22","dateModified":"2026-10-06","author":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/about.html"},"publisher":{"@type":"Organization","name":"bst","url":"https://bst-plugins.com/","logo":{"@type":"ImageObject","url":"https://bst-plugins.com/logo.png"}},"mainEntityOfPage":"https://bst-plugins.com/blog/kintone-conditional-format.html","image":"https://bst-plugins.com/og-visual.png"}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"色を付ける条件は、いくつまで設定できますか？","acceptedAnswer":{"@type":"Answer","text":"bstのビジュアル条件書式プラグインでは、複数のルールを組み合わせて設定できます。ただし運用上は、本文で解説しているとおり5個程度までに絞ることをおすすめしています。多すぎる色は「全部目立つ＝何も目立たない」状態を招くためです。"}},{"@type":"Question","name":"Excelの条件付き書式と同じことができますか？","acceptedAnswer":{"@type":"Answer","text":"「条件に合う行やセルを自動で色分けする」という中核は同じ感覚で使えます。設定はコードではなくGUIで行うため、Excelの条件付き書式に慣れている方ならすぐに馴染めます。"}},{"@type":"Question","name":"レコードのデータに影響はありませんか？","acceptedAnswer":{"@type":"Answer","text":"ありません。プラグインが変えるのは一覧の見た目（表示）だけで、フィールドや保存されているデータには手を加えません。プラグインを外せば元の表示に戻ります。"}},{"@type":"Question","name":"業務データが外部に送信されませんか？","acceptedAnswer":{"@type":"Answer","text":"送信されません。色分けの判定と描画はすべてブラウザ内で完結します。年額プランのライセンス確認で送信されるのは「kintoneドメイン名」のみです。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。"}}]}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"色を付ける条件は、いくつまで設定できますか？","acceptedAnswer":{"@type":"Answer","text":"bstのビジュアル条件書式プラグインでは、複数のルールを組み合わせて設定できます。ただし運用上は、本文で解説しているとおり5個程度までに絞ることをおすすめしています。多すぎる色は「全部目立つ＝何も目立たない」状態を招くためです。"}},{"@type":"Question","name":"Excelの条件付き書式と同じことができますか？","acceptedAnswer":{"@type":"Answer","text":"「条件に合う行やセルを自動で色分けする」という中核は同じ感覚で使えます。設定はコードではなくGUIで行うため、Excelの条件付き書式に慣れている方ならすぐに馴染めます。"}},{"@type":"Question","name":"レコードのデータに影響はありませんか？","acceptedAnswer":{"@type":"Answer","text":"ありません。プラグインが変えるのは一覧の見た目（表示）だけで、フィールドや保存されているデータには手を加えません。プラグインを外せば元の表示に戻ります。"}},{"@type":"Question","name":"業務データが外部に送信されませんか？","acceptedAnswer":{"@type":"Answer","text":"送信されません。色分けの判定と描画はすべてブラウザ内で完結します。年額プランのライセンス確認で送信されるのは「kintoneドメイン名」のみです。"}},{"@type":"Question","name":"無料で試せますか？","acceptedAnswer":{"@type":"Answer","text":"30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。"}},{"@type":"Question","name":"スマートフォンでも色分けは表示されますか？","acceptedAnswer":{"@type":"Answer","text":"bstのビジュアル条件書式プラグインは、PCブラウザ専用です。スマートフォンのkintoneアプリでは標準の表示のままになります（データの閲覧・入力には影響しません）。"}},{"@type":"Question","name":"一覧だけでなく、詳細画面や編集画面にも適用できますか？","acceptedAnswer":{"@type":"Answer","text":"できます。一覧（表形式）・詳細・追加／編集の各画面に適用でき、画面ごとに適用するかどうかを選べます。追加・編集画面では、入力中の値に応じてその場で色が変わります。"}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://bst-plugins.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://bst-plugins.com/blog/index.html"},{"@type":"ListItem","position":3,"name":"kintoneの一覧を条件で色分けする方法3選","item":"https://bst-plugins.com/blog/kintone-conditional-format.html"}]}
 </script>
 <style>
 :root{--ink:#252525;--paper:#FBFBF8;--paper2:#F3F2EC;--line:#E4E3DB;--amber:#FFB800;--amber-d:#B57E00;--mut:#6E6E68;--ok:#18794E;--blue:#2563EB;}
@@ -123,6 +126,14 @@ tr.vf-done td{background:#F0FAF4;color:#4a6a58;}
 .dcp-vs{display:none;}
 .dcp-arrow{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;font-size:12.5px;font-weight:900;color:var(--amber-d);padding:1px 0;}
 }
+
+/* 目次 */
+.toc{border:1px solid var(--line);border-left:4px solid var(--amber);background:#fff;padding:14px 18px;margin:22px 0;font-size:14px;}
+.toc b{display:block;font-size:13px;margin-bottom:6px;}
+.toc ol{margin:0;padding-left:1.4em;}
+.toc li{margin:3px 0;line-height:1.7;}
+.toc a{color:inherit;text-decoration:none;border-bottom:1px solid #cfcec6;}
+.toc a:hover{border-bottom-color:var(--ink);}
 
 /* ===== bstd: 共通デザインレイヤー（2026-10・全ページ同一）=====
    方針: 箱と影を減らして罫線で組む／絵文字ではなく Material Symbols（インラインSVG）／
@@ -298,10 +309,10 @@ body{-webkit-text-size-adjust:100%;}
 <main><div class="wrap">
 
 <h1>kintoneの一覧を条件で色分けする方法3選</h1>
-<p class="meta">2026-07-22公開 ／ カテゴリ: 一覧・見える化 ／ 執筆: bst 開発チーム</p>
+<p class="meta">2026-07-22公開・2026-10-06更新 ／ カテゴリ: 一覧・見える化 ／ 執筆: bst 開発チーム</p>
 
 <p>「期限切れの案件が、一覧の中に埋もれていて気づけなかった」「Excelなら条件付き書式で赤くできたのに」——kintoneに台帳を移した現場から、よく聞く声です。</p>
-<p>データは正しく入っている。一覧も作った。それでも見落としは起きます。私たちはkintoneプラグインの開発元として、この「埋もれる」相談を数多く受けてきました。本記事は2026年7月時点の仕様に基づいて、原因と3つの解決方法を整理します。</p>
+<p>データは正しく入っている。一覧も作った。それでも見落としは起きます。私たちはkintoneプラグインの開発元として、この「埋もれる」相談を数多く受けてきました。本記事は2026年10月時点の仕様に基づいて、原因と3つの解決方法を整理します。</p>
 
 <div class="key">kintoneの一覧に、Excelのような「条件付き書式」はありません。<br>何百行あっても、すべての行が同じ見た目で並びます。<small>この記事では、埋もれる原因 → 標準機能でできる工夫 → 色分けを実現する3つの方法、の順で解説します。</small></div>
 
@@ -312,6 +323,7 @@ body{-webkit-text-size-adjust:100%;}
 <li>色分けを実現する3つの方法（絞り込み活用・JavaScript自作・プラグイン）の費用と工数の比較</li>
 <li>それぞれのメリット・デメリットと、導入前に確認すべき注意点</li>
 <li>色に頼りすぎない色分け設計のコツと、よくある質問への回答</li>
+<li>最初に入れる3つのルール</li>
 </ul></div>
 
 <div class="point"><b>先に結論</b>：kintoneの一覧を条件で自動的に色分けする機能は、標準にはありません。解決方法は、次の3つです。</div>
@@ -322,7 +334,9 @@ body{-webkit-text-size-adjust:100%;}
 </div>
 <p>一覧は、毎日全員が見る画面です。期限や閾値のあるデータを扱っているなら、<b>総コストではプラグインが最も安くつくケースが多い</b>——これが本記事の結論です。理由を順に説明します。</p>
 
-<h2>kintoneの一覧で大事なデータが埋もれる理由｜標準機能でできること・できないこと</h2>
+<nav class="toc" aria-label="目次"><b>目次</b><ol><li><a href="#s1">kintoneの一覧で大事なデータが埋もれる理由｜標準機能でできること・できないこと</a></li><li><a href="#s2">一覧の色分けを実現する3つの方法【比較】</a></li><li><a href="#s3">最初に入れる3つのルール｜期限超過・今日期限・完了</a></li><li><a href="#s4">活用イメージとよくある質問</a></li><li><a href="#s5">まとめ：色は「読む一覧」を「見る一覧」に変える</a></li></ol></nav>
+
+<h2 id="s1">kintoneの一覧で大事なデータが埋もれる理由｜標準機能でできること・できないこと</h2>
 
 <h3>原因：一覧は「すべての行が同じ見た目」で表示される</h3>
 <p>kintoneの一覧は、条件による見た目の変化を持ちません。期限が昨日でも来月でも、金額が10倍違っても、行の色も文字の太さも同じです。</p>
@@ -363,7 +377,7 @@ body{-webkit-text-size-adjust:100%;}
 
 <div class="key">人は、文字を読む前に色を見ています。<br>色分けとは装飾ではなく、「読まなくても伝わる」ようにする仕組みです。</div>
 
-<h2>一覧の色分けを実現する3つの方法【比較】</h2>
+<h2 id="s2">一覧の色分けを実現する3つの方法【比較】</h2>
 
 <h3>方法1：絞り込み一覧と通知で代替する（代替方法・無料）</h3>
 <p>色そのものは諦め、「異常だけを取り出す」方向の工夫です。「期限切れ一覧」「金額500万円以上一覧」のような保存済み一覧と、リマインダー通知を組み合わせます。</p>
@@ -431,7 +445,20 @@ body{-webkit-text-size-adjust:100%;}
 <div class="o"><b>やめられるか</b>解約・削除しても一覧の見た目が元に戻るだけで、フィールドやデータには影響しないことを確認しておきます。</div>
 </div>
 
-<h2>活用イメージとよくある質問</h2>
+<h2 id="s3">最初に入れる3つのルール｜期限超過・今日期限・完了</h2>
+<p>色分けは、ルールを増やすほど効果が薄れます。最初から細かく作り込むより、どの業務にも当てはまる3つのルールから始めて、足りなければ足すほうが失敗しません。</p>
+<table class="tb">
+<tr><th>ルール</th><th>条件の例</th><th>見せ方の例</th><th>ねらい</th></tr>
+<tr><td>①期限超過</td><td>期日が今日より前 かつ 未完了</td><td>行を赤系に＋警告アイコン</td><td>放置できないものを最初に目に入れる</td></tr>
+<tr><td>②今日・今週が期限</td><td>期日が今日（または7日以内）かつ 未完了</td><td>行を黄系に</td><td>次に手を付けるものが分かる</td></tr>
+<tr><td>③完了</td><td>ステータスが完了</td><td>文字を薄く、または緑のバッジ</td><td>終わったものを視界から下げる</td></tr>
+</table>
+<p>ポイントは③です。色分けというと「目立たせる」ことを考えがちですが、<b>終わったものを目立たなくする</b>と、残りが自然に浮かび上がります。赤と黄色を増やすより効果的です。</p>
+<h3>色だけに頼らない</h3>
+<p>色の見え方には個人差があり、赤と緑の区別がつきにくい方もいます。また、白黒で印刷すると色の違いは消えてしまいます。重要なルールには、色に加えてアイコンやバッジ（「超過」「要対応」などの文字）を併用しておくと、誰にでも、どの媒体でも伝わります。</p>
+<p>金額や進捗率のような数値は、色よりもバー（データバー）のほうが大小を直感的に比べられます。「どれが大きいか」を見たい列にはバー、「どれが危ないか」を見たい行には色、と使い分けるのが目安です。</p>
+
+<h2 id="s4">活用イメージとよくある質問</h2>
 
 <h3>現場での活用イメージ</h3>
 <p>条件書式がよく使われる典型的な場面を3つ紹介します（特定の導入企業の事例ではなく、想定される代表的な活用パターンです）。自社の一覧に近いものがあれば、試用版で同じルールを再現してみてください。</p>
@@ -442,9 +469,9 @@ body{-webkit-text-size-adjust:100%;}
 </ul>
 
 <h3>よくある質問</h3>
-<details class="faq"><summary>色を付ける条件は、いくつまで設定できますか？</summary><p>bstのビジュアル条件書式プラグインでは、複数のルールを組み合わせて設定できます。ただし運用上は、本文で解説しているとおり5個程度までに絞ることをおすすめしています。多すぎる色は「全部目立つ＝何も目立たない」状態を招くためです。</p></details><details class="faq"><summary>Excelの条件付き書式と同じことができますか？</summary><p>「条件に合う行やセルを自動で色分けする」という中核は同じ感覚で使えます。設定はコードではなくGUIで行うため、Excelの条件付き書式に慣れている方ならすぐに馴染めます。</p></details><details class="faq"><summary>レコードのデータに影響はありませんか？</summary><p>ありません。プラグインが変えるのは一覧の見た目（表示）だけで、フィールドや保存されているデータには手を加えません。プラグインを外せば元の表示に戻ります。</p></details><details class="faq"><summary>業務データが外部に送信されませんか？</summary><p>送信されません。色分けの判定と描画はすべてブラウザ内で完結します。年額プランのライセンス確認で送信されるのは「kintoneドメイン名」のみです。</p></details><details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。</p></details>
+<details class="faq"><summary>色を付ける条件は、いくつまで設定できますか？</summary><p>bstのビジュアル条件書式プラグインでは、複数のルールを組み合わせて設定できます。ただし運用上は、本文で解説しているとおり5個程度までに絞ることをおすすめしています。多すぎる色は「全部目立つ＝何も目立たない」状態を招くためです。</p></details><details class="faq"><summary>Excelの条件付き書式と同じことができますか？</summary><p>「条件に合う行やセルを自動で色分けする」という中核は同じ感覚で使えます。設定はコードではなくGUIで行うため、Excelの条件付き書式に慣れている方ならすぐに馴染めます。</p></details><details class="faq"><summary>レコードのデータに影響はありませんか？</summary><p>ありません。プラグインが変えるのは一覧の見た目（表示）だけで、フィールドや保存されているデータには手を加えません。プラグインを外せば元の表示に戻ります。</p></details><details class="faq"><summary>業務データが外部に送信されませんか？</summary><p>送信されません。色分けの判定と描画はすべてブラウザ内で完結します。年額プランのライセンス確認で送信されるのは「kintoneドメイン名」のみです。</p></details><details class="faq"><summary>無料で試せますか？</summary><p>30日間の無料試用版があります。メールアドレスの登録も不要で、ZIPをダウンロードしてkintoneに読み込むだけで全機能を試せます。</p></details><details class="faq"><summary>スマートフォンでも色分けは表示されますか？</summary><p>bstのビジュアル条件書式プラグインは、PCブラウザ専用です。スマートフォンのkintoneアプリでは標準の表示のままになります（データの閲覧・入力には影響しません）。</p></details><details class="faq"><summary>一覧だけでなく、詳細画面や編集画面にも適用できますか？</summary><p>できます。一覧（表形式）・詳細・追加／編集の各画面に適用でき、画面ごとに適用するかどうかを選べます。追加・編集画面では、入力中の値に応じてその場で色が変わります。</p></details>
 
-<h2>まとめ：色は「読む一覧」を「見る一覧」に変える</h2>
+<h2 id="s5">まとめ：色は「読む一覧」を「見る一覧」に変える</h2>
 <ul class="plain">
 <li>kintoneの一覧に条件付き書式はなく、何百行でも同じ見た目で並ぶ。埋もれは仕組みの問題</li>
 <li>まずは<b>絞り込み一覧とリマインダー通知</b>という標準の強みを使い切る</li>
